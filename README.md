@@ -2,27 +2,78 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
 
-## Development server
+## 1. Setup Firebase
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```node
+npm install -g firebase-tools
+firebase login
+firebase init
+firebase deploy
+```
 
-## Code scaffolding
+## 2. Setup Angular Material
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<https://material.angular.io/guide/getting-started>
 
-## Build
+## 3. Setup Angular Flex Layout
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+<https://github.com/angular/flex-layout#angular-flex-layout>
 
-## Running unit tests
+## 4. Setup AngularFire
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<https://github.com/angular/angularfire2>
 
-## Running end-to-end tests
+## Registry List
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+| Id        | Abbreviate | Registry                       | Published          |
+|-----------|------------|--------------------------------|--------------------|
+| ACSx290   | ACX        | STS Adult Cardiac Surgery v2.9 | February 13, 2017  |
+| CathPci50 | PCI        | NCDR CathPCI Registry v5.0     | September 18, 2018 |
 
-## Further help
+## Position
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-# bdms-registry-v2
+| abbreviation | position                  |
+|--------------|---------------------------|
+| CS           | Cardiac Surgeon           |
+| AN           | Anesthesiologist          |
+| SN           | Scrub Nurse               |
+| CT           | Cardiothoracic technician |
+| HC           | Heart Coordinator         |
+| RS           | Researcher                |
+| RG           | Register                  |
+
+## Hospital
+
+| hospId | name                   |
+|--------|------------------------|
+| BHT    | Bangkok Heart Hospital |
+| BCM    | Bangkok Bangkok Chiang Mai Hospital |
+
+## Role
+
+| role          |
+|---------------|
+| Director      |
+| Administrator |
+| Editor        |
+| Viewer        |
+| Staff         |
+
+## Permission
+
+| permission |
+|------------|
+| Hospital   |
+| Group      |
+| BDMS       |
+
+## Menu
+
+| menu        | authenticate | role                            |
+|-------------|--------------|---------------------------------|
+| Home        | N            | -                               |
+| Registry    | Y            | Director, Administrator, Editor |
+| My Patients | Y            | Director, Administrator, Staff  |
+| Staff       | Y            | Director, Administrator         |
+| Tools       | Y            | Director                        |
+| About       | N            | -                               |
