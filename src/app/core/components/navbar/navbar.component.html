@@ -1,1 +1,51 @@
-<p>navbar works!</p>
+<mat-nav-list>
+  <div class="profile-card">
+    <div class="header">
+      <h2>Siriwasan A.</h2>
+      <h4>example@email.com</h4>
+    </div>
+    <img src="https://image.freepik.com/free-vector/man-avatar-profile-round-icon_24640-14044.jpg" alt="Siriwasan A." />
+  </div>
+
+  <a mat-list-item routerLink="/" (click)="onNavItemSelected()">
+    <mat-icon>assignment</mat-icon>
+    <span class="nav-caption">My Patients</span>
+  </a>
+
+  <mat-divider></mat-divider>
+
+  <h2 mat-subheader>Registry</h2>
+
+  <a mat-list-item routerLink="/" (click)="onNavItemSelected()">
+    <mat-icon>list</mat-icon>
+    <span class="nav-caption">ACSD</span>
+  </a>
+
+  <a mat-list-item routerLink="/" (click)="onNavItemSelected()">
+    <mat-icon>list</mat-icon>
+    <span class="nav-caption">CathPCI</span>
+  </a>
+
+  <mat-divider></mat-divider>
+
+  <a mat-list-item routerLink="/" (click)="onNavItemSelected()">
+    <mat-icon>dashboard</mat-icon>
+    <span class="nav-caption">Dashboard</span>
+  </a>
+
+  <a mat-list-item routerLink="/" (click)="onNavItemSelected()">
+    <mat-icon>people</mat-icon>
+    <span class="nav-caption">Staff</span>
+  </a>
+
+  <a mat-list-item routerLink="/" (click)="onNavItemSelected()">
+    <mat-icon>build</mat-icon>
+    <span class="nav-caption">Tools</span>
+  </a>
+
+  <a mat-list-item routerLink="/" (click)="onNavItemSelected()">
+    <mat-icon>info_outline</mat-icon>
+    <span class="nav-caption">About</span>
+  </a>
+
+</mat-nav-list>
