@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./test-form.component.scss'],
 })
 export class TestFormComponent extends ScrollSpyComponent implements OnInit, OnDestroy {
+  showSidebar = false;
   sidebarOpened = true;
   isMobile: boolean;
   private subscription: Subscription[] = [];
@@ -30,7 +31,10 @@ export class TestFormComponent extends ScrollSpyComponent implements OnInit, OnD
     super.ngOnInit();
 
     this.subscription.push(
-      this.sidebarService.sidebarToggle.subscribe(() => (this.sidebarOpened = !this.sidebarOpened)),
+      this.sidebarService.sidebarToggle.subscribe(() => {
+        this.sidebarOpened = !this.sidebarOpened;
+        this.showSidebar = !this.showSidebar;
+      }),
       this.breakpointObserver.observe('(max-width: 600px)').subscribe((result) => {
         this.isMobile = result.matches;
         this.sidebarOpened = !result.matches;

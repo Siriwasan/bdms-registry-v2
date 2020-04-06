@@ -1,8 +1,8 @@
 <div class="app-container" fxLayout="row" fxLayoutGap="20px">
   <mat-drawer-container class="app-sidenav-container">
-    <mat-drawer [mode]="isMobile ? 'over' : 'side'" position="end" *ngIf="sidebarOpened" [(opened)]="sidebarOpened"
+    <mat-drawer [mode]="isMobile ? 'over' : 'side'" position="end" [(opened)]="sidebarOpened"
       (closed)="sidebarOpened = false">
-      <div class="table-of-contents" [style.max-height.px]="tocMaxHeight">
+      <div class="table-of-contents" [style.max-height.px]="tocMaxHeight" *ngIf="sidebarOpened">
         <ul>
           <li id="titleTOC" (click)="tocClicked('title')" [class.active]="isActive('title')" class="menu-title">
             <span>TEST
@@ -46,7 +46,7 @@
 
     <mat-drawer-content>
       <div scrollSpyElement id="title" fxFlexOrder="0">
-        <h1>TEST FORM</h1>
+        <h1 class="registry-name">TEST FORM</h1>
         <section class="section-wrapper" scrollSpyElement id="sectionA">
           <div class="section-title">
             A. Administrative
@@ -185,8 +185,7 @@
           </div>
         </section>
       </div>
+      <br>
     </mat-drawer-content>
   </mat-drawer-container>
 </div>
-
-<br>
