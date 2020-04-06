@@ -2,8 +2,8 @@
   <mat-drawer-container class="app-sidenav-container">
     <mat-drawer [mode]="isMobile ? 'over' : 'side'" position="end" [(opened)]="sidebarOpened"
       (closed)="sidebarOpened = false">
-      <div class="table-of-contents" [style.max-height.px]="tocMaxHeight" *ngIf="sidebarOpened">
-        <ul>
+      <div class="table-of-contents" [style.max-height.px]="tocMaxHeight">
+        <ul *ngIf="sidebarOpened">
           <li id="titleTOC" (click)="tocClicked('title')" [class.active]="isActive('title')" class="menu-title">
             <span>TEST
               FORM</span></li>
