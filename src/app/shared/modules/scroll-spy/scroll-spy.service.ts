@@ -3,6 +3,8 @@ import { fromEvent, Subject, Observable, Subscription } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
 import { animationFrame } from 'rxjs/internal/scheduler/animationFrame';
 
+const TOP_OFFSET = 64; // estimate number
+
 interface ScrollSpy {
   elements: HTMLElement[];
   currentSectionId: string;
@@ -18,7 +20,6 @@ export class ScrollSpyService implements OnDestroy {
   private readonly defaultId: string = 'default';
   private scrollSpies: ScrollSpies = {};
   private scrollSubscription: Subscription;
-  private topOffset = 64; // estimate number
 
   constructor() {
     this.subscribeScroll();
@@ -75,12 +76,13 @@ export class ScrollSpyService implements OnDestroy {
 
   private subscribeScroll(): void {
     let scrollTarget: any;
-    scrollTarget = document.querySelector('mat-sidenav-content');
 
-    // if not i mat-sidenav-content, subscription with window::scroll
-    if (scrollTarget === null) {
-      scrollTarget = window;
-    }
+    // if not in mat-sidenav-content, subscription with window::scroll
+    // scrollTarget = document.querySelector('mat-sidenav-content');
+    // if (scrollTarget === null) {
+    //   scrollTarget = window;
+    // }
+    scrollTarget = document.querySelector('mat-sidenav-content') ?? window;
 
     this.scrollSubscription = fromEvent(scrollTarget, 'scroll')
       .pipe(throttleTime(0, animationFrame))
@@ -88,8 +90,7 @@ export class ScrollSpyService implements OnDestroy {
         Object.keys(this.scrollSpies).forEach((key: string): void => {
           const { currentSectionId, elements, subject } = this.scrollSpies[key];
           const topElementInView: HTMLElement = elements.filter(
-            (element: HTMLElement): boolean =>
-              element.getBoundingClientRect().top <= this.topOffset + 1
+            (element: HTMLElement): boolean => element.getBoundingClientRect().top <= TOP_OFFSET + 1
           )[0];
 
           if (!topElementInView) {
@@ -109,11 +110,6 @@ export class ScrollSpyService implements OnDestroy {
             if (tocTarget !== null) {
               tocTarget.scrollIntoView({ block: 'nearest' });
             }
-
-            // console.log({
-            //   topId: topElementId,
-            //   currentId: currentSectionId
-            // });
           }
         });
       });
@@ -121,11 +117,5 @@ export class ScrollSpyService implements OnDestroy {
 
   scrollTo(section: string) {
     document.getElementById(section).scrollIntoView(true);
-
-    // adjust top offset if in mat-sidenav-content
-    const matSidenav = document.querySelector('mat-sidenav-content');
-    if (matSidenav !== null) {
-      matSidenav.scrollTop -= this.topOffset;
-    }
   }
 }

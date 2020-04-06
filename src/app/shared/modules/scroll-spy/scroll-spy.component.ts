@@ -29,10 +29,11 @@ export class ScrollSpyComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     // adjust top offset if in mat-sidenav-content
-    this.scrollTarget = document.querySelector('mat-sidenav-content');
-    if (this.scrollTarget === null) {
-      this.scrollTarget = window;
-    }
+    // this.scrollTarget = document.querySelector('mat-sidenav-content');
+    // if (this.scrollTarget === null) {
+    //   this.scrollTarget = window;
+    // }
+    this.scrollTarget = document.querySelector('mat-sidenav-content') ?? window;
 
     this.listener = () => this.calculatTocMaxHeight();
     this.scrollTarget.addEventListener('scroll', this.listener, false);
