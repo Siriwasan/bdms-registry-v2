@@ -1,4 +1,5 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { SidebarService } from 'src/app/shared/services/sidebar.service';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +7,10 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  @Input() isMobile: boolean;
   @Output() navbarToggle = new EventEmitter<void>();
-  @Output() sidebarToggle = new EventEmitter<void>();
 
-  constructor() {}
+  constructor(private sidebarService: SidebarService) {}
 
   ngOnInit(): void {}
 
@@ -18,6 +19,6 @@ export class HeaderComponent implements OnInit {
   }
 
   onToggleSidebar() {
-    this.sidebarToggle.emit();
+    this.sidebarService.sidebarToggle.emit();
   }
 }

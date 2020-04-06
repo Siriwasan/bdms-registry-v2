@@ -1,44 +1,43 @@
 <div class="app-container" fxLayout="row" fxLayoutGap="20px">
-  <!-- <div fxFlexOrder="1" fxFlex="200px" fxHide.xs>
-  </div> -->
-
   <mat-drawer-container class="app-sidenav-container">
-    <mat-drawer #navbar mode="side" opened="true" position="end">
-      <div class="table-of-contents" [style.max-height.px]="tocMaxHeight" fxHide.xs>
+    <mat-drawer [mode]="isMobile ? 'over' : 'side'" position="end" *ngIf="sidebarOpened" [(opened)]="sidebarOpened"
+      (closed)="sidebarOpened = false">
+      <div class="table-of-contents" [style.max-height.px]="tocMaxHeight">
         <ul>
-          <li id="titleTOC" (click)="scrollTo('title')" [class.active]="isActive('title')" class="menu-title"><span>TEST
+          <li id="titleTOC" (click)="tocClicked('title')" [class.active]="isActive('title')" class="menu-title">
+            <span>TEST
               FORM</span></li>
-          <li><a id="sectionATOC" (click)="scrollTo('sectionA')" [class.active]="isActive('sectionA')">A.
+          <li><a id="sectionATOC" (click)="tocClicked('sectionA')" [class.active]="isActive('sectionA')">A.
               Administrative</a>
           </li>
-          <li><a id="sectionBTOC" (click)="scrollTo('sectionB')" [class.active]="isActive('sectionB')">B.
+          <li><a id="sectionBTOC" (click)="tocClicked('sectionB')" [class.active]="isActive('sectionB')">B.
               Demographics</a>
           </li>
-          <li><a id="sectionCTOC" (click)="scrollTo('sectionC')" [class.active]="isActive('sectionC')">C.
+          <li><a id="sectionCTOC" (click)="tocClicked('sectionC')" [class.active]="isActive('sectionC')">C.
               Preoperative</a>
           </li>
-          <li><a id="sectionDTOC" (click)="scrollTo('sectionD')" [class.active]="isActive('sectionD')">D.
+          <li><a id="sectionDTOC" (click)="tocClicked('sectionD')" [class.active]="isActive('sectionD')">D.
               Preoperative</a>
           </li>
-          <li><a id="sectionETOC" (click)="scrollTo('sectionE')" [class.active]="isActive('sectionE')">E.
+          <li><a id="sectionETOC" (click)="tocClicked('sectionE')" [class.active]="isActive('sectionE')">E.
               Preoperative</a>
           </li>
-          <li><a id="sectionFTOC" (click)="scrollTo('sectionF')" [class.active]="isActive('sectionF')">F.
+          <li><a id="sectionFTOC" (click)="tocClicked('sectionF')" [class.active]="isActive('sectionF')">F.
               Preoperative</a>
           </li>
-          <li><a id="sectionGTOC" (click)="scrollTo('sectionG')" [class.active]="isActive('sectionG')">G.
+          <li><a id="sectionGTOC" (click)="tocClicked('sectionG')" [class.active]="isActive('sectionG')">G.
               Preoperative</a>
           </li>
-          <li><a id="sectionHTOC" (click)="scrollTo('sectionH')" [class.active]="isActive('sectionH')">H.
+          <li><a id="sectionHTOC" (click)="tocClicked('sectionH')" [class.active]="isActive('sectionH')">H.
               Preoperative</a>
           </li>
-          <li><a id="sectionITOC" (click)="scrollTo('sectionI')" [class.active]="isActive('sectionI')">I.
+          <li><a id="sectionITOC" (click)="tocClicked('sectionI')" [class.active]="isActive('sectionI')">I.
               Preoperative</a>
           </li>
-          <li><a id="sectionJTOC" (click)="scrollTo('sectionJ')" [class.active]="isActive('sectionJ')">J.
+          <li><a id="sectionJTOC" (click)="tocClicked('sectionJ')" [class.active]="isActive('sectionJ')">J.
               Preoperative</a>
           </li>
-          <li><a id="sectionKTOC" (click)="scrollTo('sectionK')" [class.active]="isActive('sectionK')">K.
+          <li><a id="sectionKTOC" (click)="tocClicked('sectionK')" [class.active]="isActive('sectionK')">K.
               Preoperative</a>
           </li>
         </ul>

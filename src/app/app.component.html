@@ -1,5 +1,5 @@
 <div class="app-container" [class.app-is-mobile]="isMobile">
-  <app-header class="app-header" (navbarToggle)="navbar.toggle()"></app-header>
+  <app-header class="app-header" [isMobile]="isMobile" (navbarToggle)="navbar.toggle()"></app-header>
 
   <mat-sidenav-container class="app-sidenav-container" [style.marginTop.px]="isMobile ? 56 : 0">
     <mat-sidenav #navbar [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile" [fixedInViewport]="isMobile"
