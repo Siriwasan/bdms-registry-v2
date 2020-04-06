@@ -8,8 +8,15 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <p *ngFor="let content of fillerContent">{{ content }}</p>
-      <!-- <router-outlet></router-outlet> -->
+      <!-- <p *ngFor="let content of fillerContent">{{ content }}</p> -->
+      <router-outlet></router-outlet>
     </mat-sidenav-content>
+
+    <!-- <mat-sidenav #sidebar position="end" [mode]="'side'" [opened]="!isMobile" [fixedInViewport]="isMobile"
+      fixedTopGap="56">
+      <div *ngFor="let nav of fillerNav">
+        <a mat-list-item routerLink=".">{{nav}}</a>
+      </div>
+    </mat-sidenav> -->
   </mat-sidenav-container>
 </div>

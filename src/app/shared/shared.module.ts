@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CoreModule } from '@angular/flex-layout';
 
-
+import { ScrollSpyModule } from './modules/scroll-spy/scroll-spy.module';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule
-  ]
+  imports: [CoreModule],
+  exports: [ScrollSpyModule],
 })
-export class SharedModule { }
+export class SharedModule {}

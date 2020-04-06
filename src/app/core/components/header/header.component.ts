@@ -7,6 +7,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Output() navbarToggle = new EventEmitter<void>();
+  @Output() sidebarToggle = new EventEmitter<void>();
 
   constructor() {}
 
@@ -14,5 +15,9 @@ export class HeaderComponent implements OnInit {
 
   onToggleNavbar() {
     this.navbarToggle.emit();
+  }
+
+  onToggleSidebar() {
+    this.sidebarToggle.emit();
   }
 }
