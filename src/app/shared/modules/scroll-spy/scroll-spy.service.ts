@@ -22,7 +22,8 @@ export class ScrollSpyService implements OnDestroy {
   private scrollSubscription: Subscription;
 
   constructor() {
-    this.subscribeScroll();
+    // move to ScrollSpyComponent.OnInit()
+    // this.subscribeScroll();
   }
 
   public ngOnDestroy(): void {
@@ -74,15 +75,11 @@ export class ScrollSpyService implements OnDestroy {
     );
   }
 
-  private subscribeScroll(): void {
+  public subscribeScroll(): void {
     let scrollTarget: any;
 
     // if not in mat-sidenav-content, subscription with window::scroll
-    // scrollTarget = document.querySelector('mat-sidenav-content');
-    // if (scrollTarget === null) {
-    //   scrollTarget = window;
-    // }
-    scrollTarget = document.querySelector('mat-sidenav-content') ?? window;
+    scrollTarget = document.querySelector('mat-drawer-content') ?? window;
 
     this.scrollSubscription = fromEvent(scrollTarget, 'scroll')
       .pipe(throttleTime(0, animationFrame))
