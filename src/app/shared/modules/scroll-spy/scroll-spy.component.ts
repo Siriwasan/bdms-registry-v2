@@ -64,7 +64,7 @@ export class ScrollSpyComponent implements OnInit, AfterViewInit, OnDestroy {
     this.calculatTocMaxHeight();
 
     if (this.currentSection !== '') {
-      document.getElementById(this.currentSection + 'TOC').scrollIntoView({ block: 'nearest' });
+      document.getElementById(this.currentSection + 'TOC')?.scrollIntoView({ block: 'nearest' });
     }
   }
 

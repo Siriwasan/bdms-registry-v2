@@ -3,7 +3,7 @@ import { Component, OnInit, ChangeDetectorRef, ElementRef, OnDestroy } from '@an
 import { ScrollSpyService } from '../../../shared/modules/scroll-spy/scroll-spy.service';
 import { ScrollSpyComponent } from 'src/app/shared/modules/scroll-spy/scroll-spy.component';
 import { SidebarService } from 'src/app/shared/services/sidebar.service';
-import { BreakpointObserver } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -12,9 +12,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./test-form.component.scss'],
 })
 export class TestFormComponent extends ScrollSpyComponent implements OnInit, OnDestroy {
-  showSidebar = false;
+  device = 'others';
   sidebarOpened = true;
-  isMobile: boolean;
   private subscription: Subscription[] = [];
 
   constructor(
@@ -31,13 +30,22 @@ export class TestFormComponent extends ScrollSpyComponent implements OnInit, OnD
     super.ngOnInit();
 
     this.subscription.push(
+      this.breakpointObserver
+        .observe([Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
+        .subscribe((result) => {
+          if (result.breakpoints[Breakpoints.HandsetPortrait]) {
+            this.device = 'handset';
+            this.sidebarOpened = false;
+          } else if (result.breakpoints[Breakpoints.TabletPortrait]) {
+            this.device = 'tablet';
+            this.sidebarOpened = true;
+          } else {
+            this.device = 'others';
+            this.sidebarOpened = true;
+          }
+        }),
       this.sidebarService.sidebarToggle.subscribe(() => {
         this.sidebarOpened = !this.sidebarOpened;
-        this.showSidebar = !this.showSidebar;
-      }),
-      this.breakpointObserver.observe('(max-width: 600px)').subscribe((result) => {
-        this.isMobile = result.matches;
-        this.sidebarOpened = !result.matches;
       })
     );
   }
@@ -49,7 +57,7 @@ export class TestFormComponent extends ScrollSpyComponent implements OnInit, OnD
   tocClicked(toc: string) {
     this.scrollTo(toc);
 
-    if (this.isMobile) {
+    if (this.device === 'handset') {
       this.sidebarOpened = false;
     }
   }

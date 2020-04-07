@@ -7,7 +7,7 @@ import { SidebarService } from 'src/app/shared/services/sidebar.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  @Input() isMobile: boolean;
+  @Input() isHandset: boolean;
   @Output() navbarToggle = new EventEmitter<void>();
 
   constructor(private sidebarService: SidebarService) {}

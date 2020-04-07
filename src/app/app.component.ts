@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { BreakpointObserver, BreakpointState, Breakpoints } from '@angular/cdk/layout';
 import { Subscription, Observable } from 'rxjs';
 
 @Component({
@@ -9,6 +9,7 @@ import { Subscription, Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit, OnDestroy {
   isMobile: boolean;
+  device = 'others';
   private subscription: Subscription;
 
   fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
@@ -27,9 +28,16 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.breakpointObserver
-      .observe('(max-width: 600px)')
+      .observe([Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
       .subscribe((result) => {
         this.isMobile = result.matches;
+        if (result.breakpoints[Breakpoints.HandsetPortrait]) {
+          this.device = 'handset';
+        } else if (result.breakpoints[Breakpoints.TabletPortrait]) {
+          this.device = 'tablet';
+        } else {
+          this.device = 'others';
+        }
       });
   }
 
