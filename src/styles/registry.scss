@@ -16,15 +16,19 @@
 
 .section-title {
   color: rgba(0, 0, 0, 0.54);
-  background: rgba(0, 0, 0, 0.03);
+  background: rgb(242, 242, 242);
   align-content: center;
   align-items: center;
   display: flex;
   // justify-content: center;
   padding: 8px 20px;
   height: 40px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   flex-direction: row;
   place-content: center space-between;
+  z-index: 1;
 }
 
 .section-body {
@@ -79,7 +83,7 @@
   position: relative;
 
   span {
-    background: #fafafa;
+    background: white;
     padding-right: 8px;
     // text-transform: uppercase;
   }
