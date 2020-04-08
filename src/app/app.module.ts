@@ -11,8 +11,8 @@ import { SharedModule } from './shared/shared.module';
 import { FeatureModule } from './features/feature.module';
 import { MaterialModule } from './shared/material.module';
 
-import { counterReducer } from './store/counter.reducer';
-import { appReducer } from './store/app.reducer';
+import { counterReducer } from './store/counter/counter.reducer';
+import { appReducer } from './store/app/app.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +22,7 @@ import { appReducer } from './store/app.reducer';
     FeatureModule,
     AppRoutingModule,
     MaterialModule,
-    StoreModule.forRoot({ count: counterReducer, app: appReducer }, {}),
+    StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],

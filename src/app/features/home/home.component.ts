@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
-import { increment, decrement, reset } from '../../store/counter.actions';
-import { setTheme } from '../../store/app.actions';
+import { CounterStoreActions, CounterStoreSelectors } from '../../store/counter';
+import { AppStoreActions, AppStoreSelectors } from '../../store/app';
+import { AppState } from 'src/app/store/root-store.state';
 
 @Component({
   selector: 'app-home',
@@ -11,24 +11,26 @@ import { setTheme } from '../../store/app.actions';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  count$: Observable<number>;
+  count$ = this.store.select(CounterStoreSelectors.count);
+  appTheme$ = this.store.select(AppStoreSelectors.appTheme);
 
-  constructor(private store: Store<{ count: number; app: string }>) {
-    this.count$ = store.pipe(select('count'));
-  }
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {}
 
   increment() {
-    this.store.dispatch(increment());
-    this.store.dispatch(setTheme());
+    this.store.dispatch(CounterStoreActions.increment());
   }
 
   decrement() {
-    this.store.dispatch(decrement());
+    this.store.dispatch(CounterStoreActions.decrement());
   }
 
   reset() {
-    this.store.dispatch(reset());
+    this.store.dispatch(CounterStoreActions.reset());
+  }
+
+  toggleTheme() {
+    this.store.dispatch(AppStoreActions.setTheme());
   }
 }
