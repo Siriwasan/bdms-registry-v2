@@ -23,6 +23,10 @@ firebase deploy
 
 <https://github.com/angular/angularfire2>
 
+## 5. Setup NgRx Store
+
+<https://ngrx.io/guide/store/install>
+
 ## Registry List
 
 | Id        | Abbreviate | Registry                       | Published          |

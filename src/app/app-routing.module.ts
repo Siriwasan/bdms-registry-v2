@@ -11,7 +11,7 @@ const routes: Routes = [
   // { path: 'about', component: AboutComponent },
   // { path: 'auth', component: AuthComponent },
   // { path: 'page-not-autherized', component: PageNotAutherizedComponent },
-  { path: '', redirectTo: '/test-form', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
