@@ -12,7 +12,7 @@ import { AppState } from 'src/app/store/root-store.state';
 })
 export class HomeComponent implements OnInit {
   count$ = this.store.select(CounterStoreSelectors.count);
-  appTheme$ = this.store.select(AppStoreSelectors.appTheme);
+  appTheme$ = this.store.select(AppStoreSelectors.theme);
 
   constructor(private store: Store<AppState>) {}
 

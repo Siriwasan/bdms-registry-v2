@@ -1,6 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BreakpointObserver, BreakpointState, Breakpoints } from '@angular/cdk/layout';
 import { Subscription, Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+
+import { AppState } from './store/root-store.state';
+import { AppStoreSelectors } from './store/app';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
   device = 'others';
   private subscription: Subscription;
 
-  fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
+  theme$ = this.store.select(AppStoreSelectors.theme);
 
   fillerContent = Array.from(
     { length: 50 },
@@ -24,7 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private store: Store<AppState>, private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit() {
     this.subscription = this.breakpointObserver

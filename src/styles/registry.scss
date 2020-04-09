@@ -72,7 +72,7 @@
     }
   }
   a.active {
-    color: rgba(0, 0, 0, 0.8);
+    // color: rgba(0, 0, 0, 0.8);
     font-weight: 500;
     padding-left: 14px;
     border-left: 2px solid #ee6e73;
@@ -84,7 +84,7 @@
   position: relative;
 
   span {
-    background: white;
+    // background: white;
     padding-right: 8px;
     // text-transform: uppercase;
   }
@@ -94,13 +94,14 @@
     content: '';
     display: block;
     height: 1px;
+    margin-left: 80px;
     width: 100%;
     z-index: -1;
     position: absolute;
     top: 11px;
 
-    @media (min-width: 993px) {
-      width: 225px;
+    @media (min-width: 100px) {
+      width: 50%;
     }
   }
 }

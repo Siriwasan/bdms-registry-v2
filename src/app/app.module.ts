@@ -13,6 +13,7 @@ import { MaterialModule } from './shared/material.module';
 
 import { counterReducer } from './store/counter/counter.reducer';
 import { appReducer } from './store/app/app.reducer';
+import { AppStoreModule } from './store/app';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { appReducer } from './store/app/app.reducer';
     MaterialModule,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    AppStoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
