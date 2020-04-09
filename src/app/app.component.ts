@@ -12,7 +12,6 @@ import { AppStoreSelectors } from './store/app';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  isMobile: boolean;
   device = 'others';
   private subscription: Subscription;
 
@@ -34,7 +33,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscription = this.breakpointObserver
       .observe([Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
       .subscribe((result) => {
-        this.isMobile = result.matches;
         if (result.breakpoints[Breakpoints.HandsetPortrait]) {
           this.device = 'handset';
         } else if (result.breakpoints[Breakpoints.TabletPortrait]) {

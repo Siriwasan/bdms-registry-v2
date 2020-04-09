@@ -8,7 +8,7 @@
   </div>
 
   <a mat-list-item>
-    <mat-slide-toggle [checked]="" (change)="toggleDarkTheme($event.checked)">Dark theme
+    <mat-slide-toggle [checked]="(theme$ | async) === 'dark'" (change)="toggleDarkTheme($event.checked)">Dark theme
     </mat-slide-toggle>
   </a>
 

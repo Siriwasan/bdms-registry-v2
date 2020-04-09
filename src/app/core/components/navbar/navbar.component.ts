@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { AppState } from 'src/app/store/root-store.state';
-import { AppStoreActions } from 'src/app/store/app';
+import { AppStoreActions, AppStoreSelectors } from 'src/app/store/app';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +11,7 @@ import { AppStoreActions } from 'src/app/store/app';
 })
 export class NavbarComponent implements OnInit {
   @Output() navItemSelected = new EventEmitter<void>();
+  theme$ = this.store.select(AppStoreSelectors.theme);
 
   constructor(private store: Store<AppState>) {}
 
