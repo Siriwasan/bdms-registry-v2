@@ -7,6 +7,11 @@
     <img src="https://image.freepik.com/free-vector/man-avatar-profile-round-icon_24640-14044.jpg" alt="Siriwasan A." />
   </div>
 
+  <a mat-list-item>
+    <mat-slide-toggle [checked]="" (change)="toggleDarkTheme($event.checked)">Dark theme
+    </mat-slide-toggle>
+  </a>
+
   <a mat-list-item routerLink="/" (click)="onNavItemSelected()">
     <mat-icon>assignment</mat-icon>
     <span class="nav-caption">My Patients</span>

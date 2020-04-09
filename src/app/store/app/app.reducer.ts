@@ -1,11 +1,14 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { setTheme } from './app.actions';
+import { setTheme, setDarkTheme } from './app.actions';
 import { initialState } from './app.state';
 
 export const appReducer = createReducer(
   initialState,
-  on(setTheme, (state, action) => {
+  on(setDarkTheme, (state, { darkTheme }) => {
+    return { theme: darkTheme ? 'dark' : 'light' };
+  }),
+  on(setTheme, (state) => {
     return { theme: state.theme === 'light' ? 'dark' : 'light' };
   })
 );
