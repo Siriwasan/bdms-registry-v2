@@ -1,5 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { SidebarService } from 'src/app/shared/services/sidebar.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/root-store.state';
+import { AppStoreActions, AppStoreSelectors } from 'src/app/store/app';
 
 @Component({
   selector: 'app-header',
@@ -7,10 +9,10 @@ import { SidebarService } from 'src/app/shared/services/sidebar.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  @Input() isHandset: boolean;
+  device$ = this.store.select(AppStoreSelectors.device);
   @Output() navbarToggle = new EventEmitter<void>();
 
-  constructor(private sidebarService: SidebarService) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {}
 
@@ -19,6 +21,6 @@ export class HeaderComponent implements OnInit {
   }
 
   onToggleSidebar() {
-    this.sidebarService.sidebarToggle.emit();
+    this.store.dispatch(AppStoreActions.toggleSidebar());
   }
 }

@@ -17,7 +17,7 @@
         <mat-icon>help_outline</mat-icon>
       </button> -->
 
-      <button mat-icon-button *ngIf="isHandset" (click)="onToggleSidebar()">
+      <button mat-icon-button *ngIf="(device$ | async) === 'handset'" (click)="onToggleSidebar()">
         <mat-icon>more_horiz</mat-icon>
       </button>
     </div>

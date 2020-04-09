@@ -4,7 +4,7 @@ import { Subscription, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { AppState } from './store/root-store.state';
-import { AppStoreSelectors } from './store/app';
+import { AppStoreSelectors, AppStoreActions } from './store/app';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +13,8 @@ import { AppStoreSelectors } from './store/app';
 })
 export class AppComponent implements OnInit, OnDestroy {
   device = 'others';
-  private subscription: Subscription;
-
   theme$ = this.store.select(AppStoreSelectors.theme);
+  private subscription: Subscription[] = [];
 
   fillerContent = Array.from(
     { length: 50 },
@@ -30,20 +29,28 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private store: Store<AppState>, private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit() {
-    this.subscription = this.breakpointObserver
-      .observe([Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
-      .subscribe((result) => {
-        if (result.breakpoints[Breakpoints.HandsetPortrait]) {
-          this.device = 'handset';
-        } else if (result.breakpoints[Breakpoints.TabletPortrait]) {
-          this.device = 'tablet';
-        } else {
-          this.device = 'others';
-        }
-      });
+    this.subscription.push(
+      this.breakpointObserver
+        .observe([Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
+        .subscribe((result) => {
+          let device = 'others';
+          let sidebarOpened = true;
+          if (result.breakpoints[Breakpoints.HandsetPortrait]) {
+            device = 'handset';
+            sidebarOpened = false;
+          } else if (result.breakpoints[Breakpoints.TabletPortrait]) {
+            device = 'tablet';
+          }
+          this.store.dispatch(AppStoreActions.setDevice({ newDevice: device }));
+          this.store.dispatch(AppStoreActions.openSidebar({ open: sidebarOpened }));
+        }),
+      this.store
+        .select(AppStoreSelectors.device)
+        .subscribe((newDevice) => (this.device = newDevice))
+    );
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription.forEach((sub) => sub.unsubscribe());
   }
 }

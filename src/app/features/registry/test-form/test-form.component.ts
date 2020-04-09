@@ -1,10 +1,12 @@
 import { Component, OnInit, ChangeDetectorRef, ElementRef, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { ScrollSpyService } from '../../../shared/modules/scroll-spy/scroll-spy.service';
 import { ScrollSpyComponent } from 'src/app/shared/modules/scroll-spy/scroll-spy.component';
-import { SidebarService } from 'src/app/shared/services/sidebar.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Subscription } from 'rxjs';
+import { AppState } from 'src/app/store/root-store.state';
+import { AppStoreSelectors } from 'src/app/store/app';
 
 @Component({
   selector: 'app-test-form',
@@ -20,8 +22,8 @@ export class TestFormComponent extends ScrollSpyComponent implements OnInit, OnD
     protected changeDetector: ChangeDetectorRef,
     protected scrollSpy: ScrollSpyService,
     protected hostElement: ElementRef,
-    private sidebarService: SidebarService,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
+    private store: Store<AppState>
   ) {
     super(changeDetector, scrollSpy, hostElement);
   }
@@ -30,23 +32,12 @@ export class TestFormComponent extends ScrollSpyComponent implements OnInit, OnD
     super.ngOnInit();
 
     this.subscription.push(
-      this.breakpointObserver
-        .observe([Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
-        .subscribe((result) => {
-          if (result.breakpoints[Breakpoints.HandsetPortrait]) {
-            this.device = 'handset';
-            this.sidebarOpened = false;
-          } else if (result.breakpoints[Breakpoints.TabletPortrait]) {
-            this.device = 'tablet';
-            this.sidebarOpened = true;
-          } else {
-            this.device = 'others';
-            this.sidebarOpened = true;
-          }
-        }),
-      this.sidebarService.sidebarToggle.subscribe(() => {
-        this.sidebarOpened = !this.sidebarOpened;
-      })
+      this.store
+        .select(AppStoreSelectors.device)
+        .subscribe((newDevice) => (this.device = newDevice)),
+      this.store
+        .select(AppStoreSelectors.sidebarOpened)
+        .subscribe((open) => (this.sidebarOpened = open))
     );
   }
 

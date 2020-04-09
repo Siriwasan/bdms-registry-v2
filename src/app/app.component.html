@@ -2,7 +2,7 @@
   <div class="mat-app-background">
 
     <div class="app-container" [class.app-is-mobile]="device === 'handset'">
-      <app-header class="app-header" [isHandset]="device === 'handset'" (navbarToggle)="navbar.toggle()"></app-header>
+      <app-header class="app-header" (navbarToggle)="navbar.toggle()"></app-header>
 
       <mat-sidenav-container class="app-navbar-container" [style.marginTop.px]="device === 'handset' ? 56 : 0">
         <mat-sidenav #navbar [mode]="device !== 'others' ? 'over' : 'side'" [opened]="device === 'others'"
