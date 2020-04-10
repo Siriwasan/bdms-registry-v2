@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { AppStoreModule } from '../../store/app';
 import { CounterStoreModule } from '../../store/counter';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const routes: Routes = [
   {
@@ -14,6 +15,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, RouterModule.forChild(routes), AppStoreModule, CounterStoreModule],
+  imports: [SharedModule, RouterModule.forChild(routes), AppStoreModule, CounterStoreModule],
 })
 export class HomeModule {}

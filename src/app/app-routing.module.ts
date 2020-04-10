@@ -22,7 +22,17 @@ const routes: Routes = [
         path: 'home',
         loadChildren: () => import('./features/home/home.module').then((m) => m.HomeModule),
       },
-      { path: 'test-form', component: TestFormComponent },
+      {
+        path: 'test-form',
+        loadChildren: () =>
+          import('./features/registry/test-form/test-form.module').then((m) => m.TestFormModule),
+      },
+      // { path: 'test-form', component: TestFormComponent },
+      {
+        path: 'test-form2',
+        loadChildren: () =>
+          import('./features/registry/test-form2/test-form2.module').then((m) => m.TestForm2Module),
+      },
       // { path: 'about', component: AboutComponent },
       // { path: 'auth', component: AuthComponent },
       // { path: 'page-not-autherized', component: PageNotAutherizedComponent },

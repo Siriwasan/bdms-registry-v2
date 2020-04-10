@@ -10,21 +10,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MaterialModule } from '../shared/material.module';
 import { AppLayoutComponent } from './components/app-layout/app-layout.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [HeaderComponent, NavbarComponent, AppLayoutComponent],
-  imports: [CommonModule, MaterialModule, FlexLayoutModule, AppRoutingModule],
-  exports: [
-    CommonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MaterialModule,
-    FlexLayoutModule,
-
-    HeaderComponent,
-    NavbarComponent,
-  ],
+  imports: [BrowserModule, BrowserAnimationsModule, SharedModule],
+  exports: [BrowserModule, BrowserAnimationsModule, HeaderComponent, NavbarComponent],
 })
 export class CoreModule {}

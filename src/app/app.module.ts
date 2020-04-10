@@ -9,10 +9,6 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { FeatureModule } from './features/feature.module';
-import { MaterialModule } from './shared/material.module';
-
-import { counterReducer } from './store/counter/counter.reducer';
-import { appReducer } from './store/app/app.reducer';
 import { AppStoreModule } from './store/app';
 
 @NgModule({
@@ -22,7 +18,6 @@ import { AppStoreModule } from './store/app';
     SharedModule,
     FeatureModule,
     AppRoutingModule,
-    MaterialModule,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     AppStoreModule,
