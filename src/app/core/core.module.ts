@@ -8,10 +8,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MaterialModule } from '../shared/material.module';
+import { AppLayoutComponent } from './components/app-layout/app-layout.component';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
-  declarations: [HeaderComponent, NavbarComponent],
-  imports: [CommonModule, MaterialModule, FlexLayoutModule],
+  declarations: [HeaderComponent, NavbarComponent, AppLayoutComponent],
+  imports: [CommonModule, MaterialModule, FlexLayoutModule, AppRoutingModule],
   exports: [
     CommonModule,
     BrowserModule,

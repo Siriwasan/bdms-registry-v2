@@ -1,0 +1,15 @@
+<div class="app-container" [class.app-is-mobile]="device === 'handset'">
+  <app-header class="app-header" (navbarToggle)="navbar.toggle()"></app-header>
+
+  <mat-sidenav-container class="app-navbar-container" [style.marginTop.px]="device === 'handset' ? 56 : 0">
+    <mat-sidenav #navbar [mode]="device !== 'others' ? 'over' : 'side'" [opened]="device === 'others'"
+      [fixedInViewport]="device === 'handset'" fixedTopGap="56">
+      <app-navbar (navItemSelected)="device === 'handset' ? navbar.close() : null"></app-navbar>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</div>
