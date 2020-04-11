@@ -28,16 +28,15 @@ export class ScrollSpyComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.scrollSpy.subscribeScroll();
-
+    // this.scrollSpy.subscribeScroll();
     // adjust top offset if in mat-drawer-content
-    this.scrollTarget = document.querySelector('mat-drawer-content') ?? window;
-
-    this.listener = () => this.calculatTocMaxHeight();
-    this.scrollTarget.addEventListener('scroll', this.listener, false);
+    // this.scrollTarget = document.querySelector('mat-drawer-content') ?? window;
+    // this.listener = () => this.calculatTocMaxHeight();
+    // this.scrollTarget.addEventListener('scroll', this.listener, false);
   }
 
   ngAfterViewInit(): void {
+    this.scrollSpy.subscribeScroll();
     this.subsribeScrollSpy();
   }
 
@@ -51,11 +50,11 @@ export class ScrollSpyComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.scrollTarget !== undefined) {
-      this.scrollTarget.removeEventListener('scroll', this.listener, false);
-    } else {
-      console.log('BaseFormComponent: ngOnInit() is not initialized');
-    }
+    // if (this.scrollTarget !== undefined) {
+    //   this.scrollTarget.removeEventListener('scroll', this.listener, false);
+    // } else {
+    //   console.log('BaseFormComponent: ngOnInit() is not initialized');
+    // }
     this.currentSectionSubscription.unsubscribe();
   }
 

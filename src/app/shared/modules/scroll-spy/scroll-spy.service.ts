@@ -80,6 +80,7 @@ export class ScrollSpyService implements OnDestroy {
 
     // if not in mat-sidenav-content, subscription with window::scroll
     scrollTarget = document.querySelector('mat-drawer-content') ?? window;
+    console.log(scrollTarget);
 
     this.scrollSubscription = fromEvent(scrollTarget, 'scroll')
       .pipe(throttleTime(0, animationFrame))

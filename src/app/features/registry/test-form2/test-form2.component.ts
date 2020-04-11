@@ -1,4 +1,11 @@
-import { Component, OnInit, ChangeDetectorRef, ElementRef, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+  ElementRef,
+  OnDestroy,
+  AfterViewInit,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 
@@ -13,7 +20,8 @@ import { AppStoreSelectors } from 'src/app/store/app';
   templateUrl: './test-form2.component.html',
   styleUrls: ['./test-form2.component.scss'],
 })
-export class TestForm2Component extends ScrollSpyComponent implements OnInit, OnDestroy {
+export class TestForm2Component extends ScrollSpyComponent
+  implements OnInit, AfterViewInit, OnDestroy {
   device = 'others';
   sidebarOpened = true;
   private subscription: Subscription[] = [];
@@ -39,6 +47,10 @@ export class TestForm2Component extends ScrollSpyComponent implements OnInit, On
         .select(AppStoreSelectors.sidebarOpened)
         .subscribe((open) => (this.sidebarOpened = open))
     );
+  }
+
+  ngAfterViewInit() {
+    super.ngAfterViewInit();
   }
 
   ngOnDestroy() {
