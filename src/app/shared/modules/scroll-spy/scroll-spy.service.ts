@@ -24,9 +24,11 @@ export class ScrollSpyService implements OnDestroy {
   constructor() {
     // move to ScrollSpyComponent.OnInit()
     // this.subscribeScroll();
+    console.log('ScrollSpyService constructor');
   }
 
   public ngOnDestroy(): void {
+    console.log('ScrollSpyService ngOnDestroy');
     this.scrollSubscription.unsubscribe();
   }
 
@@ -85,7 +87,7 @@ export class ScrollSpyService implements OnDestroy {
     const matDrawers = document.querySelectorAll('mat-drawer-content');
     scrollTarget = matDrawers[matDrawers.length - 1];
 
-    console.log(scrollTarget);
+    // console.log(matDrawers);
 
     this.scrollSubscription = fromEvent(scrollTarget, 'scroll')
       .pipe(throttleTime(0, animationFrame))

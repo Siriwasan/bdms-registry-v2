@@ -37,6 +37,7 @@ export class TestForm3Component extends ScrollSpyComponent
   }
 
   ngOnInit() {
+    console.log('TestForm3Component ngOnInit');
     super.ngOnInit();
 
     this.subscription.push(
@@ -50,10 +51,13 @@ export class TestForm3Component extends ScrollSpyComponent
   }
 
   ngAfterViewInit() {
+    console.log('TestForm3Component ngAfterViewInit');
     super.ngAfterViewInit();
   }
 
   ngOnDestroy() {
+    console.log('TestForm3Component ngOnDestroy');
+    super.ngOnDestroy();
     this.subscription.forEach((sub) => sub.unsubscribe());
   }
 

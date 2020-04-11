@@ -28,6 +28,7 @@ export class ScrollSpyComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    console.log('ScrollSpyComponent ngOnInit');
     this.scrollSpy.subscribeScroll();
 
     // adjust top offset if in mat-drawer-content
@@ -37,6 +38,7 @@ export class ScrollSpyComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
+    console.log('ScrollSpyComponent ngAfterViewInit');
     this.scrollSpy.subscribeScroll();
     this.subsribeScrollSpy();
   }
@@ -51,6 +53,7 @@ export class ScrollSpyComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    console.log('ScrollSpyComponent ngOnDestroy');
     if (this.scrollTarget !== undefined) {
       this.scrollTarget.removeEventListener('scroll', this.listener, false);
     } else {
