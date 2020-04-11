@@ -79,7 +79,12 @@ export class ScrollSpyService implements OnDestroy {
     let scrollTarget: any;
 
     // if not in mat-sidenav-content, subscription with window::scroll
-    scrollTarget = document.querySelector('mat-drawer-content') ?? window;
+    // scrollTarget = document.querySelector('mat-drawer-content') ?? window;
+
+    // Ivy re-use previous mat-drawer-content, so we need to find the new one at the last
+    const matDrawers = document.querySelectorAll('mat-drawer-content');
+    scrollTarget = matDrawers[matDrawers.length - 1];
+
     console.log(scrollTarget);
 
     this.scrollSubscription = fromEvent(scrollTarget, 'scroll')

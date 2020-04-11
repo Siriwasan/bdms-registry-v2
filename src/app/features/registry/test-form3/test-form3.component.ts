@@ -16,11 +16,11 @@ import { AppState } from 'src/app/store/root-store.state';
 import { AppStoreSelectors } from 'src/app/store/app';
 
 @Component({
-  selector: 'app-test-form2',
-  templateUrl: './test-form2.component.html',
-  styleUrls: ['./test-form2.component.scss'],
+  selector: 'app-test-form3',
+  templateUrl: './test-form3.component.html',
+  styleUrls: ['./test-form3.component.scss'],
 })
-export class TestForm2Component extends ScrollSpyComponent
+export class TestForm3Component extends ScrollSpyComponent
   implements OnInit, AfterViewInit, OnDestroy {
   device = 'others';
   sidebarOpened = true;

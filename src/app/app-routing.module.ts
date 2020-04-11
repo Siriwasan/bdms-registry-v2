@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TestFormComponent } from './features/registry/test-form/test-form.component';
 import { AppLayoutComponent } from './core/components/app-layout/app-layout.component';
 import { LoginComponent } from './features/login/login.component';
 
@@ -27,11 +26,15 @@ const routes: Routes = [
         loadChildren: () =>
           import('./features/registry/test-form/test-form.module').then((m) => m.TestFormModule),
       },
-      // { path: 'test-form', component: TestFormComponent },
       {
         path: 'test-form2',
         loadChildren: () =>
           import('./features/registry/test-form2/test-form2.module').then((m) => m.TestForm2Module),
+      },
+      {
+        path: 'test-form3',
+        loadChildren: () =>
+          import('./features/registry/test-form3/test-form3.module').then((m) => m.TestForm3Module),
       },
       // { path: 'about', component: AboutComponent },
       // { path: 'auth', component: AuthComponent },
