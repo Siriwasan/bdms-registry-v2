@@ -18,6 +18,7 @@ interface ScrollSpies {
 @Injectable()
 export class ScrollSpyService implements OnDestroy {
   private readonly defaultId: string = 'default';
+  private scrollTarget: Element;
   private scrollSpies: ScrollSpies = {};
   private scrollSubscription: Subscription;
 
@@ -30,6 +31,10 @@ export class ScrollSpyService implements OnDestroy {
   public ngOnDestroy(): void {
     console.log('ScrollSpyService ngOnDestroy');
     this.scrollSubscription.unsubscribe();
+  }
+
+  public setScrollTarget(container: Element) {
+    this.scrollTarget = container;
   }
 
   public getCurrentSection$(scrollSpyId: string = this.defaultId): Observable<string> {
@@ -78,18 +83,7 @@ export class ScrollSpyService implements OnDestroy {
   }
 
   public subscribeScroll(): void {
-    let scrollTarget: any;
-
-    // if not in mat-sidenav-content, subscription with window::scroll
-    // scrollTarget = document.querySelector('mat-drawer-content') ?? window;
-
-    // Ivy re-use previous mat-drawer-content, so we need to find the new one at the last
-    const matDrawers = document.querySelectorAll('mat-drawer-content');
-    scrollTarget = matDrawers[matDrawers.length - 1];
-
-    // console.log(matDrawers);
-
-    this.scrollSubscription = fromEvent(scrollTarget, 'scroll')
+    this.scrollSubscription = fromEvent(this.scrollTarget, 'scroll')
       .pipe(throttleTime(0, animationFrame))
       .subscribe((): void => {
         Object.keys(this.scrollSpies).forEach((key: string): void => {

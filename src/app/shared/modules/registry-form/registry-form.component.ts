@@ -7,18 +7,18 @@ import {
   OnDestroy,
 } from '@angular/core';
 
-import { ScrollSpyService } from './scroll-spy.service';
+import { ScrollSpyService } from '../scroll-spy/scroll-spy.service';
 import { Subscription } from 'rxjs';
 
 const COMPLETION_CONTAINER = 250;
 
-export class ScrollSpyComponent implements OnInit, AfterViewInit, OnDestroy {
+export class RegistryFormComponent implements OnInit, AfterViewInit, OnDestroy {
   public currentSection = '';
   public tocMaxHeight: string;
   private tocMaxHeightOffset = 0;
 
   private listener: any;
-  private scrollTarget: any;
+  private scrollTarget: Element;
   private currentSectionSubscription: Subscription;
 
   constructor(
@@ -29,21 +29,16 @@ export class ScrollSpyComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     console.log('ScrollSpyComponent ngOnInit');
-    this.scrollSpy.subscribeScroll();
-
-    // adjust top offset if in mat-drawer-content
-    this.scrollTarget = document.querySelector('mat-drawer-content') ?? window;
-    this.listener = () => this.calculatTocMaxHeight();
-    this.scrollTarget.addEventListener('scroll', this.listener, false);
   }
 
   ngAfterViewInit(): void {
     console.log('ScrollSpyComponent ngAfterViewInit');
-    this.scrollSpy.subscribeScroll();
-    this.subsribeScrollSpy();
-  }
 
-  private subsribeScrollSpy(): void {
+    this.initializeScrollSpy();
+
+    // this.listener = () => this.calculatTocMaxHeight();
+    // this.scrollTarget.addEventListener('scroll', this.listener, false);
+
     this.currentSectionSubscription = this.scrollSpy
       .getCurrentSection$()
       .subscribe((currentSection: string): void => {
@@ -52,12 +47,17 @@ export class ScrollSpyComponent implements OnInit, AfterViewInit, OnDestroy {
       });
   }
 
+  private initializeScrollSpy() {
+    const el = this.hostElement.nativeElement as Element;
+    this.scrollTarget = el.querySelector('mat-drawer-content');
+    this.scrollSpy.setScrollTarget(this.scrollTarget);
+    this.scrollSpy.subscribeScroll();
+  }
+
   ngOnDestroy() {
     console.log('ScrollSpyComponent ngOnDestroy');
     if (this.scrollTarget !== undefined) {
       this.scrollTarget.removeEventListener('scroll', this.listener, false);
-    } else {
-      console.log('BaseFormComponent: ngOnInit() is not initialized');
     }
     this.currentSectionSubscription.unsubscribe();
   }
@@ -97,4 +97,46 @@ export class ScrollSpyComponent implements OnInit, AfterViewInit, OnDestroy {
   public scrollTo(section: string) {
     this.scrollSpy.scrollTo(section);
   }
+
+  //#region Warning before leaving
+  // public canDeactivate() {
+  //   // ? Prototype for leaving form after changed
+  //   // ? return confirm('Do you really want to leave?');
+  //   // ? return this.form.submitted || !this.form.dirty;
+
+  //   if (!this.registryFormService.isFormDirty()) {
+  //     return true;
+  //   }
+
+  //   const dialogRef = this.dialogService.createModalDialog({
+  //     title: 'Warning!!!',
+  //     content: 'Form is not saved before leaving',
+  //     buttons: ['Discard change', 'Cancel'],
+  //     // buttons: ['Save', 'Discard change', 'Cancel']
+  //   });
+
+  //   return dialogRef.afterClosed().pipe(
+  //     map((result) => {
+  //       // if (result === 'Save') {
+  //       //   return true;
+  //       // }
+  //       if (result === 'Discard change') {
+  //         return true;
+  //       }
+  //       if (result === 'Cancel') {
+  //         return false;
+  //       }
+  //     }),
+  //     take(1)
+  //   );
+  // }
+
+  // @HostListener('window:beforeunload', ['$event'])
+  // unloadHandler(event: Event) {
+  //   if (!isDevMode() && this.registryFormService.isFormDirty()) {
+  //     console.log('Processing beforeunload...');
+  //     event.returnValue = false;
+  //   }
+  // }
+  //#endregion Warning before leaving
 }
