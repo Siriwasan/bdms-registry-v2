@@ -6,12 +6,13 @@ import {
   HostListener,
   OnDestroy,
 } from '@angular/core';
-
-import { ScrollSpyService } from '../scroll-spy/scroll-spy.service';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
+
+import { ScrollSpyService } from '../scroll-spy/scroll-spy.service';
 import { AppState } from 'src/app/store/root-store.state';
-import { AppStoreSelectors } from 'src/app/store/app';
+import { AppStoreSelectors, AppStoreActions } from 'src/app/store/app';
+import { handleSwipe } from 'src/app/shared/functions/swipe';
 
 const COMPLETION_CONTAINER = 250;
 
@@ -29,10 +30,10 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, OnDestroy {
   private subscription: Subscription[] = [];
 
   constructor(
+    protected store: Store<AppState>,
     protected changeDetector: ChangeDetectorRef,
     protected scrollSpy: ScrollSpyService,
-    protected hostElement: ElementRef,
-    protected store: Store<AppState>
+    protected hostElement: ElementRef
   ) {}
 
   ngOnInit() {
@@ -116,54 +117,23 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, OnDestroy {
     this.scrollSpy.scrollTo(section);
   }
 
+  closeSidebar() {
+    this.store.dispatch(AppStoreActions.closeSidebar());
+  }
+
   tocClicked(toc: string) {
     this.scrollTo(toc);
 
     if (this.device === 'handset') {
-      this.sidebarOpened = false;
+      this.store.dispatch(AppStoreActions.closeSidebar());
     }
   }
 
   onSwipe(evt) {
-    // const x = Math.abs(evt.deltaX) > 40 ? (evt.deltaX > 0 ? 'right' : 'left'):'';
-    // const y = Math.abs(evt.deltaY) > 40 ? (evt.deltaY > 0 ? 'down' : 'up') : '';
-    // this.eventText += `${x} ${y}<br/>`;
-
-    this.handleSwipe(evt);
-  }
-
-  private getStartPosition = (e) => {
-    const deltaX = e.deltaX;
-    const deltaY = e.deltaY;
-    const finalX = e.srcEvent.pageX || e.srcEvent.screenX || 0;
-    const finalY = e.srcEvent.pageY || e.srcEvent.screenY || 0;
-
-    return {
-      x: finalX - deltaX,
-      y: finalY - deltaY,
-    };
-  };
-
-  private handleSwipe = (e) => {
-    const threshold = 100;
-    const { x } = this.getStartPosition(e);
-
-    if (x >= 0 && x <= threshold) {
-      // handle swipe from left edge e.t.c
-      console.log('swipe form left edge');
-    } else if (x >= window.outerWidth - threshold && x <= window.outerHeight) {
-      // handle other case
-      console.log('swipe form right edge');
-      // this.store.dispatch(AppStoreActions.openSidebar({ open: true }));
-      this.sidebarOpened = true;
+    if (handleSwipe(evt) === 'rightEdge') {
+      this.store.dispatch(AppStoreActions.toggleSidebar());
     }
-  };
-
-  // @HostListener('swipeleft')
-  // openSidenav() {
-  //   // open the sidenav
-  //   console.log('swipeleft');
-  // }
+  }
 
   //#region Warning before leaving
   // public canDeactivate() {

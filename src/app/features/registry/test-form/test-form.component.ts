@@ -23,12 +23,12 @@ import { AppStoreSelectors, AppStoreActions } from 'src/app/store/app';
 export class TestFormComponent extends RegistryFormComponent
   implements OnInit, AfterViewInit, OnDestroy {
   constructor(
+    protected store: Store<AppState>,
     protected changeDetector: ChangeDetectorRef,
     protected scrollSpy: ScrollSpyService,
-    protected hostElement: ElementRef,
-    protected store: Store<AppState>
+    protected hostElement: ElementRef
   ) {
-    super(changeDetector, scrollSpy, hostElement, store);
+    super(store, changeDetector, scrollSpy, hostElement);
   }
 
   ngOnInit() {

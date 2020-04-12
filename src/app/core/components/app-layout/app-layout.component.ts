@@ -3,7 +3,8 @@ import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { AppState } from 'src/app/store/root-store.state';
-import { AppStoreSelectors } from 'src/app/store/app';
+import { AppStoreSelectors, AppStoreActions } from 'src/app/store/app';
+import { handleSwipe } from 'src/app/shared/functions/swipe';
 
 @Component({
   selector: 'app-app-layout',
@@ -12,6 +13,7 @@ import { AppStoreSelectors } from 'src/app/store/app';
 })
 export class AppLayoutComponent implements OnInit, OnDestroy {
   device = 'others';
+  navbarOpened = true;
   private subscription: Subscription[] = [];
 
   fillerContent = Array.from(
@@ -30,11 +32,24 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
     this.subscription.push(
       this.store
         .select(AppStoreSelectors.device)
-        .subscribe((newDevice) => (this.device = newDevice))
+        .subscribe((newDevice) => (this.device = newDevice)),
+      this.store
+        .select(AppStoreSelectors.navbarOpened)
+        .subscribe((open) => (this.navbarOpened = open))
     );
   }
 
   ngOnDestroy(): void {
     this.subscription.forEach((sub) => sub.unsubscribe());
+  }
+
+  closeNavbar() {
+    this.store.dispatch(AppStoreActions.closeNavbar());
+  }
+
+  onSwipe(evt) {
+    if (handleSwipe(evt) === 'leftEdge') {
+      this.store.dispatch(AppStoreActions.toggleNavbar());
+    }
   }
 }

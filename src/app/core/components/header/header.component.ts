@@ -16,11 +16,11 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onToggleNavbar() {
-    this.navbarToggle.emit();
+  toggleNavbar() {
+    this.store.dispatch(AppStoreActions.toggleNavbar());
   }
 
-  onToggleSidebar() {
+  toggleSidebar() {
     this.store.dispatch(AppStoreActions.toggleSidebar());
   }
 }

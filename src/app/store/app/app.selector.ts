@@ -5,4 +5,5 @@ const selectAppState = createFeatureSelector<State>('app');
 
 export const theme = createSelector(selectAppState, (state) => state.theme);
 export const device = createSelector(selectAppState, (state) => state.device);
+export const navbarOpened = createSelector(selectAppState, (state) => state.navbarOpened);
 export const sidebarOpened = createSelector(selectAppState, (state) => state.sidebarOpened);

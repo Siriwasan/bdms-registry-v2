@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
 
   <mat-toolbar-row>
-    <button mat-icon-button (click)="onToggleNavbar()">
+    <button mat-icon-button (click)="toggleNavbar()">
       <mat-icon>menu</mat-icon>
     </button>
     <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center" style="margin-left: 10px;">
@@ -17,7 +17,7 @@
         <mat-icon>help_outline</mat-icon>
       </button> -->
 
-      <button mat-icon-button *ngIf="(device$ | async) === 'handset'" (click)="onToggleSidebar()">
+      <button mat-icon-button *ngIf="(device$ | async) === 'handset'" (click)="toggleSidebar()">
         <mat-icon>more_horiz</mat-icon>
       </button>
     </div>

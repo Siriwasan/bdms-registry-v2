@@ -1,12 +1,7 @@
 <div [ngClass]="{'dark-theme': (theme$ | async) === 'dark'}">
-  <div class="mat-app-background">
+  <div class="mat-app-background" (swipe)="onSwipe($event)">
 
     <router-outlet></router-outlet>
 
   </div>
 </div>
-
-<!-- <div style="width: auto; height: 100vh; background-color: yellow;" (swipe)="onSwipe($event)">
-  <h1>Swipe Gesture</h1>
-
-</div> -->
