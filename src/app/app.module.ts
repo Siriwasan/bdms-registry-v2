@@ -34,7 +34,7 @@ import { AppStoreModule } from './store/app';
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     AppStoreModule,
-    HammerModule,
+    // HammerModule,  // bug with text selection
   ],
   providers: [
     // {
