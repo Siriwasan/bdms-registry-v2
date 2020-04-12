@@ -31,6 +31,6 @@ export class HomeComponent implements OnInit {
   }
 
   toggleTheme() {
-    this.store.dispatch(AppStoreActions.setTheme());
+    this.store.dispatch(AppStoreActions.toggleTheme());
   }
 }

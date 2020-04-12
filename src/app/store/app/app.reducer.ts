@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { setTheme, setDarkTheme, setDevice, openSidebar, toggleSidebar } from './app.actions';
+import { toggleTheme, setDarkTheme, setDevice, openSidebar, toggleSidebar } from './app.actions';
 import { initialState } from './app.state';
 
 export const appReducer = createReducer(
@@ -8,7 +8,7 @@ export const appReducer = createReducer(
   on(setDarkTheme, (state, { darkTheme }) => {
     return { ...state, theme: darkTheme ? 'dark' : 'light' };
   }),
-  on(setTheme, (state) => {
+  on(toggleTheme, (state) => {
     return { ...state, theme: state.theme === 'light' ? 'dark' : 'light' };
   }),
   on(setDevice, (state, { newDevice }) => {

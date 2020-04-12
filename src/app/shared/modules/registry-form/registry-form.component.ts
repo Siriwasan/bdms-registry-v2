@@ -9,6 +9,9 @@ import {
 
 import { ScrollSpyService } from '../scroll-spy/scroll-spy.service';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/root-store.state';
+import { AppStoreSelectors } from 'src/app/store/app';
 
 const COMPLETION_CONTAINER = 250;
 
@@ -21,14 +24,28 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, OnDestroy {
   private scrollTarget: Element;
   private currentSectionSubscription: Subscription;
 
+  device = 'others';
+  sidebarOpened = true;
+  private subscription: Subscription[] = [];
+
   constructor(
     protected changeDetector: ChangeDetectorRef,
     protected scrollSpy: ScrollSpyService,
-    protected hostElement: ElementRef
+    protected hostElement: ElementRef,
+    protected store: Store<AppState>
   ) {}
 
   ngOnInit() {
     console.log('ScrollSpyComponent ngOnInit');
+
+    this.subscription.push(
+      this.store
+        .select(AppStoreSelectors.device)
+        .subscribe((newDevice) => (this.device = newDevice)),
+      this.store
+        .select(AppStoreSelectors.sidebarOpened)
+        .subscribe((open) => (this.sidebarOpened = open))
+    );
   }
 
   ngAfterViewInit(): void {
@@ -60,6 +77,7 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, OnDestroy {
       this.scrollTarget.removeEventListener('scroll', this.listener, false);
     }
     this.currentSectionSubscription.unsubscribe();
+    this.subscription.forEach((sub) => sub.unsubscribe());
   }
 
   @HostListener('window:resize')
@@ -97,6 +115,55 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, OnDestroy {
   public scrollTo(section: string) {
     this.scrollSpy.scrollTo(section);
   }
+
+  tocClicked(toc: string) {
+    this.scrollTo(toc);
+
+    if (this.device === 'handset') {
+      this.sidebarOpened = false;
+    }
+  }
+
+  onSwipe(evt) {
+    // const x = Math.abs(evt.deltaX) > 40 ? (evt.deltaX > 0 ? 'right' : 'left'):'';
+    // const y = Math.abs(evt.deltaY) > 40 ? (evt.deltaY > 0 ? 'down' : 'up') : '';
+    // this.eventText += `${x} ${y}<br/>`;
+
+    this.handleSwipe(evt);
+  }
+
+  private getStartPosition = (e) => {
+    const deltaX = e.deltaX;
+    const deltaY = e.deltaY;
+    const finalX = e.srcEvent.pageX || e.srcEvent.screenX || 0;
+    const finalY = e.srcEvent.pageY || e.srcEvent.screenY || 0;
+
+    return {
+      x: finalX - deltaX,
+      y: finalY - deltaY,
+    };
+  };
+
+  private handleSwipe = (e) => {
+    const threshold = 100;
+    const { x } = this.getStartPosition(e);
+
+    if (x >= 0 && x <= threshold) {
+      // handle swipe from left edge e.t.c
+      console.log('swipe form left edge');
+    } else if (x >= window.outerWidth - threshold && x <= window.outerHeight) {
+      // handle other case
+      console.log('swipe form right edge');
+      // this.store.dispatch(AppStoreActions.openSidebar({ open: true }));
+      this.sidebarOpened = true;
+    }
+  };
+
+  // @HostListener('swipeleft')
+  // openSidenav() {
+  //   // open the sidenav
+  //   console.log('swipeleft');
+  // }
 
   //#region Warning before leaving
   // public canDeactivate() {

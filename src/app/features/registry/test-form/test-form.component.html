@@ -1,5 +1,5 @@
 <div class="app-container" fxLayout="row" fxLayoutGap="20px">
-  <mat-drawer-container class="app-sidenav-container">
+  <mat-drawer-container class=" app-sidenav-container">
     <mat-drawer [mode]="device !== 'handset' ? 'side' : 'over'" position="end" [(opened)]="sidebarOpened"
       (closed)="sidebarOpened = false">
       <div class="table-of-contents" [style.max-height.px]="tocMaxHeight">
@@ -43,7 +43,7 @@
       </div>
     </mat-drawer>
 
-    <mat-drawer-content id="test">
+    <mat-drawer-content id="test" (swipe)="onSwipe($event)">
       <div scrollSpyElement id="title" fxFlexOrder="0">
         <h1 class="registry-name">TEST FORM</h1>
         <section class="section-wrapper" scrollSpyElement id="sectionA">

@@ -43,7 +43,7 @@
       </div>
     </mat-drawer>
 
-    <mat-drawer-content id="test3">
+    <mat-drawer-content id="test3" (swipe)="onSwipe($event)">
       <div scrollSpyElement id="title" fxFlexOrder="0">
         <h1 class="registry-name">TEST FORM 3</h1>
         <section class="section-wrapper" scrollSpyElement id="sectionA">

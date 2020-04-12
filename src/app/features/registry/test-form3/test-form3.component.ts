@@ -21,49 +21,24 @@ import { AppStoreSelectors } from 'src/app/store/app';
 })
 export class TestForm3Component extends RegistryFormComponent
   implements OnInit, AfterViewInit, OnDestroy {
-  device = 'others';
-  sidebarOpened = true;
-  private subscription: Subscription[] = [];
-
   constructor(
     protected changeDetector: ChangeDetectorRef,
     protected scrollSpy: ScrollSpyService,
     protected hostElement: ElementRef,
-    private store: Store<AppState>
+    protected store: Store<AppState>
   ) {
-    super(changeDetector, scrollSpy, hostElement);
+    super(changeDetector, scrollSpy, hostElement, store);
   }
 
   ngOnInit() {
-    console.log('TestForm3Component ngOnInit');
     super.ngOnInit();
-
-    this.subscription.push(
-      this.store
-        .select(AppStoreSelectors.device)
-        .subscribe((newDevice) => (this.device = newDevice)),
-      this.store
-        .select(AppStoreSelectors.sidebarOpened)
-        .subscribe((open) => (this.sidebarOpened = open))
-    );
   }
 
   ngAfterViewInit() {
-    console.log('TestForm3Component ngAfterViewInit');
     super.ngAfterViewInit();
   }
 
   ngOnDestroy() {
-    console.log('TestForm3Component ngOnDestroy');
     super.ngOnDestroy();
-    this.subscription.forEach((sub) => sub.unsubscribe());
-  }
-
-  tocClicked(toc: string) {
-    this.scrollTo(toc);
-
-    if (this.device === 'handset') {
-      this.sidebarOpened = false;
-    }
   }
 }
