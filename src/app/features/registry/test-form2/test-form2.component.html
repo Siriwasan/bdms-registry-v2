@@ -53,9 +53,43 @@
       </div>
     </mat-drawer>
 
-    <mat-drawer-content id="test2" (swipe)="onSwipe($event)">
-      <div scrollSpyElement id="title" fxFlexOrder="0">
-        <h1 class="registry-name">TEST FORM 2</h1>
+    <mat-drawer-content id="test" (swipe)="onSwipe($event)">
+      <div class="speed-dial-container">
+        <fab-speed-dial open="" direction="up" animationMode="fling">
+          <fab-speed-dial-trigger spin="true">
+            <button mat-fab>
+              <mat-icon class="fab-spin90">more_horiz</mat-icon>
+            </button>
+          </fab-speed-dial-trigger>
+
+          <fab-speed-dial-actions>
+            <button mat-mini-fab matTooltip="Save" matTooltipPosition="before" color="secondary" (click)="true">
+              <mat-icon>save</mat-icon>
+            </button>
+            <button mat-mini-fab matTooltip="Save and Exit" matTooltipPosition="before" color="secondary"
+              (click)="true">
+              <mat-icon>exit_to_app</mat-icon>
+            </button>
+            <button mat-mini-fab matTooltip="Check validation" matTooltipPosition="before" color="secondary"
+              (click)="true">
+              <mat-icon>error_outline</mat-icon>
+            </button>
+            <button mat-mini-fab matTooltip="Clear validation" matTooltipPosition="before" color="secondary"
+              (click)="true">
+              <mat-icon>highlight_off</mat-icon>
+            </button>
+            <button mat-mini-fab matTooltip="Print as PDF" matTooltipPosition="before" color="secondary" (click)="true">
+              <mat-icon>print</mat-icon>
+            </button>
+          </fab-speed-dial-actions>
+        </fab-speed-dial>
+
+        <div fxFlex="250px" *ngIf="sidebarOpened && sidebarMode === 'side'"></div>
+
+      </div>
+
+      <div>
+        <h1 class="registry-name" scrollSpyElement id="title">TEST FORM</h1>
         <section class="section-wrapper" scrollSpyElement id="sectionA">
           <div class="section-title">
             A. Administrative

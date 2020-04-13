@@ -71,6 +71,7 @@
   li {
     padding: 2px 0;
     list-style-type: none;
+    cursor: pointer;
   }
 
   a {
@@ -135,4 +136,11 @@
 .completion-mini-content {
   height: 100px;
   background-color: pink;
+}
+
+.speed-dial-container {
+  position: fixed;
+  bottom: 15px;
+  right: 40px;
+  z-index: 100;
 }

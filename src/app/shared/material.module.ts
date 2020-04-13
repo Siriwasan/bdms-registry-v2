@@ -83,7 +83,7 @@ import { MatTreeModule } from '@angular/material/tree';
     // MatTableModule,
     // MatTabsModule,
     MatToolbarModule,
-    // MatTooltipModule,
+    MatTooltipModule,
     // MatTreeModule,
     // PortalModule,
     // ScrollingModule,

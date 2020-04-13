@@ -6,9 +6,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { FabSpeedDialModule } from './modules/fab-speed-dial/fab-speed-dial.module';
+
 @NgModule({
   declarations: [],
-  imports: [],
+  imports: [FabSpeedDialModule],
   exports: [
     CommonModule,
     FormsModule,
@@ -16,6 +18,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     MaterialModule,
     FlexLayoutModule,
+    FabSpeedDialModule,
   ],
 })
 export class SharedModule {}
