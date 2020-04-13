@@ -6,6 +6,7 @@ export const setDarkTheme = createAction(
 );
 export const toggleTheme = createAction('[Application] SET_THEME');
 export const setDevice = createAction('[Application] SET_DEVICE', props<{ newDevice: string }>());
+export const initializeLayout = createAction('[Application] INITIALIZE_LAYOUT');
 
 export const setNavbarMode = createAction(
   '[Application] SET_NAVBAR_MODE',

@@ -27,37 +27,18 @@ export class AppComponent implements OnInit, OnDestroy {
           Breakpoints.TabletPortrait,
         ])
         .subscribe((result) => {
-          console.log(result);
-          let device = 'others';
-          let navbarMode = 'side';
-          let navbarOpened = true;
-          let sidebarMode = 'side';
-          let sidebarOpened = true;
+          let device = 'Others';
 
           if (result.breakpoints[Breakpoints.HandsetPortrait]) {
-            console.log('Breakpoints.HandsetPortrait');
-            device = 'handset';
-            navbarMode = 'over';
-            navbarOpened = false;
-            sidebarMode = 'over';
-            sidebarOpened = false;
+            device = 'HandsetPortrait';
           } else if (result.breakpoints[Breakpoints.HandsetLandscape]) {
-            console.log('Breakpoints.HandsetLandscape');
-            device = 'handset';
-            navbarMode = 'over';
-            navbarOpened = false;
-            sidebarMode = 'side';
-            sidebarOpened = true;
+            device = 'HandsetLandscape';
           } else if (result.breakpoints[Breakpoints.TabletPortrait]) {
-            console.log('Breakpoints.TabletPortrait');
-            device = 'tablet';
+            device = 'TabletPortrait';
           }
 
           this.store.dispatch(AppStoreActions.setDevice({ newDevice: device }));
-          this.store.dispatch(AppStoreActions.setNavbarMode({ mode: navbarMode }));
-          this.store.dispatch(AppStoreActions.openNavbar({ open: navbarOpened }));
-          this.store.dispatch(AppStoreActions.setSidebarMode({ mode: sidebarMode }));
-          this.store.dispatch(AppStoreActions.openSidebar({ open: sidebarOpened }));
+          this.store.dispatch(AppStoreActions.initializeLayout());
         })
     );
   }

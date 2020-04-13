@@ -4,6 +4,7 @@ import {
   toggleTheme,
   setDarkTheme,
   setDevice,
+  initializeLayout,
   setNavbarMode,
   openNavbar,
   toggleNavbar,
@@ -26,6 +27,42 @@ export const appReducer = createReducer(
   on(setDevice, (state, { newDevice }) => {
     return { ...state, device: newDevice };
   }),
+  on(initializeLayout, (state) => {
+    let nbMode = 'side';
+    let nbOpened = true;
+    let sbMode = 'side';
+    let sbOpened = true;
+
+    switch (state.device) {
+      case 'HandsetPortrait':
+        nbMode = 'over';
+        nbOpened = false;
+        sbMode = 'over';
+        sbOpened = false;
+        break;
+      case 'HandsetLandscape':
+        nbMode = 'over';
+        nbOpened = false;
+        sbMode = 'side';
+        sbOpened = true;
+        break;
+      case 'TabletPortrait':
+        break;
+      case 'Others':
+        break;
+      default:
+        console.log('[Error] wrong device initialitation');
+        break;
+    }
+
+    return {
+      ...state,
+      navbarMode: nbMode,
+      navbarOpened: nbOpened,
+      sidebarMode: sbMode,
+      sidebarOpened: sbOpened,
+    };
+  }),
 
   // Navbar
   on(setNavbarMode, (state, { mode }) => {
@@ -42,7 +79,10 @@ export const appReducer = createReducer(
     };
   }),
   on(closeNavbar, (state) => {
-    return { ...state, navbarOpened: state.device === 'handset' ? false : state.navbarOpened };
+    return {
+      ...state,
+      navbarOpened: state.device.includes('Handset') ? false : state.navbarOpened,
+    };
   }),
 
   // Sidebar
@@ -60,6 +100,9 @@ export const appReducer = createReducer(
     };
   }),
   on(closeSidebar, (state) => {
-    return { ...state, sidebarOpened: state.device === 'handset' ? false : state.sidebarOpened };
+    return {
+      ...state,
+      sidebarOpened: state.device.includes('Handset') ? false : state.sidebarOpened,
+    };
   })
 );
