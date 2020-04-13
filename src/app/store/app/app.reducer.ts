@@ -4,9 +4,11 @@ import {
   toggleTheme,
   setDarkTheme,
   setDevice,
+  setNavbarMode,
   openNavbar,
   toggleNavbar,
   closeNavbar,
+  setSidebarMode,
   openSidebar,
   toggleSidebar,
   closeSidebar,
@@ -24,6 +26,11 @@ export const appReducer = createReducer(
   on(setDevice, (state, { newDevice }) => {
     return { ...state, device: newDevice };
   }),
+
+  // Navbar
+  on(setNavbarMode, (state, { mode }) => {
+    return { ...state, navbarMode: mode };
+  }),
   on(openNavbar, (state, { open }) => {
     return { ...state, navbarOpened: open };
   }),
@@ -31,11 +38,16 @@ export const appReducer = createReducer(
     return {
       ...state,
       navbarOpened: !state.navbarOpened,
-      sidebarOpened: state.device === 'handset' ? false : state.sidebarOpened,
+      sidebarOpened: state.sidebarMode === 'over' ? false : state.sidebarOpened,
     };
   }),
   on(closeNavbar, (state) => {
     return { ...state, navbarOpened: state.device === 'handset' ? false : state.navbarOpened };
+  }),
+
+  // Sidebar
+  on(setSidebarMode, (state, { mode }) => {
+    return { ...state, sidebarMode: mode };
   }),
   on(openSidebar, (state, { open }) => {
     return { ...state, sidebarOpened: open };
@@ -44,7 +56,7 @@ export const appReducer = createReducer(
     return {
       ...state,
       sidebarOpened: !state.sidebarOpened,
-      navbarOpened: state.device === 'handset' ? false : state.navbarOpened,
+      navbarOpened: state.navbarMode === 'over' ? false : state.navbarOpened,
     };
   }),
   on(closeSidebar, (state) => {

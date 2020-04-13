@@ -18,22 +18,45 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private store: Store<AppState>, private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit() {
+    console.log(Breakpoints);
     this.subscription.push(
       this.breakpointObserver
-        .observe([Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
+        .observe([
+          Breakpoints.HandsetPortrait,
+          Breakpoints.HandsetLandscape,
+          Breakpoints.TabletPortrait,
+        ])
         .subscribe((result) => {
+          console.log(result);
           let device = 'others';
+          let navbarMode = 'side';
           let navbarOpened = true;
+          let sidebarMode = 'side';
           let sidebarOpened = true;
+
           if (result.breakpoints[Breakpoints.HandsetPortrait]) {
+            console.log('Breakpoints.HandsetPortrait');
             device = 'handset';
+            navbarMode = 'over';
             navbarOpened = false;
+            sidebarMode = 'over';
             sidebarOpened = false;
+          } else if (result.breakpoints[Breakpoints.HandsetLandscape]) {
+            console.log('Breakpoints.HandsetLandscape');
+            device = 'handset';
+            navbarMode = 'over';
+            navbarOpened = false;
+            sidebarMode = 'side';
+            sidebarOpened = true;
           } else if (result.breakpoints[Breakpoints.TabletPortrait]) {
+            console.log('Breakpoints.TabletPortrait');
             device = 'tablet';
           }
+
           this.store.dispatch(AppStoreActions.setDevice({ newDevice: device }));
+          this.store.dispatch(AppStoreActions.setNavbarMode({ mode: navbarMode }));
           this.store.dispatch(AppStoreActions.openNavbar({ open: navbarOpened }));
+          this.store.dispatch(AppStoreActions.setSidebarMode({ mode: sidebarMode }));
           this.store.dispatch(AppStoreActions.openSidebar({ open: sidebarOpened }));
         })
     );

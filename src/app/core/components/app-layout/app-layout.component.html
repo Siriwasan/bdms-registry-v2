@@ -2,9 +2,9 @@
   <app-header class="app-header"></app-header>
 
   <mat-sidenav-container class="app-navbar-container" [style.marginTop.px]="device === 'handset' ? 56 : 0">
-    <mat-sidenav #navbar [mode]="device !== 'others' ? 'over' : 'side'" [(opened)]="navbarOpened"
-      (closed)="closeNavbar()" [fixedInViewport]="device === 'handset'" fixedTopGap="56">
-      <app-navbar (navItemSelected)="device === 'handset' ? navbar.close() : null">
+    <mat-sidenav #navbar [mode]="navbarMode" [(opened)]="navbarOpened" (closed)="closeNavbar()"
+      [fixedInViewport]="device === 'handset'" fixedTopGap="56" [autoFocus]="false">
+      <app-navbar (navItemSelected)="navbarMode === 'over' ? navbar.close() : null">
       </app-navbar>
     </mat-sidenav>
 

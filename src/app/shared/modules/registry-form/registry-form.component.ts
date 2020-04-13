@@ -26,6 +26,7 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, OnDestroy {
   private currentSectionSubscription: Subscription;
 
   device = 'others';
+  sidebarMode = 'side';
   sidebarOpened = true;
   private subscription: Subscription[] = [];
 
@@ -43,6 +44,9 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, OnDestroy {
       this.store
         .select(AppStoreSelectors.device)
         .subscribe((newDevice) => (this.device = newDevice)),
+      this.store
+        .select(AppStoreSelectors.sidebarMode)
+        .subscribe((mode) => (this.sidebarMode = mode)),
       this.store
         .select(AppStoreSelectors.sidebarOpened)
         .subscribe((open) => (this.sidebarOpened = open))

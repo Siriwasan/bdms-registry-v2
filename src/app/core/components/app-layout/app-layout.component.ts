@@ -13,6 +13,7 @@ import { handleSwipe } from 'src/app/shared/functions/swipe';
 })
 export class AppLayoutComponent implements OnInit, OnDestroy {
   device = 'others';
+  navbarMode = 'side';
   navbarOpened = true;
   private subscription: Subscription[] = [];
 
@@ -33,6 +34,7 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
       this.store
         .select(AppStoreSelectors.device)
         .subscribe((newDevice) => (this.device = newDevice)),
+      this.store.select(AppStoreSelectors.navbarMode).subscribe((mode) => (this.navbarMode = mode)),
       this.store
         .select(AppStoreSelectors.navbarOpened)
         .subscribe((open) => (this.navbarOpened = open))

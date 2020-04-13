@@ -1,7 +1,6 @@
 <div class="app-container" fxLayout="row" fxLayoutGap="20px">
   <mat-drawer-container class=" app-sidenav-container">
-    <mat-drawer [mode]="device !== 'handset' ? 'side' : 'over'" position="end" [(opened)]="sidebarOpened"
-      (closed)="closeSidebar()">
+    <mat-drawer [mode]="sidebarMode" position="end" [(opened)]="sidebarOpened" (closed)="closeSidebar()">
       <div class="table-of-contents" [style.max-height.px]="tocMaxHeight">
         <ul *ngIf="sidebarOpened">
           <li id="titleTOC" (click)="tocClicked('title')" [class.active]="isActive('title')" class="menu-title">
