@@ -10,6 +10,7 @@ import { AppStoreActions, AppStoreSelectors } from 'src/app/store/app';
 })
 export class HeaderComponent implements OnInit {
   device$ = this.store.select(AppStoreSelectors.device);
+  sidebarMode$ = this.store.select(AppStoreSelectors.sidebarMode);
   @Output() navbarToggle = new EventEmitter<void>();
 
   constructor(private store: Store<AppState>) {}

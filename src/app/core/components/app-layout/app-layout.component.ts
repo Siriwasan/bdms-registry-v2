@@ -39,7 +39,6 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
         .select(AppStoreSelectors.navbarOpened)
         .subscribe((open) => (this.navbarOpened = open))
     );
-    this.store.dispatch(AppStoreActions.initializeLayout());
   }
 
   ngOnDestroy(): void {

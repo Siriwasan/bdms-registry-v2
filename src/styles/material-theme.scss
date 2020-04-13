@@ -13,7 +13,7 @@ $theme: mat-light-theme($primary, $accent, $warn);
 
 // Our dark theme
 .dark-theme {
-  color: $light-primary-text;
+  color: $light-secondary-text;
   $dark-primary: mat-palette($mat-indigo);
   $dark-accent: mat-palette($mat-purple, A400, A100, A700);
   $dark-warn: mat-palette($mat-red);

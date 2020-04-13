@@ -5,6 +5,7 @@ import {
   ElementRef,
   HostListener,
   OnDestroy,
+  AfterContentInit,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -14,9 +15,7 @@ import { AppState } from 'src/app/store/root-store.state';
 import { AppStoreSelectors, AppStoreActions } from 'src/app/store/app';
 import { handleSwipe } from 'src/app/shared/functions/swipe';
 
-const COMPLETION_CONTAINER = 250;
-
-export class RegistryFormComponent implements OnInit, AfterViewInit, OnDestroy {
+export class RegistryFormComponent implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
   public currentSection = '';
   public tocMaxHeight: string;
   private tocMaxHeightOffset = 0;
@@ -25,9 +24,10 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, OnDestroy {
   private scrollTarget: Element;
   private currentSectionSubscription: Subscription;
 
-  device = 'others';
+  device = 'Others';
   sidebarMode = 'side';
   sidebarOpened = true;
+  completionContent = true;
   private subscription: Subscription[] = [];
 
   constructor(
@@ -41,9 +41,10 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log('ScrollSpyComponent ngOnInit');
 
     this.subscription.push(
-      this.store
-        .select(AppStoreSelectors.device)
-        .subscribe((newDevice) => (this.device = newDevice)),
+      this.store.select(AppStoreSelectors.device).subscribe((newDevice) => {
+        this.device = newDevice;
+        // this.calculatTocMaxHeight();
+      }),
       this.store
         .select(AppStoreSelectors.sidebarMode)
         .subscribe((mode) => (this.sidebarMode = mode)),
@@ -51,6 +52,8 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, OnDestroy {
         .select(AppStoreSelectors.sidebarOpened)
         .subscribe((open) => (this.sidebarOpened = open))
     );
+
+    this.store.dispatch(AppStoreActions.initializeLayout());
   }
 
   ngAfterViewInit(): void {
@@ -58,8 +61,8 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.initializeScrollSpy();
 
-    // this.listener = () => this.calculatTocMaxHeight();
-    // this.scrollTarget.addEventListener('scroll', this.listener, false);
+    this.listener = () => this.calculatTocMaxHeight();
+    this.scrollTarget.addEventListener('scroll', this.listener, false);
 
     this.currentSectionSubscription = this.scrollSpy
       .getCurrentSection$()
@@ -67,6 +70,11 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, OnDestroy {
         this.currentSection = currentSection;
         this.changeDetector.markForCheck();
       });
+  }
+
+  ngAfterContentInit() {
+    console.log('ngAfterContentInit');
+    this.calculatTocMaxHeight();
   }
 
   private initializeScrollSpy() {
@@ -95,21 +103,26 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   calculatTocMaxHeight() {
-    if (!this.tocMaxHeightOffset) {
-      // Must wait until `mat-toolbar` is measurable.
-      const el = this.hostElement.nativeElement as Element;
-      const headerEl = document.querySelector('.app-header');
-      // const footerEl = el.querySelector('footer');
-      // if (headerEl && footerEl) {
-      //   this.tocMaxHeightOffset = headerEl.clientHeight + footerEl.clientHeight + 24; //  fudge margin
-      // }
-      this.tocMaxHeightOffset = headerEl.clientHeight;
-    }
+    // if (!this.tocMaxHeightOffset) {
+    // Must wait until `mat-toolbar` is measurable.
+    const el = this.hostElement.nativeElement as Element;
+    const headerEl = document.querySelector('.app-header');
+    // const footerEl = el.querySelector('footer');
+    // if (headerEl && footerEl) {
+    //   this.tocMaxHeightOffset = headerEl.clientHeight + footerEl.clientHeight + 24; //  fudge margin
+    // }
+    this.tocMaxHeightOffset = headerEl.clientHeight;
+    // }
+
+    const cutOffHeight = document.body.scrollHeight - window.pageYOffset - this.tocMaxHeightOffset;
+    this.completionContent = cutOffHeight > 550;
+    const completionContainerHeight = (this.completionContent ? 250 : 100) - 32;
+
     this.tocMaxHeight = (
       document.body.scrollHeight -
       window.pageYOffset -
       this.tocMaxHeightOffset -
-      COMPLETION_CONTAINER
+      completionContainerHeight
     ).toFixed(2);
   }
 
@@ -128,9 +141,7 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, OnDestroy {
   tocClicked(toc: string) {
     this.scrollTo(toc);
 
-    if (this.device === 'handset') {
-      this.store.dispatch(AppStoreActions.closeSidebar());
-    }
+    this.store.dispatch(AppStoreActions.closeSidebar());
   }
 
   onSwipe(evt) {

@@ -18,7 +18,6 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private store: Store<AppState>, private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit() {
-    console.log(Breakpoints);
     this.subscription.push(
       this.breakpointObserver
         .observe([
@@ -37,6 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
             device = 'TabletPortrait';
           }
 
+          console.log(device);
           this.store.dispatch(AppStoreActions.setDevice({ newDevice: device }));
           this.store.dispatch(AppStoreActions.initializeLayout());
         })

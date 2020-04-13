@@ -5,15 +5,13 @@ import {
   ElementRef,
   OnDestroy,
   AfterViewInit,
-  HostListener,
+  AfterContentInit,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { ScrollSpyService } from '../../../shared/modules/scroll-spy/scroll-spy.service';
 import { RegistryFormComponent } from 'src/app/shared/modules/registry-form/registry-form.component';
 import { AppState } from 'src/app/store/root-store.state';
-import { AppStoreSelectors, AppStoreActions } from 'src/app/store/app';
 
 @Component({
   selector: 'app-test-form',
@@ -21,7 +19,7 @@ import { AppStoreSelectors, AppStoreActions } from 'src/app/store/app';
   styleUrls: ['./test-form.component.scss'],
 })
 export class TestFormComponent extends RegistryFormComponent
-  implements OnInit, AfterViewInit, OnDestroy {
+  implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
   constructor(
     protected store: Store<AppState>,
     protected changeDetector: ChangeDetectorRef,
@@ -35,8 +33,8 @@ export class TestFormComponent extends RegistryFormComponent
     super.ngOnInit();
   }
 
-  ngAfterViewInit() {
-    super.ngAfterViewInit();
+  ngAfterContentInit() {
+    super.ngAfterContentInit();
   }
 
   ngOnDestroy() {

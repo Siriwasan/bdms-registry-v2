@@ -1,44 +1,55 @@
-<div class="app-container" fxLayout="row" fxLayoutGap="20px">
-  <mat-drawer-container class="app-sidenav-container">
+<div class="registry-container" fxLayout="row" fxLayoutGap="20px">
+  <mat-drawer-container class="sidebar-container">
     <mat-drawer [mode]="sidebarMode" position="end" [(opened)]="sidebarOpened" (closed)="closeSidebar()">
-      <div class="table-of-contents" [style.max-height.px]="tocMaxHeight">
-        <ul *ngIf="sidebarOpened">
-          <li id="titleTOC" (click)="tocClicked('title')" [class.active]="isActive('title')" class="menu-title">
-            <span>TEST FORM 3</span></li>
-          <li><a id="sectionATOC" (click)="tocClicked('sectionA')" [class.active]="isActive('sectionA')">A.
-              Administrative</a>
-          </li>
-          <li><a id="sectionBTOC" (click)="tocClicked('sectionB')" [class.active]="isActive('sectionB')">B.
-              Demographics</a>
-          </li>
-          <li><a id="sectionCTOC" (click)="tocClicked('sectionC')" [class.active]="isActive('sectionC')">C.
-              Preoperative</a>
-          </li>
-          <li><a id="sectionDTOC" (click)="tocClicked('sectionD')" [class.active]="isActive('sectionD')">D.
-              Preoperative</a>
-          </li>
-          <li><a id="sectionETOC" (click)="tocClicked('sectionE')" [class.active]="isActive('sectionE')">E.
-              Preoperative</a>
-          </li>
-          <li><a id="sectionFTOC" (click)="tocClicked('sectionF')" [class.active]="isActive('sectionF')">F.
-              Preoperative</a>
-          </li>
-          <li><a id="sectionGTOC" (click)="tocClicked('sectionG')" [class.active]="isActive('sectionG')">G.
-              Preoperative</a>
-          </li>
-          <li><a id="sectionHTOC" (click)="tocClicked('sectionH')" [class.active]="isActive('sectionH')">H.
-              Preoperative</a>
-          </li>
-          <li><a id="sectionITOC" (click)="tocClicked('sectionI')" [class.active]="isActive('sectionI')">I.
-              Preoperative</a>
-          </li>
-          <li><a id="sectionJTOC" (click)="tocClicked('sectionJ')" [class.active]="isActive('sectionJ')">J.
-              Preoperative</a>
-          </li>
-          <li><a id="sectionKTOC" (click)="tocClicked('sectionK')" [class.active]="isActive('sectionK')">K.
-              Preoperative</a>
-          </li>
-        </ul>
+      <div class="sidebar-content">
+
+        <div class="table-of-contents" [style.max-height.px]="tocMaxHeight">
+          <ul *ngIf="sidebarOpened">
+            <li id="titleTOC" (click)="tocClicked('title')" [class.active]="isActive('title')" class="menu-title">
+              <span>TEST FORM 3</span></li>
+            <li><a id="sectionATOC" (click)="tocClicked('sectionA')" [class.active]="isActive('sectionA')">A.
+                Administrative</a>
+            </li>
+            <li><a id="sectionBTOC" (click)="tocClicked('sectionB')" [class.active]="isActive('sectionB')">B.
+                Demographics</a>
+            </li>
+            <li><a id="sectionCTOC" (click)="tocClicked('sectionC')" [class.active]="isActive('sectionC')">C.
+                Preoperative</a>
+            </li>
+            <li><a id="sectionDTOC" (click)="tocClicked('sectionD')" [class.active]="isActive('sectionD')">D.
+                Preoperative</a>
+            </li>
+            <li><a id="sectionETOC" (click)="tocClicked('sectionE')" [class.active]="isActive('sectionE')">E.
+                Preoperative</a>
+            </li>
+            <li><a id="sectionFTOC" (click)="tocClicked('sectionF')" [class.active]="isActive('sectionF')">F.
+                Preoperative</a>
+            </li>
+            <li><a id="sectionGTOC" (click)="tocClicked('sectionG')" [class.active]="isActive('sectionG')">G.
+                Preoperative</a>
+            </li>
+            <li><a id="sectionHTOC" (click)="tocClicked('sectionH')" [class.active]="isActive('sectionH')">H.
+                Preoperative</a>
+            </li>
+            <li><a id="sectionITOC" (click)="tocClicked('sectionI')" [class.active]="isActive('sectionI')">I.
+                Preoperative</a>
+            </li>
+            <li><a id="sectionJTOC" (click)="tocClicked('sectionJ')" [class.active]="isActive('sectionJ')">J.
+                Preoperative</a>
+            </li>
+            <li><a id="sectionKTOC" (click)="tocClicked('sectionK')" [class.active]="isActive('sectionK')">K.
+                Preoperative</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="completion-content" *ngIf="completionContent">
+
+        </div>
+
+        <div class="completion-mini-content" *ngIf="!completionContent">
+
+        </div>
       </div>
     </mat-drawer>
 

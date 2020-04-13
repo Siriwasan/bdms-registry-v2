@@ -1,7 +1,24 @@
-// @import 'base.scss';
+.registry-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 
-.registry-content {
-  overflow: auto;
+.sidebar-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .registry-name {
@@ -40,10 +57,12 @@
 }
 
 .table-of-contents {
-  width: 250px;
+  width: 210px;
   padding-left: 20px;
+  padding-right: 20px;
   overflow-y: auto;
   overflow-x: hidden;
+  background-color: lightblue;
 
   ul {
     padding-inline-start: 0px;
@@ -106,4 +125,14 @@
       width: 50%;
     }
   }
+}
+
+.completion-content {
+  height: 250px;
+  background-color: yellow;
+}
+
+.completion-mini-content {
+  height: 100px;
+  background-color: pink;
 }

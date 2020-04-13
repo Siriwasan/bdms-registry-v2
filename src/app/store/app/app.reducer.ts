@@ -41,12 +41,11 @@ export const appReducer = createReducer(
         sbOpened = false;
         break;
       case 'HandsetLandscape':
+      case 'TabletPortrait':
         nbMode = 'over';
         nbOpened = false;
         sbMode = 'side';
         sbOpened = true;
-        break;
-      case 'TabletPortrait':
         break;
       case 'Others':
         break;
