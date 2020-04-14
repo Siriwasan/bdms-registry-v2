@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { RoundProgressModule } from 'angular-svg-round-progressbar';
+
 import { TestFormComponent } from './test-form.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FeatureModule } from '../../feature.module';
@@ -15,6 +17,12 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [TestFormComponent],
-  imports: [SharedModule, FeatureModule, RouterModule.forChild(routes), ScrollSpyModule],
+  imports: [
+    SharedModule,
+    FeatureModule,
+    RouterModule.forChild(routes),
+    ScrollSpyModule,
+    RoundProgressModule,
+  ],
 })
 export class TestFormModule {}

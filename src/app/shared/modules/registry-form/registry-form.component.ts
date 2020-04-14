@@ -116,7 +116,7 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, AfterConten
 
     const cutOffHeight = document.body.scrollHeight - window.pageYOffset - this.tocMaxHeightOffset;
     this.completionContent = cutOffHeight > 550;
-    const completionContainerHeight = (this.completionContent ? 250 : 100) - 32;
+    const completionContainerHeight = (this.completionContent ? 250 : 70) - 32;
 
     this.tocMaxHeight = (
       document.body.scrollHeight -

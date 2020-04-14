@@ -44,12 +44,24 @@
           </ul>
         </div>
 
-        <div class="completion-content" *ngIf="completionContent">
+        <div>
+          <div class="completion-content" *ngIf="completionContent">
+            <div class="progress-wrapper">
+              <round-progress current="10" max="50" [color]="'#A133FF'" [background]="'#eaeaea'" [radius]="125"
+                [stroke]="15" [rounded]="false" [responsive]="true">
+              </round-progress>
+              <div class="summary">
+                <div class="current">{{ '10/100' }}</div>
+                <div class="completion">{{ '(10%)' }}</div>
+              </div>
 
-        </div>
+            </div>
+          </div>
 
-        <div class="completion-mini-content" *ngIf="!completionContent">
-
+          <div class="completion-mini-content" *ngIf="!completionContent">
+            <div class="mini-summary">{{ '10/100 (10%)' }}</div>
+          </div>
+          <div style="height: 32px;"></div>
         </div>
       </div>
     </mat-drawer>

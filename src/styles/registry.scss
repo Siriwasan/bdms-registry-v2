@@ -19,6 +19,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  overflow: auto;
 }
 
 .registry-name {
@@ -62,7 +63,6 @@
   padding-right: 20px;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: lightblue;
 
   ul {
     padding-inline-start: 0px;
@@ -129,13 +129,48 @@
 }
 
 .completion-content {
+  border-top: 1px solid rgb(224, 224, 224);
   height: 250px;
-  background-color: yellow;
+  display: flex;
+}
+
+.progress-wrapper {
+  margin: 25px;
+  width: 200px;
+  height: 200px;
+}
+
+.summary {
+  position: relative;
+  color: #bbb;
+  line-height: 1.2;
+  font-size: 35px;
+  font-weight: 200;
+  text-align: center;
+
+  top: -50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  -moz-transform: translateY(-50%) translateX(-50%);
+  -webkit-transform: translateY(-50%) translateX(-50%);
+
+  .completion {
+    font-size: 65%;
+  }
 }
 
 .completion-mini-content {
-  height: 100px;
-  background-color: pink;
+  border-top: 1px solid rgb(224, 224, 224);
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mini-summary {
+  color: #bbb;
+  font-size: 35px;
+  font-weight: 200;
 }
 
 .speed-dial-container {
