@@ -56,7 +56,7 @@
 
     <mat-drawer-content id="test" (swipe)="onSwipe($event)">
       <div class="speed-dial-container">
-        <fab-speed-dial open="" direction="up" animationMode="fling">
+        <fab-speed-dial open="" [direction]="device === 'HandsetLandscape' ? 'left' : 'up'" animationMode="fling">
           <fab-speed-dial-trigger spin="true">
             <button mat-fab>
               <mat-icon class="fab-spin90">more_horiz</mat-icon>
@@ -64,22 +64,29 @@
           </fab-speed-dial-trigger>
 
           <fab-speed-dial-actions>
-            <button mat-mini-fab matTooltip="Save" matTooltipPosition="before" color="secondary" (click)="true">
+            <button mat-mini-fab matTooltip="Save"
+              [matTooltipPosition]="device === 'HandsetLandscape' ? 'above' : 'before'" color="secondary"
+              (click)="true">
               <mat-icon>save</mat-icon>
             </button>
-            <button mat-mini-fab matTooltip="Save and Exit" matTooltipPosition="before" color="secondary"
+            <button mat-mini-fab matTooltip="Save and Exit"
+              [matTooltipPosition]="device === 'HandsetLandscape' ? 'above' : 'before'" color="secondary"
               (click)="true">
               <mat-icon>exit_to_app</mat-icon>
             </button>
-            <button mat-mini-fab matTooltip="Check validation" matTooltipPosition="before" color="secondary"
+            <button mat-mini-fab matTooltip="Check validation"
+              [matTooltipPosition]="device === 'HandsetLandscape' ? 'above' : 'before'" color="secondary"
               (click)="true">
               <mat-icon>error_outline</mat-icon>
             </button>
-            <button mat-mini-fab matTooltip="Clear validation" matTooltipPosition="before" color="secondary"
+            <button mat-mini-fab matTooltip="Clear validation"
+              [matTooltipPosition]="device === 'HandsetLandscape' ? 'above' : 'before'" color="secondary"
               (click)="true">
               <mat-icon>highlight_off</mat-icon>
             </button>
-            <button mat-mini-fab matTooltip="Print as PDF" matTooltipPosition="before" color="secondary" (click)="true">
+            <button mat-mini-fab matTooltip="Print as PDF"
+              [matTooltipPosition]="device === 'HandsetLandscape' ? 'above' : 'before'" color="secondary"
+              (click)="true">
               <mat-icon>print</mat-icon>
             </button>
           </fab-speed-dial-actions>
