@@ -10,9 +10,9 @@ import {
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 
-import { ScrollSpyService } from '../scroll-spy/scroll-spy.service';
 import { AppState } from 'src/app/store/root-store.state';
 import { AppStoreSelectors, AppStoreActions } from 'src/app/store/app';
+import { ScrollSpyService } from '../scroll-spy/scroll-spy.service';
 import { handleSwipe } from 'src/app/shared/functions/swipe';
 
 export class RegistryFormComponent implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
@@ -32,17 +32,16 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, AfterConten
 
   constructor(
     protected store: Store<AppState>,
-    protected changeDetector: ChangeDetectorRef,
     protected scrollSpy: ScrollSpyService,
+    protected changeDetector: ChangeDetectorRef,
     protected hostElement: ElementRef
   ) {}
 
   ngOnInit() {
     this.subscription.push(
-      this.store.select(AppStoreSelectors.device).subscribe((newDevice) => {
-        this.device = newDevice;
-        // this.calculatTocMaxHeight();
-      }),
+      this.store
+        .select(AppStoreSelectors.device)
+        .subscribe((newDevice) => (this.device = newDevice)),
       this.store
         .select(AppStoreSelectors.sidebarMode)
         .subscribe((mode) => (this.sidebarMode = mode)),

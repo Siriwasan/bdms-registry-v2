@@ -23,11 +23,11 @@ export class TestForm3Component extends RegistryFormComponent
   implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     protected store: Store<AppState>,
-    protected changeDetector: ChangeDetectorRef,
     protected scrollSpy: ScrollSpyService,
+    protected changeDetector: ChangeDetectorRef,
     protected hostElement: ElementRef
   ) {
-    super(store, changeDetector, scrollSpy, hostElement);
+    super(store, scrollSpy, changeDetector, hostElement);
   }
 
   ngOnInit() {
