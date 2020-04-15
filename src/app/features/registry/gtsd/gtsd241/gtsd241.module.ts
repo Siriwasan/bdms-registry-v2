@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FeatureModule } from 'src/app/features/feature.module';
 import { Gtsd241Component } from './gtsd241.component';
 import { ScrollSpyModule } from 'src/app/shared/modules/scroll-spy/scroll-spy.module';
+import { RegistryFormModule } from 'src/app/shared/modules/registry-form/registry-form.module';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ScrollSpyModule,
     RoundProgressModule,
+    RegistryFormModule,
   ],
 })
 export class Gtsd241Module {}

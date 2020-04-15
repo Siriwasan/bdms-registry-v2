@@ -6,7 +6,7 @@ import { LoginComponent } from './features/login/login.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: '/registry/gtsd/gtsd241',
     pathMatch: 'full',
   },
   {
@@ -32,7 +32,7 @@ const routes: Routes = [
       // { path: 'about', component: AboutComponent },
       // { path: 'auth', component: AuthComponent },
       // { path: 'page-not-autherized', component: PageNotAutherizedComponent },
-      { path: '', redirectTo: '/registry/test-form', pathMatch: 'full' },
+      { path: '', redirectTo: '/registry/gtsd/gtsd241', pathMatch: 'full' },
     ],
   },
 ];

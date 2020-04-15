@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { FeatureModule } from '../feature.module';
 import { RegistryRoutingModule } from './registry-routing.module';
-import { LoremIpsumComponent } from './lorem-ipsum.component';
+import { RegistryFormModule } from 'src/app/shared/modules/registry-form/registry-form.module';
 
 @NgModule({
   declarations: [],

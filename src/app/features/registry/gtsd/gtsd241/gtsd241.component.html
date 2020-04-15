@@ -91,12 +91,14 @@
             A. Administrative
           </div>
           <div class="section-body">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
+            <form [formGroup]="formGroupA" #formDirectiveA="ngForm">
+              <reg-input controlName="HN" placeholder="HN" [formGroup]="formGroupA" type="text">
+              </reg-input>
+            </form>
           </div>
         </section>
+
+        FormGroupA: {{ formGroupA.value | json }}
 
         <section class="section-wrapper" scrollSpyElement id="sectionB">
           <div class="section-title">
