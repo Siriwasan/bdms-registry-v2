@@ -75,6 +75,10 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, AfterConten
   private initializeScrollSpy() {
     const el = this.hostElement.nativeElement as Element;
     this.scrollTarget = el.querySelector('mat-drawer-content');
+    if (!this.scrollTarget) {
+      console.log('[Error] Scroll target is not define');
+    }
+
     this.scrollSpy.setScrollTarget(this.scrollTarget);
     this.scrollSpy.subscribeScroll();
   }

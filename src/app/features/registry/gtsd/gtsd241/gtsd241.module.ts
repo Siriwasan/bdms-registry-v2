@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Gtsd241Component } from './gtsd241.component';
 import { Routes, RouterModule } from '@angular/router';
+
+import { RoundProgressModule } from 'angular-svg-round-progressbar';
+
+import { SharedModule } from 'src/app/shared/shared.module';
+import { FeatureModule } from 'src/app/features/feature.module';
+import { Gtsd241Component } from './gtsd241.component';
+import { ScrollSpyModule } from 'src/app/shared/modules/scroll-spy/scroll-spy.module';
 
 const routes: Routes = [
   {
@@ -12,6 +17,12 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [Gtsd241Component],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [
+    SharedModule,
+    FeatureModule,
+    RouterModule.forChild(routes),
+    ScrollSpyModule,
+    RoundProgressModule,
+  ],
 })
 export class Gtsd241Module {}
