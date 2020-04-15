@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { GtsdComponent } from './gtsd/gtsd.component';
 
 const routes: Routes = [
   // {
@@ -28,9 +29,14 @@ const routes: Routes = [
     loadChildren: () => import('./test-form2/test-form2.module').then((m) => m.TestForm2Module),
   },
   {
-    path: 'test-form3',
-    loadChildren: () => import('./test-form3/test-form3.module').then((m) => m.TestForm3Module),
+    path: 'gtsd',
+    loadChildren: () => import('./gtsd/gtsd.module').then((m) => m.GtsdModule),
+    // component: GtsdComponent,
   },
+  // {
+  //   path: 'gtsd241',
+  //   loadChildren: () => import('./gtsd/gtsd241/gtsd241.module').then((m) => m.Gtsd241Module),
+  // },
 ];
 
 @NgModule({

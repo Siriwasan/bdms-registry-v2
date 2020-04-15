@@ -36,7 +36,6 @@ export class AppComponent implements OnInit, OnDestroy {
             device = 'TabletPortrait';
           }
 
-          console.log(device);
           this.store.dispatch(AppStoreActions.setDevice({ newDevice: device }));
           this.store.dispatch(AppStoreActions.initializeLayout());
         })

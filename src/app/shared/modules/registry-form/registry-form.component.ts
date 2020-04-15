@@ -38,8 +38,6 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, AfterConten
   ) {}
 
   ngOnInit() {
-    console.log('ScrollSpyComponent ngOnInit');
-
     this.subscription.push(
       this.store.select(AppStoreSelectors.device).subscribe((newDevice) => {
         this.device = newDevice;
@@ -57,8 +55,6 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, AfterConten
   }
 
   ngAfterViewInit(): void {
-    console.log('ScrollSpyComponent ngAfterViewInit');
-
     this.initializeScrollSpy();
 
     this.listener = () => this.calculatTocMaxHeight();
@@ -73,7 +69,6 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, AfterConten
   }
 
   ngAfterContentInit() {
-    console.log('ngAfterContentInit');
     this.calculatTocMaxHeight();
   }
 
@@ -85,7 +80,6 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, AfterConten
   }
 
   ngOnDestroy() {
-    console.log('ScrollSpyComponent ngOnDestroy');
     if (this.scrollTarget !== undefined) {
       this.scrollTarget.removeEventListener('scroll', this.listener, false);
     }

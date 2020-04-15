@@ -22,14 +22,9 @@ export class ScrollSpyService implements OnDestroy {
   private scrollSpies: ScrollSpies = {};
   private scrollSubscription: Subscription;
 
-  constructor() {
-    // move to ScrollSpyComponent.OnInit()
-    // this.subscribeScroll();
-    console.log('ScrollSpyService constructor');
-  }
+  constructor() {}
 
   public ngOnDestroy(): void {
-    console.log('ScrollSpyService ngOnDestroy');
     this.scrollSubscription.unsubscribe();
   }
 
