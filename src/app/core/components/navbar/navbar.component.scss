@@ -1,11 +1,19 @@
 a {
-  text-decoration: none;
-  color: white;
+  font-weight: lighter;
 }
 
-a:hover,
-a:active {
-  color: lightgray;
+// a:hover {
+//   color: blue;
+// }
+
+a.active {
+  color: black;
+  font-weight: normal;
+  background-color: rgb(229, 229, 229);
+
+  mat-icon {
+    color: blue;
+  }
 }
 
 // .nav-caption {
