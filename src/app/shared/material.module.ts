@@ -74,7 +74,7 @@ import { MatTreeModule } from '@angular/material/tree';
     // MatProgressSpinnerModule,
     // MatRadioModule,
     // MatRippleModule,
-    // MatSelectModule,
+    MatSelectModule,
     MatSidenavModule,
     // MatSliderModule,
     MatSlideToggleModule,

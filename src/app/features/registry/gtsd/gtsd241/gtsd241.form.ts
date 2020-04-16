@@ -8,6 +8,7 @@ export const Gtsd241Form = {
     AN: [null, [Validators.required, Validators.minLength(11), Validators.maxLength(12)]],
     LastName: [null, Validators.required],
     FirstName: [null, Validators.required],
+    Sex: [null, Validators.required],
   },
   sectionB: {
     HospName: [null, Validators.required],

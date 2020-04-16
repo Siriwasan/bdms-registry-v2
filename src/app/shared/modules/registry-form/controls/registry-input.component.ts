@@ -13,12 +13,12 @@ import { RegistryFormService } from '../registry-form.service';
       <input
         [type]="type"
         matInput
-        [placeholder]="placeholder"
         [formControlName]="controlName"
+        name="controlName"
+        [placeholder]="placeholder"
         [required]="require"
         [readonly]="readonly"
-        name="controlName"
-        (focusout)="focuzOut()"
+        (focusout)="onFocusOut()"
       />
       <mat-hint>
         <a><ng-content></ng-content></a>
@@ -43,10 +43,10 @@ import { RegistryFormService } from '../registry-form.service';
 export class RegistryInputComponent extends RegistryControlComponent implements OnInit {
   @Input() controlName: string;
   @Input() formGroup: FormGroup;
-  @Input() type = 'text';
   @Input() placeholder: string;
   @Input() require = true;
   @Input() readonly = false;
+  @Input() type = 'text';
   @Output() focusOut: EventEmitter<void> = new EventEmitter();
 
   bInfo: boolean;
@@ -59,11 +59,10 @@ export class RegistryInputComponent extends RegistryControlComponent implements 
   ngOnInit() {
     this.elementRef.nativeElement.setAttribute('id', this.controlName);
     this.bInfo = this.hasInfo(this.controlName);
-
     this.self = this.formGroup.get(this.controlName);
   }
 
-  focuzOut() {
+  onFocusOut() {
     this.focusOut.emit();
   }
 }

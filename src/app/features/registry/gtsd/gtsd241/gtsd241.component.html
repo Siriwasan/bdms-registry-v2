@@ -101,8 +101,10 @@
                   fxFlex="1 0 200px">
                   Testing</reg-input>
                 <reg-input controlName="FirstName" placeholder="FirstName" [formGroup]="formGroupA" type="text"
-                  fxFlex="1 0 100px">
+                  fxFlex="2 0 100px">
                   Testing</reg-input>
+                <reg-select controlName="Sex" placeholder="Sex" [formGroup]="formGroupA" [choices]="['Male', 'Female']"
+                  fxFlex="1 0 300px"></reg-select>
               </div>
             </form>
           </div>
