@@ -1,3 +1,11 @@
+reg-input,
+reg-select,
+reg-select-multiple,
+reg-select-search,
+reg-datepicker {
+  margin: 10px;
+}
+
 .registry-container {
   display: flex;
   flex-direction: column;
@@ -53,7 +61,7 @@
 }
 
 .section-body {
-  padding: 30px;
+  padding: 10px;
   overflow: auto; // swipe malfunction
 }
 

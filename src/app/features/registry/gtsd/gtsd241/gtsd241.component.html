@@ -92,8 +92,18 @@
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupA" #formDirectiveA="ngForm">
-              <reg-input controlName="HN" placeholder="HN" [formGroup]="formGroupA" type="text">
-                Testing</reg-input>
+              <div fxLayout="row wrap">
+                <reg-input controlName="HN" placeholder="HN" [formGroup]="formGroupA" type="text" fxFlex="1 0 100px">
+                  Testing</reg-input>
+                <reg-input controlName="AN" placeholder="AN" [formGroup]="formGroupA" type="text" fxFlex="1 0 200px">
+                  Testing</reg-input>
+                <reg-input controlName="LastName" placeholder="LastName" [formGroup]="formGroupA" type="text"
+                  fxFlex="1 0 200px">
+                  Testing</reg-input>
+                <reg-input controlName="FirstName" placeholder="FirstName" [formGroup]="formGroupA" type="text"
+                  fxFlex="1 0 100px">
+                  Testing</reg-input>
+              </div>
             </form>
           </div>
         </section>
