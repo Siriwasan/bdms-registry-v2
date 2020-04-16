@@ -9,7 +9,7 @@ import {
 import { Subscription } from 'rxjs';
 import * as marked from 'marked';
 
-// import { DialogService } from '../../services/dialog.service';
+import { DialogService } from '../../services/dialog.service';
 import {
   ValidationMessage,
   FormValidations,
@@ -35,8 +35,7 @@ export class RegistryFormService implements OnDestroy {
 
   private visibles: FormVisibility = {};
 
-  // constructor(private dialogService: DialogService) {}
-  constructor() {}
+  constructor(private dialogService: DialogService) {}
 
   ngOnDestroy() {
     this.subscriptions.forEach((subs) => subs.unsubscribe());
@@ -313,11 +312,11 @@ export class RegistryFormService implements OnDestroy {
       return;
     }
 
-    // this.dialogService.createModalDialog({
-    //   title: null,
-    //   content: this.searhDataDict(control),
-    //   buttons: ['Close']
-    // });
+    this.dialogService.createModalDialog({
+      title: null,
+      content: this.searhDataDict(control),
+      buttons: ['Close'],
+    });
   }
 
   private searhDataDict(key: string): string {

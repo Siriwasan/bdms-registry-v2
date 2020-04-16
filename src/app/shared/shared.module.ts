@@ -7,10 +7,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { FabSpeedDialModule } from './modules/fab-speed-dial/fab-speed-dial.module';
+import { NoSanitizePipe } from './pipes/no-sanitize.pipe';
+import { ModalDialogComponent } from './components/modal-dialog/modal-dialog.component';
 
 @NgModule({
-  declarations: [],
-  imports: [FabSpeedDialModule],
+  declarations: [ModalDialogComponent, NoSanitizePipe],
+  imports: [CommonModule, MaterialModule, FabSpeedDialModule],
   exports: [
     CommonModule,
     FormsModule,
@@ -19,6 +21,8 @@ import { FabSpeedDialModule } from './modules/fab-speed-dial/fab-speed-dial.modu
     MaterialModule,
     FlexLayoutModule,
     FabSpeedDialModule,
+    ModalDialogComponent,
+    NoSanitizePipe,
   ],
 })
 export class SharedModule {}

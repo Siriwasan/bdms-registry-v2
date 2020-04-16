@@ -1,0 +1,11 @@
+<!-- <link rel="stylesheet" type="text/css" href="src/assets/styles/github-markdown.min.css" /> -->
+
+<h2 mat-dialog-title [class]="data.style" *ngIf="data.title !== null">{{ data.title }}</h2>
+<mat-dialog-content #dialogContent class="markdown-body">
+  <div [innerHTML]="data.content | noSanitize"></div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button *ngFor="let button of data.buttons" [mat-dialog-close]="button" cdkFocusInitial>
+    {{ button }}
+  </button>
+</mat-dialog-actions>
