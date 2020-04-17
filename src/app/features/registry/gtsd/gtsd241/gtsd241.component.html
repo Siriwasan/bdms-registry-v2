@@ -105,6 +105,14 @@
                   Testing</reg-input>
                 <reg-select controlName="Sex" placeholder="Sex" [formGroup]="formGroupA" [choices]="['Male', 'Female']"
                   fxFlex="1 0 300px"></reg-select>
+                <reg-datepicker controlName="DOB" placeholder="Birth Date" [formGroup]="formGroupA" fxFlex="1 0 200px">
+                  dd/mm/yyyy
+                </reg-datepicker>
+                <reg-datepicker controlName="Visit" placeholder="Visit Date" [formGroup]="formGroupA"
+                  fxFlex="1 0 200px">
+                  dd/mm/yyyy
+                </reg-datepicker>
+
               </div>
             </form>
           </div>

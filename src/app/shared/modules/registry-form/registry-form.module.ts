@@ -6,7 +6,8 @@ import { RegistryFormService } from './registry-form.service';
 import { RegistryInputComponent } from './controls/registry-input.component';
 import { RegistrySelectComponent } from './controls/registry-select.component';
 // import { RegistrySelectMultipleComponent } from './registry-select-multiple.component';
-// import { RegistryDatePickerComponent } from './registry-date-picker.component';
+import { RegistryDatePickerComponent } from './controls/registry-date-picker.component';
+import { MatDatepickerModule, MatMomentDateModule } from '@coachcare/datepicker';
 // import { RegistryAutocompleteComponent } from './registry-autocomplete.component';
 // import { RegistrySelectSearchComponent } from './registry-select-search.component';
 
@@ -15,16 +16,16 @@ import { RegistrySelectComponent } from './controls/registry-select.component';
     RegistryInputComponent,
     RegistrySelectComponent,
     // RegistrySelectMultipleComponent,
-    // RegistryDatePickerComponent,
+    RegistryDatePickerComponent,
     // RegistryAutocompleteComponent,
     // RegistrySelectSearchComponent
   ],
-  imports: [SharedModule],
+  imports: [SharedModule, MatDatepickerModule, MatMomentDateModule],
   exports: [
     RegistryInputComponent,
     RegistrySelectComponent,
     // RegistrySelectMultipleComponent,
-    // RegistryDatePickerComponent,
+    RegistryDatePickerComponent,
     // RegistryAutocompleteComponent,
     // RegistrySelectSearchComponent
   ],

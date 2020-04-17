@@ -16,7 +16,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+// import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -42,7 +42,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 
+import { MatDatepickerModule, MatMomentDateModule } from '@coachcare/datepicker';
+
 @NgModule({
+  imports: [],
   exports: [
     // A11yModule,
     // ClipboardModule,
@@ -68,7 +71,7 @@ import { MatTreeModule } from '@angular/material/tree';
     MatInputModule,
     MatListModule,
     // MatMenuModule,
-    // MatNativeDateModule,
+    MatNativeDateModule,
     // MatPaginatorModule,
     // MatProgressBarModule,
     // MatProgressSpinnerModule,

@@ -9,11 +9,10 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, AbstractControl } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 
 import { RegistryControlComponent } from './registry-control.component';
-import { AbstractControl } from '@angular/forms';
 import { RegSelectChoice, RegSelectChoiceGroup } from '../registry-form.model';
 import { RegistryFormService } from '../registry-form.service';
 

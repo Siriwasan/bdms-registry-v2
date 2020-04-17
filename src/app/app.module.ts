@@ -19,6 +19,7 @@ import { FeatureModule } from './features/feature.module';
 import { AppStoreModule, AppStoreSelectors } from './store/app';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { AppState } from './store/root-store.state';
+import { MatMomentDateModule } from '@coachcare/datepicker';
 
 // export class MyHammerConfig extends HammerGestureConfig {
 //   overrides = <any>{
@@ -32,6 +33,7 @@ import { AppState } from './store/root-store.state';
     CoreModule,
     SharedModule,
     FeatureModule,
+    MatMomentDateModule,
     AppRoutingModule,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),

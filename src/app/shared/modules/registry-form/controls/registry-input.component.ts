@@ -1,8 +1,7 @@
 import { Component, Input, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, AbstractControl } from '@angular/forms';
 
 import { RegistryControlComponent } from './registry-control.component';
-import { AbstractControl } from '@angular/forms';
 import { RegistryFormService } from '../registry-form.service';
 
 @Component({

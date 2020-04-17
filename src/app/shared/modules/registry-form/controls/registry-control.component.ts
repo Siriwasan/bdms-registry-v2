@@ -1,6 +1,7 @@
+import { FormGroup } from '@angular/forms';
+
 import { RegistryFormService } from '../registry-form.service';
 import { ValidationMessage } from '../registry-form.model';
-import { FormGroup } from '@angular/forms';
 
 export class RegistryControlComponent {
   constructor(protected registryFormService: RegistryFormService) {}
