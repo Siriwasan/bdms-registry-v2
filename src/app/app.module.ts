@@ -38,7 +38,7 @@ import { MatMomentDateModule } from '@coachcare/datepicker';
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     AppStoreModule,
-    // HammerModule, // bug with text selection
+    HammerModule, // bug with text selection
   ],
   providers: [
     // {

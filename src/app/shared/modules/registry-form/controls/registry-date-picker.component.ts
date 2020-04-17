@@ -12,7 +12,12 @@ import {
 } from '@angular/core';
 import { FormGroup, AbstractControl } from '@angular/forms';
 
-import { MAT_DATE_FORMATS, DateAdapter, MomentDateAdapter } from '@coachcare/datepicker';
+import {
+  MAT_DATE_FORMATS,
+  DateAdapter,
+  MomentDateAdapter,
+  MAT_DATE_LOCALE,
+} from '@coachcare/datepicker';
 import * as moment from 'moment';
 
 import { RegistryControlComponent } from './registry-control.component';
@@ -33,11 +38,11 @@ const MY_DATE_FORMATS = {
     datetime: 'D/M/YYYY H:mm',
     date: 'D/M/YYYY',
     time: 'H:mm',
+    dateA11yLabel: 'LL',
     monthDayLabel: 'D MMM',
-    monthDayA11yLabel: 'D MMMM',
+    monthDayA11yLabel: 'D MMM',
     monthYearLabel: 'MMMM YYYY',
     monthYearA11yLabel: 'MMMM YYYY',
-    dateA11yLabel: 'LLLL',
     timeLabel: 'HH:mm',
   },
 };
@@ -90,6 +95,10 @@ export class CustomDateAdapter extends MomentDateAdapter {
   styleUrls: ['./registry-control.component.scss'],
   encapsulation: ViewEncapsulation.None,
   providers: [
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'th',
+    },
     { provide: DateAdapter, useClass: CustomDateAdapter },
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
   ],
@@ -111,13 +120,9 @@ export class RegistryDatePickerComponent extends RegistryControlComponent
   constructor(
     protected registryFormService: RegistryFormService,
     private elementRef: ElementRef,
-    private dateAdapter: DateAdapter<Date>,
     private store: Store<AppState>
   ) {
     super(registryFormService);
-
-    this.dateAdapter.setLocale('th');
-    // (dateAdapter as CustomDateAdapter).setType('date');
   }
 
   ngOnInit() {
