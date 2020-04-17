@@ -17,6 +17,9 @@ import * as moment from 'moment';
 
 import { RegistryControlComponent } from './registry-control.component';
 import { RegistryFormService } from '../registry-form.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/root-store.state';
+import { AppStoreSelectors } from 'src/app/store/app';
 
 // See the Moment.js docs for the meaning of these formats:
 // https://momentjs.com/docs/#/displaying/format/
@@ -30,7 +33,7 @@ const MY_DATE_FORMATS = {
     datetime: 'D/M/YYYY H:mm',
     date: 'D/M/YYYY',
     time: 'H:mm',
-    monthDayLabel: 'D MMMM',
+    monthDayLabel: 'D MMM',
     monthDayA11yLabel: 'D MMMM',
     monthYearLabel: 'MMMM YYYY',
     monthYearA11yLabel: 'MMMM YYYY',
@@ -60,7 +63,12 @@ export class CustomDateAdapter extends MomentDateAdapter {
         #dateInput
       />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker touchUi="true" [type]="type" [twelveHour]="false"></mat-datepicker>
+      <mat-datepicker
+        #picker
+        [touchUi]="(device$ | async).includes('Handset')"
+        [type]="type"
+        [twelveHour]="false"
+      ></mat-datepicker>
       <mat-hint>
         <a><ng-content></ng-content></a>
         <mat-icon style="cursor: help;" (click)="openInfo(controlName)" *ngIf="bInfo"
@@ -98,10 +106,13 @@ export class RegistryDatePickerComponent extends RegistryControlComponent
   bInfo: boolean;
   self: AbstractControl;
 
+  device$ = this.store.select(AppStoreSelectors.device);
+
   constructor(
     protected registryFormService: RegistryFormService,
     private elementRef: ElementRef,
-    private dateAdapter: DateAdapter<Date>
+    private dateAdapter: DateAdapter<Date>,
+    private store: Store<AppState>
   ) {
     super(registryFormService);
 

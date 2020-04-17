@@ -23,3 +23,12 @@
 .detail-html span {
   color: rgba(0, 0, 0, 0.87);
 }
+
+mat-datepicker-content {
+  --bg-dialog: null; // bug to dummy
+  // --bg-dialog: #424242;
+  // --primary: rgba(63, 81, 181, 1);
+  // --primary-contrast: #fff;
+  // --primary-a60: rgba(63, 81, 181, 0.6);
+  // --primary-a80: rgba(63, 81, 181, 0.8);
+}
