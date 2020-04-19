@@ -50,18 +50,10 @@ export class MatClockView<D> implements AfterContentInit {
   set activeDate(value: D) {
     const oldActiveDate = this._activeDate;
     const validDate =
-      this._getValidDateOrNull(this._dateAdapter.deserialize(value)) ||
-      this._dateAdapter.today();
-    this._activeDate = this._dateAdapter.clampDate(
-      validDate,
-      this.minDate,
-      this.maxDate
-    );
+      this._getValidDateOrNull(this._dateAdapter.deserialize(value)) || this._dateAdapter.today();
+    this._activeDate = this._dateAdapter.clampDate(validDate, this.minDate, this.maxDate);
 
-    if (
-      oldActiveDate &&
-      this._dateAdapter.compareDate(oldActiveDate, this._activeDate, 'minute')
-    ) {
+    if (oldActiveDate && this._dateAdapter.compareDate(oldActiveDate, this._activeDate, 'minute')) {
       this._init();
     }
   }
@@ -73,9 +65,7 @@ export class MatClockView<D> implements AfterContentInit {
     return this._selected;
   }
   set selected(value: D | null) {
-    this._selected = this._getValidDateOrNull(
-      this._dateAdapter.deserialize(value)
-    );
+    this._selected = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
   private _selected: D | null;
 
@@ -85,9 +75,7 @@ export class MatClockView<D> implements AfterContentInit {
     return this._minDate;
   }
   set minDate(value: D | null) {
-    this._minDate = this._getValidDateOrNull(
-      this._dateAdapter.deserialize(value)
-    );
+    this._minDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
   private _minDate: D | null;
 
@@ -97,9 +85,7 @@ export class MatClockView<D> implements AfterContentInit {
     return this._maxDate;
   }
   set maxDate(value: D | null) {
-    this._maxDate = this._getValidDateOrNull(
-      this._dateAdapter.deserialize(value)
-    );
+    this._maxDate = this._getValidDateOrNull(this._dateAdapter.deserialize(value));
   }
   private _maxDate: D | null;
 
@@ -142,8 +128,7 @@ export class MatClockView<D> implements AfterContentInit {
     let deg = 0;
 
     if (this.twelveHour) {
-      this._selectedHour =
-        this._selectedHour < 12 ? this._selectedHour : this._selectedHour - 12;
+      this._selectedHour = this._selectedHour < 12 ? this._selectedHour : this._selectedHour - 12;
       this._selectedHour = this._selectedHour === 0 ? 12 : this._selectedHour;
     }
 
@@ -315,14 +300,8 @@ export class MatClockView<D> implements AfterContentInit {
         value: i,
         displayValue: i === 0 ? '00' : minuteNames[i],
         enabled: !this.dateFilter || this.dateFilter(date, 'minute'),
-        top:
-          CLOCK_RADIUS -
-          Math.cos(radian) * CLOCK_OUTER_RADIUS -
-          CLOCK_TICK_RADIUS,
-        left:
-          CLOCK_RADIUS +
-          Math.sin(radian) * CLOCK_OUTER_RADIUS -
-          CLOCK_TICK_RADIUS,
+        top: CLOCK_RADIUS - Math.cos(radian) * CLOCK_OUTER_RADIUS - CLOCK_TICK_RADIUS,
+        left: CLOCK_RADIUS + Math.sin(radian) * CLOCK_OUTER_RADIUS - CLOCK_TICK_RADIUS,
       });
     }
 
@@ -333,17 +312,13 @@ export class MatClockView<D> implements AfterContentInit {
   private setTime(event: any) {
     const trigger = this._element.nativeElement;
     const triggerRect = trigger.getBoundingClientRect();
-    console.log(trigger.offsetWidth, trigger.offsetHeight);
     const width = trigger.offsetWidth;
     const height = trigger.offsetHeight;
-    const pageX =
-      event.pageX !== undefined ? event.pageX : event.touches[0].pageX;
-    const pageY =
-      event.pageY !== undefined ? event.pageY : event.touches[0].pageY;
+    const pageX = event.pageX !== undefined ? event.pageX : event.touches[0].pageX;
+    const pageY = event.pageY !== undefined ? event.pageY : event.touches[0].pageY;
     const x = width / 2 - (pageX - triggerRect.left - window.pageXOffset);
     const y = height / 2 - (pageY - triggerRect.top - window.pageYOffset);
-    const unit =
-      Math.PI / (this.hourView ? 6 : this.clockStep ? 30 / this.clockStep : 30);
+    const unit = Math.PI / (this.hourView ? 6 : this.clockStep ? 30 / this.clockStep : 30);
     const z = Math.sqrt(x * x + y * y);
     // const outer =
     //   this.hourView &&
@@ -394,10 +369,7 @@ export class MatClockView<D> implements AfterContentInit {
     }
 
     // validate if the resulting value is disabled and do not take action
-    if (
-      this.dateFilter &&
-      !this.dateFilter(date, this.hourView ? 'hour' : 'minute')
-    ) {
+    if (this.dateFilter && !this.dateFilter(date, this.hourView ? 'hour' : 'minute')) {
       return;
     }
 
@@ -417,9 +389,6 @@ export class MatClockView<D> implements AfterContentInit {
    * @returns The given object if it is both a date instance and valid, otherwise null.
    */
   private _getValidDateOrNull(obj: any): D | null {
-    return this._dateAdapter.isDateInstance(obj) &&
-      this._dateAdapter.isValid(obj)
-      ? obj
-      : null;
+    return this._dateAdapter.isDateInstance(obj) && this._dateAdapter.isValid(obj) ? obj : null;
   }
 }
