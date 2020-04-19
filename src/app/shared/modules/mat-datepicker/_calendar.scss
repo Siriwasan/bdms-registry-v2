@@ -153,7 +153,7 @@
             margin-top: 18px;
           }
           .mat-calendar-header-date-month {
-            font-size: 36px;
+            font-size: 32px; // original 36px
             line-height: 36px;
           }
         }
@@ -185,8 +185,8 @@
           }
           .mat-calendar-header-time-hour,
           .mat-calendar-header-time-hour > button {
-            font-size: 36px;
-            line-height: 42px;
+            font-size: 32px; // original 36px
+            line-height: 36px;
           }
         }
       }
