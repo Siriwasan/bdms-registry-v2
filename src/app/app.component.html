@@ -1,5 +1,5 @@
 <div [ngClass]="{'dark-theme': (theme$ | async) === 'dark'}">
-  <div class="mat-app-background" (swipe)="onSwipe($event)">
+  <div class="mat-app-background">
 
     <router-outlet></router-outlet>
 

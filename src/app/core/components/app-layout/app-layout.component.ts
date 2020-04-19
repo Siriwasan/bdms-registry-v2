@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 
 import { AppState } from 'src/app/store/root-store.state';
 import { AppStoreSelectors, AppStoreActions } from 'src/app/store/app';
-import { handleSwipe } from 'src/app/shared/functions/swipe';
 
 @Component({
   selector: 'app-app-layout',
@@ -57,16 +56,13 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
     this.store.dispatch(AppStoreActions.closeNavbar());
   }
 
-  onSwipe(evt) {
-    if (handleSwipe(evt) === 'leftEdge') {
-      this.store.dispatch(AppStoreActions.toggleNavbar());
-    }
-  }
-
   touchStart(event: any) {
     // if (event.cancelable) {
     //   event.preventDefault();
     // }
+
+    const thresholdX = 100;
+    const thresholdMarginX = 50;
 
     const initialX = event.touches[0].clientX;
     const initialY = event.touches[0].clientY;
@@ -77,7 +73,6 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
 
       const diffX = initialX - currentX;
       const diffY = initialY - currentY;
-      const thresholdX = 100;
 
       // if (Math.abs(diffX) > Math.abs(diffY)) {
       //   // sliding horizontally
@@ -121,7 +116,14 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
       event.target.removeEventListener('touchend', touchEnd);
     };
 
-    event.target.addEventListener('touchmove', touchMove);
-    event.target.addEventListener('touchend', touchEnd);
+    if (
+      this.navbarOpened ||
+      this.sidebarOpened ||
+      initialX <= thresholdMarginX ||
+      initialX >= event.view.outerWidth - thresholdMarginX
+    ) {
+      event.target.addEventListener('touchmove', touchMove);
+      event.target.addEventListener('touchend', touchEnd);
+    }
   }
 }

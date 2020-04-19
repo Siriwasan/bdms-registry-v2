@@ -13,7 +13,6 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/root-store.state';
 import { AppStoreSelectors, AppStoreActions } from 'src/app/store/app';
 import { ScrollSpyService } from '../scroll-spy/scroll-spy.service';
-import { handleSwipe } from 'src/app/shared/functions/swipe';
 
 export class RegistryFormComponent implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
   public currentSection = '';
@@ -136,12 +135,6 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, AfterConten
     this.scrollTo(toc);
 
     this.store.dispatch(AppStoreActions.closeSidebar());
-  }
-
-  onSwipe(evt) {
-    if (handleSwipe(evt) === 'rightEdge') {
-      this.store.dispatch(AppStoreActions.toggleSidebar());
-    }
   }
 
   //#region Warning before leaving

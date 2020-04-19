@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, HostListener } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -44,18 +44,5 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.forEach((sub) => sub.unsubscribe());
-  }
-
-  onSwipe(evt) {
-    const x = Math.abs(evt.deltaX) > 40 ? (evt.deltaX > 0 ? 'right' : 'left') : '';
-    // const y = Math.abs(evt.deltaY) > 40 ? (evt.deltaY > 0 ? 'down' : 'up') : '';
-    // this.eventText += `${x} ${y}<br/>`;
-
-    console.log('App swipe', x);
-    if (x === 'left') {
-      this.store.dispatch(AppStoreActions.closeNavbar());
-    } else if (x === 'right') {
-      this.store.dispatch(AppStoreActions.closeSidebar());
-    }
   }
 }
