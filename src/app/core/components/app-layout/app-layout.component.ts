@@ -56,16 +56,17 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
     this.store.dispatch(AppStoreActions.closeNavbar());
   }
 
-  touchStart(event: any) {
-    // if (event.cancelable) {
-    //   event.preventDefault();
-    // }
-
+  onTouch(event: any) {
     const thresholdX = 100;
     const thresholdMarginX = 50;
 
     const initialX = event.touches[0].clientX;
     const initialY = event.touches[0].clientY;
+
+    const touchStart = () => {
+      event.target.addEventListener('touchmove', touchMove);
+      event.target.addEventListener('touchend', touchEnd);
+    };
 
     const touchMove = (e) => {
       const currentX = e.touches[0].clientX;
@@ -74,28 +75,12 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
       const diffX = initialX - currentX;
       const diffY = initialY - currentY;
 
-      // if (Math.abs(diffX) > Math.abs(diffY)) {
-      //   // sliding horizontally
-      //   if (diffX > 0) {
-      //     console.log('swiped left');
-      //   } else {
-      //     console.log('swiped right');
-      //   }
-      // } else {
-      //   // sliding vertically
-      //   if (diffY > 0) {
-      //     console.log('swiped up');
-      //   } else {
-      //     console.log('swiped down');
-      //   }
-      // }
-
       if (diffX > 0 && diffX > thresholdX) {
         // console.log('swiped left');
         if (this.navbarMode === 'over' && this.navbarOpened) {
           this.store.dispatch(AppStoreActions.closeNavbar());
           touchEnd();
-        } else if (this.sidebarMode === 'over' && !this.navbarOpened) {
+        } else if (this.sidebarMode === 'over') {
           this.store.dispatch(AppStoreActions.openSidebar());
           touchEnd();
         }
@@ -104,7 +89,7 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
         if (this.sidebarMode === 'over' && this.sidebarOpened) {
           this.store.dispatch(AppStoreActions.closeSidebar());
           touchEnd();
-        } else if (this.navbarMode === 'over' && !this.sidebarOpened) {
+        } else if (this.navbarMode === 'over') {
           this.store.dispatch(AppStoreActions.openNavbar());
           touchEnd();
         }
@@ -117,13 +102,15 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
     };
 
     if (
-      this.navbarOpened ||
-      this.sidebarOpened ||
-      initialX <= thresholdMarginX ||
-      initialX >= event.view.outerWidth - thresholdMarginX
+      (this.navbarMode === 'over' && !this.navbarOpened && initialX <= thresholdMarginX) ||
+      (this.sidebarMode === 'over' &&
+        !this.sidebarOpened &&
+        initialX >= event.view.outerWidth - thresholdMarginX) ||
+      (this.navbarMode === 'over' && this.navbarOpened) ||
+      (this.sidebarMode === 'over' && this.sidebarOpened)
     ) {
-      event.target.addEventListener('touchmove', touchMove);
-      event.target.addEventListener('touchend', touchEnd);
+      // console.log('Register touch');
+      touchStart();
     }
   }
 }

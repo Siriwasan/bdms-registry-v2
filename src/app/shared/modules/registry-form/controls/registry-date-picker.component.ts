@@ -30,9 +30,18 @@ import { AppStoreSelectors } from 'src/app/store/app';
 // https://momentjs.com/docs/#/displaying/format/
 const MY_DATE_FORMATS = {
   parse: {
-    datetime: ['DD/MM/YYYY H:mm', 'DD/M/YYYY H:mm', 'D/M/YYYY H:mm', 'D/MM/YYYY H:mm'],
+    datetime: [
+      'DD/MM/YYYY H:mm',
+      'DD/M/YYYY H:mm',
+      'D/M/YYYY H:mm',
+      'D/MM/YYYY H:mm',
+      'DD/MM/YYYY H.mm',
+      'DD/M/YYYY H.mm',
+      'D/M/YYYY H.mm',
+      'D/MM/YYYY H.mm',
+    ],
     date: ['DD/MM/YYYY', 'DD/M/YYYY', 'D/M/YYYY', 'D/MM/YYYY'],
-    time: ['H:mm'],
+    time: ['H:mm', 'H.mm'],
   },
   display: {
     datetime: 'D/M/YYYY H:mm',

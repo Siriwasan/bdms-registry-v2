@@ -1,4 +1,4 @@
-<div class="app-container" [class.app-is-mobile]="device.includes('HandsetPortrait')" (touchstart)="touchStart($event)">
+<div class="app-container" [class.app-is-mobile]="device.includes('HandsetPortrait')" (touchstart)="onTouch($event)">
   <app-header class="app-header"></app-header>
 
   <mat-sidenav-container class="app-navbar-container"
