@@ -17,7 +17,7 @@ import {
   DateAdapter,
   MomentDateAdapter,
   MAT_DATE_LOCALE,
-} from '@coachcare/datepicker';
+} from 'src/app/shared/modules/mat-datepicker';
 import * as moment from 'moment';
 
 import { RegistryControlComponent } from './registry-control.component';

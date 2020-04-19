@@ -7,7 +7,7 @@ import { RegistryInputComponent } from './controls/registry-input.component';
 import { RegistrySelectComponent } from './controls/registry-select.component';
 // import { RegistrySelectMultipleComponent } from './registry-select-multiple.component';
 import { RegistryDatePickerComponent } from './controls/registry-date-picker.component';
-import { MatDatepickerModule, MatMomentDateModule } from '@coachcare/datepicker';
+import { MatDatepickerModule, MatMomentDateModule } from 'src/app/shared/modules/mat-datepicker';
 // import { RegistryAutocompleteComponent } from './registry-autocomplete.component';
 // import { RegistrySelectSearchComponent } from './registry-select-search.component';
 
