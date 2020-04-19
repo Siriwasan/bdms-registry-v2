@@ -12,7 +12,7 @@ export const setNavbarMode = createAction(
   '[Application] SET_NAVBAR_MODE',
   props<{ mode: string }>()
 );
-export const openNavbar = createAction('[Application] OPEN_NAVBAR', props<{ open: boolean }>());
+export const openNavbar = createAction('[Application] OPEN_NAVBAR', (open = true) => ({ open }));
 export const toggleNavbar = createAction('[Application] TOGGLE_NAVBAR');
 export const closeNavbar = createAction('[Application] CLOSE_NAVBAR');
 
@@ -20,6 +20,6 @@ export const setSidebarMode = createAction(
   '[Application] SET_SIDEBAR_MODE',
   props<{ mode: string }>()
 );
-export const openSidebar = createAction('[Application] OPEN_SIDEBAR', props<{ open: boolean }>());
+export const openSidebar = createAction('[Application] OPEN_SIDEBAR', (open = true) => ({ open }));
 export const toggleSidebar = createAction('[Application] TOGGLE_SIDEBAR');
 export const closeSidebar = createAction('[Application] CLOSE_SIDEBAR');

@@ -49,16 +49,13 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, AfterConten
         .select(AppStoreSelectors.sidebarOpened)
         .subscribe((open) => (this.sidebarOpened = open))
     );
-
-    this.store.dispatch(AppStoreActions.initializeLayout());
+    setTimeout(() => this.store.dispatch(AppStoreActions.initializeLayout()), 0);
   }
 
   ngAfterViewInit(): void {
     this.initializeScrollSpy();
-
     this.listener = () => this.calculatTocMaxHeight();
     this.scrollTarget.addEventListener('scroll', this.listener, false);
-
     this.currentSectionSubscription = this.scrollSpy
       .getCurrentSection$()
       .subscribe((currentSection: string): void => {
@@ -86,7 +83,7 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, AfterConten
     if (this.scrollTarget !== undefined) {
       this.scrollTarget.removeEventListener('scroll', this.listener, false);
     }
-    this.currentSectionSubscription.unsubscribe();
+    // this.currentSectionSubscription.unsubscribe();
     this.subscription.forEach((sub) => sub.unsubscribe());
   }
 
