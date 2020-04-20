@@ -9,6 +9,7 @@ import {
 import { Subscription } from 'rxjs';
 import * as marked from 'marked';
 
+import { ControlService } from 'src/app/shared/interfaces/control-service.interface';
 import { DialogService } from '../../services/dialog.service';
 import {
   ValidationMessage,
@@ -21,7 +22,7 @@ import {
 } from './registry-form.model';
 
 @Injectable()
-export class RegistryFormService implements OnDestroy {
+export class RegistryFormService implements ControlService, OnDestroy {
   //#region Data Dictionary variables
   private dataDict: string;
   private tokens: marked.TokensList;

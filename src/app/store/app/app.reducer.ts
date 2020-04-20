@@ -80,7 +80,7 @@ export const appReducer = createReducer(
   on(closeNavbar, (state) => {
     return {
       ...state,
-      navbarOpened: state.device.includes('Handset') ? false : state.navbarOpened,
+      navbarOpened: state.navbarMode === 'over' ? false : state.navbarOpened,
     };
   }),
 
@@ -101,7 +101,7 @@ export const appReducer = createReducer(
   on(closeSidebar, (state) => {
     return {
       ...state,
-      sidebarOpened: state.device.includes('Handset') ? false : state.sidebarOpened,
+      sidebarOpened: state.sidebarMode === 'over' ? false : state.sidebarOpened,
     };
   })
 );
