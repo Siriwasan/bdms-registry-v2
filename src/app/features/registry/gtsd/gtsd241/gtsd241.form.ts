@@ -12,6 +12,7 @@ export const Gtsd241Form = {
     DOB: [null, Validators.required],
     Visit: [null, Validators.required],
     Animal: [null, Validators.required],
+    Gender: [null, Validators.required],
   },
   sectionB: {
     HospName: [null, Validators.required],

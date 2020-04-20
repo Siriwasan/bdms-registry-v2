@@ -4,28 +4,28 @@ import { SharedModule } from '../../shared.module';
 import { RegistryFormService } from './registry-form.service';
 
 import { RegistryInputComponent } from './controls/registry-input.component';
-import { RegistrySelectComponent } from './controls/registry-select.component';
 import { RegistryDatePickerComponent } from './controls/registry-date-picker.component';
+import { RegistrySelectComponent } from './controls/registry-select.component';
 import { RegistrySelectSearchComponent } from './controls/registry-select-search.component';
-// import { RegistrySelectMultipleComponent } from './registry-select-multiple.component';
+import { RegistrySelectMultipleComponent } from './controls/registry-select-multiple.component';
 // import { RegistryAutocompleteComponent } from './registry-autocomplete.component';
 
 @NgModule({
   declarations: [
     RegistryInputComponent,
-    RegistrySelectComponent,
     RegistryDatePickerComponent,
+    RegistrySelectComponent,
     RegistrySelectSearchComponent,
-    // RegistrySelectMultipleComponent,
+    RegistrySelectMultipleComponent,
     // RegistryAutocompleteComponent,
   ],
   imports: [SharedModule],
   exports: [
     RegistryInputComponent,
-    RegistrySelectComponent,
     RegistryDatePickerComponent,
+    RegistrySelectComponent,
     RegistrySelectSearchComponent,
-    // RegistrySelectMultipleComponent,
+    RegistrySelectMultipleComponent,
     // RegistryAutocompleteComponent,
   ],
   providers: [RegistryFormService],

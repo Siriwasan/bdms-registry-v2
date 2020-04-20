@@ -12,11 +12,10 @@ import {
   OnDestroy,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { MatSelectChange, MatSelect } from '@angular/material/select';
 
 import { RegistryControlComponent } from './registry-control.component';
-import { AbstractControl } from '@angular/forms';
 import { RegSelectChoice, RegSelectChoiceGroup } from '../registry-form.model';
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil, take } from 'rxjs/operators';
@@ -51,7 +50,7 @@ import { takeUntil, take } from 'rxjs/operators';
               [value]="choice.value"
               [disabled]="choice.disable"
             >
-              {{ choice.label }}
+              {{ choice.altLabel ? choice.altLabel : choice.label }}
               <div *ngIf="choice.detailHtml">
                 <span class="detail-html" [innerHTML]="choice.detailHtml"></span>
               </div>

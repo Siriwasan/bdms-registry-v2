@@ -71,11 +71,11 @@ export class Gtsd241Component extends RegistryFormComponent
     this.registryFormService.test();
 
     this.animals = [
-      { value: 'duck', label: 'Duck', group: 'Wings', disable: false },
-      { value: 'dog', label: 'Dog', group: 'Four legs', disable: false },
-      { value: 'hen', label: 'Hen', group: 'Wings', disable: false },
-      { value: 'goose', label: 'Goose', group: 'Wings', disable: false },
-      { value: 'cat', label: 'Cat', group: 'Four legs', disable: false },
+      { value: 'duck', label: 'Duck', altLabel: 'เป็ด', group: 'Wings', disable: false },
+      { value: 'dog', label: 'Dog', altLabel: 'หมา', group: 'Four legs', disable: false },
+      { value: 'hen', label: 'Hen', altLabel: 'แม่ไก่', group: 'Wings', disable: false },
+      { value: 'goose', label: 'Goose', altLabel: 'ห่าน', group: 'Wings', disable: false },
+      { value: 'cat', label: 'Cat', altLabel: 'แมว', group: 'Four legs', disable: false },
     ];
   }
 

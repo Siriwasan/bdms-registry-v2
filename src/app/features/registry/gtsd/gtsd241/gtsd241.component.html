@@ -120,6 +120,9 @@
                   [formGroup]="formGroupA" fxFlex="1 0 200px" type="datetime" [controlService]="controlService">
                   dd/mm/yyyy
                 </reg-datepicker>
+                <reg-select-multiple controlName="Gender" placeholder="Gender" [formGroup]="formGroupA"
+                  [choices]="['Male', 'Female']" fxFlex="1 0 200px" [controlService]="controlService">
+                </reg-select-multiple>
               </div>
             </form>
           </div>
