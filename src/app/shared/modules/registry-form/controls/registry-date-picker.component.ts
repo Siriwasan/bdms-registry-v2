@@ -85,9 +85,9 @@ export class CustomDateAdapter extends MomentDateAdapter {
       ></mat-datepicker>
       <mat-hint>
         <a><ng-content></ng-content></a>
-        <mat-icon style="cursor: help;" (click)="openInfo(controlName)" *ngIf="bInfo"
-          >info_outline</mat-icon
-        >
+        <mat-icon style="cursor: help;" (click)="openInfo(controlName)" *ngIf="bInfo">
+          info_outline
+        </mat-icon>
       </mat-hint>
       <mat-error *ngIf="self.invalid && (self.dirty || self.touched)">
         <div *ngFor="let validation of getValidations(controlName)">
@@ -95,9 +95,9 @@ export class CustomDateAdapter extends MomentDateAdapter {
             <a>{{ validation.message }}</a>
           </div>
         </div>
-        <mat-icon style="cursor: help;" (click)="openInfo(controlName)" *ngIf="bInfo"
-          >info_outline</mat-icon
-        >
+        <mat-icon style="cursor: help;" (click)="openInfo(controlName)" *ngIf="bInfo">
+          info_outline
+        </mat-icon>
       </mat-error>
     </mat-form-field>
   `,
