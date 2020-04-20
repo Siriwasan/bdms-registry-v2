@@ -112,11 +112,10 @@
                   [controlService]="controlService">
                   dd/mm/yyyy
                 </reg-datepicker>
-                <reg-datepicker controlName="Visit" placeholder="Visit Date" [formGroup]="formGroupA" fxFlex="1 0 200px"
-                  type="datetime" [controlService]="controlService">
+                <reg-datepicker *ngIf="visibility['Visit']" controlName="Visit" placeholder="Visit Date"
+                  [formGroup]="formGroupA" fxFlex="1 0 200px" type="datetime" [controlService]="controlService">
                   dd/mm/yyyy
                 </reg-datepicker>
-
               </div>
             </form>
           </div>

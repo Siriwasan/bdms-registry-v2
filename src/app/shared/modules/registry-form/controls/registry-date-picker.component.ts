@@ -16,6 +16,7 @@ import {
   DateAdapter,
   MomentDateAdapter,
   MAT_DATE_LOCALE,
+  MatDatepicker,
 } from 'src/app/shared/modules/mat-datepicker';
 import * as moment from 'moment';
 
@@ -23,6 +24,7 @@ import { RegistryControlComponent } from './registry-control.component';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/root-store.state';
 import { AppStoreSelectors } from 'src/app/store/app';
+import { Moment } from 'moment';
 
 // See the Moment.js docs for the meaning of these formats:
 // https://momentjs.com/docs/#/displaying/format/
@@ -80,6 +82,7 @@ export class CustomDateAdapter extends MomentDateAdapter {
         [touchUi]="(device$ | async).includes('Handset')"
         [type]="type"
         [twelveHour]="false"
+        (closed)="onClose()"
       ></mat-datepicker>
       <mat-hint>
         <a><ng-content></ng-content></a>
@@ -177,5 +180,12 @@ export class RegistryDatePickerComponent extends RegistryControlComponent
   ngAfterViewInit() {
     // bug of @coachcare/datepicker and Angular 9
     this.dateInput.nativeElement.disabled = false;
+  }
+
+  onClose() {
+    if (this.type === 'date') {
+      const dt = this.self.value as Moment;
+      this.self.setValue(dt.startOf('day'));
+    }
   }
 }

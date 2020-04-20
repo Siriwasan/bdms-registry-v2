@@ -93,8 +93,6 @@ export class RegistrySelectComponent extends RegistryControlComponent implements
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
-
     if (changes.choices) {
       this.regSelectChoices = [];
       this.regSelectChoiceGroups = [];

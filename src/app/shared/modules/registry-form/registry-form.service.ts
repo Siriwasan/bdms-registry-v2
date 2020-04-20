@@ -107,11 +107,11 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
           } else {
             visibled = condition.conditions.findIndex((o) => o === value) >= 0;
           }
-          this.displayElement(element, visibility, visibled);
           const control = formGroup.get(condition.control);
           if (control && visibled === false) {
             control.reset();
           }
+          this.displayElement(element, visibility, visibled);
         })
       );
     });

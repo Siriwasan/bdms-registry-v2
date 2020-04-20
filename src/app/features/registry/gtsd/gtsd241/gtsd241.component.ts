@@ -35,7 +35,7 @@ import { Gtsd241Service } from './gtsd241.service';
 export class Gtsd241Component extends RegistryFormComponent
   implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
   visibility: FormVisibility = {};
-  controlService = this.registryFormService;
+  controlService = this.gtsd241Service;
 
   animals: RegSelectChoice[] = [];
 
@@ -83,6 +83,7 @@ export class Gtsd241Component extends RegistryFormComponent
     super.ngAfterContentInit();
 
     this.createForm();
+    this.registryFormService.subscribeFormConditions();
   }
 
   ngOnDestroy() {

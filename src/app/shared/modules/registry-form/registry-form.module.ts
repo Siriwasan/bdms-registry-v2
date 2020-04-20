@@ -20,7 +20,7 @@ import { MatDatepickerModule, MatMomentDateModule } from 'src/app/shared/modules
     // RegistryAutocompleteComponent,
     // RegistrySelectSearchComponent
   ],
-  imports: [SharedModule, MatDatepickerModule, MatMomentDateModule],
+  imports: [SharedModule],
   exports: [
     RegistryInputComponent,
     RegistrySelectComponent,
