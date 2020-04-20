@@ -17,7 +17,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatStepperModule } from '@angular/material/stepper';
 // import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatDatepickerModule, MatMomentDateModule } from './modules/mat-datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -42,6 +41,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
+
+import { MatDatepickerModule, MatMomentDateModule } from './modules/mat-datepicker';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
   imports: [],
@@ -90,6 +92,7 @@ import { MatTreeModule } from '@angular/material/tree';
     // MatTreeModule,
     // PortalModule,
     // ScrollingModule,
+    NgxMatSelectSearchModule,
   ],
 })
 export class MaterialModule {}

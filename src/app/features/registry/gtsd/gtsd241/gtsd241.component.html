@@ -106,12 +106,16 @@
                   fxFlex="2 0 100px" [controlService]="controlService">
                   Testing</reg-input>
                 <reg-select controlName="Sex" placeholder="Sex" [formGroup]="formGroupA" [choices]="animals"
-                  [group]="true" sortChoice="desc" sortGroup="asc" fxFlex="1 0 500px" [controlService]="controlService">
+                  [group]="true" sortChoice="desc" sortGroup="asc" fxFlex="1 0 200px" [controlService]="controlService">
                 </reg-select>
-                <reg-datepicker controlName="DOB" placeholder="Birth Date" [formGroup]="formGroupA" fxFlex="1 0 200px"
-                  [controlService]="controlService">
+                <reg-datepicker *ngIf="visibility['DOB']" controlName="DOB" placeholder="Birth Date"
+                  [formGroup]="formGroupA" fxFlex="1 0 200px" [controlService]="controlService">
                   dd/mm/yyyy
                 </reg-datepicker>
+                <reg-select-search *ngIf="visibility['Animal']" controlName="Animal" placeholder="Animal"
+                  [formGroup]="formGroupA" [choices]="animals" [group]="true" sortChoice="desc" sortGroup="asc"
+                  fxFlex="1 0 200px" [controlService]="controlService">
+                </reg-select-search>
                 <reg-datepicker *ngIf="visibility['Visit']" controlName="Visit" placeholder="Visit Date"
                   [formGroup]="formGroupA" fxFlex="1 0 200px" type="datetime" [controlService]="controlService">
                   dd/mm/yyyy
