@@ -34,7 +34,7 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
   private conditions: FormConditions;
   private validations: FormValidations;
 
-  private visibles: FormVisibility = {};
+  private visibility: FormVisibility = {};
 
   constructor(private dialogService: DialogService) {}
 
@@ -51,12 +51,12 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
     sectionMembers: SectionMember[],
     conditions: FormConditions,
     validations: FormValidations,
-    visibles: FormVisibility
+    visibility: FormVisibility
   ) {
     this.sectionMembers = sectionMembers;
     this.conditions = conditions;
     this.validations = validations;
-    this.visibles = visibles;
+    this.visibility = visibility;
 
     // move to child form ngAfterViewInit
     // this.subscribeFormConditions();
@@ -65,7 +65,7 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
   // ! need to subscribe in ngAfterViewInit
   public subscribeFormConditions() {
     this.getSectionMembers().forEach((sectionMember) => {
-      this.subscribeValueChanges(sectionMember[1], sectionMember[3], this.visibles); // FormGroup, ControlCondition[]
+      this.subscribeValueChanges(sectionMember[1], sectionMember[3], this.visibility); // FormGroup, ControlCondition[]
     });
 
     // ! initial remove validator in hiding child control
@@ -205,7 +205,7 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
 
   public getSectionCompletion(section: string): FormCompletion {
     const formGroup = this.getFormGroup(section);
-    return this.checkCompletion(formGroup, this.visibles);
+    return this.checkCompletion(formGroup, this.visibility);
   }
 
   public checkCompletion(formGroup: FormGroup, visible: FormVisibility): FormCompletion {
