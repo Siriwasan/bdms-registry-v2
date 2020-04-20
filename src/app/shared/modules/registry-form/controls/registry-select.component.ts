@@ -9,12 +9,10 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormGroup, AbstractControl } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 
 import { RegistryControlComponent } from './registry-control.component';
 import { RegSelectChoice, RegSelectChoiceGroup } from '../registry-form.model';
-import { RegistryFormService } from '../registry-form.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -63,10 +61,8 @@ import { RegistryFormService } from '../registry-form.service';
         </mat-icon>
       </mat-hint>
       <mat-error *ngIf="self.invalid && (self.dirty || self.touched)">
-        <div *ngFor="let validation of getValidations(controlName)">
-          <div *ngIf="isInvalid(formGroup, controlName, validation.type)">
-            <a>{{ validation.message }}</a>
-          </div>
+        <div *ngFor="let validation of getInvalidMessages(formGroup, controlName)">
+          <a>{{ validation.message }}</a>
         </div>
         <mat-icon style="cursor: help;" (click)="openInfo(controlName)" *ngIf="bInfo">
           info_outline
@@ -78,31 +74,27 @@ import { RegistryFormService } from '../registry-form.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class RegistrySelectComponent extends RegistryControlComponent implements OnInit, OnChanges {
-  @Input() controlName: string;
-  @Input() formGroup: FormGroup;
-  @Input() placeholder: string;
-  @Input() require = true;
   @Input() nullOption = true;
+  @Input() sortChoice = ''; // asc, desc
+  @Input() sortGroup = ''; // asc, desc
   @Input() group = false;
   @Input() choices: string[] | number[] | RegSelectChoice[];
   @Output() choiceChange: EventEmitter<MatSelectChange> = new EventEmitter();
 
-  bInfo: boolean;
-  self: AbstractControl;
   regSelectChoices: RegSelectChoice[] = [];
   regSelectChoiceGroups: RegSelectChoiceGroup[] = [];
 
-  constructor(protected registryFormService: RegistryFormService, private elementRef: ElementRef) {
-    super(registryFormService);
+  constructor(protected elementRef: ElementRef) {
+    super(elementRef);
   }
 
   ngOnInit() {
-    this.elementRef.nativeElement.setAttribute('id', this.controlName);
-    this.bInfo = this.hasInfo(this.controlName);
-    this.self = this.formGroup.get(this.controlName);
+    super.ngOnInit();
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+
     if (changes.choices) {
       this.regSelectChoices = [];
       this.regSelectChoiceGroups = [];
@@ -122,22 +114,45 @@ export class RegistrySelectComponent extends RegistryControlComponent implements
           break;
       }
 
-      if (this.group) {
-        // console.log('need group');
+      this.sortRegSelectChoices();
+      this.arrangeChoicesToGroups();
+      this.sortRegSelectChoiceGroups();
+    }
+  }
 
-        this.regSelectChoices.forEach(
-          ((hash: RegSelectChoiceGroup) => {
-            return (a: RegSelectChoice) => {
-              if (!hash[a.group]) {
-                hash[a.group] = { name: a.group, choices: [] };
-                this.regSelectChoiceGroups.push(hash[a.group]);
-              }
-              hash[a.group].choices.push(a);
-            };
-          })(Object.create(null))
-        );
-        // console.log(this.regSelectChoiceGroups);
-      }
+  private arrangeChoicesToGroups() {
+    if (this.group) {
+      this.regSelectChoices.forEach(
+        ((group: RegSelectChoiceGroup) => {
+          return (choice: RegSelectChoice) => {
+            if (!group[choice.group]) {
+              group[choice.group] = { name: choice.group, choices: [] };
+              this.regSelectChoiceGroups.push(group[choice.group]);
+            }
+            group[choice.group].choices.push(choice);
+          };
+        })(Object.create(null))
+      );
+    }
+  }
+
+  private sortRegSelectChoices() {
+    if (this.sortChoice === 'asc') {
+      this.regSelectChoices = this.regSelectChoices.sort((a, b) => (a.label < b.label ? -1 : 1));
+    } else if (this.sortChoice === 'desc') {
+      this.regSelectChoices = this.regSelectChoices.sort((a, b) => (a.label > b.label ? -1 : 1));
+    }
+  }
+
+  private sortRegSelectChoiceGroups() {
+    if (this.sortGroup === 'asc') {
+      this.regSelectChoiceGroups = this.regSelectChoiceGroups.sort((a, b) =>
+        a.name < b.name ? -1 : 1
+      );
+    } else if (this.sortGroup === 'desc') {
+      this.regSelectChoiceGroups = this.regSelectChoiceGroups.sort((a, b) =>
+        a.name > b.name ? -1 : 1
+      );
     }
   }
 

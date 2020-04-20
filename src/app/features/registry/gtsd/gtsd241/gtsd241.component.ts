@@ -21,17 +21,23 @@ import { Gtsd241Conditions } from './gtsd241.condition';
 import {
   SectionMember,
   FormVisibility,
+  RegSelectChoice,
 } from 'src/app/shared/modules/registry-form/registry-form.model';
 import { Gtsd241Validations } from './gtsd241.validation';
+import { Gtsd241Service } from './gtsd241.service';
 
 @Component({
   selector: 'app-gtsd241',
   templateUrl: './gtsd241.component.html',
   styleUrls: ['./gtsd241.component.scss'],
+  providers: [Gtsd241Service],
 })
 export class Gtsd241Component extends RegistryFormComponent
   implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
   visibility: FormVisibility = {};
+  controlService = this.registryFormService;
+
+  animals: RegSelectChoice[] = [];
 
   //#region FormGroup and FormDirective
   formGroupA: FormGroup;
@@ -54,7 +60,8 @@ export class Gtsd241Component extends RegistryFormComponent
     protected changeDetector: ChangeDetectorRef,
     protected hostElement: ElementRef,
     private registryFormService: RegistryFormService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private gtsd241Service: Gtsd241Service
   ) {
     super(store, scrollSpy, changeDetector, hostElement);
   }
@@ -62,6 +69,14 @@ export class Gtsd241Component extends RegistryFormComponent
   ngOnInit() {
     super.ngOnInit();
     this.registryFormService.test();
+
+    this.animals = [
+      { value: 'duck', label: 'Duck', group: 'Wings', disable: false },
+      { value: 'dog', label: 'Dog', group: 'Four legs', disable: false },
+      { value: 'hen', label: 'Hen', group: 'Wings', disable: false },
+      { value: 'goose', label: 'Goose', group: 'Wings', disable: false },
+      { value: 'cat', label: 'Cat', group: 'Four legs', disable: false },
+    ];
   }
 
   ngAfterContentInit() {

@@ -9,7 +9,7 @@ import {
 import { Subscription } from 'rxjs';
 import * as marked from 'marked';
 
-import { ControlService } from 'src/app/shared/interfaces/control-service.interface';
+import { IRegistryControlService } from 'src/app/shared/modules/registry-form/controls/registry-control-service.interface';
 import { DialogService } from '../../services/dialog.service';
 import {
   ValidationMessage,
@@ -22,7 +22,7 @@ import {
 } from './registry-form.model';
 
 @Injectable()
-export class RegistryFormService implements ControlService, OnDestroy {
+export class RegistryFormService implements IRegistryControlService, OnDestroy {
   //#region Data Dictionary variables
   private dataDict: string;
   private tokens: marked.TokensList;
@@ -165,12 +165,9 @@ export class RegistryFormService implements ControlService, OnDestroy {
     return this.sectionMembers.map((sectionMember) => sectionMember[2]);
   }
 
-  public getValidations(control: string): ValidationMessage[] {
-    let vals: ValidationMessage[];
-
-    if (!this.validations) {
-      return [];
-    }
+  getInvalidMessages(formGroup: FormGroup, control: string): ValidationMessage[] {
+    let vals: ValidationMessage[] = [];
+    const invalidVals: ValidationMessage[] = [];
 
     Object.entries(this.validations).find(([key, value]) => {
       const result = Object.entries(value).find(([key2, value2]) => key2 === control);
@@ -180,7 +177,14 @@ export class RegistryFormService implements ControlService, OnDestroy {
       vals = result[1];
       return true;
     });
-    return vals;
+
+    vals.forEach((val) => {
+      if (formGroup.get(control).hasError(val.type)) {
+        invalidVals.push(val);
+      }
+    });
+
+    return invalidVals;
   }
 
   public getControlSection(control: string): string {
@@ -197,17 +201,6 @@ export class RegistryFormService implements ControlService, OnDestroy {
     });
 
     return section;
-  }
-
-  public isInvalid(formGroup: FormGroup, control: string, validationType: string): boolean {
-    // const section = this.getControlSection(control);
-    // return this.getFormGroup(section)
-    //   .get(control)
-    //   .hasError(validationType);
-    // // &&       (this.formGroup.get(control).dirty || this.formGroup.get(control).touched)
-
-    return formGroup.get(control).hasError(validationType);
-    // &&       (this.formGroup.get(control).dirty || this.formGroup.get(control).touched)
   }
 
   public getSectionCompletion(section: string): FormCompletion {

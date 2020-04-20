@@ -10,7 +10,6 @@ import {
   Injectable,
   AfterViewInit,
 } from '@angular/core';
-import { FormGroup, AbstractControl } from '@angular/forms';
 
 import {
   MAT_DATE_FORMATS,
@@ -21,7 +20,6 @@ import {
 import * as moment from 'moment';
 
 import { RegistryControlComponent } from './registry-control.component';
-import { RegistryFormService } from '../registry-form.service';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/root-store.state';
 import { AppStoreSelectors } from 'src/app/store/app';
@@ -90,10 +88,8 @@ export class CustomDateAdapter extends MomentDateAdapter {
         </mat-icon>
       </mat-hint>
       <mat-error *ngIf="self.invalid && (self.dirty || self.touched)">
-        <div *ngFor="let validation of getValidations(controlName)">
-          <div *ngIf="isInvalid(formGroup, controlName, validation.type)">
-            <a>{{ validation.message }}</a>
-          </div>
+        <div *ngFor="let validation of getInvalidMessages(formGroup, controlName)">
+          <a>{{ validation.message }}</a>
         </div>
         <mat-icon style="cursor: help;" (click)="openInfo(controlName)" *ngIf="bInfo">
           info_outline
@@ -114,30 +110,17 @@ export class CustomDateAdapter extends MomentDateAdapter {
 })
 export class RegistryDatePickerComponent extends RegistryControlComponent
   implements OnInit, OnChanges, AfterViewInit {
-  @Input() controlName: string;
-  @Input() formGroup: FormGroup;
-  @Input() placeholder: string;
-  @Input() require = true;
   @Input() type = 'date';
   @ViewChild('dateInput', { static: true }) dateInput: ElementRef;
 
-  bInfo: boolean;
-  self: AbstractControl;
-
   device$ = this.store.select(AppStoreSelectors.device);
 
-  constructor(
-    protected registryFormService: RegistryFormService,
-    private elementRef: ElementRef,
-    private store: Store<AppState>
-  ) {
-    super(registryFormService);
+  constructor(protected elementRef: ElementRef, private store: Store<AppState>) {
+    super(elementRef);
   }
 
   ngOnInit() {
-    this.elementRef.nativeElement.setAttribute('id', this.controlName);
-    this.bInfo = this.hasInfo(this.controlName);
-    this.self = this.formGroup.get(this.controlName);
+    super.ngOnInit();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -146,18 +129,15 @@ export class RegistryDatePickerComponent extends RegistryControlComponent
         let dateControl = moment(this.self.value);
         if (dateControl.isValid()) {
           console.log('reg-date-picker type changed ', changes.type.currentValue);
-
           // let dateControl = moment(this.self.value);
           let format: string;
           switch (changes.type.currentValue) {
             case 'datetime':
               format = MY_DATE_FORMATS.display.datetime;
               break;
-
             case 'time':
               format = MY_DATE_FORMATS.display.time;
               break;
-
             case 'date':
             default:
               dateControl = dateControl.startOf('day');
@@ -169,16 +149,13 @@ export class RegistryDatePickerComponent extends RegistryControlComponent
         } else {
           let parses: string[];
           const input = (this.dateInput.nativeElement.value as string).trim();
-
           switch (changes.type.currentValue) {
             case 'datetime':
               parses = MY_DATE_FORMATS.parse.datetime;
               break;
-
             case 'time':
               parses = MY_DATE_FORMATS.parse.time;
               break;
-
             case 'date':
             default:
               parses = MY_DATE_FORMATS.parse.date;

@@ -1,8 +1,6 @@
 import { Component, Input, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, AbstractControl } from '@angular/forms';
 
 import { RegistryControlComponent } from './registry-control.component';
-import { RegistryFormService } from '../registry-form.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -26,10 +24,8 @@ import { RegistryFormService } from '../registry-form.service';
         </mat-icon>
       </mat-hint>
       <mat-error *ngIf="self.invalid && (self.dirty || self.touched)">
-        <div *ngFor="let validation of getValidations(controlName)">
-          <div *ngIf="isInvalid(formGroup, controlName, validation.type)">
-            <a>{{ validation.message }}</a>
-          </div>
+        <div *ngFor="let validation of getInvalidMessages(formGroup, controlName)">
+          <a>{{ validation.message }}</a>
         </div>
         <mat-icon style="cursor: help;" (click)="openInfo(controlName)" *ngIf="bInfo">
           info_outline
@@ -40,25 +36,15 @@ import { RegistryFormService } from '../registry-form.service';
   styleUrls: ['./registry-control.component.scss'],
 })
 export class RegistryInputComponent extends RegistryControlComponent implements OnInit {
-  @Input() controlName: string;
-  @Input() formGroup: FormGroup;
-  @Input() placeholder: string;
-  @Input() require = true;
-  @Input() readonly = false;
   @Input() type = 'text';
   @Output() focusOut: EventEmitter<void> = new EventEmitter();
 
-  bInfo: boolean;
-  self: AbstractControl;
-
-  constructor(protected registryFormService: RegistryFormService, private elementRef: ElementRef) {
-    super(registryFormService);
+  constructor(protected elementRef: ElementRef) {
+    super(elementRef);
   }
 
   ngOnInit() {
-    this.elementRef.nativeElement.setAttribute('id', this.controlName);
-    this.bInfo = this.hasInfo(this.controlName);
-    this.self = this.formGroup.get(this.controlName);
+    super.ngOnInit();
   }
 
   onFocusOut() {

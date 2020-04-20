@@ -93,23 +93,27 @@
           <div class="section-body">
             <form [formGroup]="formGroupA" #formDirectiveA="ngForm">
               <div fxLayout="row wrap">
-                <reg-input controlName="HN" placeholder="HN" [formGroup]="formGroupA" type="text" fxFlex="1 0 100px">
+                <reg-input controlName="HN" placeholder="HN" [formGroup]="formGroupA" type="text" fxFlex="1 0 100px"
+                  [controlService]="controlService">
                   Testing</reg-input>
-                <reg-input controlName="AN" placeholder="AN" [formGroup]="formGroupA" type="text" fxFlex="1 0 200px">
+                <reg-input controlName="AN" placeholder="AN" [formGroup]="formGroupA" type="text" fxFlex="1 0 200px"
+                  [controlService]="controlService">
                   Testing</reg-input>
                 <reg-input controlName="LastName" placeholder="LastName" [formGroup]="formGroupA" type="text"
-                  fxFlex="1 0 200px">
+                  fxFlex="1 0 200px" [controlService]="controlService">
                   Testing</reg-input>
                 <reg-input controlName="FirstName" placeholder="FirstName" [formGroup]="formGroupA" type="text"
-                  fxFlex="2 0 100px">
+                  fxFlex="2 0 100px" [controlService]="controlService">
                   Testing</reg-input>
-                <reg-select controlName="Sex" placeholder="Sex" [formGroup]="formGroupA" [choices]="['Male', 'Female']"
-                  fxFlex="1 0 500px"></reg-select>
-                <reg-datepicker controlName="DOB" placeholder="Birth Date" [formGroup]="formGroupA" fxFlex="1 0 200px">
+                <reg-select controlName="Sex" placeholder="Sex" [formGroup]="formGroupA" [choices]="animals"
+                  [group]="true" sortChoice="desc" sortGroup="asc" fxFlex="1 0 500px" [controlService]="controlService">
+                </reg-select>
+                <reg-datepicker controlName="DOB" placeholder="Birth Date" [formGroup]="formGroupA" fxFlex="1 0 200px"
+                  [controlService]="controlService">
                   dd/mm/yyyy
                 </reg-datepicker>
                 <reg-datepicker controlName="Visit" placeholder="Visit Date" [formGroup]="formGroupA" fxFlex="1 0 200px"
-                  type="datetime">
+                  type="datetime" [controlService]="controlService">
                   dd/mm/yyyy
                 </reg-datepicker>
 

@@ -20,7 +20,7 @@ Having origins in any of the original peoples of the Far East, Southeast Asia, o
 
 _**Source:** U.S. Office of Management and Budget. Classification of Federal Data on Race and Ethnicity_
 
-# HispOrig
+# Visit
 
 ## Hispanic or Latino Ethnicity
 
