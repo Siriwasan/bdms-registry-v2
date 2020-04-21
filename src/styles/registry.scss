@@ -77,9 +77,14 @@ reg-datepicker {
   }
 
   li {
-    padding: 2px 0;
+    // padding: 2px 0; // original
     list-style-type: none;
     cursor: pointer;
+
+    // line indentation
+    list-style-position: inside;
+    text-indent: -1em;
+    padding: 2px 0 2px 10px;
   }
 
   a {
@@ -88,7 +93,8 @@ reg-datepicker {
     font-size: small;
     font-weight: 300;
     color: #757575;
-    padding-left: 16px;
+    padding-left: 30px;
+    // padding-left: 16px; // original
     height: 1.5rem;
     line-height: 1.5rem;
     letter-spacing: 0.4;
@@ -97,21 +103,25 @@ reg-datepicker {
 
     &:hover {
       color: #a8a8a8;
-      padding-left: 15px;
+      padding-left: 29px;
+      // padding-left: 15px; // origial
       border-left: 1px solid #ee6e73;
     }
   }
   a.active {
     // color: rgba(0, 0, 0, 0.8);
     font-weight: 500;
-    padding-left: 14px;
+    padding-left: 28px; //original
+    // padding-left: 14px;
     border-left: 2px solid #ee6e73;
   }
 }
 
-.menu-title {
+.toc-title {
   margin: 4px 0;
   position: relative;
+  list-style-type: none;
+  cursor: pointer;
 
   span {
     // background: white;

@@ -3,23 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { GtsdComponent } from './gtsd/gtsd.component';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: RegistryComponent,
-  //   children: [
-  //     {
-  //       path: 'test-form',
-  //       loadChildren: () => import('./test-form/test-form.module').then((m) => m.TestFormModule),
-  //     },
-  //     {
-  //       path: '',
-  //       redirectTo: '/home',
-  //       pathMatch: 'full',
-  //     },
-  //   ],
-  // },
-  // { path: '', component: PageNotFoundComponent },
-
   {
     path: 'test-form',
     loadChildren: () => import('./test-form/test-form.module').then((m) => m.TestFormModule),
@@ -36,10 +19,6 @@ const routes: Routes = [
     path: 'acsd',
     loadChildren: () => import('./acsd/acsd.module').then((m) => m.AcsdModule),
   },
-  // {
-  //   path: 'gtsd241',
-  //   loadChildren: () => import('./gtsd/gtsd241/gtsd241.module').then((m) => m.Gtsd241Module),
-  // },
 ];
 
 @NgModule({
