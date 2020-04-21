@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { GtsdComponent } from './gtsd.component';
+import { AcsdComponent } from './acsd.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: GtsdComponent,
+    component: AcsdComponent,
   },
   {
-    path: 'gtsd241',
-    loadChildren: () => import('./gtsd241/gtsd241.module').then((m) => m.Gtsd241Module),
+    path: 'acsd290',
+    loadChildren: () => import('./acsd290/acsd290.module').then((m) => m.Acsd290Module),
   },
 ];
 
@@ -18,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class GtsdRoutingModule {}
+export class AcsdRoutingModule {}

@@ -32,7 +32,7 @@ const routes: Routes = [
       // { path: 'about', component: AboutComponent },
       // { path: 'auth', component: AuthComponent },
       // { path: 'page-not-autherized', component: PageNotAutherizedComponent },
-      { path: '', redirectTo: '/registry/gtsd/gtsd241', pathMatch: 'full' },
+      { path: '', redirectTo: '/registry/acsd/acsd290', pathMatch: 'full' },
     ],
   },
 ];

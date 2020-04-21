@@ -31,7 +31,10 @@ const routes: Routes = [
   {
     path: 'gtsd',
     loadChildren: () => import('./gtsd/gtsd.module').then((m) => m.GtsdModule),
-    // component: GtsdComponent,
+  },
+  {
+    path: 'acsd',
+    loadChildren: () => import('./acsd/acsd.module').then((m) => m.AcsdModule),
   },
   // {
   //   path: 'gtsd241',
