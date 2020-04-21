@@ -25,3 +25,7 @@ export const Acsd290Toc: TableOfCentent[] = [
   { section: 'sectionR', title: 'R. Readmission' },
   { section: 'sectionS', title: 'S. Anesthesiology' },
 ];
+
+export function getTocTitle(section: string) {
+  return Acsd290Toc.find((t) => t.section === 'section' + section).title;
+}

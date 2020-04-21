@@ -24,7 +24,14 @@ import {
 import { FormDetail } from '../../registry.model';
 
 import * as registryData from '../../registry.data';
-import { Acsd290Toc, Acsd290Form, Acsd290Data, Acsd290Conditions, Acsd290Validations } from '.';
+import {
+  Acsd290Toc,
+  getTocTitle,
+  Acsd290Form,
+  Acsd290Data,
+  Acsd290Conditions,
+  Acsd290Validations,
+} from '.';
 
 @Component({
   selector: 'app-acsd290',
@@ -35,6 +42,7 @@ export class Acsd290Component extends RegistryFormComponent
   implements OnInit, AfterContentInit, AfterViewInit, OnDestroy {
   visibility: FormVisibility = {};
   controlService = this.acsd290Service;
+  getTocTitle = getTocTitle;
 
   //#region FormGroup and FormDirective
 
@@ -113,6 +121,9 @@ export class Acsd290Component extends RegistryFormComponent
 
   //#endregion
 
+  avHospitals: string[];
+  avHospitalsNullOption = true;
+
   constructor(
     protected store: Store<AppState>,
     protected scrollSpy: ScrollSpyService,
@@ -133,7 +144,7 @@ export class Acsd290Component extends RegistryFormComponent
     super.ngAfterContentInit();
 
     this.createForm();
-    // this.registryFormService.subscribeFormConditions();
+    this.registryFormService.subscribeFormConditions();
   }
 
   ngAfterViewInit() {

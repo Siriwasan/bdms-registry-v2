@@ -197,3 +197,17 @@ reg-datepicker {
   right: 40px;
   z-index: 100;
 }
+
+.reg-container {
+  flex-flow: row wrap;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.first-indent {
+  flex-flow: row wrap;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 auto;
+}
