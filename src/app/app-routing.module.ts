@@ -4,11 +4,11 @@ import { AppLayoutComponent } from './core/components/app-layout/app-layout.comp
 import { LoginComponent } from './features/login/login.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '/registry/gtsd/gtsd241',
-    pathMatch: 'full',
-  },
+  // {
+  //   path: '',
+  //   redirectTo: '/registry/acsd/acsd290',
+  //   pathMatch: 'full',
+  // },
   {
     path: 'login',
     component: LoginComponent,

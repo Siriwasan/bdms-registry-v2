@@ -1,9 +1,24 @@
+@import '~@angular/material/theming';
+
 reg-input,
 reg-select,
 reg-select-multiple,
 reg-select-search,
 reg-datepicker {
-  padding: 10px;
+  padding: 5px 10px;
+}
+
+::ng-deep .mat-option {
+  height: auto !important;
+}
+
+::ng-deep .mat-option-text {
+  white-space: normal;
+  line-height: 2;
+  text-indent: -15px;
+  padding: 7px 15px 7px 15px;
+  display: flex !important;
+  align-items: center;
 }
 
 .registry-container {
@@ -50,7 +65,7 @@ reg-datepicker {
   align-items: center;
   display: flex;
   // justify-content: center;
-  padding: 8px 20px;
+  padding: 8px 15px;
   height: 40px;
   position: -webkit-sticky;
   position: sticky;
@@ -205,9 +220,118 @@ reg-datepicker {
   flex: 1 1 auto;
 }
 
-.first-indent {
+.reg-container-indent {
   flex-flow: row wrap;
   box-sizing: border-box;
   display: flex;
   flex: 1 1 auto;
+  margin-left: 10px;
+}
+
+.reg-container-indent2 {
+  flex-flow: row wrap;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 auto;
+  margin-left: 20px;
+}
+
+.reg-container-col {
+  flex-flow: column nowrap;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.reg-container-col-indent {
+  flex-flow: column nowrap;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 auto;
+  margin-left: 10px;
+}
+
+.reg-container-col-indent2 {
+  flex-flow: column nowrap;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 auto;
+  margin-left: 20px;
+}
+
+@mixin big-input-component-theme($theme) {
+  // retrieve variables from theme
+  // (all possible variables, use only what you really need)
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  // all of these variables contain many additional variables
+  $focused-button-color: mat-color($background-palette, focused-button);
+
+  // .reg-title {
+  //   background-color: $focused-button-color !important;
+  //   color: #757575;
+  // }
+}
+
+.reg-item-indent {
+  margin-left: 1em;
+
+  ::ng-deep .mat-form-field::before {
+    content: '•';
+    color: #c2c2c2;
+    position: absolute;
+    top: 1.3em;
+    left: -1em;
+  }
+}
+
+.reg-item-indent2 {
+  margin-left: 1.5em;
+
+  ::ng-deep .mat-form-field::before {
+    content: '••';
+    color: #c2c2c2;
+    position: absolute;
+    top: 1.3em;
+    left: -1.5em;
+  }
+}
+
+.reg-item-indent3 {
+  margin-left: 2em;
+
+  ::ng-deep .mat-form-field::before {
+    content: '•••';
+    color: #c2c2c2;
+    position: absolute;
+    top: 1.3em;
+    left: -2em;
+  }
+}
+
+.reg-title {
+  padding-left: 10px;
+  padding-top: 20px;
+  // color: #757575;
+  // color: var(--secondary-text-color);
+}
+
+.section-subtitle {
+  padding-left: 10px;
+  padding-top: 20px;
+}
+
+.fieldset-label {
+  border: 1px solid #a1a1a1;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 10px;
+
+  legend {
+    color: #757575;
+  }
 }

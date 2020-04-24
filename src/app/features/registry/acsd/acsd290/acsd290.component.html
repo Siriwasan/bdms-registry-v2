@@ -79,7 +79,7 @@
       <div>
         <h1 class="registry-name" scrollSpyElement id="title">STS Adult Cardiac Surgery Database v2.90</h1>
 
-        <section class="section-wrapper" scrollSpyElement id="sectionA">
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionA">
           <div class="section-title">
             {{ getTocTitle('A') }}
           </div>
@@ -230,14 +230,14 @@
               <div fxLayoutAlign="space-between center">
                 <h3>Risk Factors</h3>
                 <div>
-                  <!-- <button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000"
+                  <button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000"
                     (click)="setToDefaultRiskFactors(formGroupD, 'No')">
                     <mat-icon>save_alt</mat-icon>
                   </button>
                   <button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000"
                     (click)="setToDefaultRiskFactors(formGroupD, null)">
                     <mat-icon>replay</mat-icon>
-                  </button> -->
+                  </button>
                 </div>
               </div>
 
@@ -252,7 +252,7 @@
 
                   <reg-input controlName="BMI" placeholder="Body Mass Index" [formGroup]="formGroupD" type="number"
                     readonly="true" fxFlex="1 0 200px">(auto calculated)</reg-input>
-                  <!-- CALCULATE -->
+                  CALCULATE
                 </div>
 
                 <reg-select controlName="FHCAD" placeholder="Family History of Premature CAD" [formGroup]="formGroupD"
@@ -260,33 +260,33 @@
 
                 <div class="reg-container">
                   <reg-select controlName="Diabetes" placeholder="Diabetes" [formGroup]="formGroupD"
-                    [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+                    [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                   <div *ngIf="visibles['DiabCtrl']" class="reg-container">
                     <reg-select *ngIf="visibles['DiabCtrl']" controlName="DiabCtrl" placeholder="# Diabetes-Control"
                       [formGroup]="formGroupD"
                       [choices]="['None', 'Diet only', 'Oral', 'Insulin', 'Other SubQ', 'Other', 'Unknown']"
-                      fxFlex="1 0 200px"></reg-select>
+                      fxFlex="1 0 250px"></reg-select>
 
                     <reg-select controlName="Dyslip" placeholder="# Dyslipidemia" [formGroup]="formGroupD"
-                      [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+                      [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
                   </div>
                 </div>
 
                 <reg-select controlName="Hypertn" placeholder="Hypertension" [formGroup]="formGroupD"
-                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                 <reg-select controlName="Dialysis" placeholder="Dialysis" [formGroup]="formGroupD"
-                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                 <div class="reg-container">
                   <reg-select controlName="InfEndo" placeholder="Endocarditis" [formGroup]="formGroupD"
-                    [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
 
                   <div class="reg-container" *ngIf="visibles['InfEndTy']">
 
                     <reg-select *ngIf="visibles['InfEndTy']" controlName="InfEndTy" placeholder="# Endocarditis Type"
-                      [formGroup]="formGroupD" [choices]="['Treated', 'Active']" fxFlex="1 0 200px"></reg-select>
+                      [formGroup]="formGroupD" [choices]="['Treated', 'Active']" fxFlex="1 0 250px"></reg-select>
 
                     <reg-select *ngIf="visibles['InfEndCult']" controlName="InfEndCult"
                       placeholder="# Endocarditis Culture" [formGroup]="formGroupD" [choices]="[
@@ -302,7 +302,7 @@
                         'Fungal',
                         'Other',
                         'Unknown'
-                      ]" fxFlex="1 0 200px"></reg-select>
+                      ]" fxFlex="1 0 250px"></reg-select>
 
                   </div>
                 </div>
@@ -314,7 +314,7 @@
                   'Smoker, current status (frequency) unknown',
                   'Former smoker',
                   'Smoking status unknown'
-                ]" fxFlex="1 0 200px"></reg-select>
+                ]" fxFlex="1 0 250px"></reg-select>
 
                 <div class="reg-container">
                   <reg-select controlName="ChrLungD" placeholder="Lung Disease" [formGroup]="formGroupD" [choices]="[
@@ -324,7 +324,7 @@
                     'Severe',
                     'Lung disease documented, severity unknown',
                     'Unknown'
-                  ]" fxFlex="1 0 200px"></reg-select>
+                  ]" fxFlex="1 0 250px"></reg-select>
 
                   <reg-select *ngIf="visibles['ChrLungDType']" controlName="ChrLungDType" placeholder="# Type"
                     [formGroup]="formGroupD" [choices]="[
@@ -335,7 +335,7 @@
                     'Other',
                     'Multiple',
                     'Not Documented'
-                  ]" fxFlex="1 0 200px"></reg-select>
+                  ]" fxFlex="1 0 250px"></reg-select>
                 </div>
 
                 <div class="reg-container">
@@ -344,13 +344,13 @@
 
                   <div *ngIf="visibles['FEV1']" class="reg-container">
                     <reg-input *ngIf="visibles['FEV1']" controlName="FEV1" placeholder="# FEV1 % Predicted"
-                      [formGroup]="formGroupD" type="number" fxFlex="1 0 200px"></reg-input>
+                      [formGroup]="formGroupD" type="number" fxFlex="1 0 250px"></reg-input>
 
                     <reg-select *ngIf="visibles['DLCO']" controlName="DLCO" placeholder="# DLCO Test Performed"
-                      [formGroup]="formGroupD" [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+                      [formGroup]="formGroupD" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
 
                     <reg-input *ngIf="visibles['DLCOPred']" controlName="DLCOPred" placeholder="## DLCO % Predicted"
-                      [formGroup]="formGroupD" type="number" fxFlex="1 0 200px"></reg-input>
+                      [formGroup]="formGroupD" type="number" fxFlex="1 0 250px"></reg-input>
                   </div>
                 </div>
 
@@ -360,10 +360,10 @@
 
                   <div *ngIf="visibles['PCO2']" class="reg-container">
                     <reg-input *ngIf="visibles['PCO2']" controlName="PCO2" placeholder="# Carbon Dioxide Level"
-                      [formGroup]="formGroupD" type="number" fxFlex="1 0 200px"></reg-input>
+                      [formGroup]="formGroupD" type="number" fxFlex="1 0 250px"></reg-input>
 
                     <reg-input *ngIf="visibles['PO2']" controlName="PO2" placeholder="# Oxygen Level"
-                      [formGroup]="formGroupD" type="number" fxFlex="1 0 200px"></reg-input>
+                      [formGroup]="formGroupD" type="number" fxFlex="1 0 250px"></reg-input>
                   </div>
                 </div>
 
@@ -372,22 +372,22 @@
                     'Yes, oxygen dependent',
                     'No',
                     'Unknown'
-                  ]" fxFlex="1 0 200px"></reg-select>
+                  ]" fxFlex="1 0 250px"></reg-select>
 
                 <reg-select controlName="BDTx" placeholder="Inhaled Medication or Oral Bronchodilator Therapy"
                   [formGroup]="formGroupD" [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                 <reg-select controlName="SlpApn" placeholder="Sleep Apnea" [formGroup]="formGroupD"
-                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                 <reg-select controlName="Pneumonia" placeholder="Pneumonia" [formGroup]="formGroupD"
-                  [choices]="['Recent', 'Remote', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+                  [choices]="['Recent', 'Remote', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                 <reg-select controlName="IVDrugAb" placeholder="Illicit Drug Use" [formGroup]="formGroupD"
-                  [choices]="['Recent', 'Remote', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+                  [choices]="['Recent', 'Remote', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                 <reg-select controlName="Depression" placeholder="Depression" [formGroup]="formGroupD"
-                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                 <reg-select controlName="Alcohol" placeholder="Alcohol Use" [formGroup]="formGroupD" [choices]="[
                     '<= 1 drink/week',
@@ -395,24 +395,24 @@
                     '>= 8 drinks/week',
                     'None',
                     'Unknown'
-                  ]" fxFlex="1 0 200px"></reg-select>
+                  ]" fxFlex="1 0 250px"></reg-select>
 
                 <div class="reg-container">
                   <reg-select controlName="LiverDis" placeholder="Liver Disease" [formGroup]="formGroupD"
-                    [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+                    [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                   <div *ngIf="visibles['LiverChildPugh']" class="reg-container">
                     <reg-select *ngIf="visibles['LiverChildPugh']" controlName="LiverChildPugh"
                       placeholder="# Child–Pugh Class" [formGroup]="formGroupD" [choices]="['A', 'B', 'C', 'Unknown']"
-                      fxFlex="1 0 200px"></reg-select>
+                      fxFlex="1 0 250px"></reg-select>
 
                     <reg-select *ngIf="visibles['LiverTransList']" controlName="LiverTransList"
                       placeholder="# Listed for liver transplant" [formGroup]="formGroupD" [choices]="['Yes', 'No']"
-                      fxFlex="1 0 200px"></reg-select>
+                      fxFlex="1 0 250px"></reg-select>
 
                     <reg-select *ngIf="visibles['LiverStatusPost']" controlName="LiverStatusPost"
                       placeholder="# Status post liver transplant" [formGroup]="formGroupD" [choices]="['Yes', 'No']"
-                      fxFlex="1 0 200px"></reg-select>
+                      fxFlex="1 0 250px"></reg-select>
                   </div>
                 </div>
 
@@ -420,38 +420,38 @@
                   [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                 <reg-select controlName="MediastRad" placeholder="Mediastinal Radiation" [formGroup]="formGroupD"
-                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                 <reg-select controlName="Cancer" placeholder="Cancer Within 5 Years" [formGroup]="formGroupD"
-                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                 <reg-select controlName="PVD" placeholder="Peripheral Artery Disease" [formGroup]="formGroupD"
-                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                 <reg-select controlName="ThAoDisease" placeholder="Thoracic Aorta Disease" [formGroup]="formGroupD"
-                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                 <reg-select controlName="Syncope" placeholder="Syncope" [formGroup]="formGroupD"
-                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                 <reg-select controlName="UnrespStat" placeholder="Unresponsive State" [formGroup]="formGroupD"
-                  [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+                  [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
 
                 <reg-select controlName="ChestWallDef" placeholder="Chest wall Deformity" [formGroup]="formGroupD"
-                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+                  [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                 <div class="reg-container">
                   <reg-select controlName="CVD" placeholder="Cerebrovascular Disease" [formGroup]="formGroupD"
-                    [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+                    [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                   <reg-select *ngIf="visibles['CVA']" controlName="CVA" placeholder="# Prior CVA"
-                    [formGroup]="formGroupD" [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+                    [formGroup]="formGroupD" [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                   <reg-select *ngIf="visibles['CVAWhen']" controlName="CVAWhen" placeholder="## Prior CVA-When"
-                    [formGroup]="formGroupD" [choices]="['<= 30 days', '> 30 days']" fxFlex="1 0 200px"></reg-select>
+                    [formGroup]="formGroupD" [choices]="['<= 30 days', '> 30 days']" fxFlex="1 0 250px"></reg-select>
 
                   <reg-select *ngIf="visibles['CVDTIA']" controlName="CVDTIA" placeholder="# CVD TIA"
-                    [formGroup]="formGroupD" [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+                    [formGroup]="formGroupD" [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                   <reg-select *ngIf="visibles['CVDCarSten']" controlName="CVDCarSten"
                     placeholder="# CVD Carotid stenosis" [formGroup]="formGroupD" [choices]="[
@@ -460,7 +460,7 @@
                     'Both',
                     'None',
                     'Not Documented'
-                  ]" fxFlex="1 0 200px"></reg-select>
+                  ]" fxFlex="1 0 250px"></reg-select>
 
                   <div *ngIf="visibles['CVDStenRt']" class="reg-container">
                     <reg-select *ngIf="visibles['CVDStenRt']" controlName="CVDStenRt"
@@ -470,7 +470,7 @@
                         '80–99%',
                         '100%',
                         'Not documented'
-                      ]" fxFlex="1 0 200px"></reg-select>
+                      ]" fxFlex="1 0 250px"></reg-select>
 
                     <reg-select *ngIf="visibles['CVDStenLft']" controlName="CVDStenLft"
                       placeholder="## Severity of stenosis on the left carotid artery" [formGroup]="formGroupD"
@@ -479,49 +479,51 @@
                         '80–99%',
                         '100%',
                         'Not documented'
-                      ]" fxFlex="1 0 200px"></reg-select>
+                      ]" fxFlex="1 0 250px"></reg-select>
                   </div>
 
                   <reg-select *ngIf="visibles['CVDPCarSurg']" controlName="CVDPCarSurg"
                     placeholder="# History of previous carotid artery surgery and/or stenting" [formGroup]="formGroupD"
-                    [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
                 </div>
 
-                <reg-input controlName="WBC" placeholder="WBC Count" [formGroup]="formGroupD" type="number"
-                  require="false" fxFlex="1 0 200px"></reg-input>
+                <div class="reg-container">
+                  <reg-input controlName="WBC" placeholder="WBC Count" [formGroup]="formGroupD" type="number"
+                    require="false" fxFlex="1 0 200px"></reg-input>
 
-                <reg-input controlName="RFHemoglobin" placeholder="Hemoglobin" [formGroup]="formGroupD" type="number"
-                  require="false" fxFlex="1 0 200px"></reg-input>
+                  <reg-input controlName="RFHemoglobin" placeholder="Hemoglobin" [formGroup]="formGroupD" type="number"
+                    require="false" fxFlex="1 0 200px"></reg-input>
 
-                <reg-input controlName="Hct" placeholder="Hematocrit" [formGroup]="formGroupD" type="number"
-                  require="false" fxFlex="1 0 200px"></reg-input>
+                  <reg-input controlName="Hct" placeholder="Hematocrit" [formGroup]="formGroupD" type="number"
+                    require="false" fxFlex="1 0 200px"></reg-input>
 
-                <reg-input controlName="Platelets" placeholder="Platelet Count" [formGroup]="formGroupD" type="number"
-                  require="false" fxFlex="1 0 200px"></reg-input>
+                  <reg-input controlName="Platelets" placeholder="Platelet Count" [formGroup]="formGroupD" type="number"
+                    require="false" fxFlex="1 0 200px"></reg-input>
 
-                <reg-input controlName="CreatLst" placeholder="Last Creatinine Level" [formGroup]="formGroupD"
-                  type="number" require="false" fxFlex="1 0 200px"></reg-input>
+                  <reg-input controlName="CreatLst" placeholder="Last Creatinine Level" [formGroup]="formGroupD"
+                    type="number" require="false" fxFlex="1 0 200px"></reg-input>
 
-                <reg-input controlName="TotAlbumin" placeholder="Total Albumin" [formGroup]="formGroupD" type="number"
-                  require="false" fxFlex="1 0 200px"></reg-input>
+                  <reg-input controlName="TotAlbumin" placeholder="Total Albumin" [formGroup]="formGroupD" type="number"
+                    require="false" fxFlex="1 0 200px"></reg-input>
 
-                <reg-input controlName="TotBlrbn" placeholder="Total Bilirubin" [formGroup]="formGroupD" type="number"
-                  require="false" fxFlex="1 0 200px"></reg-input>
+                  <reg-input controlName="TotBlrbn" placeholder="Total Bilirubin" [formGroup]="formGroupD" type="number"
+                    require="false" fxFlex="1 0 200px"></reg-input>
 
-                <reg-input controlName="A1cLvl" placeholder="A1c Level" [formGroup]="formGroupD" type="number"
-                  require="false" fxFlex="1 0 200px"></reg-input>
+                  <reg-input controlName="A1cLvl" placeholder="A1c Level" [formGroup]="formGroupD" type="number"
+                    require="false" fxFlex="1 0 200px"></reg-input>
 
-                <reg-select controlName="HITAnti" placeholder="HIT Antibodies" [formGroup]="formGroupD"
-                  [choices]="['Yes', 'No', 'Not Applicable']" require="false" fxFlex="1 0 200px"></reg-select>
+                  <reg-select controlName="HITAnti" placeholder="HIT Antibodies" [formGroup]="formGroupD"
+                    [choices]="['Yes', 'No', 'Not Applicable']" require="false" fxFlex="1 0 200px"></reg-select>
 
-                <reg-input controlName="INR" placeholder="INR" [formGroup]="formGroupD" type="number" require="false"
-                  fxFlex="1 0 200px"></reg-input>
+                  <reg-input controlName="INR" placeholder="INR" [formGroup]="formGroupD" type="number" require="false"
+                    fxFlex="1 0 200px"></reg-input>
 
-                <reg-input controlName="MELDScr" placeholder="MELD Score" [formGroup]="formGroupD" type="number"
-                  require="false" fxFlex="1 0 200px"></reg-input>
+                  <reg-input controlName="MELDScr" placeholder="MELD Score" [formGroup]="formGroupD" type="number"
+                    require="false" fxFlex="1 0 200px"></reg-input>
 
-                <reg-input controlName="BNP" placeholder="BNP" [formGroup]="formGroupD" type="number" require="false"
-                  fxFlex="1 0 200px"></reg-input>
+                  <reg-input controlName="BNP" placeholder="BNP" [formGroup]="formGroupD" type="number" require="false"
+                    fxFlex="1 0 200px"></reg-input>
+                </div>
 
                 <div class="reg-container">
                   <reg-select controlName="FiveMWalkTest" placeholder="Five Meter Walk Test Done"
@@ -552,6 +554,1378 @@
             </form>
           </div>
         </section>
+
+        <section class="section-wrapper" scrollSpyElement id="sectionE">
+          <div class="section-title">
+            {{ getTocTitle('E') }}
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupE" #formDirectiveE="ngForm">
+
+              <div class="reg-container-col">
+                <reg-select controlName="PrCVInt" placeholder="Previous Cardiac Interventions" [formGroup]="formGroupE"
+                  [choices]="['Yes', 'No', 'Unknown']"></reg-select>
+
+                <div class="reg-container-col-indent">
+                  <reg-select *ngIf="visibles['PrCAB']" controlName="PrCAB"
+                    placeholder="# Previous coronary artery bypass" [formGroup]="formGroupE" [choices]="['Yes', 'No']">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibles['PrValve']" controlName="PrValve" placeholder="# Previous valve procedure"
+                    [formGroup]="formGroupE" [choices]="['Yes', 'No']">
+                  </reg-select>
+
+                  <div *ngIf="visibles['PrValveProc1']" class="reg-container-col-indent">
+                    <reg-select *ngIf="visibles['PrValveProc1']" controlName="PrValveProc1"
+                      placeholder="## Prev Valve Procedure 1" [formGroup]="formGroupE" [choices]="[
+                      'Aortic valve balloon valvotomy/valvuloplasty',
+                      'Aortic valve repair, surgical',
+                      'Aortic valve replacement, surgical',
+                      'Aortic valve replacement, transcatheter',
+                      'Mitral valve balloon valvotomy/valvuloplasty',
+                      'Mitral valve commissurotomy, surgical',
+                      'Mitral valve repair, percutaneous',
+                      'Mitral valve repair, surgical',
+                      'Mitral valve replacement, surgical',
+                      'Mitral valve replacement, transcatheter',
+                      'Tricuspid valve balloon valvotomy/valvuloplasty',
+                      'Tricuspid valve repair, percutaneous',
+                      'Tricuspid valve repair, surgical',
+                      'Tricuspid valve replacement, surgical',
+                      'Tricuspid valve replacement, transcatheter',
+                      'Tricuspid valvectomy',
+                      'Pulmonary valve balloon valvotomy/valvuloplasty',
+                      'Pulmonary valve repair, surgical',
+                      'Pulmonary valve replacement, surgical',
+                      'Pulmonary valve replacement, transcatheter',
+                      'Pulmonary valvectomy',
+                      'Other valve procedure'
+                    ]"></reg-select>
+
+                    <reg-select *ngIf="visibles['PrValveProc2']" controlName="PrValveProc2"
+                      placeholder="## Prev Valve Procedure 2" [formGroup]="formGroupE" [choices]="[
+                      'No additional valve procedure(s)',
+                      'Aortic valve balloon valvotomy/valvuloplasty',
+                      'Aortic valve repair, surgical',
+                      'Aortic valve replacement, surgical',
+                      'Aortic valve replacement, transcatheter',
+                      'Mitral valve balloon valvotomy/valvuloplasty',
+                      'Mitral valve commissurotomy, surgical',
+                      'Mitral valve repair, percutaneous',
+                      'Mitral valve repair, surgical',
+                      'Mitral valve replacement, surgical',
+                      'Mitral valve replacement, transcatheter',
+                      'Tricuspid valve balloon valvotomy/valvuloplasty',
+                      'Tricuspid valve repair, percutaneous',
+                      'Tricuspid valve repair, surgical',
+                      'Tricuspid valve replacement, surgical',
+                      'Tricuspid valve replacement, transcatheter',
+                      'Tricuspid valvectomy',
+                      'Pulmonary valve balloon valvotomy/valvuloplasty',
+                      'Pulmonary valve repair, surgical',
+                      'Pulmonary valve replacement, surgical',
+                      'Pulmonary valve replacement, transcatheter',
+                      'Pulmonary valvectomy',
+                      'Other valve procedure'
+                    ]"></reg-select>
+
+                    <reg-select *ngIf="visibles['PrValveProc3']" controlName="PrValveProc3"
+                      placeholder="## Prev Valve Procedure 3" [formGroup]="formGroupE" [choices]="[
+                      'No additional valve procedure(s)',
+                      'Aortic valve balloon valvotomy/valvuloplasty',
+                      'Aortic valve repair, surgical',
+                      'Aortic valve replacement, surgical',
+                      'Aortic valve replacement, transcatheter',
+                      'Mitral valve balloon valvotomy/valvuloplasty',
+                      'Mitral valve commissurotomy, surgical',
+                      'Mitral valve repair, percutaneous',
+                      'Mitral valve repair, surgical',
+                      'Mitral valve replacement, surgical',
+                      'Mitral valve replacement, transcatheter',
+                      'Tricuspid valve balloon valvotomy/valvuloplasty',
+                      'Tricuspid valve repair, percutaneous',
+                      'Tricuspid valve repair, surgical',
+                      'Tricuspid valve replacement, surgical',
+                      'Tricuspid valve replacement, transcatheter',
+                      'Tricuspid valvectomy',
+                      'Pulmonary valve balloon valvotomy/valvuloplasty',
+                      'Pulmonary valve repair, surgical',
+                      'Pulmonary valve replacement, surgical',
+                      'Pulmonary valve replacement, transcatheter',
+                      'Pulmonary valvectomy',
+                      'Other valve procedure'
+                    ]"></reg-select>
+
+                    <reg-select *ngIf="visibles['PrValveProc4']" controlName="PrValveProc4"
+                      placeholder="## Prev Valve Procedure 4" [formGroup]="formGroupE" [choices]="[
+                      'No additional valve procedure(s)',
+                      'Aortic valve balloon valvotomy/valvuloplasty',
+                      'Aortic valve repair, surgical',
+                      'Aortic valve replacement, surgical',
+                      'Aortic valve replacement, transcatheter',
+                      'Mitral valve balloon valvotomy/valvuloplasty',
+                      'Mitral valve commissurotomy, surgical',
+                      'Mitral valve repair, percutaneous',
+                      'Mitral valve repair, surgical',
+                      'Mitral valve replacement, surgical',
+                      'Mitral valve replacement, transcatheter',
+                      'Tricuspid valve balloon valvotomy/valvuloplasty',
+                      'Tricuspid valve repair, percutaneous',
+                      'Tricuspid valve repair, surgical',
+                      'Tricuspid valve replacement, surgical',
+                      'Tricuspid valve replacement, transcatheter',
+                      'Tricuspid valvectomy',
+                      'Pulmonary valve balloon valvotomy/valvuloplasty',
+                      'Pulmonary valve repair, surgical',
+                      'Pulmonary valve replacement, surgical',
+                      'Pulmonary valve replacement, transcatheter',
+                      'Pulmonary valvectomy',
+                      'Other valve procedure'
+                    ]"></reg-select>
+
+                    <reg-select *ngIf="visibles['PrValveProc5']" controlName="PrValveProc5"
+                      placeholder="## Prev Valve Procedure 5" [formGroup]="formGroupE" [choices]="[
+                      'No additional valve procedure(s)',
+                      'Aortic valve balloon valvotomy/valvuloplasty',
+                      'Aortic valve repair, surgical',
+                      'Aortic valve replacement, surgical',
+                      'Aortic valve replacement, transcatheter',
+                      'Mitral valve balloon valvotomy/valvuloplasty',
+                      'Mitral valve commissurotomy, surgical',
+                      'Mitral valve repair, percutaneous',
+                      'Mitral valve repair, surgical',
+                      'Mitral valve replacement, surgical',
+                      'Mitral valve replacement, transcatheter',
+                      'Tricuspid valve balloon valvotomy/valvuloplasty',
+                      'Tricuspid valve repair, percutaneous',
+                      'Tricuspid valve repair, surgical',
+                      'Tricuspid valve replacement, surgical',
+                      'Tricuspid valve replacement, transcatheter',
+                      'Tricuspid valvectomy',
+                      'Pulmonary valve balloon valvotomy/valvuloplasty',
+                      'Pulmonary valve repair, surgical',
+                      'Pulmonary valve replacement, surgical',
+                      'Pulmonary valve replacement, transcatheter',
+                      'Pulmonary valvectomy',
+                      'Other valve procedure'
+                    ]"></reg-select>
+                  </div>
+
+                  <reg-select *ngIf="visibles['POCPCI']" controlName="POCPCI" placeholder="# Previous PCI"
+                    [formGroup]="formGroupE" [choices]="['Yes', 'No']">
+                  </reg-select>
+
+                  <div *ngIf="visibles['POCPCIWhen']" class="reg-container-indent">
+                    <div *ngIf="visibles['POCPCIWhen']" class="reg-container">
+
+                      <reg-select *ngIf="visibles['POCPCIWhen']" controlName="POCPCIWhen"
+                        placeholder="## PCI Performed Within This Episode Of Care" [formGroup]="formGroupE" [choices]="[
+                          'Yes, at this facility',
+                          'Yes, at some other acute care facility',
+                          'No'
+                        ]" fxFlex="1 0 250px"></reg-select>
+
+                      <reg-select *ngIf="visibles['POCPCIndSurg']" controlName="POCPCIndSurg"
+                        placeholder="### Indication for Surgery" [formGroup]="formGroupE" [choices]="[
+                          'PCI Complication',
+                          'PCI Failure without Clinical Deterioration',
+                          'PCI Failure with Clinical Deterioration',
+                          'PCI/Surgery Staged (not STEMI)',
+                          'PCI for STEMI, multivessel disease',
+                          'Other'
+                        ]" fxFlex="1 0 250px"></reg-select>
+                    </div>
+
+                    <div *ngIf="visibles['POCPCISt']" class="reg-container">
+
+                      <reg-select *ngIf="visibles['POCPCISt']" controlName="POCPCISt" placeholder="## PCI Stent"
+                        [formGroup]="formGroupE" [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                      <reg-select *ngIf="visibles['POCPCIStTy']" controlName="POCPCIStTy" placeholder="### Stent Type"
+                        [formGroup]="formGroupE" [choices]="[
+                          'Bare metal',
+                          'Drug-eluting',
+                          'Bioresorbable',
+                          'Multiple',
+                          'Unknown'
+                        ]" fxFlex="1 0 200px"></reg-select>
+                    </div>
+
+                    <reg-select *ngIf="visibles['POCPCIIn']" controlName="POCPCIIn" placeholder="## PCI Interval"
+                      [formGroup]="formGroupE" [choices]="['<= 6 Hours', '> 6 Hours']" fxFlex="1 0 200px"></reg-select>
+                  </div>
+
+                  <reg-select *ngIf="visibles['POC']" controlName="POC"
+                    placeholder="# Other Previous Cardiac Interventions" [formGroup]="formGroupE"
+                    [choices]="['Yes', 'No']">
+                  </reg-select>
+
+                  <div *ngIf="visibles['POCInt1']" class="reg-container-col-indent">
+                    <reg-select *ngIf="visibles['POCInt1']" controlName="POCInt1"
+                      placeholder="## Previous Other Cardiac Intervention 1" [formGroup]="formGroupE" [choices]="[
+                        'Ablation, catheter, atrial fibrillation',
+                        'Ablation, catheter, other or unknown',
+                        'Ablation, catheter, ventricular',
+                        'Ablation, surgical, atrial fibrillation',
+                        'Ablation, surgical, other or unknown',
+                        'Aneurysmectomy, LV',
+                        'Aortic procedure, arch',
+                        'Aortic procedure, ascending',
+                        'Aortic procedure, descending',
+                        'Aortic procedure, root',
+                        'Aortic procedure, thoracoabdominal',
+                        'Aortic Procedure, TEVAR',
+                        'Aortic root procedure, valve sparing',
+                        'Atrial appendage obliteration, Left, surgical',
+                        'Atrial appendage obliteration, Left, transcatheter',
+                        'Cardiac Tumor',
+                        'Cardioversion(s)',
+                        'Closure device, atrial septal defect',
+                        'Closure device, ventricular septal defect',
+                        'Congenital cardiac repair, surgical',
+                        'ECMO',
+                        'Implantable Cardioverter Defibrillator (ICD) with or without pacemaker',
+                        'Pacemaker',
+                        'Pericardial window/Pericardiocentesis',
+                        'Pericardiectomy',
+                        'Pulmonary Thromboembolectomy',
+                        'Total Artificial Heart (TAH)',
+                        'Transmyocardial Laser Revascularization (TMR)',
+                        'Transplant heart & lung',
+                        'Transplant, heart',
+                        'Transplant, lung(s)',
+                        'Ventricular Assist Device (VAD), BiVAD',
+                        'Ventricular Assist Device (VAD), left',
+                        'Ventricular Assist Device (VAD), right',
+                        'Other Cardiac Intervention (not listed)'
+                      ]"></reg-select>
+
+                    <reg-select *ngIf="visibles['POCInt2']" controlName="POCInt2"
+                      placeholder="## Previous Other Cardiac Intervention 2" [formGroup]="formGroupE" [choices]="[
+                        'No additional interventions',
+                        'Ablation, catheter, atrial fibrillation',
+                        'Ablation, catheter, other or unknown',
+                        'Ablation, catheter, ventricular',
+                        'Ablation, surgical, atrial fibrillation',
+                        'Ablation, surgical, other or unknown',
+                        'Aneurysmectomy, LV',
+                        'Aortic procedure, arch',
+                        'Aortic procedure, ascending',
+                        'Aortic procedure, descending',
+                        'Aortic procedure, root',
+                        'Aortic procedure, thoracoabdominal',
+                        'Aortic Procedure, TEVAR',
+                        'Aortic root procedure, valve sparing',
+                        'Atrial appendage obliteration, Left, surgical',
+                        'Atrial appendage obliteration, Left, transcatheter',
+                        'Cardiac Tumor',
+                        'Cardioversion(s)',
+                        'Closure device, atrial septal defect',
+                        'Closure device, ventricular septal defect',
+                        'Congenital cardiac repair, surgical',
+                        'ECMO',
+                        'Implantable Cardioverter Defibrillator (ICD) with or without pacemaker',
+                        'Pacemaker',
+                        'Pericardial window/Pericardiocentesis',
+                        'Pericardiectomy',
+                        'Pulmonary Thromboembolectomy',
+                        'Total Artificial Heart (TAH)',
+                        'Transmyocardial Laser Revascularization (TMR)',
+                        'Transplant heart & lung',
+                        'Transplant, heart',
+                        'Transplant, lung(s)',
+                        'Ventricular Assist Device (VAD), BiVAD',
+                        'Ventricular Assist Device (VAD), left',
+                        'Ventricular Assist Device (VAD), right',
+                        'Other Cardiac Intervention (not listed)'
+                      ]"></reg-select>
+
+                    <reg-select *ngIf="visibles['POCInt3']" controlName="POCInt3"
+                      placeholder="## Previous Other Cardiac Intervention 3" [formGroup]="formGroupE" [choices]="[
+                        'No additional interventions',
+                        'Ablation, catheter, atrial fibrillation',
+                        'Ablation, catheter, other or unknown',
+                        'Ablation, catheter, ventricular',
+                        'Ablation, surgical, atrial fibrillation',
+                        'Ablation, surgical, other or unknown',
+                        'Aneurysmectomy, LV',
+                        'Aortic procedure, arch',
+                        'Aortic procedure, ascending',
+                        'Aortic procedure, descending',
+                        'Aortic procedure, root',
+                        'Aortic procedure, thoracoabdominal',
+                        'Aortic Procedure, TEVAR',
+                        'Aortic root procedure, valve sparing',
+                        'Atrial appendage obliteration, Left, surgical',
+                        'Atrial appendage obliteration, Left, transcatheter',
+                        'Cardiac Tumor',
+                        'Cardioversion(s)',
+                        'Closure device, atrial septal defect',
+                        'Closure device, ventricular septal defect',
+                        'Congenital cardiac repair, surgical',
+                        'ECMO',
+                        'Implantable Cardioverter Defibrillator (ICD) with or without pacemaker',
+                        'Pacemaker',
+                        'Pericardial window/Pericardiocentesis',
+                        'Pericardiectomy',
+                        'Pulmonary Thromboembolectomy',
+                        'Total Artificial Heart (TAH)',
+                        'Transmyocardial Laser Revascularization (TMR)',
+                        'Transplant heart & lung',
+                        'Transplant, heart',
+                        'Transplant, lung(s)',
+                        'Ventricular Assist Device (VAD), BiVAD',
+                        'Ventricular Assist Device (VAD), left',
+                        'Ventricular Assist Device (VAD), right',
+                        'Other Cardiac Intervention (not listed)'
+                      ]"></reg-select>
+
+                    <reg-select *ngIf="visibles['POCInt4']" controlName="POCInt4"
+                      placeholder="## Previous Other Cardiac Intervention 4" [formGroup]="formGroupE" [choices]="[
+                        'No additional interventions',
+                        'Ablation, catheter, atrial fibrillation',
+                        'Ablation, catheter, other or unknown',
+                        'Ablation, catheter, ventricular',
+                        'Ablation, surgical, atrial fibrillation',
+                        'Ablation, surgical, other or unknown',
+                        'Aneurysmectomy, LV',
+                        'Aortic procedure, arch',
+                        'Aortic procedure, ascending',
+                        'Aortic procedure, descending',
+                        'Aortic procedure, root',
+                        'Aortic procedure, thoracoabdominal',
+                        'Aortic Procedure, TEVAR',
+                        'Aortic root procedure, valve sparing',
+                        'Atrial appendage obliteration, Left, surgical',
+                        'Atrial appendage obliteration, Left, transcatheter',
+                        'Cardiac Tumor',
+                        'Cardioversion(s)',
+                        'Closure device, atrial septal defect',
+                        'Closure device, ventricular septal defect',
+                        'Congenital cardiac repair, surgical',
+                        'ECMO',
+                        'Implantable Cardioverter Defibrillator (ICD) with or without pacemaker',
+                        'Pacemaker',
+                        'Pericardial window/Pericardiocentesis',
+                        'Pericardiectomy',
+                        'Pulmonary Thromboembolectomy',
+                        'Total Artificial Heart (TAH)',
+                        'Transmyocardial Laser Revascularization (TMR)',
+                        'Transplant heart & lung',
+                        'Transplant, heart',
+                        'Transplant, lung(s)',
+                        'Ventricular Assist Device (VAD), BiVAD',
+                        'Ventricular Assist Device (VAD), left',
+                        'Ventricular Assist Device (VAD), right',
+                        'Other Cardiac Intervention (not listed)'
+                      ]"></reg-select>
+
+                    <reg-select *ngIf="visibles['POCInt5']" controlName="POCInt5"
+                      placeholder="## Previous Other Cardiac Intervention 5" [formGroup]="formGroupE" [choices]="[
+                        'No additional interventions',
+                        'Ablation, catheter, atrial fibrillation',
+                        'Ablation, catheter, other or unknown',
+                        'Ablation, catheter, ventricular',
+                        'Ablation, surgical, atrial fibrillation',
+                        'Ablation, surgical, other or unknown',
+                        'Aneurysmectomy, LV',
+                        'Aortic procedure, arch',
+                        'Aortic procedure, ascending',
+                        'Aortic procedure, descending',
+                        'Aortic procedure, root',
+                        'Aortic procedure, thoracoabdominal',
+                        'Aortic Procedure, TEVAR',
+                        'Aortic root procedure, valve sparing',
+                        'Atrial appendage obliteration, Left, surgical',
+                        'Atrial appendage obliteration, Left, transcatheter',
+                        'Cardiac Tumor',
+                        'Cardioversion(s)',
+                        'Closure device, atrial septal defect',
+                        'Closure device, ventricular septal defect',
+                        'Congenital cardiac repair, surgical',
+                        'ECMO',
+                        'Implantable Cardioverter Defibrillator (ICD) with or without pacemaker',
+                        'Pacemaker',
+                        'Pericardial window/Pericardiocentesis',
+                        'Pericardiectomy',
+                        'Pulmonary Thromboembolectomy',
+                        'Total Artificial Heart (TAH)',
+                        'Transmyocardial Laser Revascularization (TMR)',
+                        'Transplant heart & lung',
+                        'Transplant, heart',
+                        'Transplant, lung(s)',
+                        'Ventricular Assist Device (VAD), BiVAD',
+                        'Ventricular Assist Device (VAD), left',
+                        'Ventricular Assist Device (VAD), right',
+                        'Other Cardiac Intervention (not listed)'
+                      ]"></reg-select>
+
+                    <reg-select *ngIf="visibles['POCInt6']" controlName="POCInt6"
+                      placeholder="## Previous Other Cardiac Intervention 6" [formGroup]="formGroupE" [choices]="[
+                        'No additional interventions',
+                        'Ablation, catheter, atrial fibrillation',
+                        'Ablation, catheter, other or unknown',
+                        'Ablation, catheter, ventricular',
+                        'Ablation, surgical, atrial fibrillation',
+                        'Ablation, surgical, other or unknown',
+                        'Aneurysmectomy, LV',
+                        'Aortic procedure, arch',
+                        'Aortic procedure, ascending',
+                        'Aortic procedure, descending',
+                        'Aortic procedure, root',
+                        'Aortic procedure, thoracoabdominal',
+                        'Aortic Procedure, TEVAR',
+                        'Aortic root procedure, valve sparing',
+                        'Atrial appendage obliteration, Left, surgical',
+                        'Atrial appendage obliteration, Left, transcatheter',
+                        'Cardiac Tumor',
+                        'Cardioversion(s)',
+                        'Closure device, atrial septal defect',
+                        'Closure device, ventricular septal defect',
+                        'Congenital cardiac repair, surgical',
+                        'ECMO',
+                        'Implantable Cardioverter Defibrillator (ICD) with or without pacemaker',
+                        'Pacemaker',
+                        'Pericardial window/Pericardiocentesis',
+                        'Pericardiectomy',
+                        'Pulmonary Thromboembolectomy',
+                        'Total Artificial Heart (TAH)',
+                        'Transmyocardial Laser Revascularization (TMR)',
+                        'Transplant heart & lung',
+                        'Transplant, heart',
+                        'Transplant, lung(s)',
+                        'Ventricular Assist Device (VAD), BiVAD',
+                        'Ventricular Assist Device (VAD), left',
+                        'Ventricular Assist Device (VAD), right',
+                        'Other Cardiac Intervention (not listed)'
+                      ]"></reg-select>
+
+                    <reg-select *ngIf="visibles['POCInt7']" controlName="POCInt7"
+                      placeholder="## Previous Other Cardiac Intervention 7" [formGroup]="formGroupE" [choices]="[
+                        'No additional interventions',
+                        'Ablation, catheter, atrial fibrillation',
+                        'Ablation, catheter, other or unknown',
+                        'Ablation, catheter, ventricular',
+                        'Ablation, surgical, atrial fibrillation',
+                        'Ablation, surgical, other or unknown',
+                        'Aneurysmectomy, LV',
+                        'Aortic procedure, arch',
+                        'Aortic procedure, ascending',
+                        'Aortic procedure, descending',
+                        'Aortic procedure, root',
+                        'Aortic procedure, thoracoabdominal',
+                        'Aortic Procedure, TEVAR',
+                        'Aortic root procedure, valve sparing',
+                        'Atrial appendage obliteration, Left, surgical',
+                        'Atrial appendage obliteration, Left, transcatheter',
+                        'Cardiac Tumor',
+                        'Cardioversion(s)',
+                        'Closure device, atrial septal defect',
+                        'Closure device, ventricular septal defect',
+                        'Congenital cardiac repair, surgical',
+                        'ECMO',
+                        'Implantable Cardioverter Defibrillator (ICD) with or without pacemaker',
+                        'Pacemaker',
+                        'Pericardial window/Pericardiocentesis',
+                        'Pericardiectomy',
+                        'Pulmonary Thromboembolectomy',
+                        'Total Artificial Heart (TAH)',
+                        'Transmyocardial Laser Revascularization (TMR)',
+                        'Transplant heart & lung',
+                        'Transplant, heart',
+                        'Transplant, lung(s)',
+                        'Ventricular Assist Device (VAD), BiVAD',
+                        'Ventricular Assist Device (VAD), left',
+                        'Ventricular Assist Device (VAD), right',
+                        'Other Cardiac Intervention (not listed)'
+                      ]"></reg-select>
+                  </div>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </section>
+
+        <section class="section-wrapper" scrollSpyElement id="sectionF">
+          <div class="section-title">
+            {{ getTocTitle('F') }}
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupF" #formDirectiveF="ngForm">
+
+              <div class="reg-container-col">
+                <div class="reg-container">
+
+                  <reg-select controlName="PrevMI" placeholder="Prior Myocardial Infarction" [formGroup]="formGroupF"
+                    [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select *ngIf="visibles['MIWhen']" controlName="MIWhen" placeholder="MI When"
+                    [formGroup]="formGroupF" [choices]="[
+                      '<= 6 Hrs',
+                      '> 6 Hrs but < 24 Hrs',
+                      '1 to 7 Days',
+                      '8 to 21 Days',
+                      '> 21 Days'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <span class="reg-title">Cardiac Presentation/Symptoms:</span>
+
+                  <div class="reg-container">
+                    <reg-select controlName="CardSympTimeOfAdm" placeholder="At time of this admission"
+                      [formGroup]="formGroupF" [choices]="[
+                        'No Symptoms',
+                        'Stable Angina',
+                        'Unstable Angina',
+                        'Non-ST Elevation MI (Non-STEMI)',
+                        'ST Elevation MI (STEMI)',
+                        'Angina Equivalent',
+                        'Other'
+                      ]" fxFlex="1 0 200px"></reg-select>
+
+                    <reg-select controlName="CardSympTimeOfSurg" placeholder="At time of surgery"
+                      [formGroup]="formGroupF" [choices]="[
+                        'No Symptoms',
+                        'Stable Angina',
+                        'Unstable Angina',
+                        'Non-ST Elevation MI (Non-STEMI)',
+                        'ST Elevation MI (STEMI)',
+                        'Angina Equivalent',
+                        'Other'
+                      ]" fxFlex="1 0 200px"></reg-select>
+                  </div>
+                </div>
+
+                <reg-select controlName="HeartFail" placeholder="Heart Failure" [formGroup]="formGroupF"
+                  [choices]="['Yes', 'No', 'Unknown']"></reg-select>
+
+                <div class="reg-container-indent">
+
+                  <reg-select *ngIf="visibles['HeartFailTmg']" controlName="HeartFailTmg" placeholder="# Timing"
+                    [formGroup]="formGroupF" [choices]="['Acute', 'Chronic', 'Both']" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select *ngIf="visibles['HeartFailType']" controlName="HeartFailType" placeholder="# Type"
+                    [formGroup]="formGroupF" [choices]="[
+                      'Systolic',
+                      'Diastolic',
+                      'Both',
+                      'Unavailable'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select *ngIf="visibles['ClassNYH']" controlName="ClassNYH" placeholder="# Classification-NYHA"
+                    [formGroup]="formGroupF" [choices]="[
+                      'Class I',
+                      'Class II',
+                      'Class III',
+                      'Class IV',
+                      'Not Documented'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <reg-select controlName="CarShock" placeholder="Cardiogenic Shock" [formGroup]="formGroupF" [choices]="[
+                  'Yes, at the time of the procedure',
+                  'Yes, not at the time of the procedure but within prior 24 hours',
+                  'No'
+                ]"></reg-select>
+
+                <reg-select controlName="Resusc" placeholder="Resuscitation" [formGroup]="formGroupF" [choices]="[
+                  'Yes - Within 1 hour of the start of the procedure',
+                  'Yes - More than 1 hour but less than 24 hours of the start of the procedure',
+                  'No'
+                ]"></reg-select>
+
+                <reg-select controlName="Arrhythmia" placeholder="Arrhythmia" [formGroup]="formGroupF"
+                  [choices]="['Yes', 'No']"></reg-select>
+
+                <div class="reg-container-indent">
+
+                  <reg-select *ngIf="visibles['ArrhythPPaced']" controlName="ArrhythPPaced"
+                    placeholder="# Permanently Paced Rhythm" [formGroup]="formGroupF" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibles['ArrhythVV']" controlName="ArrhythVV" placeholder="# VTach/VFib"
+                    [formGroup]="formGroupF" [choices]="[
+                      'None',
+                      'Remote (> 30 days preop)',
+                      'Recent (<= 30 days preop)'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select *ngIf="visibles['ArrhythSSS']" controlName="ArrhythSSS"
+                    placeholder="# Sick Sinus Syndrome" [formGroup]="formGroupF" [choices]="[
+                      'None',
+                      'Remote (> 30 days preop)',
+                      'Recent (<= 30 days preop)'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select *ngIf="visibles['ArrhythAFlutter']" controlName="ArrhythAFlutter" placeholder="# AFlutter"
+                    [formGroup]="formGroupF" [choices]="[
+                      'None',
+                      'Remote (> 30 days preop)',
+                      'Recent (<= 30 days preop)'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select *ngIf="visibles['ArrhythAtrFib']" controlName="ArrhythAtrFib"
+                    placeholder="# AFibrillation" [formGroup]="formGroupF" [choices]="[
+                      'None',
+                      'Remote (> 30 days preop)',
+                      'Recent (<= 30 days preop)'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select *ngIf="visibles['ArrhythAFib']" controlName="ArrhythAFib"
+                    placeholder="# Atrial Fibrillation Type" [formGroup]="formGroupF" [choices]="[
+                      'Paroxysmal',
+                      'Persistent',
+                      'Longstanding Persistent',
+                      'Permanent'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select *ngIf="visibles['ArrhythSecond']" controlName="ArrhythSecond"
+                    placeholder="# Second Degree Heart Block" [formGroup]="formGroupF" [choices]="[
+                      'None',
+                      'Remote (> 30 days preop)',
+                      'Recent (<= 30 days preop)'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select *ngIf="visibles['ArrhythThird']" controlName="ArrhythThird"
+                    placeholder="# Third Degree Heart Block" [formGroup]="formGroupF" [choices]="[
+                      'None',
+                      'Remote (> 30 days preop)',
+                      'Recent (<= 30 days preop)'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+              </div>
+            </form>
+          </div>
+        </section> -->
+
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionG">
+          <div class="section-title">
+            {{ getTocTitle('G') }}
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupG" #formDirectiveG="ngForm">
+
+              <div fxLayoutAlign="space-between center">
+                <h3 class="section-subtitle">Preoperative Medications</h3>
+                <div>
+                  <button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000" (click)="setToDefaultPreopMed(formGroupG, 'No')">
+                    <mat-icon>save_alt</mat-icon>
+                  </button>
+                  <button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000" (click)="setToDefaultPreopMed(formGroupG, null)">
+                    <mat-icon>replay</mat-icon>
+                  </button>
+                </div>
+              </div>
+
+              <div fxLayout="row wrap" fxLayout.lt-lg="column wrap">
+
+                <div class="reg-container" fxFlex="1 0 220px" fxFlex.lt-lg="1 1 auto">
+                  <div class="reg-container-col">
+
+                    <div class="reg-title">Antianginal</div>
+
+                    <reg-select controlName="MedBeta" placeholder="Beta Blocker" [formGroup]="formGroupG" [choices]="[
+                        'Yes',
+                        'No',
+                        'Contraindicated'
+                      ]">Within 24 hours</reg-select>
+
+                    <reg-select controlName="MedBetaTher" placeholder="Beta Blocker" [formGroup]="formGroupG" [choices]="[
+                        'Yes',
+                        'No',
+                        'Contraindicated',
+                        'Unknown'
+                      ]">On therapy for ≥ 2 weeks prior to surgery</reg-select>
+
+                    <reg-select controlName="MedCChanTher" placeholder="Calcium Channel Blocker"
+                      [formGroup]="formGroupG" [choices]="[
+                        'Yes',
+                        'No',
+                        'Contraindicated',
+                        'Unknown'
+                      ]">On therapy for ≥ 2 weeks prior to surgery</reg-select>
+
+                    <reg-select controlName="MedLongActNit" placeholder="Long-acting Nitrate" [formGroup]="formGroupG"
+                      [choices]="[
+                        'Yes',
+                        'No',
+                        'Contraindicated',
+                        'Unknown'
+                      ]">On therapy for ≥ 2 weeks prior to surgery</reg-select>
+
+                    <reg-select controlName="MedNitIV" placeholder="Nitrates, intravenous" [formGroup]="formGroupG"
+                      [choices]="[
+                        'Yes',
+                        'No'
+                      ]">Within 24 hours</reg-select>
+
+                    <reg-select controlName="MedOthAntiang" placeholder="Other Antianginal" [formGroup]="formGroupG"
+                      [choices]="[
+                        'Yes',
+                        'No',
+                        'Contraindicated',
+                        'Unknown'
+                      ]">On therapy for ≥ 2 weeks prior to surgery</reg-select>
+
+                    <br>
+                    <mat-divider></mat-divider>
+
+                    <div class="reg-title">Antiplatelet</div>
+
+                    <div class="reg-container" fxFlex="0 0 auto">
+
+                      <reg-select controlName="MedADP5Days" placeholder="ADP Inhibitor (includes P2Y12)"
+                        [formGroup]="formGroupG" [choices]="[
+                          'Yes',
+                          'No',
+                          'Contraindicated',
+                          'Unknown'
+                        ]" fxFlex="1 0 200px">Within 5 days</reg-select>
+
+                      <reg-input *ngIf="visibles['MedADPIDis']" controlName="MedADPIDis"
+                        placeholder="# ADP Inhibitors Discontinuation" [formGroup]="formGroupG" type="number"
+                        fxFlex="1 0 200px">...days prior to surgery</reg-input>
+
+                    </div>
+
+                    <div class="reg-container" fxFlex="0 0 auto">
+
+                      <reg-select controlName="MedASA" placeholder="Aspirin" [formGroup]="formGroupG" [choices]="[
+                          'Yes',
+                          'No',
+                          'Contraindicated',
+                          'Unknown'
+                        ]" fxFlex="1 0 200px">Within 5 days</reg-select>
+
+                      <div *ngIf="visibles['MedASADis']" class="reg-container">
+                        <reg-input *ngIf="visibles['MedASADis']" controlName="MedASADis"
+                          placeholder="# Aspirin Discontinuation" [formGroup]="formGroupG" type="number"
+                          fxFlex="1 0 200px"># days prior to surgery</reg-input>
+
+                        <reg-select *ngIf="visibles['MedASAOnce']" controlName="MedASAOnce"
+                          placeholder="# Aspirin one time dose" [formGroup]="formGroupG" [choices]="['Yes', 'No']"
+                          fxFlex="1 0 200px">
+                        </reg-select>
+                      </div>
+                    </div>
+
+                    <reg-select controlName="MedGP" placeholder="Glycoprotein IIb/IIIa" [formGroup]="formGroupG"
+                      [choices]="[
+                        'Yes',
+                        'No'
+                      ]">Within 24 hours</reg-select>
+
+                  </div>
+                </div>
+                <div class="reg-container" fxFlex="1 0 220px" fxFlex.lt-lg="1 1 auto">
+                  <div class="reg-container-col">
+
+                    <div class="reg-title">Anticoagulant</div>
+
+                    <div class="reg-container">
+
+                      <reg-select controlName="MedACoag" placeholder="Anticoagulants (Intravenous/ SubQ)"
+                        [formGroup]="formGroupG" [choices]="['Yes', 'No']" fxFlex="1 0 200px">Within 48 hours
+                      </reg-select>
+
+                      <reg-select *ngIf="visibles['MedACMN']" controlName="MedACMN" placeholder="# Medication"
+                        [formGroup]="formGroupG" [choices]="[
+                        'Heparin (Unfractionated)',
+                        'Heparin (Low Molecular)',
+                        'Both',
+                        'Other'
+                      ]" fxFlex="1 0 200px"></reg-select>
+
+                    </div>
+
+                    <div class="reg-container">
+
+                      <reg-select controlName="MedCoum5Days" placeholder="Warfarin (Coumadin)" [formGroup]="formGroupG"
+                        [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px">Within 5 days</reg-select>
+
+                      <reg-input *ngIf="visibles['MedCoum5Dis']" controlName="MedCoum5Dis"
+                        placeholder="# Coumadin Discontinuation" [formGroup]="formGroupG" type="number"
+                        fxFlex="1 0 200px">#
+                        days prior to
+                        surgery</reg-input>
+
+                    </div>
+
+                    <div class="reg-container">
+
+                      <reg-select controlName="MedXa5Days" placeholder="Factor Xa inhibitors" [formGroup]="formGroupG"
+                        [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px">Within 5 days</reg-select>
+
+                      <reg-input *ngIf="visibles['MedXa5DDis']" controlName="MedXa5DDis"
+                        placeholder="# Factor Xa Discontinuation" [formGroup]="formGroupG" type="number"
+                        fxFlex="1 0 200px"># days prior
+                        to surgery</reg-input>
+
+                    </div>
+
+                    <div class="reg-container">
+
+                      <reg-select controlName="MedNOAC5Days" placeholder="Novel Oral Anticoagulant"
+                        [formGroup]="formGroupG" [choices]="['Yes', 'No', 'Unknown']" fxFlex>Within 5 days</reg-select>
+
+                      <reg-input *ngIf="visibles['MedNOACDisc']" controlName="MedNOACDisc"
+                        placeholder="# NOAC Discontinuation" [formGroup]="formGroupG" type="number" fxFlex># days prior
+                        to
+                        surgery</reg-input>
+
+                    </div>
+
+                    <div class="reg-container">
+
+                      <reg-select controlName="MedThromIn5Days" placeholder="Thrombin Inhibitors"
+                        [formGroup]="formGroupG" [choices]="['Yes', 'No', 'Unknown']" fxFlex>Within 5 days</reg-select>
+
+                      <reg-input *ngIf="visibles['MedThromInDisc']" controlName="MedThromInDisc"
+                        placeholder="# Thrombin Inhibitor Discontinuation" [formGroup]="formGroupG" type="number"
+                        fxFlex>#
+                        days prior to surgery</reg-input>
+
+                    </div>
+
+                    <reg-select controlName="MedThrom" placeholder="Thrombolytics" [formGroup]="formGroupG"
+                      [choices]="['Yes', 'No']">Within 48 hours</reg-select>
+
+                    <br>
+                    <mat-divider></mat-divider>
+
+                    <div class="reg-title">Miscellaneous</div>
+
+                    <reg-select controlName="MedInotr" placeholder="Inotropic, intravenous" [formGroup]="formGroupG"
+                      [choices]="['Yes', 'No']">Within 48 hours</reg-select>
+
+                    <div class="reg-container">
+
+                      <reg-select controlName="MedLipid" placeholder="Lipid lowering" [formGroup]="formGroupG"
+                        [choices]="['Yes', 'No', 'Contraindicated', 'Unknown']" fxFlex>Within 24 hours</reg-select>
+
+                      <reg-select *ngIf="visibles['MedLipType']" controlName="MedLipType" placeholder="Medication Type"
+                        [formGroup]="formGroupG" [choices]="[
+                        'Statin',
+                        'Statin + Other',
+                        'Non-statin/Other'
+                      ]" fxFlex></reg-select>
+                    </div>
+
+                    <reg-select controlName="MedSter" placeholder="Steroids" [formGroup]="formGroupG"
+                      [choices]="['Yes', 'No', 'Contraindicated', 'Unknown']">Within 24 hours</reg-select>
+
+                    <reg-select controlName="MedACEI48" placeholder="ACE or ARB" [formGroup]="formGroupG" [choices]="[
+                    'Yes',
+                    'No',
+                    'Contraindicated',
+                    'Unknown'
+                  ]">Within 48 hours</reg-select>
+
+                    <reg-select controlName="MedAmiodarone" placeholder="Amiodarone" [formGroup]="formGroupG" [choices]="[
+                    'Yes, on home therapy',
+                    'Yes, therapy started this admission',
+                    'No',
+                    'Unknown'
+                  ]">Prior to surgery</reg-select>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section> -->
+
+        <section class="section-wrapper" scrollSpyElement id="sectionH">
+          <div class="section-title">
+            {{ getTocTitle('H') }}
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupH" #formDirectiveH="ngForm">
+
+              <div class="reg-container-col">
+                <div class="reg-container">
+
+                  <reg-select controlName="CarCathPer" placeholder="Cardiac Catheterization Performed"
+                    [formGroup]="formGroupH" [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-datepicker *ngIf="visibles['CarCathDt']" controlName="CarCathDt"
+                    placeholder="# Cardiac Catheterization Date" [formGroup]="formGroupH" fxFlex="1 0 200px">dd/mm/yyyy
+                  </reg-datepicker>
+
+                </div>
+
+                <div class="reg-container">
+                  <reg-select controlName="CorAnatDisKnown" placeholder="Coronary Anatomy/Disease known"
+                    [formGroup]="formGroupH" [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                  <div *ngIf="visibles['Dominance']" class="reg-container">
+
+                    <reg-select *ngIf="visibles['Dominance']" controlName="Dominance" placeholder="# Dominance"
+                      [formGroup]="formGroupH" [choices]="[
+                    'Left',
+                    'Right',
+                    'Co-dominant',
+                    'Not Documented'
+                  ]" fxFlex="1 0 200px"></reg-select>
+
+                    <reg-select *ngIf="visibles['StenSource']" controlName="StenSource"
+                      placeholder="# Source(s) used to quantify stenosis" [formGroup]="formGroupH" [choices]="[
+                    'Angiogram',
+                    'CT',
+                    'IVUS',
+                    'Progress/OP Note',
+                    'Other',
+                    'Multiple'
+                  ]" fxFlex="1 0 250px"></reg-select>
+
+                    <reg-select *ngIf="visibles['NumDisV']" controlName="NumDisV"
+                      placeholder="# Number Diseased Vessels" [formGroup]="formGroupH" [choices]="[
+                    'None',
+                    'One',
+                    'Two',
+                    'Three'
+                  ]" fxFlex="1 0 250px"></reg-select>
+                  </div>
+                </div>
+
+                <div class="reg-title" *ngIf="visibles['coronary']" id="coronary">Coronary</div>
+
+                <div *ngIf="visibles['PctStenKnown']" class="reg-container">
+                  <reg-select *ngIf="visibles['PctStenKnown']" controlName="PctStenKnown" placeholder="Native Artery"
+                    [formGroup]="formGroupH" [choices]="[
+                  'Yes',
+                  'No'
+                ]" fxFlex="1 0 250px">% Stenosis Known</reg-select>
+
+                  <reg-select *ngIf="visibles['GraftsPrsnt']" controlName="GraftsPrsnt" placeholder="Graft(s)"
+                    [formGroup]="formGroupH" [choices]="[
+                  'Yes',
+                  'No'
+                ]" fxFlex="1 0 250px">Graft(s) Present</reg-select>
+
+                  <reg-select *ngIf="visibles['StentPrsnt']" controlName="StentPrsnt" placeholder="Stent(s)"
+                    [formGroup]="formGroupH" [choices]="[
+                  'Yes',
+                  'No'
+                ]" fxFlex="1 0 250px">Stent(s) Present</reg-select>
+
+                  <reg-select *ngIf="visibles['FFRPerf']" controlName="FFRPerf"
+                    placeholder="Fractional Flow Reserve (FFR)" [formGroup]="formGroupH" [choices]="[
+                  'Yes',
+                  'No'
+                ]" fxFlex="1 0 250px">Performed</reg-select>
+
+                  <reg-select *ngIf="visibles['IFRPerf']" controlName="IFRPerf"
+                    placeholder="Instantaneous wave-free ratio (iFR)" [formGroup]="formGroupH" [choices]="[
+                  'Yes',
+                  'No'
+                ]" fxFlex="1 0 250px">Performed</reg-select>
+                </div>
+
+                <ng-template ngFor let-i="index" let-cathresult [ngForOf]="H_cathResults">
+                  <fieldset class="fieldset-label" *ngIf="visibles['cathresult'+i]" [id]="'cathresult'+i">
+                    <legend>{{ cathresult[0] }}</legend>
+
+                    <div class="reg-container">
+                      <reg-input *ngIf="visibles[cathresult[1]]" [controlName]="cathresult[1]"
+                        placeholder="Native Artery" [formGroup]="formGroupH" type="number" require="false"
+                        fxFlex="1 0 200px">% Stenosis Known
+                      </reg-input>
+
+                      <reg-select *ngIf="visibles[cathresult[2]]" [controlName]="cathresult[2]" placeholder="Graft(s)"
+                        [formGroup]="formGroupH" [choices]="[
+                    'Patent',
+                    'Stenosis >=50%',
+                    '100% occlusion',
+                    'Not Documented'
+                  ]" require="false" fxFlex="1 0 200px">Graft(s) Present</reg-select>
+
+                      <reg-select *ngIf="visibles[cathresult[3]]" [controlName]="cathresult[3]" placeholder="Stent(s)"
+                        [formGroup]="formGroupH" [choices]="[
+                    'Patent',
+                    'Stenosis >=50%',
+                    'Not Documented'
+                  ]" require="false" fxFlex="1 0 200px">Stent(s) Present</reg-select>
+
+                      <reg-input *ngIf="visibles[cathresult[4]]" [controlName]="cathresult[4]"
+                        placeholder="Fractional Flow Reserve (FFR)" [formGroup]="formGroupH" type="number"
+                        require="false" fxFlex="1 0 250px">
+                        Performed</reg-input>
+
+                      <reg-input *ngIf="visibles[cathresult[5]]" [controlName]="cathresult[5]"
+                        placeholder="Instantaneous wave-free ratio (iFR)" [formGroup]="formGroupH" type="number"
+                        require="false" fxFlex="1 0 250px">Performed</reg-input>
+                    </div>
+                  </fieldset>
+
+                </ng-template>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="SyntaxScrKnown" placeholder="Syntax Score Known" [formGroup]="formGroupH"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-input *ngIf="visibles['SyntaxScr']" controlName="SyntaxScr" placeholder="# Syntax Score"
+                    [formGroup]="formGroupH" type="number" fxFlex="1 0 200px"></reg-input>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="StressTst" placeholder="Stress Test" [formGroup]="formGroupH"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select *ngIf="visibles['StrsTstRes']" controlName="StrsTstRes" placeholder="# Result"
+                    [formGroup]="formGroupH" [choices]="[
+                    'Negative (Normal)',
+                    'Positive (Abnormal)',
+                    'Not Documented'
+                  ]" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="HDEFD" placeholder="Ejection Fraction Done" [formGroup]="formGroupH"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-input *ngIf="visibles['HDEF']" controlName="HDEF" placeholder="# Ejection Fraction (%)"
+                    [formGroup]="formGroupH" type="number" fxFlex="1 0 200px"></reg-input>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="DimAvail" placeholder="Dimensions Available" [formGroup]="formGroupH"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                  <div *ngIf="visibles['LVSD']" class="reg-container">
+                    <reg-input *ngIf="visibles['LVSD']" controlName="LVSD" placeholder="#LV End-Systolic Dimension (mm)"
+                      [formGroup]="formGroupH" type="number" fxFlex="1 0 250px"></reg-input>
+
+                    <reg-input *ngIf="visibles['LVEDD']" controlName="LVEDD"
+                      placeholder="#LV End-Diastolic Dimension (mm)" [formGroup]="formGroupH" type="number"
+                      fxFlex="1 0 250px"></reg-input>
+                  </div>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="PASYSMeas" placeholder="PA Systolic Pressure Measured"
+                    [formGroup]="formGroupH" [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-input *ngIf="visibles['PASYS']" controlName="PASYS" placeholder="# PA Systolic Pressure (mmHg)"
+                    [formGroup]="formGroupH" type="number" fxFlex="1 0 250px"></reg-input>
+
+                </div>
+
+                <h3 class="reg-title">Aortic Valve</h3>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="VDInsufA" placeholder="Aortic Insufficiency" [formGroup]="formGroupH"
+                    [choices]="[
+                      'None',
+                      'Trivial/Trace',
+                      'Mild',
+                      'Moderate',
+                      'Severe',
+                      'Not Documented'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['VDAVEccJet']" controlName="VDAVEccJet"
+                    placeholder="Eccentric Jet" [formGroup]="formGroupH" [choices]="['Yes', 'No', 'Not Documented']"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                </div>
+
+                <reg-select controlName="VDAort" placeholder="Aortic Valve Disease" [formGroup]="formGroupH"
+                  [choices]="['Yes', 'No']"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['VDStenA']" controlName="VDStenA"
+                    placeholder="Aortic Stenosis" [formGroup]="formGroupH" [choices]="['Yes', 'No']" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['AoHemoDatAvail']" controlName="AoHemoDatAvail"
+                    placeholder="Hemodynamic/Echo data available" [formGroup]="formGroupH" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-input class="reg-item-indent3" *ngIf="visibles['VDAoVA']" controlName="VDAoVA"
+                    placeholder="Smallest Aortic Valve Area (cm2)" [formGroup]="formGroupH" type="number"
+                    fxFlex="1 0 250px">
+                  </reg-input>
+
+                  <reg-input class="reg-item-indent3" *ngIf="visibles['VDGradA']" controlName="VDGradA"
+                    placeholder="Highest Mean Gradient (mmHg)" [formGroup]="formGroupH" type="number"
+                    fxFlex="1 0 250px">
+                  </reg-input>
+
+                  <reg-input class="reg-item-indent3" *ngIf="visibles['VDVMax']" controlName="VDVMax"
+                    placeholder="Maximum Aortic jet velocity (Vmax)" [formGroup]="formGroupH" type="number"
+                    fxFlex="1 0 250px">
+                  </reg-input>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['VDAoPrimEt']" controlName="VDAoPrimEt"
+                  placeholder="AV Disease Etiology" [formGroup]="formGroupH" [choices]="[
+                    'Bicuspid valve disease',
+                    'Congenital (other than bicuspid)',
+                    'Degenerative- Calcified',
+                    'Degenerative- Leaflet prolapse with or without annular dilatation',
+                    'Degenerative- Pure annular dilatation without leaflet prolapse',
+                    'Degenerative - Commissural Rupture',
+                    'Degenerative - Extensive Fenestration',
+                    'Degenerative - Leaflet perforation / hole',
+                    'Endocarditis with root abscess',
+                    'Endocarditis without root abscess',
+                    'LV Outflow Tract Pathology, HOCM',
+                    'LV Outflow Tract Pathology, Sub-aortic membrane',
+                    'LV Outflow Tract Pathology, Sub-aortic Tunnel',
+                    'LV Outflow Tract Pathology, Other',
+                    'Primary Aortic Disease, Aortic Dissection',
+                    'Primary Aortic Disease, Atherosclerotic Aneurysm',
+                    'Primary Aortic Disease, Ehler- Danlos Syndrome',
+                    'Primary Aortic Disease, Hypertensive Aneurysm',
+                    'Primary Aortic Disease, Idiopathic Root dilatation',
+                    'Primary Aortic Disease, Inflammatory',
+                    'Primary Aortic Disease, Loeys-Dietz Syndrome',
+                    'Primary Aortic Disease, Marfan Syndrome',
+                    'Primary Aortic Disease, Other Connective tissue disorder',
+                    'Reoperation - Failure of previous AV repair or replacement',
+                    'Rheumatic',
+                    'Supravalvular Aortic Stenosis',
+                    'Trauma',
+                    'Tumor, Carcinoid',
+                    'Tumor, Myxoma',
+                    'Tumor, Papillary Fibroelastoma',
+                    'Tumor, Other',
+                    'Mixed Etiology',
+                    'Not documented'
+                  ]"></reg-select>
+
+                <reg-select class="reg-item-indent2" *ngIf="visibles['VDAoSievers']" controlName="VDAoSievers"
+                  placeholder="Sievers Class" [formGroup]="formGroupH" [choices]="[
+                    '0: No raphe',
+                    '1: one raphe',
+                    '2: two raphe',
+                    'Not Documented'
+                  ]"></reg-select>
+
+
+                <h3 class="reg-title">Mitral Valve</h3>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="VDInsufM" placeholder="Mitral Insufficiency" [formGroup]="formGroupH"
+                    [choices]="[
+                      'None',
+                      'Trivial/Trace',
+                      'Mild',
+                      'Moderate',
+                      'Severe',
+                      'Not Documented'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['VDMVEccJet']" controlName="VDMVEccJet"
+                    placeholder="Eccentric Jet" [formGroup]="formGroupH" [choices]="['Yes', 'No', 'Not Documented']"
+                    fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <reg-select controlName="VDMit" placeholder="Mitral Valve Disease" [formGroup]="formGroupH"
+                  [choices]="['Yes', 'No']"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['VDStenM']" controlName="VDStenM"
+                    placeholder="Mitral Stenosis" [formGroup]="formGroupH" [choices]="['Yes', 'No']" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['MiHemoDatAvail']" controlName="MiHemoDatAvail"
+                    placeholder="Hemodynamic/ Echo data available" [formGroup]="formGroupH" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-input class="reg-item-indent3" *ngIf="visibles['VDMVA']" controlName="VDMVA"
+                    placeholder="Smallest Valve Area (cm2)" [formGroup]="formGroupH" type="text" fxFlex="1 0 200px">
+                  </reg-input>
+
+                  <reg-input class="reg-item-indent3" *ngIf="visibles['VDGradM']" controlName="VDGradM"
+                    placeholder="Highest Mean Gradient (mmHg)" [formGroup]="formGroupH" type="text" fxFlex="1 0 250px">
+                  </reg-input>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['VDMiPrimEt']" controlName="VDMiPrimEt"
+                  placeholder="MV Disease Etiology" [formGroup]="formGroupH" [choices]="[
+                    'Myxomatous degeneration / prolapse',
+                    'Rheumatic',
+                    'Ischemic - acute, post infarction (MI <= 21 days)',
+                    'Ischemic - chronic (MI > 21 days)',
+                    'Non-ischemic Cardiomyopathy',
+                    'Endocarditis',
+                    'Hypertrophic Obstructive Cardiomyopathy (HOCM)',
+                    'Tumor, Carcinoid',
+                    'Tumor, Myxoma',
+                    'Tumor, Papillary fibroelastoma',
+                    'Tumor, Other',
+                    'Carcinoid',
+                    'Trauma',
+                    'Congenital',
+                    'Pure annular dilatation',
+                    'Reoperation - Failure of previous MV repair or replacement',
+                    'Mixed Etiology',
+                    'Not documented'
+                  ]"></reg-select>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['VDMiPrimLes']" controlName="VDMiPrimLes"
+                  placeholder="MV Lesion" [formGroup]="formGroupH" [choices]="[
+                    'Leaflet prolapse, posterior',
+                    'Leaflet prolapse, bileaflet',
+                    'Leaflet prolapse, anterior',
+                    'Leaflet prolapse, unspecified',
+                    'Elongated/ruptured chord(s)/Flail',
+                    'Annular dilatation',
+                    'Leaflet calcification',
+                    'Leaflet perforation/hole',
+                    'Mitral annular calcification',
+                    'Papillary muscle elongation 11 Papillary muscle rupture',
+                    'Leaflet thickening',
+                    'Leaflet retraction',
+                    'Chordal tethering',
+                    'Chordal thickening/retraction/fusion',
+                    'Commissural fusion 17 Mixed lesion',
+                    'Not documented'
+                  ]"></reg-select>
+
+                <h3 class="reg-title">Tricuspid Valve</h3>
+
+                <reg-select controlName="VDInsufT" placeholder="Tricuspid Insufficiency" [formGroup]="formGroupH"
+                  [choices]="[
+                    'None',
+                    'Trivial/Trace',
+                    'Mild',
+                    'Moderate',
+                    'Severe',
+                    'Not Documented'
+                  ]"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="VDTrAnnMeas" placeholder="Tricuspid Annular Echo Measurement Available"
+                    [formGroup]="formGroupH" [choices]="['Yes', 'No']" fxFlex="1 0 350px"></reg-select>
+
+                  <reg-input class="reg-item-indent" *ngIf="visibles['VDTrAnnSize']" controlName="VDTrAnnSize"
+                    placeholder="Tricuspid Diameter" [formGroup]="formGroupH" type="number" fxFlex="1 0 200px">cm
+                  </reg-input>
+
+                </div>
+
+                <div class="reg-container">
+                  <reg-select controlName="VDTr" placeholder="Tricuspid Valve Disease" [formGroup]="formGroupH"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                  <div *ngIf="visibles['VDStenT']" class="reg-container">
+                    <reg-select class="reg-item-indent" *ngIf="visibles['VDStenT']" controlName="VDStenT"
+                      placeholder="Tricuspid Stenosis" [formGroup]="formGroupH" [choices]="['Yes', 'No']"
+                      fxFlex="1 0 200px"></reg-select>
+
+                    <reg-select class="reg-item-indent" *ngIf="visibles['VDTrPrimEt']" controlName="VDTrPrimEt"
+                      placeholder="TV Etiology" [formGroup]="formGroupH" [choices]="[
+                      'Functional/secondary',
+                      'Endocarditis',
+                      'Carcinoid',
+                      'Congenital',
+                      'Degenerative',
+                      'Pacing wire/catheter induced dysfunction',
+                      'Rheumatic',
+                      'Tumor',
+                      'Trauma',
+                      'Reoperation - Failure of previous TV repair or replacement',
+                      'Mixed Etiology',
+                      'Not Documented'
+                    ]" fxFlex="1 0 400px"></reg-select>
+                  </div>
+                </div>
+
+                <h3 class="reg-title">Pulmonic Valve</h3>
+
+                <reg-select controlName="VDInsufP" placeholder="Pulmonic Insufficiency" [formGroup]="formGroupH"
+                  [choices]="[
+                    'None',
+                    'Trivial/Trace',
+                    'Mild',
+                    'Moderate',
+                    'Severe',
+                    'Not Documented'
+                  ]"></reg-select>
+
+                <reg-select controlName="VDPulm" placeholder="Pulmonic Valve Disease" [formGroup]="formGroupH"
+                  [choices]="['Yes', 'No']"></reg-select>
+
+                <div class="reg-container" *ngIf="visibles['RVEDDKnown']">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['RVEDDKnown']" controlName="RVEDDKnown"
+                    placeholder="RVEDD Known" [formGroup]="formGroupH" [choices]="['Yes', 'No']" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['RVEDD']" controlName="RVEDD"
+                    placeholder="RVEDD Indexed to BSA (cm2)" [formGroup]="formGroupH" type="number" fxFlex="1 0 200px">
+                  </reg-input>
+
+                </div>
+
+                <div class="reg-container" *ngIf="visibles['VDStenP']">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['VDStenP']" controlName="VDStenP"
+                    placeholder="Pulmonic Stenosis" [formGroup]="formGroupH" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['PuHemoDatAvail']" controlName="PuHemoDatAvail"
+                    placeholder="Hemodynamic /Echo data available" [formGroup]="formGroupH" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px"></reg-select>
+
+                  <reg-input class="reg-item-indent3" *ngIf="visibles['VDGradP']" controlName="VDGradP"
+                    placeholder="Highest Mean Gradient (mmHg)" [formGroup]="formGroupH" type="number"
+                    fxFlex="1 0 200px">
+                  </reg-input>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['VDPuEt']" controlName="VDPuEt"
+                  placeholder="Etiology" [formGroup]="formGroupH" [choices]="[
+                    'Acquired',
+                    'Congenital, s/p Tetralogy of Fallot (TOF) repair',
+                    'Congenital, no prior Tetralogy of Fallot (TOF) repair',
+                    'Reoperation - Failure of previous PV repair or replacement',
+                    'Mixed Etiology',
+                    'Not Documented'
+                  ]"></reg-select>
+
+              </div>
+            </form>
+          </div>
+        </section>
+
+
         <!--
         <section class="section-wrapper" scrollSpyElement id="sectionX">
           <div class="section-title">
