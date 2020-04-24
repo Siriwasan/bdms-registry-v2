@@ -8,17 +8,34 @@ reg-datepicker {
   padding: 5px 10px;
 }
 
+// placeholder text (1)
+::ng-deep .mat-select-value {
+  white-space: normal !important;
+}
+
+// placeholder text (2)
+::ng-deep .mat-form-field-label {
+  white-space: normal !important;
+}
+
+// mat-select option (1)
 ::ng-deep .mat-option {
   height: auto !important;
 }
 
+// mat-select option (2)
 ::ng-deep .mat-option-text {
   white-space: normal;
-  line-height: 2;
+  line-height: 1.4;
   text-indent: -15px;
-  padding: 7px 15px 7px 15px;
+  padding: 11px 15px 11px 15px;
   display: flex !important;
   align-items: center;
+}
+
+// selected value
+::ng-deep .mat-select-value-text {
+  white-space: normal !important;
 }
 
 .registry-container {
