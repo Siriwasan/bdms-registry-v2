@@ -8,13 +8,40 @@ reg-datepicker {
   padding: 5px 10px;
 }
 
-// placeholder text (1)
+//#region Multi-line
+
+// placeholder text
+::ng-deep .mat-form-field-label {
+  white-space: normal !important;
+}
+
+reg-input {
+  ::ng-deep .mat-form-field-label-wrapper {
+    height: 45px !important;
+    top: -37px !important;
+    display: flex;
+    align-items: flex-end;
+
+    label {
+      position: unset !important;
+    }
+  }
+
+  ::ng-deep
+    .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float
+    label {
+    transform: translateY(-1.1em) scale(0.75) perspective(100px) translateZ(0.001px) !important;
+    -ms-transform: translateY(-1.1em) scale(0.75);
+  }
+}
+
+// mat-select value
 ::ng-deep .mat-select-value {
   white-space: normal !important;
 }
 
-// placeholder text (2)
-::ng-deep .mat-form-field-label {
+// mat-select value text
+::ng-deep .mat-select-value-text {
   white-space: normal !important;
 }
 
@@ -27,16 +54,14 @@ reg-datepicker {
 ::ng-deep .mat-option-text {
   white-space: normal;
   line-height: 1.4;
-  text-indent: -15px;
-  padding: 11px 15px 11px 15px;
+  // text-indent: -15px;
+  // padding: 11px 15px 11px 15px;
+  padding: 11px 0;
   display: flex !important;
   align-items: center;
 }
 
-// selected value
-::ng-deep .mat-select-value-text {
-  white-space: normal !important;
-}
+//#endregion
 
 .registry-container {
   display: flex;
