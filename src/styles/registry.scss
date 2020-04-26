@@ -260,23 +260,24 @@ reg-input {
   box-sizing: border-box;
   display: flex;
   flex: 1 1 auto;
+  align-items: flex-end;
 }
 
-.reg-container-indent {
-  flex-flow: row wrap;
-  box-sizing: border-box;
-  display: flex;
-  flex: 1 1 auto;
-  margin-left: 10px;
-}
+// .reg-container-indent {
+//   flex-flow: row wrap;
+//   box-sizing: border-box;
+//   display: flex;
+//   flex: 1 1 auto;
+//   margin-left: 10px;
+// }
 
-.reg-container-indent2 {
-  flex-flow: row wrap;
-  box-sizing: border-box;
-  display: flex;
-  flex: 1 1 auto;
-  margin-left: 20px;
-}
+// .reg-container-indent2 {
+//   flex-flow: row wrap;
+//   box-sizing: border-box;
+//   display: flex;
+//   flex: 1 1 auto;
+//   margin-left: 20px;
+// }
 
 .reg-container-col {
   flex-flow: column nowrap;
@@ -285,21 +286,21 @@ reg-input {
   flex: 1 1 auto;
 }
 
-.reg-container-col-indent {
-  flex-flow: column nowrap;
-  box-sizing: border-box;
-  display: flex;
-  flex: 1 1 auto;
-  margin-left: 10px;
-}
+// .reg-container-col-indent {
+//   flex-flow: column nowrap;
+//   box-sizing: border-box;
+//   display: flex;
+//   flex: 1 1 auto;
+//   margin-left: 10px;
+// }
 
-.reg-container-col-indent2 {
-  flex-flow: column nowrap;
-  box-sizing: border-box;
-  display: flex;
-  flex: 1 1 auto;
-  margin-left: 20px;
-}
+// .reg-container-col-indent2 {
+//   flex-flow: column nowrap;
+//   box-sizing: border-box;
+//   display: flex;
+//   flex: 1 1 auto;
+//   margin-left: 20px;
+// }
 
 @mixin big-input-component-theme($theme) {
   // retrieve variables from theme
@@ -360,6 +361,12 @@ reg-input {
   padding-top: 20px;
   // color: #757575;
   // color: var(--secondary-text-color);
+}
+
+.reg-header {
+  padding-left: 10px;
+  padding-bottom: 25px;
+  color: #757575;
 }
 
 .section-subtitle {

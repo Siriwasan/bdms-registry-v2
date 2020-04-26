@@ -313,7 +313,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'PCancCaseDt', parentControl: 'PCancCase', conditions: ['Yes'] },
     { control: 'PCancCaseTmg', parentControl: 'PCancCase', conditions: ['Yes'] },
     { control: 'PCancCaseRsn', parentControl: 'PCancCase', conditions: ['Yes'] },
-    { control: 'I:planPreProd', parentControl: 'PCancCase', conditions: ['Yes'] },
+    { control: 'planPreProd', parentControl: 'PCancCase', conditions: ['Yes'] },
     { control: 'PCancCaseCAB', parentControl: 'PCancCase', conditions: ['Yes'] },
     { control: 'PCancCaseMech', parentControl: 'PCancCase', conditions: ['Yes'] },
     { control: 'PCancCaseONC', parentControl: 'PCancCase', conditions: ['Yes'] },
@@ -323,7 +323,7 @@ export const Acsd290Conditions: FormConditions = {
 
     { control: 'CCancCaseTmg', parentControl: 'CCancCase', conditions: ['Yes'] },
     { control: 'CCancCaseRsn', parentControl: 'CCancCase', conditions: ['Yes'] },
-    { control: 'I:planProd', parentControl: 'CCancCase', conditions: ['Yes'] },
+    { control: 'planProd', parentControl: 'CCancCase', conditions: ['Yes'] },
     { control: 'CCancCaseCAB', parentControl: 'CCancCase', conditions: ['Yes'] },
     { control: 'CCancCaseMech', parentControl: 'CCancCase', conditions: ['Yes'] },
     { control: 'CCancCaseONC', parentControl: 'CCancCase', conditions: ['Yes'] },
@@ -353,14 +353,14 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'CPBCmb', parentControl: 'CPBUtil', conditions: ['Combination'] },
     { control: 'CPBCmbR', parentControl: 'CPBCmb', conditions: ['Unplanned'] },
 
-    { control: 'I:artCannSite', parentControl: 'CPBUtil', conditions: ['Combination', 'Full'] },
+    { control: 'artCannSite', parentControl: 'CPBUtil', conditions: ['Combination', 'Full'] },
     { control: 'CanArtStAort', parentControl: 'CPBUtil', conditions: ['Combination', 'Full'] },
     { control: 'CanArtStFem', parentControl: 'CPBUtil', conditions: ['Combination', 'Full'] },
     { control: 'CanArtStAx', parentControl: 'CPBUtil', conditions: ['Combination', 'Full'] },
     { control: 'CanArtStInn', parentControl: 'CPBUtil', conditions: ['Combination', 'Full'] },
     { control: 'CanArtStOth', parentControl: 'CPBUtil', conditions: ['Combination', 'Full'] },
 
-    { control: 'I:venCannSite', parentControl: 'CPBUtil', conditions: ['Combination', 'Full'] },
+    { control: 'venCannSite', parentControl: 'CPBUtil', conditions: ['Combination', 'Full'] },
     { control: 'CanVenStFem', parentControl: 'CPBUtil', conditions: ['Combination', 'Full'] },
     { control: 'CanVenStJug', parentControl: 'CPBUtil', conditions: ['Combination', 'Full'] },
     { control: 'CanVenStRtA', parentControl: 'CPBUtil', conditions: ['Combination', 'Full'] },
@@ -407,7 +407,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'PPEF', parentControl: 'PPEFMeas', conditions: ['Yes'] },
   ],
   sectionJ: [
-    { control: 'J:sectionJBody', parentControl: 'I:OpCAB', conditions: ['!', 'No'] },
+    { control: 'sectionJBody', parentControl: 'I:OpCAB', conditions: ['!', 'No'] },
     { control: 'IMAUsed', parentControl: 'I:OpCAB', conditions: ['!', 'No'] },
     { control: 'NoIMARsn', parentControl: 'IMAUsed', conditions: ['No'] },
     { control: 'NumIMADA', parentControl: 'IMAUsed', conditions: ['Yes'] },
@@ -431,14 +431,14 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'DistVein', parentControl: 'VenousCondUsed', conditions: ['Yes'] },
     { control: 'DistVeinHTech', parentControl: 'VenousCondUsed', conditions: ['Yes'] },
     { control: 'SaphHarPrepTm', parentControl: 'VenousCondUsed', conditions: ['Yes'] },
-    { control: 'J:numDistAnas', parentControl: 'I:OpCAB', conditions: ['!', 'No'] },
+    { control: 'numDistAnas', parentControl: 'I:OpCAB', conditions: ['!', 'No'] },
     { control: 'NumOArtD', parentControl: 'I:OpCAB', conditions: ['!', 'No'] },
     { control: 'NumArtVenComp', parentControl: 'I:OpCAB', conditions: ['!', 'No'] },
     { control: 'NumVenArtComp', parentControl: 'I:OpCAB', conditions: ['!', 'No'] },
     { control: 'NumArtArtComp', parentControl: 'I:OpCAB', conditions: ['!', 'No'] },
     { control: 'ProxTech', parentControl: 'I:OpCAB', conditions: ['!', 'No'] },
 
-    { control: 'J:cabg1', parentControl: 'I:OpCAB', conditions: ['!', 'No'] },
+    { control: 'cabg1', parentControl: 'I:OpCAB', conditions: ['!', 'No'] },
     { control: 'CAB01', parentControl: 'I:OpCAB', conditions: ['!', 'No'] },
     { control: 'CABDistSite01', parentControl: 'CAB01', conditions: ['Yes'] },
     { control: 'CABProximalSite01', parentControl: 'CAB01', conditions: ['Yes'] },
@@ -447,7 +447,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'CABEndArt01', parentControl: 'CAB01', conditions: ['Yes'] },
     { control: 'CABVeinPatAng01', parentControl: 'CAB01', conditions: ['Yes'] },
 
-    { control: 'J:cabg2', parentControl: 'CAB01', conditions: ['Yes'] },
+    { control: 'cabg2', parentControl: 'CAB01', conditions: ['Yes'] },
     { control: 'CAB02', parentControl: 'CAB01', conditions: ['Yes'] },
     { control: 'CABDistSite02', parentControl: 'CAB02', conditions: ['Yes'] },
     { control: 'CABProximalSite02', parentControl: 'CAB02', conditions: ['Yes'] },
@@ -456,7 +456,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'CABEndArt02', parentControl: 'CAB02', conditions: ['Yes'] },
     { control: 'CABVeinPatAng02', parentControl: 'CAB02', conditions: ['Yes'] },
 
-    { control: 'J:cabg3', parentControl: 'CAB02', conditions: ['Yes'] },
+    { control: 'cabg3', parentControl: 'CAB02', conditions: ['Yes'] },
     { control: 'CAB03', parentControl: 'CAB02', conditions: ['Yes'] },
     { control: 'CABDistSite03', parentControl: 'CAB03', conditions: ['Yes'] },
     { control: 'CABProximalSite03', parentControl: 'CAB03', conditions: ['Yes'] },
@@ -465,7 +465,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'CABEndArt03', parentControl: 'CAB03', conditions: ['Yes'] },
     { control: 'CABVeinPatAng03', parentControl: 'CAB03', conditions: ['Yes'] },
 
-    { control: 'J:cabg4', parentControl: 'CAB03', conditions: ['Yes'] },
+    { control: 'cabg4', parentControl: 'CAB03', conditions: ['Yes'] },
     { control: 'CAB04', parentControl: 'CAB03', conditions: ['Yes'] },
     { control: 'CABDistSite04', parentControl: 'CAB04', conditions: ['Yes'] },
     { control: 'CABProximalSite04', parentControl: 'CAB04', conditions: ['Yes'] },
@@ -474,7 +474,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'CABEndArt04', parentControl: 'CAB04', conditions: ['Yes'] },
     { control: 'CABVeinPatAng04', parentControl: 'CAB04', conditions: ['Yes'] },
 
-    { control: 'J:cabg5', parentControl: 'CAB04', conditions: ['Yes'] },
+    { control: 'cabg5', parentControl: 'CAB04', conditions: ['Yes'] },
     { control: 'CAB05', parentControl: 'CAB04', conditions: ['Yes'] },
     { control: 'CABDistSite05', parentControl: 'CAB05', conditions: ['Yes'] },
     { control: 'CABProximalSite05', parentControl: 'CAB05', conditions: ['Yes'] },
@@ -483,7 +483,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'CABEndArt05', parentControl: 'CAB05', conditions: ['Yes'] },
     { control: 'CABVeinPatAng05', parentControl: 'CAB05', conditions: ['Yes'] },
 
-    { control: 'J:cabg6', parentControl: 'CAB05', conditions: ['Yes'] },
+    { control: 'cabg6', parentControl: 'CAB05', conditions: ['Yes'] },
     { control: 'CAB06', parentControl: 'CAB05', conditions: ['Yes'] },
     { control: 'CABDistSite06', parentControl: 'CAB06', conditions: ['Yes'] },
     { control: 'CABProximalSite06', parentControl: 'CAB06', conditions: ['Yes'] },
@@ -492,7 +492,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'CABEndArt06', parentControl: 'CAB06', conditions: ['Yes'] },
     { control: 'CABVeinPatAng06', parentControl: 'CAB06', conditions: ['Yes'] },
 
-    { control: 'J:cabg7', parentControl: 'CAB06', conditions: ['Yes'] },
+    { control: 'cabg7', parentControl: 'CAB06', conditions: ['Yes'] },
     { control: 'CAB07', parentControl: 'CAB06', conditions: ['Yes'] },
     { control: 'CABDistSite07', parentControl: 'CAB07', conditions: ['Yes'] },
     { control: 'CABProximalSite07', parentControl: 'CAB07', conditions: ['Yes'] },
@@ -501,7 +501,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'CABEndArt07', parentControl: 'CAB07', conditions: ['Yes'] },
     { control: 'CABVeinPatAng07', parentControl: 'CAB07', conditions: ['Yes'] },
 
-    { control: 'J:cabg8', parentControl: 'CAB07', conditions: ['Yes'] },
+    { control: 'cabg8', parentControl: 'CAB07', conditions: ['Yes'] },
     { control: 'CAB08', parentControl: 'CAB07', conditions: ['Yes'] },
     { control: 'CABDistSite08', parentControl: 'CAB08', conditions: ['Yes'] },
     { control: 'CABProximalSite08', parentControl: 'CAB08', conditions: ['Yes'] },
@@ -510,7 +510,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'CABEndArt08', parentControl: 'CAB08', conditions: ['Yes'] },
     { control: 'CABVeinPatAng08', parentControl: 'CAB08', conditions: ['Yes'] },
 
-    { control: 'J:cabg9', parentControl: 'CAB08', conditions: ['Yes'] },
+    { control: 'cabg9', parentControl: 'CAB08', conditions: ['Yes'] },
     { control: 'CAB09', parentControl: 'CAB08', conditions: ['Yes'] },
     { control: 'CABDistSite09', parentControl: 'CAB09', conditions: ['Yes'] },
     { control: 'CABProximalSite09', parentControl: 'CAB09', conditions: ['Yes'] },
@@ -519,7 +519,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'CABEndArt09', parentControl: 'CAB09', conditions: ['Yes'] },
     { control: 'CABVeinPatAng09', parentControl: 'CAB09', conditions: ['Yes'] },
 
-    { control: 'J:cabg10', parentControl: 'CAB09', conditions: ['Yes'] },
+    { control: 'cabg10', parentControl: 'CAB09', conditions: ['Yes'] },
     { control: 'CAB10', parentControl: 'CAB09', conditions: ['Yes'] },
     { control: 'CABDistSite10', parentControl: 'CAB10', conditions: ['Yes'] },
     { control: 'CABProximalSite10', parentControl: 'CAB10', conditions: ['Yes'] },
@@ -529,7 +529,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'CABVeinPatAng10', parentControl: 'CAB10', conditions: ['Yes'] },
   ],
   sectionK: [
-    { control: 'K:sectionKBody', parentControl: 'I:OpValve', conditions: ['Yes'] },
+    { control: 'sectionKBody', parentControl: 'I:OpValve', conditions: ['Yes'] },
     { control: 'ValExp', parentControl: 'I:OpValve', conditions: ['Yes'] },
     { control: 'ValExpPos', parentControl: 'ValExp', conditions: ['Yes'] },
     { control: 'ValExpTyp', parentControl: 'ValExp', conditions: ['Yes'] },
@@ -593,16 +593,16 @@ export const Acsd290Conditions: FormConditions = {
     //  LEAFLET RESECTION
     { control: 'VSMitRLeafRes', parentControl: 'VSMVRepApp', conditions: ['Surgical'] },
     { control: 'VSLeafResTyp', parentControl: 'VSMitRLeafRes', conditions: ['Yes'] },
-    { control: 'K:resectLoc', parentControl: 'VSMitRLeafRes', conditions: ['Yes'] },
+    { control: 'resectLoc', parentControl: 'VSMitRLeafRes', conditions: ['Yes'] },
     { control: 'VSLeafAntRes', parentControl: 'VSMitRLeafRes', conditions: ['Yes'] },
     { control: 'VSLeafAntResLocD', parentControl: 'VSLeafAntRes', conditions: ['Yes'] },
-    { control: 'K:antLeafRect', parentControl: 'VSLeafAntResLocD', conditions: ['Yes'] },
+    { control: 'antLeafRect', parentControl: 'VSLeafAntResLocD', conditions: ['Yes'] },
     { control: 'VSLeafAntResA1', parentControl: 'VSLeafAntResLocD', conditions: ['Yes'] },
     { control: 'VSLeafAntResA2', parentControl: 'VSLeafAntResLocD', conditions: ['Yes'] },
     { control: 'VSLeafAntResA3', parentControl: 'VSLeafAntResLocD', conditions: ['Yes'] },
     { control: 'VSLeafPostRes', parentControl: 'VSMitRLeafRes', conditions: ['Yes'] },
     { control: 'VSLeafPostResLocD', parentControl: 'VSLeafPostRes', conditions: ['Yes'] },
-    { control: 'K:postLeafRect', parentControl: 'VSLeafPostResLocD', conditions: ['Yes'] },
+    { control: 'postLeafRect', parentControl: 'VSLeafPostResLocD', conditions: ['Yes'] },
     { control: 'VSLeafPostResP1', parentControl: 'VSLeafPostResLocD', conditions: ['Yes'] },
     { control: 'VSLeafPostResP2', parentControl: 'VSLeafPostResLocD', conditions: ['Yes'] },
     { control: 'VSLeafPostResP3', parentControl: 'VSLeafPostResLocD', conditions: ['Yes'] },
@@ -611,16 +611,16 @@ export const Acsd290Conditions: FormConditions = {
 
     //  NEOCORDS (PTFE)
     { control: 'VSMitRPTFE', parentControl: 'VSMVRepApp', conditions: ['Surgical'] },
-    { control: 'K:neoLoc', parentControl: 'VSMitRPTFE', conditions: ['Yes'] },
+    { control: 'neoLoc', parentControl: 'VSMitRPTFE', conditions: ['Yes'] },
     { control: 'VSNeoAnt', parentControl: 'VSMitRPTFE', conditions: ['Yes'] },
     { control: 'VSNeoAntLocD', parentControl: 'VSNeoAnt', conditions: ['Yes'] },
-    { control: 'K:antNeoLoc', parentControl: 'VSNeoAntLocD', conditions: ['Yes'] },
+    { control: 'antNeoLoc', parentControl: 'VSNeoAntLocD', conditions: ['Yes'] },
     { control: 'VSNeoAntA1', parentControl: 'VSNeoAntLocD', conditions: ['Yes'] },
     { control: 'VSNeoAntA2', parentControl: 'VSNeoAntLocD', conditions: ['Yes'] },
     { control: 'VSNeoAntA3', parentControl: 'VSNeoAntLocD', conditions: ['Yes'] },
     { control: 'VSNeoPost', parentControl: 'VSMitRPTFE', conditions: ['Yes'] },
     { control: 'VSNeoPostLocD', parentControl: 'VSNeoPost', conditions: ['Yes'] },
-    { control: 'K:postNeoLoc', parentControl: 'VSNeoPostLocD', conditions: ['Yes'] },
+    { control: 'postNeoLoc', parentControl: 'VSNeoPostLocD', conditions: ['Yes'] },
     { control: 'VSNeoPostP1', parentControl: 'VSNeoPostLocD', conditions: ['Yes'] },
     { control: 'VSNeoPostP2', parentControl: 'VSNeoPostLocD', conditions: ['Yes'] },
     { control: 'VSNeoPostP3', parentControl: 'VSNeoPostLocD', conditions: ['Yes'] },
@@ -629,16 +629,16 @@ export const Acsd290Conditions: FormConditions = {
 
     //  CHORDAL/LEAFLET TRANSFER
     { control: 'VSMitRChord', parentControl: 'VSMVRepApp', conditions: ['Surgical'] },
-    { control: 'K:chorLeafLoc', parentControl: 'VSMitRChord', conditions: ['Yes'] },
+    { control: 'chorLeafLoc', parentControl: 'VSMitRChord', conditions: ['Yes'] },
     { control: 'VSChorLfAnt', parentControl: 'VSMitRChord', conditions: ['Yes'] },
     { control: 'VSChorLfAntLocD', parentControl: 'VSChorLfAnt', conditions: ['Yes'] },
-    { control: 'K:antChorLfLoc', parentControl: 'VSChorLfAntLocD', conditions: ['Yes'] },
+    { control: 'antChorLfLoc', parentControl: 'VSChorLfAntLocD', conditions: ['Yes'] },
     { control: 'VSChorLfAntA1', parentControl: 'VSChorLfAntLocD', conditions: ['Yes'] },
     { control: 'VSChorLfAntA2', parentControl: 'VSChorLfAntLocD', conditions: ['Yes'] },
     { control: 'VSChorLfAntA3', parentControl: 'VSChorLfAntLocD', conditions: ['Yes'] },
     { control: 'VSChorLfPost', parentControl: 'VSMitRChord', conditions: ['Yes'] },
     { control: 'VSChorLfPostLocD', parentControl: 'VSChorLfPost', conditions: ['Yes'] },
-    { control: 'K:postChorLfLoc', parentControl: 'VSChorLfPostLocD', conditions: ['Yes'] },
+    { control: 'postChorLfLoc', parentControl: 'VSChorLfPostLocD', conditions: ['Yes'] },
     { control: 'VSChorLfPostP1', parentControl: 'VSChorLfPostLocD', conditions: ['Yes'] },
     { control: 'VSChorLfPostP2', parentControl: 'VSChorLfPostLocD', conditions: ['Yes'] },
     { control: 'VSChorLfPostP3', parentControl: 'VSChorLfPostLocD', conditions: ['Yes'] },
@@ -772,7 +772,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'VExpDt3', parentControl: 'VExp3', conditions: ['Yes, not during this procedure'] },
   ],
   sectionM: [
-    { control: 'M:sectionMBody', parentControl: 'I:OpOCard', conditions: ['!', 'No'] },
+    { control: 'sectionMBody', parentControl: 'I:OpOCard', conditions: ['!', 'No'] },
     { control: 'OCarASDPFO', parentControl: 'I:OpOCard', conditions: ['!', 'No'] },
     { control: 'OCarASDSec', parentControl: 'I:OpOCard', conditions: ['!', 'No'] },
     { control: 'OCarAFibIntraLes', parentControl: 'I:OpOCard', conditions: ['!', 'No'] },
@@ -807,16 +807,16 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'OCarOthr', parentControl: 'I:OpOCard', conditions: ['!', 'No'] },
   ],
   sectionM1: [
-    { control: 'M1:sectionM1Body', parentControl: 'I:AFibProc', conditions: ['Yes'] },
+    { control: 'sectionM1Body', parentControl: 'I:AFibProc', conditions: ['Yes'] },
     { control: 'OCarAFibLesLoc', parentControl: 'I:AFibProc', conditions: ['Yes'] },
-    { control: 'M1:methLesCrea', parentControl: 'I:AFibProc', conditions: ['Yes'] },
+    { control: 'methLesCrea', parentControl: 'I:AFibProc', conditions: ['Yes'] },
     { control: 'OCarAFibMethRad', parentControl: 'I:AFibProc', conditions: ['Yes'] },
     { control: 'OCarAFibMethRadBi', parentControl: 'OCarAFibMethRad', conditions: ['Yes'] },
     { control: 'OCarAFibMethCAS', parentControl: 'I:AFibProc', conditions: ['Yes'] },
     { control: 'OCarAFibMethCryo', parentControl: 'I:AFibProc', conditions: ['Yes'] },
     { control: 'OCarLesDoc', parentControl: 'I:AFibProc', conditions: ['Yes'] },
-    { control: 'M1:afib1Fig', parentControl: 'OCarLesDoc', conditions: ['Yes'] },
-    { control: 'M1:afib2Fig', parentControl: 'OCarLesDoc', conditions: ['Yes'] },
+    { control: 'afib1Fig', parentControl: 'OCarLesDoc', conditions: ['Yes'] },
+    { control: 'afib2Fig', parentControl: 'OCarLesDoc', conditions: ['Yes'] },
     { control: 'AFibLes1', parentControl: 'OCarLesDoc', conditions: ['Yes'] },
     { control: 'AFibLes2', parentControl: 'OCarLesDoc', conditions: ['Yes'] },
     { control: 'AFibLes3a', parentControl: 'OCarLesDoc', conditions: ['Yes'] },
@@ -837,42 +837,42 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'AFitLesCSL', parentControl: 'OCarLesDoc', conditions: ['Yes'] },
   ],
   sectionM2: [
-    { control: 'M2:sectionM2Body', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
+    { control: 'sectionM2Body', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
     { control: 'FamHistAorta', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
     { control: 'PatGenHist', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
     { control: 'PriorAorta', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
 
-    { control: 'M2:int1', parentControl: 'PriorAorta', conditions: ['Yes'] },
+    { control: 'int1', parentControl: 'PriorAorta', conditions: ['Yes'] },
     { control: 'PriorRepRoot', parentControl: 'PriorAorta', conditions: ['Yes'] },
     { control: 'PriorRepTyRoot', parentControl: 'PriorRepRoot', conditions: ['Yes'] },
     { control: 'PriorFailRoot', parentControl: 'PriorRepRoot', conditions: ['Yes'] },
     { control: 'PriorProgRoot', parentControl: 'PriorRepRoot', conditions: ['Yes'] },
 
-    { control: 'M2:int2', parentControl: 'PriorAorta', conditions: ['Yes'] },
+    { control: 'int2', parentControl: 'PriorAorta', conditions: ['Yes'] },
     { control: 'PriorRepAsc', parentControl: 'PriorAorta', conditions: ['Yes'] },
     { control: 'PriorRepTyAsc', parentControl: 'PriorRepAsc', conditions: ['Yes'] },
     { control: 'PriorFailAsc', parentControl: 'PriorRepAsc', conditions: ['Yes'] },
     { control: 'PriorProgAsc', parentControl: 'PriorRepAsc', conditions: ['Yes'] },
 
-    { control: 'M2:int3', parentControl: 'PriorAorta', conditions: ['Yes'] },
+    { control: 'int3', parentControl: 'PriorAorta', conditions: ['Yes'] },
     { control: 'PriorRepArch', parentControl: 'PriorAorta', conditions: ['Yes'] },
     { control: 'PriorRepTyArch', parentControl: 'PriorRepArch', conditions: ['Yes'] },
     { control: 'PriorFailArch', parentControl: 'PriorRepArch', conditions: ['Yes'] },
     { control: 'PriorProgArch', parentControl: 'PriorRepArch', conditions: ['Yes'] },
 
-    { control: 'M2:int4', parentControl: 'PriorAorta', conditions: ['Yes'] },
+    { control: 'int4', parentControl: 'PriorAorta', conditions: ['Yes'] },
     { control: 'PriorRepDesc', parentControl: 'PriorAorta', conditions: ['Yes'] },
     { control: 'PriorRepTyDesc', parentControl: 'PriorRepDesc', conditions: ['Yes'] },
     { control: 'PriorFailDesc', parentControl: 'PriorRepDesc', conditions: ['Yes'] },
     { control: 'PriorProgDesc', parentControl: 'PriorRepDesc', conditions: ['Yes'] },
 
-    { control: 'M2:int5', parentControl: 'PriorAorta', conditions: ['Yes'] },
+    { control: 'int5', parentControl: 'PriorAorta', conditions: ['Yes'] },
     { control: 'PriorRepSupraAb', parentControl: 'PriorAorta', conditions: ['Yes'] },
     { control: 'PriorRepTySupraAb', parentControl: 'PriorRepSupraAb', conditions: ['Yes'] },
     { control: 'PriorFailSupraAb', parentControl: 'PriorRepSupraAb', conditions: ['Yes'] },
     { control: 'PriorProgSupraAb', parentControl: 'PriorRepSupraAb', conditions: ['Yes'] },
 
-    { control: 'M2:int6', parentControl: 'PriorAorta', conditions: ['Yes'] },
+    { control: 'int6', parentControl: 'PriorAorta', conditions: ['Yes'] },
     { control: 'PriorRepInfraAb', parentControl: 'PriorAorta', conditions: ['Yes'] },
     { control: 'PriorRepTyInfraAb', parentControl: 'PriorRepInfraAb', conditions: ['Yes'] },
     { control: 'PriorFailInfraAb', parentControl: 'PriorRepInfraAb', conditions: ['Yes'] },
@@ -892,7 +892,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'InfecType', parentControl: 'Infection', conditions: ['Yes'] },
 
     { control: 'Trauma', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
-    { control: 'M2:traumaLoc', parentControl: 'Trauma', conditions: ['Yes'] },
+    { control: 'traumaLoc', parentControl: 'Trauma', conditions: ['Yes'] },
     { control: 'TraumacRoot', parentControl: 'Trauma', conditions: ['Yes'] },
     { control: 'TraumaAsc', parentControl: 'Trauma', conditions: ['Yes'] },
     { control: 'TraumaArch', parentControl: 'Trauma', conditions: ['Yes'] },
@@ -923,7 +923,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'DistalExtLoc', parentControl: 'DistalExt', conditions: ['Yes'] },
 
     { control: 'DisMal', parentControl: 'PrimIndic', conditions: ['Dissection'] },
-    { control: 'M2:malperfus', parentControl: 'DisMal', conditions: ['Yes'] },
+    { control: 'malperfus', parentControl: 'DisMal', conditions: ['Yes'] },
     { control: 'DisMalCor', parentControl: 'DisMal', conditions: ['Yes'] },
     { control: 'DisMalRtSubclav', parentControl: 'DisMal', conditions: ['Yes'] },
     { control: 'DisMalRtComCar', parentControl: 'DisMal', conditions: ['Yes'] },
@@ -943,7 +943,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'DisRuptLoc', parentControl: 'DisRupt', conditions: ['Yes'] },
 
     //  ROOT
-    { control: 'M2:root', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
+    { control: 'root', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
     { control: 'RootAAnnEctasia', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
     { control: 'RootDilaAsym', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
     { control: 'RoottDilaAsym', parentControl: 'RootDilaAsym', conditions: ['Yes'] },
@@ -951,7 +951,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'RootSinusLoc', parentControl: 'RootSinus', conditions: ['Yes'] },
 
     //  ARCH
-    { control: 'M2:arch', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
+    { control: 'arch', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
     { control: 'ArchType', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
     { control: 'ArchAbRtSub', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
     { control: 'ArchAbLtSub', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
@@ -961,7 +961,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'ArchPatIMA', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
 
     //  ASCENDING
-    { control: 'M2:ascending', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
+    { control: 'ascending', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
     { control: 'AscAsymDil', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
     { control: 'AscProxGr', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
 
@@ -983,7 +983,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'Diam3DZone10', parentControl: 'Diameter3DMeas', conditions: ['Yes'] },
     { control: 'Diam3DZone11', parentControl: 'Diameter3DMeas', conditions: ['Yes'] },
 
-    { control: 'M2:preopDiameter', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
+    { control: 'preopDiameter', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
     { control: 'DiamLgstAnnulus', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
     { control: 'DiamLgstSinus', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
     { control: 'DiamLgstSinotubular', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
@@ -1002,7 +1002,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'DiamLgstZone11', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
 
     //  INTERVENTION
-    { control: 'M2:intervention', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
+    { control: 'intervention', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
     { control: 'PlanStagHybrid', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
     { control: 'ArchProc', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
     { control: 'ArchDisTech', parentControl: 'ArchProc', conditions: ['Yes'] },
@@ -1036,7 +1036,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'EndovasTEVAR', parentControl: 'EndovasProc', conditions: ['Yes'] },
 
     //  Arch Vessel management
-    { control: 'M2:archVessel', parentControl: 'EndovasProc', conditions: ['Yes'] },
+    { control: 'archVessel', parentControl: 'EndovasProc', conditions: ['Yes'] },
     { control: 'Innominate', parentControl: 'EndovasProc', conditions: ['Yes'] },
     { control: 'InAortaInnom', parentControl: 'Innominate', conditions: ['Extra-anatomic Bypass'] },
     {
@@ -1097,7 +1097,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'OthOther', parentControl: 'OthArchVes', conditions: ['Yes'] },
 
     //  Visceral Vessel management
-    { control: 'M2:visceralVessel', parentControl: 'EndovasProc', conditions: ['Yes'] },
+    { control: 'visceralVessel', parentControl: 'EndovasProc', conditions: ['Yes'] },
     { control: 'Celiac', parentControl: 'EndovasProc', conditions: ['Yes'] },
     { control: 'CeliacAortaCeli', parentControl: 'Celiac', conditions: ['Extra-anatomic Bypass'] },
     {
@@ -1193,16 +1193,16 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'IntraOpAngVol', parentControl: 'IntraOpAng', conditions: ['Yes'] },
     { control: 'IntraOpAngFlTm', parentControl: 'IntraOpAng', conditions: ['Yes'] },
 
-    { control: 'M2:endovasDevices', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
+    { control: 'endovasDevices', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
     { control: 'ADevIns', parentControl: 'I:AortProc', conditions: ['!', 'No'] },
-    { control: 'M2:endoDevice1', parentControl: 'ADevIns', conditions: ['Yes'] },
+    { control: 'endoDevice1', parentControl: 'ADevIns', conditions: ['Yes'] },
     { control: 'ADevLoc01', parentControl: 'ADevIns', conditions: ['Yes'] },
     { control: 'ADevDelMeth01', parentControl: 'ADevIns', conditions: ['Yes'] },
     { control: 'ADevOut01', parentControl: 'ADevIns', conditions: ['Yes'] },
     { control: 'ADevModel01', parentControl: 'ADevIns', conditions: ['Yes'] },
     { control: 'ADevUDI01', parentControl: 'ADevIns', conditions: ['Yes'] },
 
-    { control: 'M2:endoDevice2', parentControl: 'ADevIns', conditions: ['Yes'] },
+    { control: 'endoDevice2', parentControl: 'ADevIns', conditions: ['Yes'] },
     { control: 'ADevLoc02', parentControl: 'ADevIns', conditions: ['Yes'] },
     {
       control: 'ADevDelMeth02',
@@ -1226,7 +1226,7 @@ export const Acsd290Conditions: FormConditions = {
     },
 
     {
-      control: 'M2:endoDevice3',
+      control: 'endoDevice3',
       parentControl: 'ADevLoc02',
       conditions: ['!', 'No additional devices inserted'],
     },
@@ -1257,7 +1257,7 @@ export const Acsd290Conditions: FormConditions = {
     },
 
     {
-      control: 'M2:endoDevice4',
+      control: 'endoDevice4',
       parentControl: 'ADevLoc03',
       conditions: ['!', 'No additional devices inserted'],
     },
@@ -1288,7 +1288,7 @@ export const Acsd290Conditions: FormConditions = {
     },
 
     {
-      control: 'M2:endoDevice5',
+      control: 'endoDevice5',
       parentControl: 'ADevLoc04',
       conditions: ['!', 'No additional devices inserted'],
     },
@@ -1319,7 +1319,7 @@ export const Acsd290Conditions: FormConditions = {
     },
 
     {
-      control: 'M2:endoDevice6',
+      control: 'endoDevice6',
       parentControl: 'ADevLoc05',
       conditions: ['!', 'No additional devices inserted'],
     },
@@ -1350,7 +1350,7 @@ export const Acsd290Conditions: FormConditions = {
     },
 
     {
-      control: 'M2:endoDevice7',
+      control: 'endoDevice7',
       parentControl: 'ADevLoc06',
       conditions: ['!', 'No additional devices inserted'],
     },
@@ -1381,7 +1381,7 @@ export const Acsd290Conditions: FormConditions = {
     },
 
     {
-      control: 'M2:endoDevice8',
+      control: 'endoDevice8',
       parentControl: 'ADevLoc07',
       conditions: ['!', 'No additional devices inserted'],
     },
@@ -1412,7 +1412,7 @@ export const Acsd290Conditions: FormConditions = {
     },
 
     {
-      control: 'M2:endoDevice9',
+      control: 'endoDevice9',
       parentControl: 'ADevLoc08',
       conditions: ['!', 'No additional devices inserted'],
     },
@@ -1443,7 +1443,7 @@ export const Acsd290Conditions: FormConditions = {
     },
 
     {
-      control: 'M2:endoDevice10',
+      control: 'endoDevice10',
       parentControl: 'ADevLoc09',
       conditions: ['!', 'No additional devices inserted'],
     },
@@ -1474,7 +1474,7 @@ export const Acsd290Conditions: FormConditions = {
     },
 
     {
-      control: 'M2:endoDevice11',
+      control: 'endoDevice11',
       parentControl: 'ADevLoc10',
       conditions: ['!', 'No additional devices inserted'],
     },
@@ -1505,7 +1505,7 @@ export const Acsd290Conditions: FormConditions = {
     },
 
     {
-      control: 'M2:endoDevice12',
+      control: 'endoDevice12',
       parentControl: 'ADevLoc11',
       conditions: ['!', 'No additional devices inserted'],
     },
@@ -1536,7 +1536,7 @@ export const Acsd290Conditions: FormConditions = {
     },
 
     {
-      control: 'M2:endoDevice13',
+      control: 'endoDevice13',
       parentControl: 'ADevLoc12',
       conditions: ['!', 'No additional devices inserted'],
     },
@@ -1567,7 +1567,7 @@ export const Acsd290Conditions: FormConditions = {
     },
 
     {
-      control: 'M2:endoDevice14',
+      control: 'endoDevice14',
       parentControl: 'ADevLoc13',
       conditions: ['!', 'No additional devices inserted'],
     },
@@ -1598,7 +1598,7 @@ export const Acsd290Conditions: FormConditions = {
     },
 
     {
-      control: 'M2:endoDevice15',
+      control: 'endoDevice15',
       parentControl: 'ADevLoc14',
       conditions: ['!', 'No additional devices inserted'],
     },
@@ -1629,18 +1629,18 @@ export const Acsd290Conditions: FormConditions = {
     },
   ],
   sectionM3: [
-    { control: 'M3:sectionM3Body', parentControl: 'M:OCarCong', conditions: ['Yes'] },
-    { control: 'M3:congenDiag', parentControl: 'M:OCarCong', conditions: ['Yes'] },
+    { control: 'sectionM3Body', parentControl: 'M:OCarCong', conditions: ['Yes'] },
+    { control: 'congenDiag', parentControl: 'M:OCarCong', conditions: ['Yes'] },
     { control: 'OCarCongDiag1', parentControl: 'M:OCarCong', conditions: ['Yes'] },
     { control: 'OCarCongDiag2', parentControl: 'M:OCarCong', conditions: ['Yes'] },
     { control: 'OCarCongDiag3', parentControl: 'M:OCarCong', conditions: ['Yes'] },
-    { control: 'M3:congenProc', parentControl: 'M:OCarCong', conditions: ['Yes'] },
+    { control: 'congenProc', parentControl: 'M:OCarCong', conditions: ['Yes'] },
     { control: 'OCarCongProc1', parentControl: 'M:OCarCong', conditions: ['Yes'] },
     { control: 'OCarCongProc2', parentControl: 'M:OCarCong', conditions: ['Yes'] },
     { control: 'OCarCongProc3', parentControl: 'M:OCarCong', conditions: ['Yes'] },
   ],
   sectionN: [
-    { control: 'N:sectionNBody', parentControl: 'I:OpONCard', conditions: ['Yes'] },
+    { control: 'sectionNBody', parentControl: 'I:OpONCard', conditions: ['Yes'] },
     { control: 'ONCCarEn', parentControl: 'I:OpONCard', conditions: ['Yes'] },
     { control: 'ONCOVasc', parentControl: 'I:OpONCard', conditions: ['Yes'] },
     { control: 'ONCOThor', parentControl: 'I:OpONCard', conditions: ['Yes'] },
@@ -1678,7 +1678,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'WoundIntMuscle', parentControl: 'WoundInter', conditions: ['Yes'] },
     { control: 'WoundIntOmental', parentControl: 'WoundInter', conditions: ['Yes'] },
 
-    { control: 'P:compliOperative', parentControl: 'Complics', conditions: ['Yes'] },
+    { control: 'compliOperative', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'COpReBld', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'COpReBldTim', parentControl: 'COpReBld', conditions: ['Yes'] },
     { control: 'COpReVlv', parentControl: 'Complics', conditions: ['Yes'] },
@@ -1693,17 +1693,17 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'CSternal', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'CSternalDehis', parentControl: 'CSternal', conditions: ['Yes'] },
 
-    { control: 'P:compliInfection', parentControl: 'Complics', conditions: ['Yes'] },
+    { control: 'compliInfection', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'CSepsis', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'CSepsisPBC', parentControl: 'CSepsis', conditions: ['Yes'] },
 
-    { control: 'P:compliNeuroCentral', parentControl: 'Complics', conditions: ['Yes'] },
+    { control: 'compliNeuroCentral', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'CNStrokP', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'CNStrokTTIA', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'CNEnceph', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'CNComa', parentControl: 'Complics', conditions: ['Yes'] },
 
-    { control: 'P:compliNeuroPeripheral', parentControl: 'Complics', conditions: ['Yes'] },
+    { control: 'compliNeuroPeripheral', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'CNParal', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'CNParalTy', parentControl: 'CNParal', conditions: ['Yes'] },
     { control: 'CNParesis', parentControl: 'Complics', conditions: ['Yes'] },
@@ -1711,7 +1711,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'PhrenNrvInj', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'RecLarynNrvInj', parentControl: 'Complics', conditions: ['Yes'] },
 
-    { control: 'P:compliPulmonary', parentControl: 'Complics', conditions: ['Yes'] },
+    { control: 'compliPulmonary', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'CPVntLng', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'CPPneum', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'CVTE', parentControl: 'Complics', conditions: ['Yes'] },
@@ -1720,18 +1720,18 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'CPlEff', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'PostOpPneumo', parentControl: 'Complics', conditions: ['Yes'] },
 
-    { control: 'P:compliRenal', parentControl: 'Complics', conditions: ['Yes'] },
+    { control: 'compliRenal', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'CRenFail', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'CRenDial', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'DialDur', parentControl: 'CRenDial', conditions: ['Yes'] },
     { control: 'DialStat', parentControl: 'CRenDial', conditions: ['Yes'] },
     { control: 'CUltraFil', parentControl: 'Complics', conditions: ['Yes'] },
 
-    { control: 'P:compliVascular', parentControl: 'Complics', conditions: ['Yes'] },
+    { control: 'compliVascular', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'CVaIlFem', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'CVaLbIsc', parentControl: 'Complics', conditions: ['Yes'] },
 
-    { control: 'P:compliMAD', parentControl: 'Complics', conditions: ['Yes'] },
+    { control: 'compliMAD', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'CMAD', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'CMADCanIns', parentControl: 'CMAD', conditions: ['Yes'] },
     { control: 'CMADHem', parentControl: 'CMAD', conditions: ['Yes'] },
@@ -1740,7 +1740,7 @@ export const Acsd290Conditions: FormConditions = {
     { control: 'CMADInf', parentControl: 'CMAD', conditions: ['Yes'] },
     { control: 'CMADOther', parentControl: 'CMAD', conditions: ['Yes'] },
 
-    { control: 'P:compliOther', parentControl: 'Complics', conditions: ['Yes'] },
+    { control: 'compliOther', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'CRhythmDis', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'COtArrst', parentControl: 'Complics', conditions: ['Yes'] },
     { control: 'COtAortEndo', parentControl: 'Complics', conditions: ['Yes'] },
@@ -1792,7 +1792,7 @@ export const Acsd290Conditions: FormConditions = {
       ],
     },
     {
-      control: 'Q:medPresDC',
+      control: 'medPresDC',
       parentControl: 'DischMortStat',
       conditions: [
         'Discharged alive, last known status is alive',
@@ -1800,7 +1800,7 @@ export const Acsd290Conditions: FormConditions = {
       ],
     },
     {
-      control: 'Q:antiplateletDC',
+      control: 'antiplateletDC',
       parentControl: 'DischMortStat',
       conditions: [
         'Discharged alive, last known status is alive',
@@ -1832,7 +1832,7 @@ export const Acsd290Conditions: FormConditions = {
       ],
     },
     {
-      control: 'Q:anticoagulantDC',
+      control: 'anticoagulantDC',
       parentControl: 'DischMortStat',
       conditions: [
         'Discharged alive, last known status is alive',
@@ -1880,7 +1880,7 @@ export const Acsd290Conditions: FormConditions = {
       ],
     },
     {
-      control: 'Q:otherDC',
+      control: 'otherDC',
       parentControl: 'DischMortStat',
       conditions: [
         'Discharged alive, last known status is alive',
@@ -1955,7 +1955,7 @@ export const Acsd290Conditions: FormConditions = {
   ],
   sectionR: [
     {
-      control: 'R:sectionRBody',
+      control: 'sectionRBody',
       parentControl: 'Q:DischMortStat',
       conditions: [
         'Discharged alive, last known status is alive',
