@@ -149,6 +149,7 @@ export class Acsd290Component extends RegistryFormComponent
 
   ngAfterViewInit() {
     super.ngAfterViewInit();
+    this.formGroupI.controls['OpCAB'].setValue('Yes');
   }
 
   ngOnDestroy() {

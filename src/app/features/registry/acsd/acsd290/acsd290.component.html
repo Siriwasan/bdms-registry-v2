@@ -1924,7 +1924,7 @@
           </div>
         </section> -->
 
-        <section class="section-wrapper" scrollSpyElement id="sectionI">
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionI">
           <div class="section-title">
             {{ getTocTitle('I') }}
           </div>
@@ -2313,8 +2313,6 @@
 
                 <reg-select controlName="OpONCard" placeholder="Other Non-Cardiac Procedure" [formGroup]="formGroupI"
                   [choices]="['Yes', 'No']"></reg-select>
-
-                <!-- CPT CODE -->
 
                 <div class="reg-container">
 
@@ -2796,6 +2794,240 @@
               </div>
             </form>
           </div>
+        </section> -->
+
+        <section class="section-wrapper" scrollSpyElement id="sectionJ">
+          <div class="section-title">
+            {{ getTocTitle('J') }}
+          </div>
+          <form [formGroup]="formGroupJ" #formDirectiveJ="ngForm">
+            <div *ngIf="visibles['sectionJBody']; else sectionJ_other_content" id="sectionJBody"
+              class="section-body reg-container-col">
+
+              <div class="reg-container">
+
+                <reg-select *ngIf="visibles['IMAUsed']" controlName="IMAUsed" placeholder="Internal Mammary Artery used"
+                  [formGroup]="formGroupJ" [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['NoIMARsn']" controlName="NoIMARsn"
+                  placeholder="Reason for no IMA" [formGroup]="formGroupJ" [choices]="[
+                    'Subclavian stenosis',
+                    'Previous cardiac or thoracic surgery',
+                    'Previous mediastinal radiation',
+                    'Emergent or salvage procedure',
+                    'No (bypassable) LAD disease',
+                    'Other'
+                  ]" fxFlex="1 0 200px"></reg-select>
+
+              </div>
+
+              <reg-input class="reg-item-indent" *ngIf="visibles['NumIMADA']" controlName="NumIMADA"
+                placeholder="Total Number of Distal Anastomoses with IMA conduits" [formGroup]="formGroupJ"
+                type="number"></reg-input>
+
+              <div *ngIf="visibles['LeftIMA']" class="reg-container">
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['LeftIMA']" controlName="LeftIMA"
+                  placeholder="Left IMA" [formGroup]="formGroupJ"
+                  [choices]="['Yes, pedicle', 'Yes, skeletonized', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                <reg-select class="reg-item-indent2" *ngIf="visibles['LIMAHarvTech']" controlName="LIMAHarvTech"
+                  placeholder="LIMA Harvest technique" [formGroup]="formGroupJ" [choices]="[
+                    'Direct Vision (open)',
+                    'Thoracoscopy',
+                    'Combination',
+                    'Robotic Assist'
+                  ]" fxFlex="1 0 200px"></reg-select>
+
+              </div>
+
+              <div *ngIf="visibles['RightIMA']" class="reg-container">
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['RightIMA']" controlName="RightIMA"
+                  placeholder="Right IMA" [formGroup]="formGroupJ"
+                  [choices]="['Yes, pedicle', 'Yes, skeletonized', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                <reg-select class="reg-item-indent2" *ngIf="visibles['RIMAHarvTech']" controlName="RIMAHarvTech"
+                  placeholder="RIMA Harvest technique" [formGroup]="formGroupJ" [choices]="[
+                    'Direct Vision (open)',
+                    'Thoracoscopy',
+                    'Combination',
+                    'Robotic Assist'
+                  ]" fxFlex="1 0 200px"></reg-select>
+
+              </div>
+
+              <reg-select *ngIf="visibles['RadialArtUsed']" controlName="RadialArtUsed"
+                placeholder="Radial Artery (arteries) used" [formGroup]="formGroupJ" [choices]="['Yes', 'No']">
+              </reg-select>
+
+              <reg-input class="reg-item-indent" *ngIf="visibles['NumRadDA']" controlName="NumRadDA"
+                placeholder="Total Number of Distal Anastomoses with radial artery conduits" [formGroup]="formGroupJ"
+                type="number">
+              </reg-input>
+
+              <div *ngIf="visibles['RadHTech']" class="reg-container">
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['RadHTech']" controlName="RadHTech"
+                  placeholder="Radial Artery Harvest Technique" [formGroup]="formGroupJ"
+                  [choices]="['Endoscopic', 'Direct Vision (open)', 'Both']" fxFlex="1 0 200px"></reg-select>
+
+                <reg-input class="reg-item-indent" *ngIf="visibles['RadHarvPrepTm']" controlName="RadHarvPrepTm"
+                  placeholder="Radial Artery Harvest and Prep Time (min)" [formGroup]="formGroupJ" type="number"
+                  require="false" fxFlex="1 0 200px"></reg-input>
+
+              </div>
+
+              <reg-select *ngIf="visibles['VenousCondUsed']" controlName="VenousCondUsed"
+                placeholder="Venous Conduit(s) used" [formGroup]="formGroupJ" [choices]="['Yes', 'No']"></reg-select>
+
+              <reg-input *ngIf="visibles['DistVein']" class="subitem-horz" controlName="DistVein"
+                placeholder="Total Number of Distal Anastomoses with venous conduits" [formGroup]="formGroupJ"
+                type="number">
+              </reg-input>
+
+              <div *ngIf="visibles['DistVeinHTech']" class="reg-container">
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['DistVeinHTech']" controlName="DistVeinHTech"
+                  placeholder="Vein Harvest Technique" [formGroup]="formGroupJ" [choices]="[
+                    'Endoscopic',
+                    'Direct Vision (open)',
+                    'Both',
+                    'Cryopreserved'
+                  ]" fxFlex="1 0 200px"></reg-select>
+
+                <reg-input class="reg-item-indent" *ngIf="visibles['SaphHarPrepTm']" controlName="SaphHarPrepTm"
+                  placeholder="Vein Harvest and Prep Time (min)" [formGroup]="formGroupJ" type="number" require="false"
+                  fxFlex="1 0 200px"></reg-input>
+
+              </div>
+
+              <h4 class="reg-title" *ngIf="visibles['numDistAnas']" id="numDistAnas">Number of Distal Anastomoses</h4>
+
+              <div class="reg-container">
+
+                <reg-input *ngIf="visibles['NumOArtD']" controlName="NumOArtD"
+                  placeholder="with other arterial conduits" [formGroup]="formGroupJ" type="number" fxFlex="1 0 250px">
+                </reg-input>
+
+                <reg-input *ngIf="visibles['NumArtVenComp']" controlName="NumArtVenComp"
+                  placeholder="with arterial- venous composite conduits" [formGroup]="formGroupJ" type="number"
+                  fxFlex="1 0 250px">
+                </reg-input>
+
+              </div>
+
+              <div class="reg-container">
+
+                <reg-input *ngIf="visibles['NumVenArtComp']" controlName="NumVenArtComp"
+                  placeholder="with venous -arterial composite conduits" [formGroup]="formGroupJ" type="number"
+                  fxFlex="1 0 250px">
+                </reg-input>
+
+                <reg-input *ngIf="visibles['NumArtArtComp']" controlName="NumArtArtComp"
+                  placeholder="with arterial- arterial composite conduits" [formGroup]="formGroupJ" type="number"
+                  fxFlex="1 0 250px"></reg-input>
+
+              </div>
+
+              <!-- (Note: the total number of distals above should equal the number of columns in the CABG Grid) -->
+
+              <reg-select *ngIf="visibles['ProxTech']" controlName="ProxTech" placeholder="Proximal Technique"
+                [formGroup]="formGroupJ" [choices]="[
+                  'Single Cross Clamp',
+                  'Partial Occlusion Clamp',
+                  'Anastomotic Assist Device',
+                  'None (isolated in situ mammary)'
+                ]"></reg-select>
+
+              <ng-template ngFor let-i="index" let-cabg [ngForOf]="J_cabg">
+                <!-- <div [id]="'cabg' + (i+1)" style="margin-top: 25px;" *ngFor="let cabg of J_cabg; let i = index"> -->
+                <!-- <h4 [id]="'cabg' + (i+1)">{{ cabg[0] }}</h4> -->
+                <fieldset class="fieldset-label" *ngIf="visibles['cabg' + (i+1)]">
+                  <legend>{{ cabg[0] }}</legend>
+
+                  <div class="reg-container-col">
+                    <reg-select *ngIf="visibles[cabg[1]]" [controlName]="cabg[1]" placeholder="GRAFT"
+                      [formGroup]="formGroupJ" [choices]="['Yes', 'No']"></reg-select>
+
+                    <div class="reg-container">
+
+                      <reg-select class="reg-item-indent" *ngIf="visibles[cabg[2]]" [controlName]="cabg[2]"
+                        placeholder="DISTAL INSERTION SITE" [formGroup]="formGroupJ" [choices]="[
+                          'Left Main',
+                          'Proximal LAD',
+                          'Mid LAD',
+                          'Distal LAD',
+                          'Diagonal 1',
+                          'Diagonal 2',
+                          'Diagonal 3',
+                          'Circumflex',
+                          'Obtuse Marginal 1',
+                          'Obtuse Marginal 2',
+                          'Obtuse Marginal 3',
+                          'Ramus',
+                          'RCA',
+                          'Acute Marginal (AM)',
+                          'Posterior Descending (PDA)',
+                          'Posterolateral (PLB)',
+                          'Other'
+                        ]" fxFlex="1 0 250px"></reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibles[cabg[3]]" [controlName]="cabg[3]"
+                        placeholder="PROXIMAL SITE" [formGroup]="formGroupJ" [choices]="[
+                          'In Situ Mammary',
+                          'Ascending aorta',
+                          'Descending aorta',
+                          'Subclavian artery',
+                          'Innominate artery',
+                          'T-graft off SVG',
+                          'T-graft off Radial',
+                          'T-graft off LIMA',
+                          'T-graft off RIMA',
+                          'Natural Y vein graft',
+                          'Other'
+                        ]" fxFlex="1 0 250px"></reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibles[cabg[4]]" [controlName]="cabg[4]"
+                        placeholder="CONDUIT" [formGroup]="formGroupJ" [choices]="[
+                          'Vein graft',
+                          'In Situ LIMA',
+                          'In Situ RIMA',
+                          'Free IMA',
+                          'Composite artery-vein',
+                          'Radial artery',
+                          'Other arteries, homograft',
+                          'Synthetic graft'
+                        ]" fxFlex="1 0 250px"></reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibles[cabg[5]]" [controlName]="cabg[5]"
+                        placeholder="DISTAL POSITION" [formGroup]="formGroupJ" [choices]="[
+                          'End to Side',
+                          'Sequential (side to side)'
+                        ]" fxFlex="1 0 250px"></reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibles[cabg[6]]" [controlName]="cabg[6]"
+                        placeholder="ENDARTERECTOMY" [formGroup]="formGroupJ" [choices]="['Yes', 'No']"
+                        fxFlex="1 0 250px"></reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibles[cabg[7]]" [controlName]="cabg[7]"
+                        placeholder="VEIN PATCH ANGIOPLASTY" [formGroup]="formGroupJ" [choices]="['Yes', 'No']"
+                        fxFlex="1 0 250px"></reg-select>
+
+                    </div>
+                  </div>
+                </fieldset>
+
+              </ng-template>
+
+            </div>
+            <ng-template #sectionJ_other_content>
+              <div class="section-body">
+                You need to select Coronary Artery Bypass in section I.
+              </div>
+            </ng-template>
+          </form>
+
         </section>
 
         <!--

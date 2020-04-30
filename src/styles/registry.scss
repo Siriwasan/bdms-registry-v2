@@ -31,9 +31,29 @@ reg-input {
     .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float
     label {
     transform: translateY(-1.1em) scale(0.75) perspective(100px) translateZ(0.001px) !important;
-    -ms-transform: translateY(-1.1em) scale(0.75);
+    -ms-transform: translateY(-1.1em) scale(0.75) !important;
   }
 }
+
+// reg-select {
+// ::ng-deep .mat-form-field-label-wrapper {
+//   display: flex;
+//   align-items: flex-end;
+//   top: -25px !important;
+//   height: 50px !important;
+
+//   label {
+//     position: unset !important;
+//   }
+// }
+
+//   ::ng-deep
+//     .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float
+//     label {
+//     transform: translateY(-1.4em) scale(0.75) perspective(100px) translateZ(0.001px) !important;
+//     -ms-transform: translateY(-1.4em) scale(0.75) !important;
+//   }
+// }
 
 // mat-select value
 ::ng-deep .mat-select-value {
@@ -382,5 +402,6 @@ reg-input {
 
   legend {
     color: #757575;
+    margin-left: 8px;
   }
 }
