@@ -376,6 +376,30 @@ reg-input {
   }
 }
 
+.reg-item-indent4 {
+  margin-left: 2.5em;
+
+  ::ng-deep .mat-form-field::before {
+    content: '••••';
+    color: #c2c2c2;
+    position: absolute;
+    top: 1.3em;
+    left: -2.5em;
+  }
+}
+
+.reg-item-indent5 {
+  margin-left: 3em;
+
+  ::ng-deep .mat-form-field::before {
+    content: '•••••';
+    color: #c2c2c2;
+    position: absolute;
+    top: 1.3em;
+    left: -3em;
+  }
+}
+
 .reg-title {
   padding-left: 10px;
   padding-top: 20px;

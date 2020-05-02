@@ -2796,7 +2796,7 @@
           </div>
         </section> -->
 
-        <section class="section-wrapper" scrollSpyElement id="sectionJ">
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionJ">
           <div class="section-title">
             {{ getTocTitle('J') }}
           </div>
@@ -2930,7 +2930,7 @@
 
               </div>
 
-              <!-- (Note: the total number of distals above should equal the number of columns in the CABG Grid) -->
+              //(Note: the total number of distals above should equal the number of columns in the CABG Grid)
 
               <reg-select *ngIf="visibles['ProxTech']" controlName="ProxTech" placeholder="Proximal Technique"
                 [formGroup]="formGroupJ" [choices]="[
@@ -2941,8 +2941,6 @@
                 ]"></reg-select>
 
               <ng-template ngFor let-i="index" let-cabg [ngForOf]="J_cabg">
-                <!-- <div [id]="'cabg' + (i+1)" style="margin-top: 25px;" *ngFor="let cabg of J_cabg; let i = index"> -->
-                <!-- <h4 [id]="'cabg' + (i+1)">{{ cabg[0] }}</h4> -->
                 <fieldset class="fieldset-label" *ngIf="visibles['cabg' + (i+1)]">
                   <legend>{{ cabg[0] }}</legend>
 
@@ -3028,6 +3026,896 @@
             </ng-template>
           </form>
 
+        </section>
+ -->
+
+        <section class="section-wrapper" scrollSpyElement id="sectionK">
+          <div class="section-title">
+            {{ getTocTitle('K') }}
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupK" #formDirectiveK="ngForm">
+              <div *ngIf="visibles['sectionKBody']; else sectionK_other_content" id="sectionKBody"
+                class="section-body reg-container-col">
+
+                <reg-select *ngIf="visibles['ValExp']" controlName="ValExp" placeholder="Valve Prosthesis Explant"
+                  [formGroup]="formGroupK" [choices]="['Yes', 'No']"></reg-select>
+
+                <div *ngIf="visibles['ValExpPos']" class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['ValExpPos']" controlName="ValExpPos"
+                    placeholder="Explant Position" [formGroup]="formGroupK" [choices]="[
+                      'Aortic',
+                      'Mitral',
+                      'Tricuspid',
+                      'Pulmonic'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['ValExpTyp']" controlName="ValExpTyp"
+                    placeholder="Explant Type" [formGroup]="formGroupK" [choices]="[
+                    'Mechanical Valve',
+                    'Leaflet clip',
+                    'Bioprosthetic Valve',
+                    'Transcatheter Device',
+                    'Homograft',
+                    'Annuloplasty Device',
+                    'Other',
+                    'Unknown'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['ValExpEt']" controlName="ValExpEt"
+                    placeholder="Explant Etiology" [formGroup]="formGroupK" [choices]="[
+                    'Endocarditis',
+                    'Failed repair',
+                    'Hemolysis',
+                    'Incompetence',
+                    'Pannus Formation',
+                    'Para-valvular leak',
+                    'Prosthetic deterioration',
+                    'Sizing/positioning issue',
+                    'Stenosis',
+                    'Thrombosis',
+                    'Other',
+                    'Unknown'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+
+                  <div *ngIf="visibles['ValExpDevKnown']" class="reg-container">
+                    <reg-select class="reg-item-indent" *ngIf="visibles['ValExpDevKnown']" controlName="ValExpDevKnown"
+                      placeholder="Explant Device known" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                      fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <div *ngIf="visibles['ValExpDev']" class="reg-container">
+
+                      <reg-input class="reg-item-indent2" *ngIf="visibles['ValExpDev']" controlName="ValExpDev"
+                        placeholder="Explant model#" [formGroup]="formGroupK" type="text" fxFlex="1 0 200px">
+                      </reg-input>
+
+                      <reg-input class="reg-item-indent2" *ngIf="visibles['ValExpUDI']" controlName="ValExpUDI"
+                        placeholder="Unique Device Identifier (UDI)" [formGroup]="formGroupK" type="text"
+                        fxFlex="1 0 230px">
+                      </reg-input>
+
+                    </div>
+                  </div>
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['ValExp2']" controlName="ValExp2"
+                  placeholder="Second Valve Prosthesis Explant" [formGroup]="formGroupK" [choices]="['Yes', 'No']">
+                </reg-select>
+
+                <div *ngIf="visibles['ValExpPos2']" class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['ValExpPos2']" controlName="ValExpPos2"
+                    placeholder="Explant Position" [formGroup]="formGroupK" [choices]="[
+                      'Aortic',
+                      'Mitral',
+                      'Tricuspid',
+                      'Pulmonic'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['ValExpTyp2']" controlName="ValExpTyp2"
+                    placeholder="Explant Type" [formGroup]="formGroupK" [choices]="[
+                    'Mechanical Valve',
+                    'Leaflet clip',
+                    'Bioprosthetic Valve',
+                    'Transcatheter Device',
+                    'Homograft',
+                    'Annuloplasty Device',
+                    'Other',
+                    'Unknown'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['ValExpEt2']" controlName="ValExpEt2"
+                    placeholder="Explant Etiology" [formGroup]="formGroupK" [choices]="[
+                    'Endocarditis',
+                    'Failed repair',
+                    'Hemolysis',
+                    'Incompetence',
+                    'Pannus Formation',
+                    'Para-valvular leak',
+                    'Prosthetic deterioration',
+                    'Sizing/positioning issue',
+                    'Stenosis',
+                    'Thrombosis',
+                    'Other',
+                    'Unknown'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+
+                  <div *ngIf="visibles['ValExpDevKnown2']" class="reg-container">
+
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['ValExpDevKnown2']"
+                      controlName="ValExpDevKnown2" placeholder="Explant Device known" [formGroup]="formGroupK"
+                      [choices]="['Yes', 'No']" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <div *ngIf="visibles['ValExpDev2']" class="reg-container">
+                      <reg-input class="reg-item-indent3" *ngIf="visibles['ValExpDev2']" controlName="ValExpDev2"
+                        placeholder="Explant model#" [formGroup]="formGroupK" type="text" fxFlex="1 0 200px">
+                      </reg-input>
+
+                      <reg-input class="reg-item-indent3" *ngIf="visibles['ValExpUDI2']" controlName="ValExpUDI2"
+                        placeholder="Unique Device Identifier (UDI)" [formGroup]="formGroupK" type="text"
+                        fxFlex="1 0 230px">
+                      </reg-input>
+
+                    </div>
+                  </div>
+                </div>
+
+                <!-- AORTIC VALVE -->
+
+                <reg-select *ngIf="visibles['VSAV']" controlName="VSAV" placeholder="Aortic Valve Procedure Performed"
+                  [formGroup]="formGroupK" [choices]="[
+                    'Yes, planned',
+                    'Yes, unplanned due to surgical complication',
+                    'Yes, unplanned due to unsuspected disease or anatomy',
+                    'No'
+                  ]"></reg-select>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['VSAVPr']" controlName="VSAVPr"
+                  placeholder="Procedure Performed" [formGroup]="formGroupK" [choices]="[
+                    'Replacement',
+                    'Repair/Reconstruction'
+                  ]"></reg-select>
+
+                <div *ngIf="visibles['VSTCV']" class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['VSTCV']" controlName="VSTCV"
+                    placeholder="Transcatheter Valve Replacement" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSTCVR']" controlName="VSTCVR"
+                    placeholder="Approach" [formGroup]="formGroupK" [choices]="[
+                      'Transapical',
+                      'Transaxillary',
+                      'Transfemoral',
+                      'Transaortic',
+                      'Subclavian',
+                      'Other'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['VSAVSurgRep']" class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['VSAVSurgRep']" controlName="VSAVSurgRep"
+                    placeholder="Surgical valve Replacement" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSAVSurgType']" controlName="VSAVSurgType"
+                    placeholder="Device type" [formGroup]="formGroupK" [choices]="[
+                      'Mechanical',
+                      'Bioprosthetic',
+                      'Surgeon fashioned pericardium (Ozaki)',
+                      'Other'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent3" *ngIf="visibles['VSAVSurgBioT']" controlName="VSAVSurgBioT"
+                    placeholder="Valve type" [formGroup]="formGroupK" [choices]="[
+                      'Stented',
+                      'Stentless subcoronary valve only',
+                      'Sutureless/rapid deployment'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['VSAVRComA']" class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSAVRComA']" controlName="VSAVRComA"
+                    placeholder="Commissural Suture Annuloplasty" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSAVRExSutAn']" controlName="VSAVRExSutAn"
+                    placeholder="External Suture Annuloplasty" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSAVRLPlic']" controlName="VSAVRLPlic"
+                    placeholder="Leaflet Plication" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSAVRNodRel']" controlName="VSAVRNodRel"
+                    placeholder="Nodular Release" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSAVRPTFE']" controlName="VSAVRPTFE"
+                    placeholder="Leaflet Free Edge Reinforcement (PTFE) Suture" [formGroup]="formGroupK"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSAVRComRS']" controlName="VSAVRComRS"
+                    placeholder="Leaflet Commissural Resuspension Suture" [formGroup]="formGroupK"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSAVRRaphe']" controlName="VSAVRRaphe"
+                    placeholder="Division of Fused Leaflet Raphe" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                  <div class="reg-container">
+
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['VSAVRRingA']" controlName="VSAVRRingA"
+                      placeholder="Ring Annuloplasty" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                      fxFlex="1 0 250px"></reg-select>
+
+                    <reg-select class="reg-item-indent3" *ngIf="visibles['VSAVRRingATy']" controlName="VSAVRRingATy"
+                      placeholder="Type" [formGroup]="formGroupK" [choices]="['External Ring', 'Internal Ring']"
+                      fxFlex="1 0 250px"></reg-select>
+
+                  </div>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSAVRLResect']" controlName="VSAVRLResect"
+                    placeholder="Leaflet Resection Suture" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSAVRLeafShav']" controlName="VSAVRLeafShav"
+                    placeholder="Leaflet Shaving" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSAVRLPPatch']" controlName="VSAVRLPPatch"
+                    placeholder="Leaflet Pericardial Patch" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSAVRDeb']" controlName="VSAVRDeb"
+                    placeholder="Leaflet Debridement" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSAVRPeriLeak']" controlName="VSAVRPeriLeak"
+                    placeholder="Repair of Periprosthetic Leak" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['AnlrEnl']" class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AnlrEnl']" controlName="AnlrEnl"
+                    placeholder="Aortic annular enlargement with patch" [formGroup]="formGroupK"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf=" visibles['AnlrEnlTech']" controlName="AnlrEnlTech"
+                    placeholder="Technique" [formGroup]="formGroupK" [choices]="[
+                      'Nicks-Nunez',
+                      'Manougian',
+                      'Konno',
+                      'Other',
+                      'Unknown'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['VSAVRoot']" controlName="VSAVRoot"
+                  placeholder="Root Procedure" [formGroup]="formGroupK" [choices]="['Yes', 'No']">For AV surgery
+                  involving the aortic root -> also complete section M-2</reg-select>
+
+                <div *ngIf="visibles['VSAVRootOReimp']" class="reg-container">
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSAVRootOReimp']" controlName="VSAVRootOReimp"
+                    placeholder="Root Replacement with coronary Ostial Reimplantation (Bentall)"
+                    [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <div *ngIf="visibles['VSAVRootOReimpTy']" class="reg-container">
+
+                    <reg-select class="reg-item-indent3" *ngIf="visibles['VSAVRootOReimpTy']"
+                      controlName="VSAVRootOReimpTy" placeholder="Type" [formGroup]="formGroupK" [choices]="[
+                    'Mechanical',
+                    'Bioprosthetic',
+                    'Autograft with native pulmonary valve (Ross procedure)',
+                    'Homograft root replacement'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                    <reg-select class="reg-item-indent4" *ngIf="visibles['VSAVRepBioTy']" controlName="VSAVRepBioTy"
+                      placeholder="Bioprosthetic Type" [formGroup]="formGroupK" [choices]="[
+                      'Stented valve composite graft',
+                      'Stentless biologic full root'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  </div>
+                </div>
+
+                <div *ngIf="visibles['VSAVSparRt']" class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSAVSparRt']" controlName="VSAVSparRt"
+                    placeholder="Valve Sparing root operation performed" [formGroup]="formGroupK"
+                    [choices]="['Yes', 'No']" fxFlex></reg-select>
+
+                  <reg-select class="reg-item-indent3" *ngIf="visibles['VSAVSparRtOp']" controlName="VSAVSparRtOp"
+                    placeholder="Operation" [formGroup]="formGroupK" [choices]="[
+                    'Resuspension AV without replacement of ascending aorta',
+                    'Resuspension AV with replacement of ascending aorta',
+                    'Valve sparing root reimplantation (David)',
+                    'Valve sparing root remodeling (Yacoub)',
+                    'Valve sparing root reconstruction (Florida Sleeve)'
+                    ]" fxFlex></reg-select>
+
+                </div>
+
+                <reg-select class="reg-item-indent2" *ngIf="visibles['VSAVRootRecon']" class="subitem-horz2"
+                  controlName="VSAVRootRecon"
+                  placeholder="Major root reconstruction/ debridement with or without pericardial patch"
+                  [formGroup]="formGroupK" [choices]="['Yes', 'No']"></reg-select>
+
+                <div *ngIf="visibles['VSAVPat']" class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['VSAVPat']" controlName="VSAVPat"
+                    placeholder="Patch used" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSAVPatTy']" controlName="VSAVPatTy"
+                    placeholder="Patch type" [formGroup]="formGroupK" [choices]="[
+                      'Synthetic',
+                      'Bioprosthetic',
+                      'Autologous'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['AorticImplant']" class="reg-container">
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AorticImplant']" controlName="AorticImplant"
+                    placeholder="Aortic Valve Implant" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">Aortic
+                    valves/valve repair devices only, use section M2 for root devices</reg-select>
+
+                  <div *ngIf="visibles['VSAoIm']" class="reg-container">
+
+                    <reg-input class="reg-item-indent2" *ngIf="visibles['VSAoIm']" controlName="VSAoIm"
+                      placeholder="Implant Model Number" [formGroup]="formGroupK" type="text" fxFlex="1 0 200px">
+                    </reg-input>
+
+                    <reg-input class="reg-item-indent2" *ngIf="visibles['VSAoImSz']" controlName="VSAoImSz"
+                      placeholder="Implant Size" [formGroup]="formGroupK" type="number" fxFlex="1 0 200px">
+                    </reg-input>
+
+                    <reg-input class="reg-item-indent2" *ngIf="visibles['VSAoImUDI']" controlName="VSAoImUDI"
+                      placeholder="Unique Device identifier (UDI)" [formGroup]="formGroupK" type="text"
+                      fxFlex="1 0 250px">
+                    </reg-input>
+
+                  </div>
+                </div>
+
+                <!-- MITRAL VALVE -->
+
+                <reg-select *ngIf="visibles['VSMV']" controlName="VSMV" placeholder="Mitral Valve Procedure Performed"
+                  [formGroup]="formGroupK" [choices]="[
+                    'Yes, planned',
+                    'Yes, unplanned due to surgical complication',
+                    'Yes, unplanned due to unsuspected disease or anatomy',
+                    'No'
+                  ]"></reg-select>
+
+                <div *ngIf="visibles['VSMVPr']" class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['VSMVPr']" controlName="VSMVPr"
+                    placeholder="Procedure Performed" [formGroup]="formGroupK" [choices]="[
+                      'Repair',
+                      'Replacement'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSMVRepApp']" controlName="VSMVRepApp"
+                    placeholder="Repair Approach" [formGroup]="formGroupK" [choices]="[
+                      'Transcatheter',
+                      'Surgical'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <reg-select class="reg-item-indent2" *ngIf="visibles['VSMitRAnnulo']" controlName="VSMitRAnnulo"
+                  placeholder="Annuloplasty" [formGroup]="formGroupK" [choices]="['Yes', 'No']"></reg-select>
+
+                <!-- LEAFLET RESECTION -->
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSMitRLeafRes']" controlName="VSMitRLeafRes"
+                    placeholder="Leaflet resection" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent3" *ngIf="visibles['VSLeafResTyp']" controlName="VSLeafResTyp"
+                    placeholder="Resection Type" [formGroup]="formGroupK" [choices]="[
+                    'Triangular',
+                    'Quadrangular',
+                    'Other'
+                  ]" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['VSLeafAntRes']" class="reg-container">
+
+                  <reg-select class="reg-item-indent3" *ngIf="visibles['VSLeafAntRes']" controlName="VSLeafAntRes"
+                    placeholder="Anterior resection" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent4" *ngIf="visibles['VSLeafAntResLocD']"
+                    controlName="VSLeafAntResLocD" placeholder="Location documented" [formGroup]="formGroupK"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 200px">
+                  </reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['VSLeafAntResA1']" class="reg-container">
+
+                  <reg-select class="reg-item-indent5" *ngIf="visibles['VSLeafAntResA1']" controlName="VSLeafAntResA1"
+                    placeholder="A1" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 100px"></reg-select>
+
+                  <reg-select class="reg-item-indent5" *ngIf="visibles['VSLeafAntResA2']" controlName="VSLeafAntResA2"
+                    placeholder="A2" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 100px"></reg-select>
+
+                  <reg-select class="reg-item-indent5" *ngIf="visibles['VSLeafAntResA3']" controlName="VSLeafAntResA3"
+                    placeholder="A3" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 100px"></reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['VSLeafPostRes']" class="reg-container">
+
+                  <reg-select class="reg-item-indent3" *ngIf="visibles['VSLeafPostRes']" controlName="VSLeafPostRes"
+                    placeholder="Posterior Resection" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent4" *ngIf="visibles['VSLeafPostResLocD']"
+                    controlName="VSLeafPostResLocD" placeholder="Location documented" [formGroup]="formGroupK"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 200px">
+                  </reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['VSLeafPostResP1']" class="reg-container">
+
+                  <reg-select class="reg-item-indent5" *ngIf="visibles['VSLeafPostResP1']" controlName="VSLeafPostResP1"
+                    placeholder="P1" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 100px"></reg-select>
+
+                  <reg-select class="reg-item-indent5" *ngIf="visibles['VSLeafPostResP2']" controlName="VSLeafPostResP2"
+                    placeholder="P2" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 100px"></reg-select>
+
+                  <reg-select class="reg-item-indent5" *ngIf="visibles['VSLeafPostResP3']" controlName="VSLeafPostResP3"
+                    placeholder="P3" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 100px"></reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['VSLeafComRes']" class="reg-container">
+
+                  <reg-select class="reg-item-indent3" *ngIf="visibles['VSLeafComRes']" controlName="VSLeafComRes"
+                    placeholder="Commissure Resection" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent4" *ngIf="visibles['VSLeafComResLoc']" controlName="VSLeafComResLoc"
+                    placeholder="Commissural resection location" [formGroup]="formGroupK" [choices]="[
+                      'Medial (C2)',
+                      'Lateral (C1)',
+                      'Both',
+                      'Not Documented'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <!-- NEOCORDS (PTFE) -->
+
+                <reg-select class="reg-item-indent2" *ngIf="visibles['VSMitRPTFE']" controlName="VSMitRPTFE"
+                  placeholder="Neochords (PTFE)" [formGroup]="formGroupK" [choices]="['Yes', 'No']"></reg-select>
+
+                <div *ngIf="visibles['VSNeoAnt']" class="reg-container">
+
+                  <reg-select class="reg-item-indent3" *ngIf="visibles['VSNeoAnt']" controlName="VSNeoAnt"
+                    placeholder="Anterior Neochords" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent4" *ngIf="visibles['VSNeoAntLocD']" controlName="VSNeoAntLocD"
+                    placeholder="Location documented" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['VSNeoAntA1']" class="reg-container">
+
+                  <reg-select class="reg-item-indent5" *ngIf="visibles['VSNeoAntA1']" controlName="VSNeoAntA1"
+                    placeholder="A1" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 100px"></reg-select>
+
+                  <reg-select class="reg-item-indent5" *ngIf="visibles['VSNeoAntA2']" controlName="VSNeoAntA2"
+                    placeholder="A2" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 100px"></reg-select>
+
+                  <reg-select class="reg-item-indent5" *ngIf="visibles['VSNeoAntA3']" controlName="VSNeoAntA3"
+                    placeholder="A3" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 100px"></reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['VSNeoPost']" class="reg-container">
+
+                  <reg-select class="reg-item-indent3" *ngIf="visibles['VSNeoPost']" controlName="VSNeoPost"
+                    placeholder="Posterior Neochords" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent4" *ngIf="visibles['VSNeoPostLocD']" controlName="VSNeoPostLocD"
+                    placeholder="Location documented" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['VSNeoPostP1']" class="reg-container">
+
+                  <reg-select class="reg-item-indent5" *ngIf="visibles['VSNeoPostP1']" controlName="VSNeoPostP1"
+                    placeholder="P1" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 100px"></reg-select>
+
+                  <reg-select class="reg-item-indent5" *ngIf="visibles['VSNeoPostP2']" controlName="VSNeoPostP2"
+                    placeholder="P2" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 100px"></reg-select>
+
+                  <reg-select class="reg-item-indent5" *ngIf="visibles['VSNeoPostP3']" controlName="VSNeoPostP3"
+                    placeholder="P3" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 100px"></reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['VSNeoCom']" class="reg-container">
+
+                  <reg-select class="reg-item-indent3" *ngIf="visibles['VSNeoCom']" controlName="VSNeoCom"
+                    placeholder="Commissure Neochords" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent4" *ngIf="visibles['VSNeoComLoc']" controlName="VSNeoComLoc"
+                    placeholder="Commissure Neochord location" [formGroup]="formGroupK" [choices]="[
+                      'Medial (C2)',
+                      'Lateral (C1)',
+                      'Both',
+                      'Not Documented'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <!-- CHORDAL/LEAFLET TRANSFER -->
+
+                <reg-select class="reg-item-indent2" *ngIf="visibles['VSMitRChord']" controlName="VSMitRChord"
+                  placeholder="Chordal/ Leaflet transfer" [formGroup]="formGroupK" [choices]="['Yes', 'No']">
+                </reg-select>
+
+                <div *ngIf="visibles['VSChorLfAnt']" class="reg-container">
+
+                  <reg-select class="reg-item-indent3" *ngIf="visibles['VSChorLfAnt']" controlName="VSChorLfAnt"
+                    placeholder="Anterior Chordal/Leaflet transfer" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent4" *ngIf="visibles['VSChorLfAntLocD']" controlName="VSChorLfAntLocD"
+                    placeholder="Location documented" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['VSChorLfAntA1']" class="reg-container">
+
+                  <reg-select class="reg-item-indent5" *ngIf="visibles['VSChorLfAntA1']" controlName="VSChorLfAntA1"
+                    placeholder="A1" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 100px"></reg-select>
+
+                  <reg-select class="reg-item-indent5" *ngIf="visibles['VSChorLfAntA2']" controlName="VSChorLfAntA2"
+                    placeholder="A2" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 100px"></reg-select>
+
+                  <reg-select class="reg-item-indent5" *ngIf="visibles['VSChorLfAntA3']" controlName="VSChorLfAntA3"
+                    placeholder="A3" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 100px"></reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['VSChorLfPost']" class="reg-container">
+
+                  <reg-select class="reg-item-indent3" *ngIf="visibles['VSChorLfPost']" controlName="VSChorLfPost"
+                    placeholder="Posterior Chordal/Leaflet transfer" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent4" *ngIf="visibles['VSChorLfPostLocD']"
+                    controlName="VSChorLfPostLocD" placeholder="Location documented" [formGroup]="formGroupK"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 200px">
+                  </reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['VSChorLfPostP1']" class="reg-container">
+
+                  <reg-select class="reg-item-indent5" *ngIf="visibles['VSChorLfPostP1']" controlName="VSChorLfPostP1"
+                    placeholder="P1" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 100px"></reg-select>
+
+                  <reg-select class="reg-item-indent5" *ngIf="visibles['VSChorLfPostP2']" controlName="VSChorLfPostP2"
+                    placeholder="P2" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 100px"></reg-select>
+
+                  <reg-select class="reg-item-indent5" *ngIf="visibles['VSChorLfPostP3']" controlName="VSChorLfPostP3"
+                    placeholder="P3" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 100px"></reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['VSChorLfCom']" class="reg-container">
+
+                  <reg-select class="reg-item-indent3" *ngIf="visibles['VSChorLfCom']" controlName="VSChorLfCom"
+                    placeholder="Commissure Chordal/Leaflet transfer" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent4" *ngIf="visibles['VSChorLfComLoc']" controlName="VSChorLfComLoc"
+                    placeholder="Commissural chordal/leaflet transfer location" [formGroup]="formGroupK" [choices]="[
+                      'Medial (C2)',
+                      'Lateral (C1)',
+                      'Both',
+                      'Not Documented'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSMitRFold']" controlName="VSMitRFold"
+                    placeholder="Folding Plasty" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSMitRSlidP']" controlName="VSMitRSlidP"
+                    placeholder="Sliding Plasty" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSMitRADecalc']" controlName="VSMitRADecalc"
+                    placeholder="Annular decalcification/ debridement" [formGroup]="formGroupK"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <div class="reg-container">
+
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['VSMitRLeafERP']" controlName="VSMitRLeafERP"
+                      placeholder="Leaflet extension/replacement patch" [formGroup]="formGroupK"
+                      [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                    <reg-select class="reg-item-indent3" *ngIf="visibles['VSMitRLeafERPLoc']"
+                      controlName="VSMitRLeafERPLoc" placeholder="Patch Location" [formGroup]="formGroupK" [choices]="[
+                      'Anterior',
+                      'Posterior',
+                      'Both',
+                      'Not Documented'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  </div>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSMitREdge']" controlName="VSMitREdge"
+                    placeholder="Edge to edge repair" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSMitRMitComm']" controlName="VSMitRMitComm"
+                    placeholder="Mitral commissurotomy" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSMitRMitCplasty']"
+                    controlName="VSMitRMitCplasty" placeholder="Mitral commissuroplasty" [formGroup]="formGroupK"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSMitRMitCleft']" controlName="VSMitRMitCleft"
+                    placeholder="Mitral cleft repair: (scallop closure)" [formGroup]="formGroupK"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSMitParaprosLeak']"
+                    controlName="VSMitParaprosLeak" placeholder="Mitral paraprosthetic leak repair"
+                    [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['MitralIntent']" class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['MitralIntent']" controlName="MitralIntent"
+                    placeholder="Mitral repair attempted prior to replacement" [formGroup]="formGroupK"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSChorPres']" controlName="VSChorPres"
+                    placeholder="Mitral chords preserved" [formGroup]="formGroupK" [choices]="[
+                      'Anterior',
+                      'Posterior',
+                      'Both',
+                      'None'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSTCVMit']" controlName="VSTCVMit"
+                    placeholder="Transcatheter replacement" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['MitralImplant']" controlName="MitralImplant"
+                  placeholder="Implant" [formGroup]="formGroupK" [choices]="['Yes', 'No']"></reg-select>
+
+                <div *ngIf="visibles['MitralImplantTy']" class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['MitralImplantTy']" controlName="MitralImplantTy"
+                    placeholder="Implant type" [formGroup]="formGroupK" [choices]="[
+                    'Mechanical valve',
+                    'Bioprosthetic valve',
+                    'Annuloplasty device',
+                    'Mitral leaflet clip',
+                    'Transcatheter device',
+                    'Surgically implanted transcatheter device',
+                    'Other'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['VSMiIm']" controlName="VSMiIm"
+                    placeholder="Implant Model Number" [formGroup]="formGroupK" type="text" fxFlex="1 0 200px">
+                  </reg-input>
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['VSMiImSz']" controlName="VSMiImSz"
+                    placeholder="Implant Size" [formGroup]="formGroupK" type="number" fxFlex="1 0 200px"></reg-input>
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['VSMiImUDI']" controlName="VSMiImUDI"
+                    placeholder="Unique Device identifier (UDI)" [formGroup]="formGroupK" type="text"
+                    fxFlex="1 0 200px">
+                  </reg-input>
+
+                </div>
+
+                <!-- TRICUSPID VALVE -->
+
+                <reg-select *ngIf="visibles['VSTV']" controlName="VSTV"
+                  placeholder="Tricuspid Valve Procedure Performed" [formGroup]="formGroupK" [choices]="[
+                    'Yes, planned',
+                    'Yes, unplanned due to surgical complication',
+                    'Yes, unplanned due to unsuspected disease or anatomy',
+                    'No'
+                  ]"></reg-select>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['VSTVPr']" controlName="VSTVPr"
+                  placeholder="Procedure Performed" [formGroup]="formGroupK" [choices]="[
+                    'Repair',
+                    'Replacement',
+                    'Valvectomy'
+                  ]"></reg-select>
+
+                <div *ngIf="visibles['VSTrRepAnnulo']" class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSTrRepAnnulo']" controlName="VSTrRepAnnulo"
+                    placeholder="Annuloplasty" [formGroup]="formGroupK" [choices]="['Yes', 'No']" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent3" *ngIf="visibles['OpTricusAnTy']" controlName="OpTricusAnTy"
+                    placeholder="Type of Annuloplasty" [formGroup]="formGroupK" [choices]="[
+                      'Pericardium',
+                      'Suture',
+                      'Prosthetic Ring',
+                      'Prosthetic Band',
+                      'Other'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSTrLeafRes']" controlName="VSTrLeafRes"
+                    placeholder="Leaflet Resection" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <reg-select class="reg-item-indent2" *ngIf="visibles['VSTCVTri']" controlName="VSTCVTri"
+                  placeholder="Transcatheter Replacement" [formGroup]="formGroupK" [choices]="['Yes', 'No']">
+                </reg-select>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['TricuspidImplant']" controlName="TricuspidImplant"
+                  placeholder="Implant" [formGroup]="formGroupK" [choices]="['Yes', 'No']"></reg-select>
+
+                <div *ngIf="visibles['TricusImplantTy']" class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['TricusImplantTy']" controlName="TricusImplantTy"
+                    placeholder="Implant Type" [formGroup]="formGroupK" [choices]="[
+                    'Mechanical valve',
+                    'Annuloplasty device',
+                    'Bioprosthetic valve',
+                    'Transcatheter device',
+                    'Homograft',
+                    'Other'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['VSTrIm']" controlName="VSTrIm"
+                    placeholder="Implant Model Number" [formGroup]="formGroupK" type="text" fxFlex="1 0 200px">
+                  </reg-input>
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['VSTrImSz']" controlName="VSTrImSz"
+                    placeholder="Implant Size" [formGroup]="formGroupK" type="number" fxFlex="1 0 200px"></reg-input>
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['VSTrImUDI']" controlName="VSTrImUDI"
+                    placeholder="Unique Device Identifier (UDI)" [formGroup]="formGroupK" type="text"
+                    fxFlex="1 0 200px">
+                  </reg-input>
+
+                </div>
+
+                <!-- PULMONIC VALVE -->
+
+                <reg-select *ngIf="visibles['VSPV']" controlName="VSPV" placeholder="Pulmonic Valve Procedure Performed"
+                  [formGroup]="formGroupK" [choices]="[
+                    'Yes, planned',
+                    'Yes, unplanned due to surgical complication',
+                    'Yes, unplanned due to unsuspected disease or anatomy',
+                    'No'
+                  ]"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['OpPulm']" controlName="OpPulm"
+                    placeholder="Procedure Performed" [formGroup]="formGroupK" [choices]="[
+                    'Repair/Leaflet Reconstruction',
+                    'Replacement',
+                    'Valvectomy'
+                  ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSTCVPu']" controlName="VSTCVPu"
+                    placeholder="Transcatheter Replacement" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['PulmonicImplant']" controlName="PulmonicImplant"
+                  placeholder="Implant" [formGroup]="formGroupK" [choices]="['Yes', 'No']"></reg-select>
+
+                <div *ngIf="visibles['VSPuTypeImp']" class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['VSPuTypeImp']" controlName="VSPuTypeImp"
+                    placeholder="Implant Type" [formGroup]="formGroupK" [choices]="[
+                      'Surgeon Fashioned',
+                      'Commercially Supplied'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent3" *ngIf="visibles['VSPuImpMat']" controlName="VSPuImpMat"
+                    placeholder="Material" [formGroup]="formGroupK" [choices]="[
+                      'PTFE (Gore-Tex)',
+                      'Pericardium',
+                      'Other'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent3" *ngIf="visibles['PulmonicImplantTy']"
+                    controlName="PulmonicImplantTy" placeholder="Device Type" [formGroup]="formGroupK" [choices]="[
+                      'Mechanical valve',
+                      'Bioprosthetic valve',
+                      'Transcatheter device',
+                      'Annuloplasty device',
+                      'Homograft',
+                      'Other'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['VSPuIm']" class="reg-container">
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['VSPuIm']" controlName="VSPuIm"
+                    placeholder="Implant Model Number" [formGroup]="formGroupK" type="text" fxFlex="1 0 200px">
+                  </reg-input>
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['VSPuImSz']" controlName="VSPuImSz"
+                    placeholder="Implant Size" [formGroup]="formGroupK" type="number" fxFlex="1 0 200px"></reg-input>
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['VSPuImUDI']" controlName="VSPuImUDI"
+                    placeholder="Unique Device Identifier (UDI)" [formGroup]="formGroupK" type="text"
+                    fxFlex="1 0 200px">
+                  </reg-input>
+
+                </div>
+
+              </div>
+              <ng-template #sectionK_other_content>
+                <div class="section-body">
+                  You need to select Valve Surgery in section I.
+                </div>
+              </ng-template>
+            </form>
+          </div>
         </section>
 
         <!--
