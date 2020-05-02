@@ -145,11 +145,11 @@ export class Acsd290Component extends RegistryFormComponent
 
     this.createForm();
     this.registryFormService.subscribeFormConditions();
+    this.formGroupI.controls['OpCAB'].setValue('Yes');
   }
 
   ngAfterViewInit() {
     super.ngAfterViewInit();
-    this.formGroupI.controls['OpCAB'].setValue('Yes');
   }
 
   ngOnDestroy() {

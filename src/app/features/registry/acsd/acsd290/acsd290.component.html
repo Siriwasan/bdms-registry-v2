@@ -2863,10 +2863,10 @@
 
               <reg-input class="reg-item-indent" *ngIf="visibles['NumRadDA']" controlName="NumRadDA"
                 placeholder="Total Number of Distal Anastomoses with radial artery conduits" [formGroup]="formGroupJ"
-                type="number">
+                type="number" fxFlex="1 0 220px" fxFlex.lt-lg="1 1 auto">
               </reg-input>
 
-              <div *ngIf="visibles['RadHTech']" class="reg-container">
+              <div class="reg-container">
 
                 <reg-select class="reg-item-indent" *ngIf="visibles['RadHTech']" controlName="RadHTech"
                   placeholder="Radial Artery Harvest Technique" [formGroup]="formGroupJ"
@@ -2881,7 +2881,7 @@
               <reg-select *ngIf="visibles['VenousCondUsed']" controlName="VenousCondUsed"
                 placeholder="Venous Conduit(s) used" [formGroup]="formGroupJ" [choices]="['Yes', 'No']"></reg-select>
 
-              <reg-input *ngIf="visibles['DistVein']" class="subitem-horz" controlName="DistVein"
+              <reg-input class="reg-item-indent" *ngIf="visibles['DistVein']" controlName="DistVein"
                 placeholder="Total Number of Distal Anastomoses with venous conduits" [formGroup]="formGroupJ"
                 type="number">
               </reg-input>
