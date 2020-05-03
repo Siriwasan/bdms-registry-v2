@@ -7234,7 +7234,7 @@
           </div>
         </section> -->
 
-        <section class="section-wrapper" scrollSpyElement id="sectionR">
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionR">
           <div class="section-title">
             {{ getTocTitle('R') }}
           </div>
@@ -7344,20 +7344,622 @@
               </div>
             </ng-template>
           </div>
-        </section>
+        </section> -->
 
-        <!--
-        <section class="section-wrapper" scrollSpyElement id="sectionX">
+        <section class="section-wrapper" scrollSpyElement id="sectionS">
           <div class="section-title">
-            {{ getTocTitle('X') }}
+            {{ getTocTitle('S') }}
           </div>
           <div class="section-body">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
+            <form [formGroup]="formGroupS" #formDirectiveS="ngForm">
+
+              <div class="reg-container-col">
+
+                <reg-select controlName="AnesCareTeamMod" placeholder="Anesthesiology Care Team Model"
+                  [formGroup]="formGroupS" [choices]="[
+                    'Anesthesiologist working alone',
+                    'Attending anesthesiologist teaching/medically directing fellow',
+                    'Attending anesthesiologist teaching/medically directing house staff',
+                    'Attending anesthesiologist medically directing CRNA (1:4 ratio or less)',
+                    'Attending anesthesiologist medically directing CRNA (1:5 ratio or greater)',
+                    'Surgeon medically directing CRNA',
+                    'CRNA practicing independently'
+                  ]"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="PainScorePre" placeholder="Pain Score Baseline" [formGroup]="formGroupS"
+                    [choices]="[
+                      '0',
+                      '1',
+                      '2',
+                      '3',
+                      '4',
+                      '5',
+                      '6',
+                      '7',
+                      '8',
+                      '9',
+                      '10',
+                      'Not Recorded'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select controlName="TransfAlg" placeholder="Algorithm to Guide Transfusion"
+                    [formGroup]="formGroupS" [choices]="[
+                      'Yes, SCA/STS algorithm used',
+                      'Yes, other algorithm used',
+                      'No Algorithm used'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-input controlName="CellSavVol" placeholder="Cell Saver Volume" [formGroup]="formGroupS"
+                    type="number" fxFlex="1 0 250px"></reg-input>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="HepUse" placeholder="Heparin Used Intraop" [formGroup]="formGroupS"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <div class="reg-container">
+
+                    <reg-input class="reg-item-indent" *ngIf="visibles['TotHep']" controlName="TotHep"
+                      placeholder="Heparin Total Dose (unit)" [formGroup]="formGroupS" type="number" fxFlex="1 0 250px">
+                    </reg-input>
+
+                    <reg-select class="reg-item-indent" *ngIf="visibles['HepMgmt']" controlName="HepMgmt"
+                      placeholder="Heparin Management" [formGroup]="formGroupS" [choices]="[
+                      'Heparin titration based on activated clotting time (ACT)',
+                      'Heparin titration based on heparin concentration (e.g. Hepcon system)',
+                      'Other method'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                    <reg-input class="reg-item-indent" *ngIf="visibles['TotProt']" controlName="TotProt"
+                      placeholder="Protamine Total Dose" [formGroup]="formGroupS" type="number" fxFlex="1 0 250px">
+                    </reg-input>
+
+                  </div>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-input controlName="AntithromDose" placeholder="Antithrombin III Total Dose"
+                    [formGroup]="formGroupS" type="number" fxFlex="1 0 250px"></reg-input>
+
+                  <reg-select controlName="IntraViscoTest" placeholder="Viscoelastic Testing Used Intraop"
+                    [formGroup]="formGroupS" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <reg-select controlName="VolAgentUsed" placeholder="Volatile Agent Used" [formGroup]="formGroupS"
+                  [choices]="['Yes', 'No']"></reg-select>
+
+                <h4 class="reg-title" *ngIf="visibles['volatAgtUsed']" id="volatAgtUsed">Volatile Agent(s) used</h4>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['VolAgentIso']" controlName="VolAgentIso"
+                    placeholder="Isoflurane" [formGroup]="formGroupS" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['VolAgentSevo']" controlName="VolAgentSevo"
+                    placeholder="Sevoflurane" [formGroup]="formGroupS" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['VolAgentDes']" controlName="VolAgentDes"
+                    placeholder="Desflurane" [formGroup]="formGroupS" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['VolAgentOth']" controlName="VolAgentOth"
+                    placeholder="Other" [formGroup]="formGroupS" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                </div>
+
+                <h4 class="reg-title" *ngIf="visibles['volatAgtTiming']" id="volatAgtTiming">Volatile Agent(s) timing
+                </h4>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['VolAgentTimPre']" controlName="VolAgentTimPre"
+                    placeholder="Pre CPB" [formGroup]="formGroupS" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['VolAgentTimDur']" controlName="VolAgentTimDur"
+                    placeholder="During CPB" [formGroup]="formGroupS" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['VolAgentTimPost']" controlName="VolAgentTimPost"
+                    placeholder="Post CPB" [formGroup]="formGroupS" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['VolAgentTimMaint']"
+                    controlName="VolAgentTimMaint" placeholder="Maintenance (if no CPB)" [formGroup]="formGroupS"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="DexIntra" placeholder="Intraop Infusion Dexmedetomidine"
+                    [formGroup]="formGroupS" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select controlName="PropIntra" placeholder="Intraop Infusion Propofol" [formGroup]="formGroupS"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-input controlName="MidazIntra" placeholder="Intraop Midazolam (mg)" [formGroup]="formGroupS"
+                    type="number" fxFlex="1 0 250px"></reg-input>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-input controlName="TotInsuIntra" placeholder="Intraop Insulin Total Dose"
+                    [formGroup]="formGroupS" type="number" fxFlex="1 0 250px"></reg-input>
+
+                  <reg-input controlName="PreAnesthBPSys" placeholder="Pre Induction Systolic BP"
+                    [formGroup]="formGroupS" type="number" fxFlex="1 0 250px"></reg-input>
+
+                  <reg-input controlName="PreAnesthBPDia" placeholder="Pre Induction Diastolic BP"
+                    [formGroup]="formGroupS" type="number" fxFlex="1 0 250px"></reg-input>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-input controlName="PreAnesthBPMean" placeholder="Pre Induction Mean BP" [formGroup]="formGroupS"
+                    type="number" fxFlex="1 0 250px"></reg-input>
+
+                  <reg-input controlName="PreAnesthHR" placeholder="Pre Induction Heart Rate" [formGroup]="formGroupS"
+                    type="number" fxFlex="1 0 250px"></reg-input>
+
+                  <reg-select controlName="PACIntra" placeholder="Pulmonary Artery Catheter Used"
+                    [formGroup]="formGroupS" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="CoreTempSrc" placeholder="Core Temperature Source" [formGroup]="formGroupS"
+                    [choices]="[
+                      'Esophageal',
+                      'Bladder',
+                      'Nasopharyngeal',
+                      'Pulmonary artery catheter thermistor',
+                      'Tympanic',
+                      'Rectal'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-input controlName="CoreTempMax" placeholder="Core Temp Max" [formGroup]="formGroupS"
+                    type="number" fxFlex="1 0 250px"></reg-input>
+
+                  <reg-select controlName="NitricOxIntraop" placeholder="Intra Op Nitric Oxide" [formGroup]="formGroupS"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-input controlName="TotCrystAnesth" placeholder="Anesthesiology Total Crystalloid"
+                    [formGroup]="formGroupS" type="number" fxFlex="1 0 250px"></reg-input>
+
+                  <reg-input controlName="TotColloidAnesth" placeholder="Anesthesiology Synthetic Colloid"
+                    [formGroup]="formGroupS" type="number" fxFlex="1 0 250px"></reg-input>
+
+                  <reg-input controlName="TotAlbumAnesth" placeholder="Anesthesiology Total Albumin"
+                    [formGroup]="formGroupS" type="number" fxFlex="1 0 250px"></reg-input>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-input controlName="GlucTroughIntraop" placeholder="Intraop Glucose Trough"
+                    [formGroup]="formGroupS" type="number" fxFlex="1 0 250px"></reg-input>
+
+                  <reg-select controlName="VasodilIntraop" placeholder="Intraop Vasodilators Used"
+                    [formGroup]="formGroupS" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select controlName="IntraProcEEG" placeholder="Intraoperative Processed EEG (BIS)"
+                    [formGroup]="formGroupS" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <reg-select controlName="IntraOpPreTEE" placeholder="Intraop Transesophageal Echo (TEE)"
+                  [formGroup]="formGroupS" [choices]="['Yes', 'No']"></reg-select>
+
+                <div class="reg-container">
+
+                  <div class="reg-container">
+
+                    <reg-select class="reg-item-indent" *ngIf="visibles['PreLVEFMeas']" controlName="PreLVEFMeas"
+                      placeholder="Pre-procedure LVEF Measured" [formGroup]="formGroupS" [choices]="['Yes', 'No']"
+                      fxFlex="1 0 250px">
+                    </reg-select>
+
+                    <reg-input class="reg-item-indent2" *ngIf="visibles['PreLVEF']" controlName="PreLVEF"
+                      placeholder="LVEF" [formGroup]="formGroupS" type="number" fxFlex="1 0 250px"></reg-input>
+
+                  </div>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PreRVFx']" controlName="PreRVFx"
+                    placeholder="Pre-procedure RV Function" [formGroup]="formGroupS" [choices]="[
+                      'Normal',
+                      'Mild Dysfunction',
+                      'Moderate Dysfunction',
+                      'Severe Dysfunction',
+                      'Not Assessed'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PreMR']" controlName="PreMR"
+                    placeholder="Mitral Regurgitation" [formGroup]="formGroupS" [choices]="[
+                      'None',
+                      'Trace/trivial',
+                      'Mild',
+                      'Moderate',
+                      'Severe',
+                      'Not assessed'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PreMS']" controlName="PreMS"
+                    placeholder="Mitral Stenosis" [formGroup]="formGroupS" [choices]="[
+                      'None',
+                      'Mild',
+                      'Moderate',
+                      'Severe',
+                      'Not assessed'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PreAR']" controlName="PreAR"
+                    placeholder="Aortic Regurgitation" [formGroup]="formGroupS" [choices]="[
+                      'None',
+                      'Trace/trivial',
+                      'Mild',
+                      'Moderate',
+                      'Severe',
+                      'Not assessed'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PreAS']" controlName="PreAS"
+                    placeholder="Aortic Stenosis" [formGroup]="formGroupS" [choices]="[
+                      'None',
+                      'Mild',
+                      'Moderate',
+                      'Severe',
+                      'Not assessed'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PreAVAAssessed']" controlName="PreAVAAssessed"
+                    placeholder="Aortic Valve Area Assessed" [formGroup]="formGroupS" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['PreAVA']" controlName="PreAVA"
+                    placeholder="Aortic Valve Area" [formGroup]="formGroupS" type="number" fxFlex="1 0 250px">
+                  </reg-input>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PreTR']" controlName="PreTR"
+                    placeholder="Tricuspid Regurgitation" [formGroup]="formGroupS" [choices]="[
+                      'None',
+                      'Trace/trivial',
+                      'Mild',
+                      'Moderate',
+                      'Severe',
+                      'Not assessed'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PrePFO']" controlName="PrePFO"
+                    placeholder="Patent Foramen Ovale" [formGroup]="formGroupS"
+                    [choices]="['Yes', 'No', 'Not assessed']" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['AscAoAssessed']" controlName="AscAoAssessed"
+                  placeholder="Ascending Aorta Assessed" [formGroup]="formGroupS" [choices]="['Yes', 'No']">
+                </reg-select>
+
+                <div class="reg-container">
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['MxAscAo']" controlName="MxAscAo"
+                    placeholder="Maximal Ascending Aorta Diameter" [formGroup]="formGroupS" type="number"
+                    fxFlex="1 0 250px">
+                  </reg-input>
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['MxAscAoThick']" controlName="MxAscAoThick"
+                    placeholder="Maximal Ascending Aorta Atheroma Thickness" [formGroup]="formGroupS" type="number"
+                    fxFlex="1 0 250px"></reg-input>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['AsAthMo']" controlName="AsAthMo"
+                    placeholder="Ascending Aorta Atheroma Mobility" [formGroup]="formGroupS" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['AoArcVis']" controlName="AoArcVis"
+                  placeholder="Aortic Arch Visualized" [formGroup]="formGroupS" [choices]="['Yes', 'No']"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['MxArcAth']" controlName="MxArcAth"
+                    placeholder="Maximal Aortic Arch Atheroma Thickness" [formGroup]="formGroupS" type="number"
+                    fxFlex="1 0 250px">
+                  </reg-input>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['ArcAthMo']" controlName="ArcAthMo"
+                    placeholder="Aortic Arch Atheroma Mobility" [formGroup]="formGroupS" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                </div>
+
+                <reg-select controlName="CPBUsed" placeholder="Cardiopulmonary Bypass Used" [formGroup]="formGroupS"
+                  [choices]="['Yes', 'No']"></reg-select>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['RetrAutolPrim']" controlName="RetrAutolPrim"
+                  placeholder="Retrograde Autologous Priming of CPB Circuit" [formGroup]="formGroupS"
+                  [choices]="['Yes', 'No']"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-input class="reg-item-indent" *ngIf="visibles['TotCrystPerf']" controlName="TotCrystPerf"
+                    placeholder="Total Crystalloid Administered by Perfusion Team" [formGroup]="formGroupS"
+                    type="number" fxFlex="1 0 250px"></reg-input>
+
+                  <reg-input class="reg-item-indent" *ngIf="visibles['TotColloidPerf']" controlName="TotColloidPerf"
+                    placeholder="Total Synthetic Colloid Administered by Perfusion Team" [formGroup]="formGroupS"
+                    type="number" fxFlex="1 0 250px"></reg-input>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-input class="reg-item-indent" *ngIf="visibles['TotAlbumPerf']" controlName="TotAlbumPerf"
+                    placeholder="Total Albumin Administered by Perfusion Team" [formGroup]="formGroupS" type="number"
+                    fxFlex="1 0 250px"></reg-input>
+
+                  <reg-input class="reg-item-indent" *ngIf="visibles['HemofilPerf']" controlName="HemofilPerf"
+                    placeholder="Hemofiltration Volume Removed by Perfusion Team" [formGroup]="formGroupS" type="number"
+                    fxFlex="1 0 250px"></reg-input>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['InotropWeanCPB']" controlName="InotropWeanCPB"
+                    placeholder="Inotropes used to wean from CPB" [formGroup]="formGroupS" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['VasopWeanCPB']" controlName="VasopWeanCPB"
+                    placeholder="Vasopressors used to wean from CPB" [formGroup]="formGroupS" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <reg-select controlName="IntraOpPostTEE" placeholder="Post-Procedure Use Of Intraoperative TEE"
+                  [formGroup]="formGroupS" [choices]="['Yes', 'No']"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PostSAM']" controlName="PostSAM"
+                    placeholder="Systolic Anterior Motion of Mitral Valve" [formGroup]="formGroupS"
+                    [choices]="['Yes', 'No', 'Not assessed']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['RetCPBEch']" controlName="RetCPBEch"
+                    placeholder="Return to CPB for Echo Related Diagnosis" [formGroup]="formGroupS"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <div class="reg-container">
+
+                    <reg-select class="reg-item-indent" *ngIf="visibles['PostLVEFMeas']" controlName="PostLVEFMeas"
+                      placeholder="Post-ProcedureLVEFMeasured" [formGroup]="formGroupS" [choices]="['Yes', 'No']"
+                      fxFlex="1 0 250px">
+                    </reg-select>
+
+                    <reg-input class="reg-item-indent2" *ngIf="visibles['PostLVEF']" controlName="PostLVEF"
+                      placeholder="Post-Procedure LVEF" [formGroup]="formGroupS" type="number" fxFlex="1 0 250px">
+                    </reg-input>
+
+                  </div>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PostRVFx']" controlName="PostRVFx"
+                    placeholder="Post-Procedure RV Function" [formGroup]="formGroupS" [choices]="[
+                    'Normal',
+                    'Mild Dysfunction',
+                    'Moderate Dysfunction',
+                    'Severe Dysfunction',
+                    'Not Assessed'
+                  ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <reg-select controlName="IntraCardArr"
+                  placeholder="Intraoperative cardiac arrest related to anesthesia care" [formGroup]="formGroupS"
+                  [choices]="['Yes', 'No']"></reg-select>
+
+                <reg-select controlName="ORDeath" placeholder="Patient Died in the OR" [formGroup]="formGroupS"
+                  [choices]="['Yes', 'No']"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PostTempMeas']" controlName="PostTempMeas"
+                    placeholder="Core Temp Measured upon Entry to ICU/PACU" [formGroup]="formGroupS"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['PostCoreTemp']" controlName="PostCoreTemp"
+                    placeholder="Post Op Core Temp" [formGroup]="formGroupS" type="number" fxFlex="1 0 250px">
+                  </reg-input>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PostINRMeas']" controlName="PostINRMeas"
+                    placeholder="Post-Op INR Measured upon admission to post op care location (PACU, ICU)"
+                    [formGroup]="formGroupS" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['PostINR']" controlName="PostINR"
+                    placeholder="INR" [formGroup]="formGroupS" type="number" fxFlex="1 0 250px"></reg-input>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PostWBCMeas']" controlName="PostWBCMeas"
+                    placeholder="WBC Measured upon admission to post op care location (PACU, ICU)"
+                    [formGroup]="formGroupS" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['PostWBC']" controlName="PostWBC"
+                    placeholder="WBC" [formGroup]="formGroupS" type="number" fxFlex="1 0 250px"></reg-input>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PostPltMeas']" controlName="PostPltMeas"
+                    placeholder="Platelets Measured upon admission to post op care location (PACU, ICU)"
+                    [formGroup]="formGroupS" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['PostPlt']" controlName="PostPlt"
+                    placeholder="Platelet Count" [formGroup]="formGroupS" type="number" fxFlex="1 0 250px"></reg-input>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PostHCTMeas']" controlName="PostHCTMeas"
+                    placeholder="Hematocrit Measured upon admission to post op care location (PACU, ICU)"
+                    [formGroup]="formGroupS" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['PostHCT']" controlName="PostHCT"
+                    placeholder="Hematocrit" [formGroup]="formGroupS" type="number" fxFlex="1 0 250px"></reg-input>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PostFibrinMeas']" controlName="PostFibrinMeas"
+                    placeholder="Fibrinogen Measured upon admission to post op care location (PACU, ICU)"
+                    [formGroup]="formGroupS" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['PostFibrin']" controlName="PostFibrin"
+                    placeholder="Fibrinogen" [formGroup]="formGroupS" type="number" fxFlex="1 0 250px"></reg-input>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PostLactMeas']" controlName="PostLactMeas"
+                    placeholder="Lactate Measured upon admission to post op care location (PACU, ICU)"
+                    [formGroup]="formGroupS" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-input class="reg-item-indent2" *ngIf="visibles['PostLact']" controlName="PostLact"
+                    placeholder="Lactate" [formGroup]="formGroupS" type="number" fxFlex="1 0 250px"></reg-input>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DexPost']" controlName="DexPost"
+                    placeholder="Post Op Dexmedetomidine" [formGroup]="formGroupS" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PropPost']" controlName="PropPost"
+                    placeholder="Post Op Propofol" [formGroup]="formGroupS" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PostopDel']" controlName="PostopDel"
+                    placeholder="Post Op Delirium" [formGroup]="formGroupS" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PostHITAnti']" controlName="PostHITAnti"
+                    placeholder="Post Op Heparin Induced Thrombocytopenia" [formGroup]="formGroupS"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PainScorePOD3']" controlName="PainScorePOD3"
+                    placeholder="Pain Score POD #3" [formGroup]="formGroupS" [choices]="[
+                      '0',
+                      '1',
+                      '2',
+                      '3',
+                      '4',
+                      '5',
+                      '6',
+                      '7',
+                      '8',
+                      '9',
+                      '10',
+                      'Not Recorded',
+                      'N/A'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PainScoreDisch']" controlName="PainScoreDisch"
+                    placeholder="Pain Score Discharge" [formGroup]="formGroupS" [choices]="[
+                      '0',
+                      '1',
+                      '2',
+                      '3',
+                      '4',
+                      '5',
+                      '6',
+                      '7',
+                      '8',
+                      '9',
+                      '10',
+                      'Not Recorded',
+                      'N/A'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+              </div>
+
+
+            </form>
           </div>
-        </section> -->
+        </section>
 
       </div>
       <br>
