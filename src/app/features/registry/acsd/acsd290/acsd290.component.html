@@ -6403,7 +6403,7 @@
           </div>
         </section> -->
 
-        <section class="section-wrapper" scrollSpyElement id="sectionP">
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionP">
           <div class="section-title">
             {{ getTocTitle('P') }}
           </div>
@@ -6418,12 +6418,14 @@
                     [formGroup]="formGroupP" [choices]="['Yes', 'No']" fxFlex></reg-select>
 
                   <div *ngIf="visibles['CSternalSupInf']">
-                    <!-- <button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000" (click)="setToDefaultPostopSSI(formGroupP, 'No')">
-                    <mat-icon>save_alt</mat-icon>
-                  </button>
-                  <button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000" (click)="setToDefaultPostopSSI(formGroupP, null)">
-                    <mat-icon>replay</mat-icon>
-                  </button> -->
+                    //<button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000" //
+                      (click)="setToDefaultPostopSSI(formGroupP, 'No')">
+                      // <mat-icon>save_alt</mat-icon>
+                      //</button>
+                    //<button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000" //
+                      (click)="setToDefaultPostopSSI(formGroupP, null)">
+                      // <mat-icon>replay</mat-icon>
+                    </button>
                   </div>
                 </div>
 
@@ -6519,12 +6521,14 @@
                     [formGroup]="formGroupP" [choices]="['Yes', 'No']" fxFlex></reg-select>
 
                   <div *ngIf="visibles['compliOperative']">
-                    <!-- <button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000" (click)="setToDefaultPostopEvent(formGroupP, 'No')">
-                    <mat-icon>save_alt</mat-icon>
-                  </button>
-                  <button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000" (click)="setToDefaultPostopEvent(formGroupP, null)">
-                    <mat-icon>replay</mat-icon>
-                  </button> -->
+                    //<button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000"
+                    //  (click)="setToDefaultPostopEvent(formGroupP, 'No')">
+                    //  <mat-icon>save_alt</mat-icon>
+                    //</button>
+                    //<button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000"
+                    //  (click)="setToDefaultPostopEvent(formGroupP, null)">
+                    //  <mat-icon>replay</mat-icon>
+                    //</button>
                   </div>
                 </div>
 
@@ -6989,6 +6993,238 @@
                   <reg-select class="reg-item-indent" *ngIf="visibles['COtOther']" controlName="COtOther"
                     placeholder="Other" [formGroup]="formGroupP" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
                   </reg-select>
+
+                </div>
+
+              </div>
+
+            </form>
+          </div>
+        </section> -->
+
+        <section class="section-wrapper" scrollSpyElement id="sectionQ">
+          <div class="section-title">
+            {{ getTocTitle('Q') }}
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupQ" #formDirectiveQ="ngForm">
+
+              <div class="reg-container-col">
+
+                <div class="reg-container">
+
+                  <reg-datepicker controlName="LFUDate" placeholder="Date of Last Follow-up" [formGroup]="formGroupQ"
+                    fxFlex="1 0 250px">dd/mm/yyyy</reg-datepicker>
+
+                  <reg-select controlName="Mt30Stat" placeholder="Status at 30 days After Surgery"
+                    [formGroup]="formGroupQ" [choices]="[
+                      'Alive',
+                      'Dead',
+                      'Unknown'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+
+                  <reg-select controlName="Mt30StatMeth" placeholder="Primary method used to verify 30-day status"
+                    [formGroup]="formGroupQ" [choices]="[
+                      'Phone call to patient or family',
+                      'Letter from medical provider',
+                      'Medical record (evidence of life or death)',
+                      'Office visit >= 30 days after procedure',
+                      'Social Security Death Master File /NDI',
+                      'Other'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <reg-select controlName="DischMortStat" placeholder="Discharge/Mortality status"
+                  [formGroup]="formGroupQ" [choices]="[
+                    'In hospital, alive',
+                    'Died in hospital',
+                    'Discharged alive, last known status is alive',
+                    'Discharged alive, died after discharge'
+                  ]"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-datepicker class="reg-item-indent" *ngIf="visibles['DischDt']" controlName="DischDt"
+                    placeholder="Discharge Date" [formGroup]="formGroupQ" fxFlex="1 0 250px">dd/mm/yyyy</reg-datepicker>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DisLoctn']" controlName="DisLoctn"
+                    placeholder="Discharge Location" [formGroup]="formGroupQ" [choices]="[
+                      'Home',
+                      'Extended Care/Transitional Care Unit/Rehab',
+                      'Other Acute Care Hospital',
+                      'Nursing Home',
+                      'Hospice',
+                      'Left AMA',
+                      'Other'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['CardRef']" controlName="CardRef"
+                    placeholder="Cardiac Rehabilitation Referral" [formGroup]="formGroupQ" [choices]="[
+                      'Yes',
+                      'No',
+                      'Not Applicable'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['SmokCoun']" controlName="SmokCoun"
+                    placeholder="Smoking Cessation Counseling" [formGroup]="formGroupQ" [choices]="[
+                      'Yes',
+                      'No',
+                      'Not Applicable'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <mat-divider *ngIf="visibles['medPresDC']"></mat-divider>
+
+                <div *ngIf="visibles['medPresDC']" fxLayoutAlign="space-between center">
+                  <h4 class="reg-title" id="medPresDC">Medications Prescribed at Discharge</h4>
+                  <div>
+                    <!-- <button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000"
+                    (click)="setToDefaultDischargeMed(formGroupQ, 'No')">
+                    <mat-icon>save_alt</mat-icon>
+                  </button>
+                  <button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000"
+                    (click)="setToDefaultDischargeMed(formGroupQ, null)">
+                    <mat-icon>replay</mat-icon>
+                  </button> -->
+                  </div>
+                </div>
+
+                <h4 class="reg-subtitle" *ngIf="visibles['antiplateletDC']" id="antiplateletDC">Antiplatelet</h4>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DCASA']" controlName="DCASA"
+                    placeholder="Aspirin" [formGroup]="formGroupQ" [choices]="['Yes', 'No', 'Contraindicated']"
+                    fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DCADP']" controlName="DCADP"
+                    placeholder="ADP Inhibitor" [formGroup]="formGroupQ" [choices]="['Yes', 'No', 'Contraindicated']"
+                    fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DCOthAntiplat']" controlName="DCOthAntiplat"
+                    placeholder="Other Antiplatelet" [formGroup]="formGroupQ"
+                    [choices]="['Yes', 'No', 'Contraindicated']" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <h4 class="reg-subtitle" *ngIf="visibles['anticoagulantDC']" id="anticoagulantDC">Anticoagulant</h4>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DCDirThromIn']" controlName="DCDirThromIn"
+                    placeholder="Thrombin Inhibitors" [formGroup]="formGroupQ"
+                    [choices]="['Yes', 'No', 'Contraindicated']" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DCCoum']" controlName="DCCoum"
+                    placeholder="Warfarin (Coumadin)" [formGroup]="formGroupQ"
+                    [choices]="['Yes', 'No', 'Contraindicated']" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DCFactorXa']" controlName="DCFactorXa"
+                    placeholder="Factor Xa inhibitors" [formGroup]="formGroupQ"
+                    [choices]="['Yes', 'No', 'Contraindicated']" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DCNovOrAnti']" controlName="DCNovOrAnti"
+                    placeholder="Novel Oral Anticoagulant" [formGroup]="formGroupQ"
+                    [choices]="['Yes', 'No', 'Contraindicated']" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DCOthAnticoag']" controlName="DCOthAnticoag"
+                    placeholder="Other Anticoagulant" [formGroup]="formGroupQ"
+                    [choices]="['Yes', 'No', 'Contraindicated']" fxFlex="1 0 200px"></reg-select>
+
+                  <div fxFlex="1 0 220px"></div>
+
+                </div>
+
+                <h4 class="reg-subtitle" *ngIf="visibles['otherDC']" id="otherDC">Other</h4>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DCACE']" controlName="DCACE"
+                    placeholder="ACE or ARB" [formGroup]="formGroupQ"
+                    [choices]="['Yes', 'No', 'Contraindicated', 'Not Indicated (no CHF or EF > 40%)']"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DCAmiodarone']" controlName="DCAmiodarone"
+                    placeholder="Amiodarone" [formGroup]="formGroupQ" [choices]="['Yes', 'No', 'Contraindicated']"
+                    fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DCBeta']" controlName="DCBeta"
+                    placeholder="Beta Blocker" [formGroup]="formGroupQ" [choices]="['Yes', 'No', 'Contraindicated']"
+                    fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DCLipLowStat']" controlName="DCLipLowStat"
+                    placeholder="Lipid Lowering - Statin" [formGroup]="formGroupQ"
+                    [choices]="['Yes', 'No', 'Contraindicated']" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DCLipLowNonStat']" controlName="DCLipLowNonStat"
+                    placeholder="Lipid Lowering - Other" [formGroup]="formGroupQ"
+                    [choices]="['Yes', 'No', 'Contraindicated']" fxFlex="1 0 200px"></reg-select>
+
+                  <div fxFlex="1 0 220px"></div>
+
+                </div>
+
+                <mat-divider *ngIf="visibles['MtDate']"></mat-divider>
+
+                <div class="reg-container">
+
+                  <reg-datepicker class="reg-item-indent" *ngIf="visibles['MtDate']" controlName="MtDate"
+                    placeholder="Mortality - Date" [formGroup]="formGroupQ" fxFlex="1 0 250px">dd/mm/yyyy
+                  </reg-datepicker>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['MtCause']" controlName="MtCause"
+                    placeholder="Primary Cause of Death" [formGroup]="formGroupQ" [choices]="[
+                      'Cardiac',
+                      'Neurologic',
+                      'Renal',
+                      'Vascular',
+                      'Infection',
+                      'Pulmonary',
+                      'Unknown',
+                      'Other'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['InHospDthLoc']" controlName="InHospDthLoc"
+                    placeholder="In-Hospital death location" [formGroup]="formGroupQ" [choices]="[
+                      'OR During Initial Surgery',
+                      'OR during reoperation',
+                      'In Hospital (Other than OR)'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['MtOpD']" controlName="MtOpD"
+                    placeholder="Operative Death" [formGroup]="formGroupQ" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PostDisDthLoc']" controlName="PostDisDthLoc"
+                    placeholder="Post Discharge death location" [formGroup]="formGroupQ" [choices]="[
+                      'Home',
+                      'Extended Care Facility',
+                      'Hospice',
+                      'Acute Rehabilitation',
+                      'Hospital during readmission',
+                      'Other',
+                      'Unknown'
+                    ]" fxFlex="1 0 250px"></reg-select>
 
                 </div>
 
