@@ -146,7 +146,7 @@ export class Acsd290Component extends RegistryFormComponent
 
     this.createForm();
     this.registryFormService.subscribeFormConditions();
-    this.formGroupI.controls['AortProc'].setValue('Yes');
+    this.formGroupI.controls['OpONCard'].setValue('Yes');
   }
 
   ngAfterViewInit() {

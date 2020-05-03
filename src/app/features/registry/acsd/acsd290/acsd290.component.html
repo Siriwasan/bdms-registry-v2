@@ -4515,7 +4515,7 @@
           </div>
         </section> -->
 
-        <section class="section-wrapper" scrollSpyElement id="sectionM2">
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionM2">
           <div class="section-title">
             {{ getTocTitle('M2') }}
           </div>
@@ -4725,7 +4725,7 @@
                     'Coarctation'
                   ]"></reg-select>
 
-                <!-- ANEURYSM -->
+                //ANEURYSM
 
                 <div *ngIf="visibles['AnEtilogy']" class="reg-container">
 
@@ -4779,7 +4779,7 @@
 
                 </div>
 
-                <!-- DISSECTION -->
+                //DISSECTION
 
                 <div *ngIf="visibles['DisTiming']" class="reg-container">
 
@@ -4995,7 +4995,7 @@
 
                 </div>
 
-                <!-- ROOT -->
+                //ROOT
 
                 <h4 class="reg-title" *ngIf="visibles['root']" id="root">Root</h4>
 
@@ -5033,7 +5033,7 @@
 
                 </div>
 
-                <!-- ARCH -->
+                //ARCH
 
                 <h4 class="reg-title" *ngIf="visibles['arch']" id="arch">Arch</h4>
 
@@ -6075,6 +6075,331 @@
                 You need to select Aorta procedure Performed in section I.
               </div>
             </ng-template>
+          </div>
+        </section> -->
+
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionM3">
+          <div class="section-title">
+            {{ getTocTitle('M3') }}
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupM3" #formDirectiveM3="ngForm">
+              <div *ngIf="visibles['sectionM3Body']; else sectionM3_other_content" id="sectionM3Body"
+                class="reg-container-col">
+
+                <h4 class="reg-title" *ngIf="visibles['congenDiag']" id="congenDiag">Congenital Diagnoses: Select up to
+                  three most
+                  significant diagnoses</h4>
+
+                <reg-input *ngIf="visibles['OCarCongDiag1']" controlName="OCarCongDiag1" placeholder="Diagnosis 1"
+                  [formGroup]="formGroupM3" type="number">
+                </reg-input>
+
+                <reg-input *ngIf="visibles['OCarCongDiag2']" controlName="OCarCongDiag2" placeholder="Diagnosis 2"
+                  [formGroup]="formGroupM3" type="number">
+                </reg-input>
+
+                <reg-input *ngIf="visibles['OCarCongDiag3']" controlName="OCarCongDiag3" placeholder="Diagnosis 3"
+                  [formGroup]="formGroupM3" type="number">
+                </reg-input>
+
+                <h4 class="reg-title" *ngIf="visibles['congenProc']" id="congenProc">Congenital Procedures: Select up to
+                  three most
+                  significant diagnoses</h4>
+
+                <reg-input *ngIf="visibles['OCarCongProc1']" controlName="OCarCongProc1" placeholder="Procedure 1"
+                  [formGroup]="formGroupM3" type="number">
+                </reg-input>
+
+                <reg-input *ngIf="visibles['OCarCongProc2']" controlName="OCarCongProc2" placeholder="Procedure 2"
+                  [formGroup]="formGroupM3" type="number">
+                </reg-input>
+
+                <reg-input *ngIf="visibles['OCarCongProc3']" controlName="OCarCongProc3" placeholder="Procedure 3"
+                  [formGroup]="formGroupM3" type="number">
+                </reg-input>
+
+              </div>
+            </form>
+            <ng-template #sectionM3_other_content>
+              <div class="section-body">
+                You need to select Congenital Defect Repair in section M.
+              </div>
+            </ng-template>
+          </div>
+        </section> -->
+
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionN">
+          <div class="section-title">
+            {{ getTocTitle('N') }}
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupN" #formDirectiveN="ngForm">
+              <div *ngIf="visibles['sectionNBody']; else sectionN_other_content" id="sectionNBody"
+                class="reg-container-col">
+
+                <reg-select *ngIf="visibles['ONCCarEn']" controlName="ONCCarEn" placeholder="Carotid Endarterectomy"
+                  [formGroup]="formGroupN" [choices]="[
+                    'Yes, planned',
+                    'Yes, unplanned due to surgical complication',
+                    'Yes, unplanned due to unsuspected disease or anatomy',
+                    'No'
+                  ]"></reg-select>
+
+                <reg-select *ngIf="visibles['ONCOVasc']" controlName="ONCOVasc" placeholder="Other Vascular"
+                  [formGroup]="formGroupN" [choices]="[
+                    'Yes, planned',
+                    'Yes, unplanned due to surgical complication',
+                    'Yes, unplanned due to unsuspected disease or anatomy',
+                    'No'
+                  ]"></reg-select>
+
+                <reg-select *ngIf="visibles['ONCOThor']" controlName="ONCOThor" placeholder="Other Thoracic"
+                  [formGroup]="formGroupN" [choices]="[
+                    'Yes, planned',
+                    'Yes, unplanned due to surgical complication',
+                    'Yes, unplanned due to unsuspected disease or anatomy',
+                    'No'
+                  ]"></reg-select>
+
+                <reg-select *ngIf="visibles['ONCOther']" controlName="ONCOther" placeholder="Other"
+                  [formGroup]="formGroupN" [choices]="[
+                    'Yes, planned',
+                    'Yes, unplanned due to surgical complication',
+                    'Yes, unplanned due to unsuspected disease or anatomy',
+                    'No'
+                  ]"></reg-select>
+
+              </div>
+            </form>
+            <ng-template #sectionN_other_content>
+              <div class="section-body">
+                You need to select Other Non-Cardiac Procedure in section I.
+              </div>
+            </ng-template>
+          </div>
+        </section> -->
+
+        <section class="section-wrapper" scrollSpyElement id="sectionO">
+          <div class="section-title">
+            {{ getTocTitle('O') }}
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupO" #formDirectiveO="ngForm">
+
+              <div class="reg-container-col">
+
+                <div fxLayout="row wrap" fxLayout.lt-lg="column wrap" style="margin-top: 10px;">
+
+                  <div class="reg-container">
+
+                    <reg-input controlName="PostOpPeakGlu"
+                      placeholder="Peak Glucose within18-24 hours of anesthesia end time" [formGroup]="formGroupO"
+                      type="number" fxFlex="1 0 250px"></reg-input>
+
+                    <reg-input controlName="PostCreat" placeholder="Postoperative Creatinine Level"
+                      [formGroup]="formGroupO" type="number" fxFlex="1 0 250px"></reg-input>
+
+                  </div>
+
+                  <div class="reg-container">
+
+                    <reg-input controlName="PostopHemoglobin" placeholder="Discharge Hemoglobin"
+                      [formGroup]="formGroupO" type="number" fxFlex="1 0 250px"></reg-input>
+
+                    <reg-input controlName="PostopHct" placeholder="Discharge Hematocrit" [formGroup]="formGroupO"
+                      type="number" fxFlex="1 0 250px"></reg-input>
+
+                  </div>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="BldProd" placeholder="Blood Products Used Postoperatively"
+                    [formGroup]="formGroupO" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <div *ngIf="visibles['BdRBCU']" class="reg-container">
+
+                    <reg-input class="reg-item-indent" *ngIf="visibles['BdRBCU']" controlName="BdRBCU"
+                      placeholder="Red Blood Cell Units" [formGroup]="formGroupO" type="number" fxFlex="1 0 200px">
+                    </reg-input>
+
+                    <reg-input class="reg-item-indent" *ngIf="visibles['BdFFPU']" controlName="BdFFPU"
+                      placeholder="Fresh Frozen Plasma Units" [formGroup]="formGroupO" type="number" fxFlex="1 0 200px">
+                    </reg-input>
+
+                    <reg-input class="reg-item-indent" *ngIf="visibles['BdCryoU']" controlName="BdCryoU"
+                      placeholder="Cryoprecipitate Units" [formGroup]="formGroupO" type="number" fxFlex="1 0 200px">
+                    </reg-input>
+
+                    <reg-input class="reg-item-indent" *ngIf="visibles['BdPlatU']" controlName="BdPlatU"
+                      placeholder="Platelet Units" [formGroup]="formGroupO" type="number" fxFlex="1 0 200px">
+                    </reg-input>
+
+                  </div>
+
+                </div>
+
+                <reg-select controlName="ExtubOR" placeholder="Extubated in OR" [formGroup]="formGroupO"
+                  [choices]="['Yes', 'No', 'N/A']"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="PostopIntub"
+                    placeholder="Re-intubated or intubated Post Op During Hospital Stay" [formGroup]="formGroupO"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-input class="reg-item-indent" *ngIf="visibles['VentHrsA']" controlName="VentHrsA"
+                    placeholder="Additional Hours Ventilated" [formGroup]="formGroupO" type="number" fxFlex="1 0 250px">
+                  </reg-input>
+
+                </div>
+
+                <reg-input controlName="VentHrsTot" placeholder="Total post-operative ventilation hours"
+                  [formGroup]="formGroupO" type="number" readonly="true">(auto calculated)</reg-input>
+                <!-- System Calculation -->
+
+                <div class="reg-container">
+
+                  <reg-select controlName="ICUVisit" placeholder="ICU Visit" [formGroup]="formGroupO"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-input class="reg-item-indent" *ngIf="visibles['ICUInHrs']" controlName="ICUInHrs"
+                    placeholder="Initial ICU Hours" [formGroup]="formGroupO" type="number" fxFlex="1 0 250px">
+                  </reg-input>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="ICUReadm" placeholder="Readmission to ICU" [formGroup]="formGroupO"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-input class="reg-item-indent" *ngIf="visibles['ICUAdHrs']" controlName="ICUAdHrs"
+                    placeholder="Additional ICU Hours" [formGroup]="formGroupO" type="number" fxFlex="1 0 250px">
+                  </reg-input>
+
+                </div>
+
+                <reg-select controlName="POpTTEch" placeholder="Post Op Echo Performed to evaluate valve(s)"
+                  [formGroup]="formGroupO" [choices]="['Yes', 'No']"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['POpTTAR']" controlName="POpTTAR"
+                    placeholder="Level aortic insufficiency found" [formGroup]="formGroupO" [choices]="[
+                    'None',
+                    'Trivial/Trace',
+                    'Mild',
+                    'Moderate',
+                    'Severe',
+                    'Not Documented'
+                  ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['POpAortParaLk']" controlName="POpAortParaLk"
+                    placeholder="Aortic Paravalvular leak" [formGroup]="formGroupO" [choices]="[
+                    'None',
+                    'Trivial/Trace',
+                    'Mild',
+                    'Moderate',
+                    'Severe',
+                    'Not Documented'
+                  ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['POpTTMR']" controlName="POpTTMR"
+                    placeholder="Level mitral insufficiency found" [formGroup]="formGroupO" [choices]="[
+                      'None',
+                      'Trivial/Trace',
+                      'Mild',
+                      'Moderate',
+                      'Severe',
+                      'Not Documented'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['POpMitParaLk']" controlName="POpMitParaLk"
+                    placeholder="Mitral Paravalvular leak" [formGroup]="formGroupO" [choices]="[
+                      'None',
+                      'Trivial/Trace',
+                      'Mild',
+                      'Moderate',
+                      'Severe',
+                      'Not Documented'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['POpTTTR']" controlName="POpTTTR"
+                  placeholder="Level tricuspid insufficiency found" [formGroup]="formGroupO" [choices]="[
+                    'None',
+                    'Trivial/Trace',
+                    'Mild',
+                    'Moderate',
+                    'Severe',
+                    'Not Documented'
+                  ]"></reg-select>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['POpTTPu']" controlName="POpTTPu"
+                  placeholder="Level pulmonic insufficiency found" [formGroup]="formGroupO" [choices]="[
+                    'None',
+                    'Trivial/Trace',
+                    'Mild',
+                    'Moderate',
+                    'Severe',
+                    'Not Documented'
+                  ]"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="POpEFD" placeholder="Post Op Ejection Fraction" [formGroup]="formGroupO"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-input class="reg-item-indent" *ngIf="visibles['POpEF']" controlName="POpEF"
+                    placeholder="Post Op Ejection Fraction (%)" [formGroup]="formGroupO" type="number"
+                    fxFlex="1 0 200px"></reg-input>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="POpEnzDrawn" placeholder="Cardiac Enzymes (biomarkers) Drawn"
+                    [formGroup]="formGroupO" [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                  <div *ngIf="visibles['POpPkCKMB']" class="reg-container">
+
+                    <reg-input class="reg-item-indent" *ngIf="visibles['POpPkCKMB']" controlName="POpPkCKMB"
+                      placeholder="Peak CKMB" [formGroup]="formGroupO" require="false" type="number" fxFlex="1 0 200px">
+                    </reg-input>
+
+                    <reg-input class="reg-item-indent" *ngIf="visibles['POpPkTrI']" controlName="POpPkTrI"
+                      placeholder="Peak Troponin I" [formGroup]="formGroupO" require="false" type="number"
+                      fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input class="reg-item-indent" *ngIf="visibles['POpPkTrT']" controlName="POpPkTrT"
+                      placeholder="Peak Troponin T" [formGroup]="formGroupO" require="false" type="number"
+                      fxFlex="1 0 200px"></reg-input>
+
+                  </div>
+                </div>
+
+                <reg-select controlName="POpEKG" placeholder="12-Lead EKG Findings" [formGroup]="formGroupO" [choices]="[
+                    'Not Performed',
+                    'No ischemic changes',
+                    'New ST changes',
+                    'New Pathological Q-Wave or LBBB',
+                    'New RBBB',
+                    'New AV Conduction Block',
+                    'New STEMI',
+                    'Other',
+                    'NA (no pre-op EKG for comparison, transplant)'
+                    ]"></reg-select>
+              </div>
+
+            </form>
           </div>
         </section>
 
