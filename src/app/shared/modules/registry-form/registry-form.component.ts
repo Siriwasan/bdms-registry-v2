@@ -123,16 +123,12 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, AfterConten
     return this.currentSection === section;
   }
 
-  public scrollTo(section: string) {
-    this.scrollSpy.scrollTo(section);
-  }
-
   closeSidebar() {
     this.store.dispatch(AppStoreActions.closeSidebar());
   }
 
   tocClicked(toc: string) {
-    this.scrollTo(toc);
+    this.scrollSpy.scrollTo(toc);
 
     this.store.dispatch(AppStoreActions.closeSidebar());
   }

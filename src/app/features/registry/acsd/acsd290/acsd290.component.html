@@ -7,7 +7,7 @@
             <li id="titleTOC" (click)="tocClicked('title')" [class.active]="isActive('title')" class="toc-title">
               <span>ACSD v2.90</span></li>
             <li *ngFor="let h of toc" class="toc-header">
-              <a [id]="h.section + 'TOC'" (click)="scrollTo(h.section)"
+              <a [id]="h.section + 'TOC'" (click)="tocClicked(h.section)"
                 [class.active]="isActive(h.section)">{{ h.title }}</a>
             </li>
           </ul>
@@ -3029,7 +3029,7 @@
         </section>
  -->
 
-        <section class="section-wrapper" scrollSpyElement id="sectionK">
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionK">
           <div class="section-title">
             {{ getTocTitle('K') }}
           </div>
@@ -3165,7 +3165,7 @@
                   </div>
                 </div>
 
-                <!-- AORTIC VALVE -->
+                //AORTIC VALVE
 
                 <reg-select *ngIf="visibles['VSAV']" controlName="VSAV" placeholder="Aortic Valve Procedure Performed"
                   [formGroup]="formGroupK" [choices]="[
@@ -3395,7 +3395,7 @@
                   </div>
                 </div>
 
-                <!-- MITRAL VALVE -->
+                //MITRAL VALVE
 
                 <reg-select *ngIf="visibles['VSMV']" controlName="VSMV" placeholder="Mitral Valve Procedure Performed"
                   [formGroup]="formGroupK" [choices]="[
@@ -3424,7 +3424,7 @@
                 <reg-select class="reg-item-indent2" *ngIf="visibles['VSMitRAnnulo']" controlName="VSMitRAnnulo"
                   placeholder="Annuloplasty" [formGroup]="formGroupK" [choices]="['Yes', 'No']"></reg-select>
 
-                <!-- LEAFLET RESECTION -->
+                //LEAFLET RESECTION
 
                 <div class="reg-container">
 
@@ -3512,7 +3512,7 @@
 
                 </div>
 
-                <!-- NEOCORDS (PTFE) -->
+                //NEOCORDS (PTFE)
 
                 <reg-select class="reg-item-indent2" *ngIf="visibles['VSMitRPTFE']" controlName="VSMitRPTFE"
                   placeholder="Neochords (PTFE)" [formGroup]="formGroupK" [choices]="['Yes', 'No']"></reg-select>
@@ -3585,7 +3585,7 @@
 
                 </div>
 
-                <!-- CHORDAL/LEAFLET TRANSFER -->
+                //CHORDAL/LEAFLET TRANSFER
 
                 <reg-select class="reg-item-indent2" *ngIf="visibles['VSMitRChord']" controlName="VSMitRChord"
                   placeholder="Chordal/ Leaflet transfer" [formGroup]="formGroupK" [choices]="['Yes', 'No']">
@@ -3765,7 +3765,7 @@
 
                 </div>
 
-                <!-- TRICUSPID VALVE -->
+                //TRICUSPID VALVE
 
                 <reg-select *ngIf="visibles['VSTV']" controlName="VSTV"
                   placeholder="Tricuspid Valve Procedure Performed" [formGroup]="formGroupK" [choices]="[
@@ -3836,7 +3836,7 @@
 
                 </div>
 
-                <!-- PULMONIC VALVE -->
+                //PULMONIC VALVE
 
                 <reg-select *ngIf="visibles['VSPV']" controlName="VSPV" placeholder="Pulmonic Valve Procedure Performed"
                   [formGroup]="formGroupK" [choices]="[
@@ -3914,6 +3914,103 @@
                   You need to select Valve Surgery in section I.
                 </div>
               </ng-template>
+            </form>
+          </div>
+        </section> -->
+
+        <section class="section-wrapper" scrollSpyElement id="sectionL">
+          <div class="section-title">
+            {{ getTocTitle('L') }}
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupL" #formDirectiveL="ngForm">
+              <div class="reg-container-col">
+
+                <reg-select controlName="IABP" placeholder="Intra-Aortic Balloon Pump (IABP)" [formGroup]="formGroupL"
+                  [choices]="['Yes', 'No']"></reg-select>
+
+                <div *ngIf="visibles['IABPWhen']" class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['IABPWhen']" controlName="IABPWhen"
+                    placeholder="IABPInsertion" [formGroup]="formGroupL" [choices]="[
+                    'Preop',
+                    'Intraop',
+                    'Postop'
+                  ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['IABPInd']" controlName="IABPInd"
+                    placeholder="Primary Reason for Insertion" [formGroup]="formGroupL" [choices]="[
+                    'Hemodyn Instability',
+                    'Procedural Support',
+                    'Unstable Angina',
+                    'Cardiopulmonary Bypass (CPB) Weaning Failure',
+                    'Prophylactic',
+                    'Other'
+                  ]" fxFlex="1 0 220px"></reg-select>
+
+                </div>
+
+                <reg-select controlName="CathBasAssist" placeholder="Catheter Based Assist Device Used"
+                  [formGroup]="formGroupL" [choices]="['Yes', 'No']"></reg-select>
+
+                <div *ngIf="visibles['CathBasAssistTy']" class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['CathBasAssistTy']" controlName="CathBasAssistTy"
+                    placeholder="Type" [formGroup]="formGroupL" [choices]="[
+                    'RV',
+                    'LV',
+                    'BiV'
+                  ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['CathBasAssistWhen']"
+                    controlName="CathBasAssistWhen" placeholder="When Inserted" [formGroup]="formGroupL" [choices]="[
+                    'Preop',
+                    'Intraop',
+                    'Postop'
+                  ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['CathBasAssistInd']"
+                    controlName="CathBasAssistInd" placeholder="Primary Reason for Insertion" [formGroup]="formGroupL"
+                    [choices]="[
+                    'Hemodynamic instability',
+                    'CPB weaning failure',
+                    'PCI failure',
+                    'Procedural support',
+                    'Other'
+                  ]" fxFlex="1 0 220px"></reg-select>
+
+                </div>
+
+                <reg-select controlName="ECMO" placeholder="ECMO" [formGroup]="formGroupL" [choices]="[
+                  'Veno-venous',
+                  'Veno-arterial',
+                  'Veno-venous converted to Veno-arterial',
+                  'No'
+                ]"></reg-select>
+
+                <div *ngIf="visibles['ECMOWhen']" class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['ECMOWhen']" controlName="ECMOWhen"
+                    placeholder="ECMO Initiated" [formGroup]="formGroupL" [choices]="[
+                    'Preop',
+                    'Intraop',
+                    'Postop',
+                    'Non-operative'
+                  ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['ECMOInd']" controlName="ECMOInd"
+                    placeholder="Clinical Indication for ECMO" [formGroup]="formGroupL" [choices]="[
+                    'Cardiac Failure',
+                    'Respiratory Failure',
+                    'Hypothermia',
+                    'Rescue/salvage',
+                    'Other'
+                  ]" fxFlex="1 0 220px"></reg-select>
+
+                </div>
+
+              </div>
+
             </form>
           </div>
         </section>

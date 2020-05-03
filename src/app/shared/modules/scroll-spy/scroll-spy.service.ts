@@ -110,6 +110,9 @@ export class ScrollSpyService implements OnDestroy {
   }
 
   scrollTo(section: string) {
-    document.getElementById(section).scrollIntoView(true);
+    // document.getElementById(section).scrollIntoView(true);
+    document
+      .getElementById(section)
+      .scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
   }
 }
