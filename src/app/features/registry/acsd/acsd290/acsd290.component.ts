@@ -146,7 +146,9 @@ export class Acsd290Component extends RegistryFormComponent
 
     this.createForm();
     this.registryFormService.subscribeFormConditions();
-    this.formGroupI.controls['OpONCard'].setValue('Yes');
+    this.formGroupQ.controls['DischMortStat'].setValue(
+      'Discharged alive, last known status is alive'
+    );
   }
 
   ngAfterViewInit() {

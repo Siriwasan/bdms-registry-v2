@@ -7002,7 +7002,7 @@
           </div>
         </section> -->
 
-        <section class="section-wrapper" scrollSpyElement id="sectionQ">
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionQ">
           <div class="section-title">
             {{ getTocTitle('Q') }}
           </div>
@@ -7085,14 +7085,14 @@
                 <div *ngIf="visibles['medPresDC']" fxLayoutAlign="space-between center">
                   <h4 class="reg-title" id="medPresDC">Medications Prescribed at Discharge</h4>
                   <div>
-                    <!-- <button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000"
-                    (click)="setToDefaultDischargeMed(formGroupQ, 'No')">
-                    <mat-icon>save_alt</mat-icon>
-                  </button>
-                  <button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000"
-                    (click)="setToDefaultDischargeMed(formGroupQ, null)">
-                    <mat-icon>replay</mat-icon>
-                  </button> -->
+                    //<button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000"
+                    //  (click)="setToDefaultDischargeMed(formGroupQ, 'No')">
+                    //  <mat-icon>save_alt</mat-icon>
+                    //</button>
+                    //<button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000"
+                    //  (click)="setToDefaultDischargeMed(formGroupQ, null)">
+                    //  <mat-icon>replay</mat-icon>
+                    //</button>
                   </div>
                 </div>
 
@@ -7231,6 +7231,118 @@
               </div>
 
             </form>
+          </div>
+        </section> -->
+
+        <section class="section-wrapper" scrollSpyElement id="sectionR">
+          <div class="section-title">
+            {{ getTocTitle('R') }}
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupR" #formDirectiveR="ngForm">
+              <div *ngIf="visibles['sectionRBody']; else sectionR_other_content" id="sectionRBody"
+                class="reg-container-col">
+
+                <reg-select *ngIf="visibles['Readmit']" controlName="Readmit" placeholder="Readmit"
+                  [formGroup]="formGroupR" [choices]="['Yes', 'No', 'Unknown']"></reg-select>
+
+                <reg-datepicker class="reg-item-indent" *ngIf="visibles['ReadmitDt']" controlName="ReadmitDt"
+                  placeholder="Readmit Date" [formGroup]="formGroupR">
+                  dd/mm/yyyy</reg-datepicker>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['ReadmRsn']" controlName="ReadmRsn"
+                  placeholder="Readmit Primary Reason" [formGroup]="formGroupR" [choices]="[
+                    'Angina',
+                    'Anticoagulation Complication - Pharmacological',
+                    'Anticoagulation Complication – Valvular',
+                    'Aortic Complication',
+                    'Arrhythmia or Heart Block',
+                    'Blood Pressure (hyper or hypotension)',
+                    'Chest pain, noncardiac',
+                    'Congestive Heart Failure',
+                    'Coronary Artery/Graft Dysfunction',
+                    'Depression/psychiatric issue',
+                    'DVT',
+                    'Electrolyte imbalance',
+                    'Endocarditis',
+                    'Failure to thrive',
+                    'GI issue',
+                    'Infection, Conduit Harvest Site',
+                    'Infection, Deep Sternum / Mediastinitis',
+                    'Mental status changes',
+                    'Myocardial Infarction',
+                    'PE',
+                    'Pericardial Effusion and/or Tamponade',
+                    'Pericarditis/Post Cardiotomy Syndrome',
+                    'Pleural effusion requiring intervention',
+                    'Pneumonia',
+                    'Renal Failure',
+                    'Renal Insufficiency',
+                    'Respiratory complication, Other',
+                    'Sepsis',
+                    'Stroke',
+                    'TIA',
+                    'Transfusion',
+                    'Transplant Rejection',
+                    'VAD Complication',
+                    'Valve Dysfunction',
+                    'Vascular Complication, acute',
+                    'Wound , other (drainage, cellulitis)',
+                    'Other – Related Readmission',
+                    'Other – Nonrelated Readmission',
+                    'Other – Planned Readmission',
+                    'Unknown'
+                  ]"></reg-select>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['ReadmPro']" controlName="ReadmPro"
+                  placeholder="Readmit Primary Procedure" [formGroup]="formGroupR" [choices]="[
+                    'No Procedure Performed',
+                    'Cath lab for Valve Intervention',
+                    'Cath lab for Coronary Intervention (PCI)',
+                    'Dialysis',
+                    'OR for Bleeding',
+                    'OR for Coronary Artery Intervention',
+                    'OR for Sternal Debridement / Muscle Flap',
+                    'OR for Valve Intervention',
+                    'OR for Vascular Procedure',
+                    'OR for Aorta Intervention',
+                    'Pacemaker Insertion / AICD',
+                    'Pericardiotomy / Pericardiocentesis',
+                    'Planned noncardiac procedure',
+                    'Thoracentesis/ Chest tube insertion',
+                    'Wound vac',
+                    'Other Procedure',
+                    'Unknown'
+                  ]"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['ReadmAortIntTy']" controlName="ReadmAortIntTy"
+                    placeholder="Type" [formGroup]="formGroupR" [choices]="[
+                      'Open',
+                      'Endovascular'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['ReadmAortIntInd']" controlName="ReadmAortIntInd"
+                    placeholder="Indication" [formGroup]="formGroupR" [choices]="[
+                      'Rupture',
+                      'Endoleak',
+                      'Infection',
+                      'Dissection',
+                      'Expansion',
+                      'Loss of side branch patency',
+                      'Other'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+              </div>
+            </form>
+            <ng-template #sectionR_other_content>
+              <div class="section-body">
+                You need to select Discharge/Mortality status in section Q.
+              </div>
+            </ng-template>
           </div>
         </section>
 
