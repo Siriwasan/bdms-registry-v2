@@ -4178,7 +4178,7 @@
           </div>
         </section> -->
 
-        <section class="section-wrapper" scrollSpyElement id="sectionM">
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionM">
           <div class="section-title">
             {{ getTocTitle('M') }}
           </div>
@@ -4354,6 +4354,161 @@
             <ng-template #sectionM_other_content>
               <div class="section-body">
                 You need to select Other Cardiac Procedure in section I.
+              </div>
+            </ng-template>
+          </div>
+        </section> -->
+
+        <section class="section-wrapper" scrollSpyElement id="sectionM1">
+          <div class="section-title">
+            {{ getTocTitle('M1') }}
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupM1" #formDirectiveM1="ngForm">
+              <div *ngIf="visibles['sectionM1Body']; else sectionM1_other_content" id="sectionM1Body"
+                class="reg-container-col">
+
+                <reg-select *ngIf="visibles['OCarAFibLesLoc']" controlName="OCarAFibLesLoc"
+                  placeholder="Lesion location" [formGroup]="formGroupM1" [choices]="[
+                    'Primarily epicardial',
+                    'Primarily Intracardiac'
+                  ]"></reg-select>
+
+                <h4 class="reg-subtitle" *ngIf="visibles['methLesCrea']" id="methLesCrea">Method of Lesion Creation</h4>
+
+                <div class="reg-container">
+
+                  <reg-select *ngIf="visibles['OCarAFibMethRad']" controlName="OCarAFibMethRad"
+                    placeholder="Radiofrequency" [formGroup]="formGroupM1" [choices]="['Yes', 'No']" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['OCarAFibMethRadBi']"
+                    controlName="OCarAFibMethRadBi" placeholder="Bipolar" [formGroup]="formGroupM1"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+
+                  <reg-select *ngIf="visibles['OCarAFibMethCAS']" controlName="OCarAFibMethCAS"
+                    placeholder="Cut-and-sew" [formGroup]="formGroupM1" [choices]="['Yes', 'No']" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibles['OCarAFibMethCryo']" controlName="OCarAFibMethCryo" placeholder="Cryo"
+                    [formGroup]="formGroupM1" [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <reg-select *ngIf="visibles['OCarLesDoc']" controlName="OCarLesDoc" placeholder="Lesions Documented"
+                  [formGroup]="formGroupM1" [choices]="['Yes', 'No']"></reg-select>
+
+                <div *ngIf="visibles['afib1Fig']" class="reg-container">
+                  <div fxFlex="1 0 250px">
+                    <img *ngIf="visibles['afib1Fig']" id="afib1Fig" src="assets/images/acsd290/afib1.png" alt=""
+                      style="display: block;width: 100%;height: auto;">
+                  </div>
+                  <div fxFlex="1 0 250px">
+                    <img *ngIf="visibles['afib2Fig']" id="afib2Fig" src="assets/images/acsd290/afib2.png" alt=""
+                      style="display: block;width: 100%;height: auto;">
+                  </div>
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AFibLes1']" class="subitem-horz"
+                    controlName="AFibLes1" placeholder="#1 - Bilateral Pulmonary V ein Isolation"
+                    [formGroup]="formGroupM1" [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 350px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AFibLes2']" class="subitem-horz"
+                    controlName="AFibLes2" placeholder="#2 - Box Lesion Only" [formGroup]="formGroupM1"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 350px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AFibLes3a']" class="subitem-horz"
+                    controlName="AFibLes3a" placeholder="#3a - Inferior Pulmonary Vein Connecting Lesion"
+                    [formGroup]="formGroupM1" [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 350px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AFibLes3b']" class="subitem-horz"
+                    controlName="AFibLes3b" placeholder="#3b - Superior Pulmonary Vein Connecting Lesion"
+                    [formGroup]="formGroupM1" [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 350px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AFibLes4']" class="subitem-horz"
+                    controlName="AFibLes4" placeholder="#4 - Posterior Mitral Annular Line Lesion"
+                    [formGroup]="formGroupM1" [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 350px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AFibLes5']" class="subitem-horz"
+                    controlName="AFibLes5"
+                    placeholder="#5 - Pulmonary Vein Connecting Lesion to Anterior Mitral Annulus"
+                    [formGroup]="formGroupM1" [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 350px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AFibLes6']" class="subitem-horz"
+                    controlName="AFibLes6" placeholder="#6 - Mitral V alve Annular Lesion" [formGroup]="formGroupM1"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 350px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AFibLes7']" class="subitem-horz"
+                    controlName="AFibLes7" placeholder="#7 - LAA /Removal/Obliteration" [formGroup]="formGroupM1"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 350px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AFibLes8']" class="subitem-horz"
+                    controlName="AFibLes8" placeholder="#8 - Pulmonary V ein to LAA Lesion" [formGroup]="formGroupM1"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 350px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AFibLes9']" class="subitem-horz"
+                    controlName="AFibLes9" placeholder="#9 - Intercaval Line to Tricuspid Annulus (“T” lesion)"
+                    [formGroup]="formGroupM1" [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 350px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AFibLes10']" class="subitem-horz"
+                    controlName="AFibLes10" placeholder="#10 - Tricuspid Cryo Lesion, Medial" [formGroup]="formGroupM1"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 350px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AFibLes11']" class="subitem-horz"
+                    controlName="AFibLes11" placeholder="#11 - Intercaval Line (SVC and IVC)" [formGroup]="formGroupM1"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 350px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AFibLes12']" class="subitem-horz"
+                    controlName="AFibLes12" placeholder="#12 - Tricuspid Annular Line to RAA" [formGroup]="formGroupM1"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 350px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AFibLes13']" class="subitem-horz"
+                    controlName="AFibLes13" placeholder="#13 - Tricuspid Cryo Lesion" [formGroup]="formGroupM1"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 350px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AFibLes14']" class="subitem-horz"
+                    controlName="AFibLes14" placeholder="#14 - RAA Ligation/Removal/Obliteration"
+                    [formGroup]="formGroupM1" [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 350px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AFibLes15a']" class="subitem-horz"
+                    controlName="AFibLes15a" placeholder="#15a - RAA Lateral Wall (Short)" [formGroup]="formGroupM1"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 350px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AFibLes15b']" class="subitem-horz"
+                    controlName="AFibLes15b" placeholder="#15b - RAA Lateral Wall to “T” Lesion"
+                    [formGroup]="formGroupM1" [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 350px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AFitLesCSL']" class="subitem-horz"
+                    controlName="AFitLesCSL" placeholder="#16 - Coronary Sinus Lesion" [formGroup]="formGroupM1"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 350px">
+                  </reg-select>
+
+                </div>
+
+              </div>
+            </form>
+            <ng-template #sectionM1_other_content>
+              <div class="section-body">
+                You need to select Other Cardiac Procedure, AFib in section I.
               </div>
             </ng-template>
           </div>
