@@ -3918,7 +3918,7 @@
           </div>
         </section> -->
 
-        <section class="section-wrapper" scrollSpyElement id="sectionL">
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionL">
           <div class="section-title">
             {{ getTocTitle('L') }}
           </div>
@@ -4012,6 +4012,169 @@
               </div>
 
             </form>
+          </div>
+        </section> -->
+
+        <section class="section-wrapper" scrollSpyElement id="sectionL2">
+          <div class="section-title">
+            {{ getTocTitle('L2') }}
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupL2" #formDirectiveL2="ngForm">
+              <div class="reg-container-col">
+
+                <reg-select controlName="PrevVAD" placeholder="Was patient admitted with VAD" [formGroup]="formGroupL2"
+                  [choices]="['Yes', 'No']"></reg-select>
+
+                <div *ngIf="visibles['PrevVADF']" class="reg-container">
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PrevVADF']" controlName="PrevVADF"
+                    placeholder="Previous VAD implanted at another facility" [formGroup]="formGroupL2"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+
+                  <reg-datepicker class="reg-item-indent" *ngIf="visibles['PrevVADD']" controlName="PrevVADD"
+                    placeholder="Insertion date" [formGroup]="formGroupL2" fxFlex="1 0 200px">dd/mm/yyyy
+                  </reg-datepicker>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PrevVADIn']" controlName="PrevVADIn"
+                    placeholder="Indication" [formGroup]="formGroupL2" [choices]="[
+                  'Bridge to Transplantation',
+                  'Bridge to Recovery',
+                  'Destination',
+                  'Post Cardiotomy Ventricular Failure',
+                  'Device Malfunction',
+                  'End of (device) Life',
+                  'Salvage'
+                  ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PrevVADTy']" controlName="PrevVADTy"
+                    placeholder="Type" [formGroup]="formGroupL2" [choices]="[
+                  'RVAD',
+                  'LVAD',
+                  'BiVAD',
+                  'TAH'
+                  ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-input class="reg-item-indent" *ngIf="visibles['PrevVADDevice']" controlName="PrevVADDevice"
+                    placeholder="Device Model Number" [formGroup]="formGroupL2" type="text" fxFlex="1 0 200px">
+                  </reg-input>
+
+                  <reg-input class="reg-item-indent" *ngIf="visibles['PrevVADUDI']" controlName="PrevVADUDI"
+                    placeholder="UDI" [formGroup]="formGroupL2" type="text" fxFlex="1 0 200px"></reg-input>
+
+                </div>
+
+                <div *ngIf="visibles['PrevVADExp']" class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PrevVADExp']" controlName="PrevVADExp"
+                    placeholder="Previous VAD Explanted During This Admission" [formGroup]="formGroupL2" [choices]="[
+                    'Yes, not during this procedure',
+                    'Yes, during this procedure',
+                    'No'
+                  ]" fxFlex="1 0 250px"></reg-select>
+
+                  <div *ngIf="visibles['PrevVADExpRsn']" class="reg-container">
+
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['PrevVADExpRsn']" controlName="PrevVADExpRsn"
+                      placeholder="Reason" [formGroup]="formGroupL2" [choices]="[
+                        'Cardiac Transplant',
+                        'Recovery',
+                        'Device Transfer',
+                        'Device-Related Infection',
+                        'Device Malfunction',
+                        'End of (device) Life'
+                      ]" fxFlex="1 0 200px"></reg-select>
+
+                    <reg-datepicker class="reg-item-indent2" *ngIf="visibles['PrevVADExpDt']" controlName="PrevVADExpDt"
+                      placeholder="Date" [formGroup]="formGroupL2" fxFlex="1 0 200px">dd/mm/yyyy</reg-datepicker>
+
+                  </div>
+
+                </div>
+
+                <reg-select controlName="VADImp"
+                  placeholder="Ventricular Assist Device Implanted during this hospitalization"
+                  [formGroup]="formGroupL2" [choices]="['Yes', 'No']"></reg-select>
+
+                <ng-template ngFor let-i="index" let-vad [ngForOf]="H_vad">
+                  <fieldset class="fieldset-label" *ngIf="visibles['vad' + (i+1)]" [id]="visibles['vad' + (i+1)]">
+                    <legend>{{ 'Venticular Assist Device #' + (i+1) }}</legend>
+
+                    <div class="reg-container">
+
+                      <reg-select *ngIf="visibles[vad[1]]" [controlName]="vad[1]" [placeholder]="vad[0]"
+                        [formGroup]="formGroupL2" [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                      <reg-select *ngIf="visibles[vad[2]]" [controlName]="vad[2]" placeholder="Timing"
+                        [formGroup]="formGroupL2" [choices]="[
+                          'Pre-Operative',
+                          'Stand-alone VAD procedure',
+                          'In conjunction with CV surgical procedure - planned',
+                          'In conjunction with CV surgical procedure - unplanned',
+                          'Post-Operative'
+                        ]" fxFlex="1 0 200px"></reg-select>
+
+                      <reg-datepicker *ngIf="visibles[vad[3]]" [controlName]="vad[3]" placeholder="Implant Date"
+                        [formGroup]="formGroupL2" fxFlex="1 0 200px">dd/mm/yyyy</reg-datepicker>
+
+                      <reg-select *ngIf="visibles[vad[4]]" [controlName]="vad[4]" placeholder="Indication"
+                        [formGroup]="formGroupL2" [choices]="[
+                          'Bridge to Transplantation',
+                          'Bridge to Recovery',
+                          'Destination',
+                          'Post Cardiotomy Ventricular Failure',
+                          'Device Malfunction',
+                          'End of (device) Life',
+                          'Salvage'
+                        ]" fxFlex="1 0 200px"></reg-select>
+
+                      <reg-select *ngIf="visibles[vad[5]]" [controlName]="vad[5]" placeholder="Type"
+                        [formGroup]="formGroupL2" [choices]="[
+                          'RVAD',
+                          'LVAD',
+                          'BiVAD',
+                          'TAH'
+                        ]" fxFlex="1 0 200px"></reg-select>
+
+                      <reg-input *ngIf="visibles[vad[6]]" [controlName]="vad[6]" placeholder="Device"
+                        [formGroup]="formGroupL2" type="text" fxFlex="1 0 200px"></reg-input>
+
+                      <reg-input *ngIf="visibles[vad[7]]" [controlName]="vad[7]" placeholder="UDI"
+                        [formGroup]="formGroupL2" type="text" fxFlex="1 0 200px"></reg-input>
+                    </div>
+
+                    <div class="reg-container">
+
+                      <reg-select *ngIf="visibles[vad[8]]" [controlName]="vad[8]" placeholder="VAD was explanted"
+                        [formGroup]="formGroupL2" [choices]="[
+                          'Yes, not during this procedure',
+                          'Yes, during this procedure',
+                          'No'
+                        ]" fxFlex="1 0 250px"></reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibles[vad[9]]" [controlName]="vad[9]"
+                        placeholder="Reason" [formGroup]="formGroupL2" [choices]="[
+                          'Cardiac Transplant',
+                          'Recovery',
+                          'Device Transfer',
+                          'Device-Related Infection',
+                          'Device Malfunction',
+                          'End of (device) Life'
+                        ]" fxFlex="1 0 250px"></reg-select>
+
+                      <reg-datepicker class="reg-item-indent" *ngIf="visibles[vad[10]]" [controlName]="vad[10]"
+                        placeholder="Date" [formGroup]="formGroupL2" fxFlex="1 0 200px">dd/mm/yyyy</reg-datepicker>
+
+                    </div>
+
+                  </fieldset>
+
+                </ng-template>
+
+              </div>
+
+            </form>
+
           </div>
         </section>
 

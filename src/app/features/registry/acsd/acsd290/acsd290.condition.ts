@@ -714,7 +714,7 @@ export const Acsd290Conditions: FormConditions = {
       conditions: ['Yes, not during this procedure'],
     },
 
-    { control: 'L2:vad1', parentControl: 'VADImp', conditions: ['Yes'] },
+    { control: 'vad1', parentControl: 'VADImp', conditions: ['Yes'] },
     { control: 'VImp', parentControl: 'VADImp', conditions: ['Yes'] },
     { control: 'VADImpTmg', parentControl: 'VImp', conditions: ['Yes'] },
     { control: 'VImpDt', parentControl: 'VImp', conditions: ['Yes'] },
@@ -730,7 +730,7 @@ export const Acsd290Conditions: FormConditions = {
     },
     { control: 'VExpDt', parentControl: 'VExp', conditions: ['Yes, not during this procedure'] },
 
-    { control: 'L2:vad2', parentControl: 'VImp', conditions: ['Yes'] },
+    { control: 'vad2', parentControl: 'VImp', conditions: ['Yes'] },
     { control: 'VImp2', parentControl: 'VImp', conditions: ['Yes'] },
     { control: 'VADImpTmg2', parentControl: 'VImp2', conditions: ['Yes'] },
     { control: 'VImpDt2', parentControl: 'VImp2', conditions: ['Yes'] },
@@ -746,7 +746,7 @@ export const Acsd290Conditions: FormConditions = {
     },
     { control: 'VExpDt2', parentControl: 'VExp2', conditions: ['Yes, not during this procedure'] },
 
-    { control: 'L2:vad3', parentControl: 'VImp2', conditions: ['Yes'] },
+    { control: 'vad3', parentControl: 'VImp2', conditions: ['Yes'] },
     { control: 'VImp3', parentControl: 'VImp2', conditions: ['Yes'] },
     { control: 'VADImpTmg3', parentControl: 'VImp3', conditions: ['Yes'] },
     { control: 'VImpDt3', parentControl: 'VImp3', conditions: ['Yes'] },
