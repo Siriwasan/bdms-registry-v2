@@ -91,7 +91,8 @@
                 <reg-input controlName="registryId" placeholder="Registry ID" [formGroup]="formGroupA" type="text"
                   readonly="true" fxFlex="1 0 200px">(software generated)</reg-input>
 
-                <reg-input controlName="HN" placeholder="HN" [formGroup]="formGroupA" type="text" fxFlex="1 0 200px">
+                <reg-input controlName="HN" placeholder="HN" [formGroup]="formGroupA" type="text" fxFlex="1 0 200px"
+                  [controlService]="controlService">
                 </reg-input>
 
                 <reg-input controlName="AN" placeholder="AN" [formGroup]="formGroupA" type="text" fxFlex="1 0 200px">
@@ -230,14 +231,14 @@
               <div fxLayoutAlign="space-between center">
                 <h3>Risk Factors</h3>
                 <div>
-                  <button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000"
-                    (click)="setToDefaultRiskFactors(formGroupD, 'No')">
-                    <mat-icon>save_alt</mat-icon>
-                  </button>
-                  <button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000"
-                    (click)="setToDefaultRiskFactors(formGroupD, null)">
-                    <mat-icon>replay</mat-icon>
-                  </button>
+                  //<button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000"
+                  //  (click)="setToDefaultRiskFactors(formGroupD, 'No')">
+                  //  <mat-icon>save_alt</mat-icon>
+                  //</button>
+                  //<button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000"
+                  //  (click)="setToDefaultRiskFactors(formGroupD, null)">
+                  //  <mat-icon>replay</mat-icon>
+                  //</button>
                 </div>
               </div>
 
@@ -1215,12 +1216,12 @@
               <div fxLayoutAlign="space-between center">
                 <h3 class="section-subtitle">Preoperative Medications</h3>
                 <div>
-                  <button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000" (click)="setToDefaultPreopMed(formGroupG, 'No')">
-                    <mat-icon>save_alt</mat-icon>
-                  </button>
-                  <button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000" (click)="setToDefaultPreopMed(formGroupG, null)">
-                    <mat-icon>replay</mat-icon>
-                  </button>
+                  //<button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000" (click)="setToDefaultPreopMed(formGroupG, 'No')">
+                  //  <mat-icon>save_alt</mat-icon>
+                  //</button>
+                  //<button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000" (click)="setToDefaultPreopMed(formGroupG, null)">
+                  //  <mat-icon>replay</mat-icon>
+                  //</button>
                 </div>
               </div>
 
@@ -4190,14 +4191,14 @@
                 <div fxLayoutAlign="space-between center">
                   <h3 class="reg-title">Other Cardiac Procedures</h3>
                   <div>
-                    <button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000"
-                      (click)="setToDefaultOtherCarProc(formGroupM, 'No')">
-                      <mat-icon>save_alt</mat-icon>
-                    </button>
-                    <button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000"
-                      (click)="setToDefaultOtherCarProc(formGroupM, null)">
-                      <mat-icon>replay</mat-icon>
-                    </button>
+                    //<button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000"
+                    //  (click)="setToDefaultOtherCarProc(formGroupM, 'No')">
+                    //  <mat-icon>save_alt</mat-icon>
+                    //</button>
+                    //<button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000"
+                    //  (click)="setToDefaultOtherCarProc(formGroupM, null)">
+                    //  <mat-icon>replay</mat-icon>
+                    //</button>
                   </div>
                 </div>
 
@@ -4359,7 +4360,7 @@
           </div>
         </section> -->
 
-        <section class="section-wrapper" scrollSpyElement id="sectionM1">
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionM1">
           <div class="section-title">
             {{ getTocTitle('M1') }}
           </div>
@@ -4509,6 +4510,1569 @@
             <ng-template #sectionM1_other_content>
               <div class="section-body">
                 You need to select Other Cardiac Procedure, AFib in section I.
+              </div>
+            </ng-template>
+          </div>
+        </section> -->
+
+        <section class="section-wrapper" scrollSpyElement id="sectionM2">
+          <div class="section-title">
+            {{ getTocTitle('M2') }}
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupM2" #formDirectiveM2="ngForm">
+              <div *ngIf="visibles['sectionM2Body']; else sectionM2_other_content" id="sectionM2Body"
+                class="reg-container-col">
+
+                <div class="reg-container">
+
+                  <reg-select *ngIf="visibles['FamHistAorta']" controlName="FamHistAorta"
+                    placeholder="Family history of disease of aorta" [formGroup]="formGroupM2" [choices]="[
+                    'Aneurysm',
+                    'Dissection',
+                    'Both Aneurysm and Dissection',
+                    'Sudden Death',
+                    'None',
+                    'Unknown'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select *ngIf="visibles['PatGenHist']" controlName="PatGenHist"
+                    placeholder="Patient’s genetic history" [formGroup]="formGroupM2" [choices]="[
+                    'Marfan',
+                    'Ehlers-Danlos',
+                    'Loeys-Dietz',
+                    'Non-Specific familial thoracic aortic syndrome',
+                    'Bicuspid AV',
+                    'Turner syndrome',
+                    'Other',
+                    'None',
+                    'Unknown'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <reg-select *ngIf="visibles['PriorAorta']" controlName="PriorAorta"
+                  placeholder="Prior aortic intervention" [formGroup]="formGroupM2"
+                  [choices]="['Yes', 'No', 'Unknown']"></reg-select>
+
+                <ng-template ngFor let-i="index" let-int [ngForOf]="M2_priorAoInt">
+                  <fieldset class="fieldset-label" *ngIf="visibles['int' + (i+1)]" [id]="visibles['int' + (i+1)]">
+                    <legend>{{ 'Location - ' + int[0] }}</legend>
+
+                    <div class="reg-container">
+
+                      <reg-select *ngIf="visibles[int[1]]" [controlName]="int[1]"
+                        placeholder="Previous repair location(s)" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                        fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <div *ngIf="visibles[int[2]]" class="reg-container">
+
+                        <reg-select class="reg-item-indent" *ngIf="visibles[int[2]]" [controlName]="int[2]"
+                          placeholder="Repair Type" [formGroup]="formGroupM2" [choices]="[
+                        'Open',
+                        'Endovascular',
+                        'Hybrid'
+                      ]" fxFlex="1 0 200px"></reg-select>
+
+                        <reg-select class="reg-item-indent" *ngIf="visibles[int[3]]" [controlName]="int[3]"
+                          placeholder="Repair failure" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                          fxFlex="1 0 200px"></reg-select>
+
+                        <reg-select class="reg-item-indent" *ngIf="visibles[int[4]]" [controlName]="int[4]"
+                          placeholder="Disease progression" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                          fxFlex="1 0 200px"></reg-select>
+
+                      </div>
+
+                    </div>
+
+                  </fieldset>
+                </ng-template>
+
+                <reg-select *ngIf="visibles['Endoleak']" controlName="Endoleak" placeholder="Endoleak"
+                  [formGroup]="formGroupM2" [choices]="['Yes', 'No', 'Unknown']"></reg-select>
+
+                <div *ngIf="visibles['EndoleakTypeI']" class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['EndoleakTypeI']" controlName="EndoleakTypeI"
+                    placeholder="Type I: leak at graft attachment site" [formGroup]="formGroupM2"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['EndoleakTyILoc']" controlName="EndoleakTyILoc"
+                    placeholder="Type I location" [formGroup]="formGroupM2" [choices]="[
+                      'Ia - proximal',
+                      'Ib - distal',
+                      'Ic - iliac occluder'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['EndoleakTypeII']" class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['EndoleakTypeII']" controlName="EndoleakTypeII"
+                    placeholder="Type II: aneurysm sac filling via branch vessel" [formGroup]="formGroupM2"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['EndoleakVessNum']" controlName="EndoleakVessNum"
+                    placeholder="Number of vessels" [formGroup]="formGroupM2" [choices]="[
+                      'IIa - single vessel',
+                      'IIb - two vessels or more'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div *ngIf="visibles['EndoleakTypeIII']" class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['EndoleakTypeIII']" controlName="EndoleakTypeIII"
+                    placeholder="Type III: leak through defect in graft" [formGroup]="formGroupM2"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['EndoleakType']" controlName="EndoleakType"
+                    placeholder="Graft defect type" [formGroup]="formGroupM2" [choices]="[
+                      'IIIa - junctional separation of modular components',
+                      'IIIb - endograft fractures or holes'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['EndoleakTypeIV']" controlName="EndoleakTypeIV"
+                  placeholder="Type IV: leak through graft fabric – porosity" [formGroup]="formGroupM2"
+                  [choices]="['Yes', 'No']"></reg-select>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['EndoleakTypeV']" controlName="EndoleakTypeV"
+                  placeholder="Type V: endotension - expansion aneurysm sac without leak" [formGroup]="formGroupM2"
+                  [choices]="['Yes', 'No']"></reg-select>
+
+                <div *ngIf="visibles['Infection']" class="reg-container">
+
+                  <reg-select *ngIf="visibles['Infection']" controlName="Infection" placeholder="Infection"
+                    [formGroup]="formGroupM2" [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['InfecType']" controlName="InfecType"
+                    placeholder="Aorta Infection Type" [formGroup]="formGroupM2" [choices]="[
+                    'Graft infection',
+                    'Valvular endocarditis',
+                    'Nonvalvular endocarditis',
+                    'Native aorta',
+                    'Multiple infection types'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <reg-select *ngIf="visibles['Trauma']" controlName="Trauma" placeholder="Trauma"
+                  [formGroup]="formGroupM2" [choices]="['Yes', 'No', 'Unknown']"></reg-select>
+
+                <fieldset *ngIf="visibles['traumaLoc']" id="traumaLoc" class="fieldset-label">
+                  <legend>Location</legend>
+
+                  <div class="reg-container">
+
+                    <reg-select *ngIf="visibles['TraumacRoot']" controlName="TraumacRoot" placeholder="Root"
+                      [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 200px" fxFlex.gt-md="1 0 250px">
+                    </reg-select>
+
+                    <reg-select *ngIf="visibles['TraumaDesc']" controlName="TraumaDesc" placeholder="Descending"
+                      [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 200px" fxFlex.gt-md="1 0 250px">
+                    </reg-select>
+
+                    <reg-select *ngIf="visibles['TraumaAsc']" controlName="TraumaAsc" placeholder="Ascending"
+                      [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 200px" fxFlex.gt-md="1 0 250px">
+                    </reg-select>
+
+                    <reg-select *ngIf="visibles['TraumaThorac']" controlName="TraumaThorac"
+                      placeholder="Thoracoabdominal" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                      fxFlex="1 0 200px" fxFlex.gt-md="1 0 250px">
+                    </reg-select>
+
+                    <reg-select *ngIf="visibles['TraumaArch']" controlName="TraumaArch" placeholder="Arch"
+                      [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 200px" fxFlex.gt-md="1 0 250px">
+                    </reg-select>
+
+                    <reg-select *ngIf="visibles['TraumaAbdom']" controlName="TraumaAbdom" placeholder="Abdominal"
+                      [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 200px" fxFlex.gt-md="1 0 250px">
+                    </reg-select>
+
+                  </div>
+
+                </fieldset>
+
+                <reg-select *ngIf="visibles['Presentation']" controlName="Presentation" placeholder="Presentation"
+                  [formGroup]="formGroupM2" [choices]="[
+                    'Pain',
+                    'CHF',
+                    'Cardiac Arrest',
+                    'Syncope',
+                    'Stroke',
+                    'Limb numbness',
+                    'Paralysis',
+                    'Fatigue',
+                    'Infection',
+                    'Weakness',
+                    'Hoarseness (vocal cord dysfunction)',
+                    'Asymptomatic'
+                  ]"></reg-select>
+
+                <reg-select *ngIf="visibles['PrimIndic']" controlName="PrimIndic" placeholder="Primary Indication"
+                  [formGroup]="formGroupM2" [choices]="[
+                    'Aneurysm',
+                    'Dissection',
+                    'Valvular Dysfunction',
+                    'Obstruction',
+                    'Intramural Hematoma',
+                    'Infection',
+                    'Stenosis',
+                    'Coarctation'
+                  ]"></reg-select>
+
+                <!-- ANEURYSM -->
+
+                <div *ngIf="visibles['AnEtilogy']" class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AnEtilogy']" controlName="AnEtilogy"
+                    placeholder="Etiology" [formGroup]="formGroupM2" [choices]="[
+                      'Atherosclerosis',
+                      'Infection',
+                      'Inflammatory',
+                      'Connective Tissue Disorder',
+                      'Penetrating Ulcer',
+                      'Pseudoaneurysm',
+                      'Mycotic',
+                      'Traumatic transection',
+                      'Intercostal visceral patch',
+                      'Anastomotic site',
+                      'Unknown'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AnType']" controlName="AnType" placeholder="Type"
+                    [formGroup]="formGroupM2" [choices]="[
+                      'Fusiform',
+                      'Saccular',
+                      'Unknown'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AnRupt']" controlName="AnRupt"
+                    placeholder="Rupture" [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['AnRuptCon']" controlName="AnRuptCon"
+                    placeholder="Contained rupture" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AnLoc']" controlName="AnLoc"
+                    placeholder="Location" [formGroup]="formGroupM2" [choices]="[
+                      'Below STJ',
+                      'STJ-midascending',
+                      'Midascending to distal ascending',
+                      'Zone 1',
+                      'Zone 2',
+                      'Zone 3',
+                      'Zone 4',
+                      'Zone 5',
+                      'Zone 6',
+                      'Zone 7',
+                      'Zone 8',
+                      'Zone 9',
+                      'Zone 10',
+                      'Zone 11'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <!-- DISSECTION -->
+
+                <div *ngIf="visibles['DisTiming']" class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DisTiming']" controlName="DisTiming"
+                    placeholder="Timing" [formGroup]="formGroupM2" [choices]="[
+                    'Hyperacute (< 48 hrs)',
+                    'Acute (48 hrs - 2 weeks)',
+                    'Subacute (>= 2 weeks, < 90 days)',
+                    'Chronic (> 90 days)',
+                    'Acute on chronic',
+                    'Unknown'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <div *ngIf="visibles['DisOnsetDtKnown']" class="reg-container">
+
+                    <reg-select class="reg-item-indent" *ngIf="visibles['DisOnsetDtKnown']"
+                      controlName="DisOnsetDtKnown" placeholder="Disection onset date known" [formGroup]="formGroupM2"
+                      [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                    </reg-select>
+
+                    <reg-datepicker class="reg-item-indent2" *ngIf="visibles['DisOnsetDt']" controlName="DisOnsetDt"
+                      placeholder="Date of onset" [formGroup]="formGroupM2" fxFlex="1 0 250px">dd/mm/yyyy
+                    </reg-datepicker>
+
+                  </div>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DisTearLoc']" controlName="DisTearLoc"
+                    placeholder="Primary tear location" [formGroup]="formGroupM2" [choices]="[
+                    'Below STJ',
+                    'STJ-midascending',
+                    'Midascending to distal ascending',
+                    'Zone 1',
+                    'Zone 2',
+                    'Zone 3',
+                    'Zone 4',
+                    'Zone 5',
+                    'Zone 6',
+                    'Zone 7',
+                    'Zone 8',
+                    'Zone 9',
+                    'Zone 10',
+                    'Zone 11'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DisSecLoc']" controlName="DisSecLoc"
+                    placeholder="Secondary tear location" [formGroup]="formGroupM2" [choices]="[
+                    'Below STJ',
+                    'STJ-midascending',
+                    'Midascending to distal ascending',
+                    'Zone 1',
+                    'Zone 2',
+                    'Zone 3',
+                    'Zone 4',
+                    'Zone 5',
+                    'Zone 6',
+                    'Zone 7',
+                    'Zone 8',
+                    'Zone 9',
+                    'Zone 10',
+                    'Zone 11'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DisRetExt']" controlName="DisRetExt"
+                    placeholder="Retrograde extension" [formGroup]="formGroupM2" [choices]="['Yes', 'No', 'Unknown']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                  <div *ngIf="visibles['DisRetLoc']" class="reg-container">
+
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['DisRetLoc']" controlName="DisRetLoc"
+                      placeholder="Retrograde Location" [formGroup]="formGroupM2" [choices]="[
+                        'Below STJ',
+                        'STJ-midascending',
+                        'Midascending to distal ascending',
+                        'Zone 1',
+                        'Zone 2',
+                        'Zone 3',
+                        'Zone 4'
+                      ]" fxFlex="1 0 250px"></reg-select>
+
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['DisPosTEVAR']" controlName="DisPosTEVAR"
+                      placeholder="Post TEVAR" [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 200px">
+                    </reg-select>
+
+                  </div>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DistalExt']" controlName="DistalExt"
+                    placeholder="Distal extension" [formGroup]="formGroupM2" [choices]="['Yes', 'No', 'Unknown']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['DistalExtLoc']" controlName="DistalExtLoc"
+                    placeholder="Distal Extension Location" [formGroup]="formGroupM2" [choices]="[
+                      'Below STJ',
+                      'STJ-midascending',
+                      'Midascending to distal ascending',
+                      'Zone 1',
+                      'Zone 2',
+                      'Zone 3',
+                      'Zone 4',
+                      'Zone 5',
+                      'Zone 6',
+                      'Zone 7',
+                      'Zone 8',
+                      'Zone 9',
+                      'Zone 10',
+                      'Zone 11'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['DisMal']" controlName="DisMal"
+                  placeholder="Malperfusion" [formGroup]="formGroupM2" [choices]="['Yes', 'No', 'Unknown']">
+                </reg-select>
+
+                <fieldset *ngIf="visibles['malperfus']" id="malperfus" class="fieldset-label">
+                  <legend>Aortic branch</legend>
+
+                  <div class="reg-container">
+
+                    <reg-select *ngIf="visibles['DisMalCor']" controlName="DisMalCor" placeholder="Coronary"
+                      [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                    <reg-select *ngIf="visibles['DisMalSup']" controlName="DisMalSup" placeholder="Superior Mesenteric"
+                      [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select *ngIf="visibles['DisMalRtSubclav']" controlName="DisMalRtSubclav"
+                      placeholder="Right Subclavian" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                      fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select *ngIf="visibles['DisMalRenL']" controlName="DisMalRenL" placeholder="Renal, left"
+                      [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                    <reg-select *ngIf="visibles['DisMalRtComCar']" controlName="DisMalRtComCar"
+                      placeholder="Right Common Carotid" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                      fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select *ngIf="visibles['DisMalRenR']" controlName="DisMalRenR" placeholder="Renal, right"
+                      [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                    <reg-select *ngIf="visibles['DisMalComL']" controlName="DisMalComL"
+                      placeholder="Left Common Carotid" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                      fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select *ngIf="visibles['DisMalIlio']" controlName="DisMalIlio" placeholder="Iliofemoral"
+                      [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                    <reg-select *ngIf="visibles['DisMalSubL']" controlName="DisMalSubL" placeholder="Left Subclavian"
+                      [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                    <reg-select *ngIf="visibles['DisMalSpin']" controlName="DisMalSpin" placeholder="Spinal"
+                      [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                    <reg-select *ngIf="visibles['DisMalCel']" controlName="DisMalCel" placeholder="Celiac"
+                      [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+
+                    <div fxFlex="1 0 200px"></div>
+
+                  </div>
+
+                </fieldset>
+
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DisLowMotFun']" controlName="DisLowMotFun"
+                    placeholder="Lower Extremity Motor Function" [formGroup]="formGroupM2" [choices]="[
+                      'No deficit',
+                      'Weakness',
+                      'Paralysis',
+                      'Unknown'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DisLowSenDef']" controlName="DisLowSenDef"
+                    placeholder="Lower Extremity Sensory Deficit" [formGroup]="formGroupM2"
+                    [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
+
+                  <div class="reg-container">
+
+                    <reg-select class="reg-item-indent" *ngIf="visibles['DisRupt']" controlName="DisRupt"
+                      placeholder="Rupture" [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <div *ngIf="visibles['DisRuptCon']" class="reg-container">
+
+                      <reg-select class="reg-item-indent2" *ngIf="visibles['DisRuptCon']" controlName="DisRuptCon"
+                        placeholder="Contained rupture" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                        fxFlex="1 0 200px"></reg-select>
+
+                      <reg-select class="reg-item-indent2" *ngIf="visibles['DisRuptLoc']" controlName="DisRuptLoc"
+                        placeholder="Rupture Location" [formGroup]="formGroupM2" [choices]="[
+                          'Below STJ',
+                          'STJ-midascending',
+                          'Midascending to distal ascending',
+                          'Zone 1',
+                          'Zone 2',
+                          'Zone 3',
+                          'Zone 4',
+                          'Zone 5',
+                          'Zone 6',
+                          'Zone 7',
+                          'Zone 8',
+                          'Zone 9',
+                          'Zone 10',
+                          'Zone 11'
+                        ]" fxFlex="1 0 250px"></reg-select>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <!-- ROOT -->
+
+                <h4 class="reg-title" *ngIf="visibles['root']" id="root">Root</h4>
+
+                <reg-select *ngIf="visibles['RootAAnnEctasia']" controlName="RootAAnnEctasia"
+                  placeholder="Aorto-annular ectasia" [formGroup]="formGroupM2" [choices]="['Yes', 'No', 'Unknown']">
+                </reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select *ngIf="visibles['RootDilaAsym']" controlName="RootDilaAsym"
+                    placeholder="Asymmetric Root Dilation" [formGroup]="formGroupM2"
+                    [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['RoottDilaAsym']" controlName="RoottDilaAsym"
+                    placeholder="Dilation Location" [formGroup]="formGroupM2" [choices]="[
+                      'Right',
+                      'Left',
+                      'Non-coronary'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select *ngIf="visibles['RootSinus']" controlName="RootSinus"
+                    placeholder="Sinus of Valsalva aneurysm" [formGroup]="formGroupM2"
+                    [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['RootSinusLoc']" controlName="RootSinusLoc"
+                    placeholder="SV Aneurysm Location" [formGroup]="formGroupM2" [choices]="[
+                      'Right',
+                      'Left',
+                      'Non-coronary'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <!-- ARCH -->
+
+                <h4 class="reg-title" *ngIf="visibles['arch']" id="arch">Arch</h4>
+
+                <reg-select *ngIf="visibles['ArchType']" controlName="ArchType" placeholder="Arch Type"
+                  [formGroup]="formGroupM2" [choices]="['Left', 'Right']"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select *ngIf="visibles['ArchAbRtSub']" controlName="ArchAbRtSub"
+                    placeholder="Aberrant Right Subclavian" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px" fxFlex.gt-md="1 0 300px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibles['ArchAbLtSub']" controlName="ArchAbLtSub"
+                    placeholder="Aberrant Left Subclavian" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px" fxFlex.gt-md="1 0 300px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibles['ArchKom']" controlName="ArchKom" placeholder="Kommerell"
+                    [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 300px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibles['ArchBovine']" controlName="ArchBovine" placeholder="Bovine"
+                    [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 300px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibles['ArchVarVertOr']" controlName="ArchVarVertOr"
+                    placeholder="Variant vertebral origin" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px" fxFlex.gt-md="1 0 300px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibles['ArchPatIMA']" controlName="ArchPatIMA"
+                    placeholder="Patent internal mammary artery bypass graft" [formGroup]="formGroupM2"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px" fxFlex.gt-md="1 0 300px"></reg-select>
+
+                </div>
+
+                <h4 class="reg-title" *ngIf="visibles['ascending']" id="ascending">Ascending</h4>
+
+                <div class="reg-container">
+
+                  <reg-select *ngIf="visibles['AscAsymDil']" controlName="AscAsymDil"
+                    placeholder="Asymmetric Dilatation" [formGroup]="formGroupM2" [choices]="['Yes', 'No', 'Unknown']"
+                    fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select *ngIf="visibles['AscProxGr']" controlName="AscProxGr"
+                    placeholder="Proximal coronary bypass grafts" [formGroup]="formGroupM2"
+                    [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <reg-select *ngIf="visibles['Diameter3DMeas']" controlName="Diameter3DMeas"
+                  placeholder="3-D reconstruction aortic diameter measurements available" [formGroup]="formGroupM2"
+                  [choices]="['Yes', 'No']"></reg-select>
+
+                <fieldset *ngIf="visibles['Diam3DAnnulus']" class="fieldset-label">
+                  <legend>Anatomy</legend>
+
+                  <div class="reg-container">
+
+                    <reg-input *ngIf="visibles['Diam3DAnnulus']" controlName="Diam3DAnnulus" placeholder="Annulus (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['Diam3DSinus']" controlName="Diam3DSinus"
+                      placeholder="Sinus segment (mm)" [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px">
+                    </reg-input>
+
+                    <reg-input *ngIf="visibles['Diam3DSinotubular']" controlName="Diam3DSinotubular"
+                      placeholder="Sinotubular junction (mm)" [formGroup]="formGroupM2" type="number"
+                      fxFlex="1 0 200px">
+                    </reg-input>
+
+                    <reg-input *ngIf="visibles['Diam3DMidAsc']" controlName="Diam3DMidAsc"
+                      placeholder="Mid-ascending (mm)" [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px">
+                    </reg-input>
+
+                    <reg-input *ngIf="visibles['Diam3DDistalAsc']" controlName="Diam3DDistalAsc"
+                      placeholder="Distal Ascending (mm)" [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px">
+                    </reg-input>
+
+                    <reg-input *ngIf="visibles['Diam3DZone1']" controlName="Diam3DZone1" placeholder="Zone 1 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['Diam3DZone2']" controlName="Diam3DZone2" placeholder="Zone 2 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['Diam3DZone3']" controlName="Diam3DZone3" placeholder="Zone 3 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['Diam3DZone4']" controlName="Diam3DZone4" placeholder="Zone 4 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['Diam3DZone5']" controlName="Diam3DZone5" placeholder="Zone 5 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['Diam3DZone6']" controlName="Diam3DZone6" placeholder="Zone 6 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['Diam3DZone7']" controlName="Diam3DZone7" placeholder="Zone 7 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['Diam3DZone8']" controlName="Diam3DZone8" placeholder="Zone 8 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['Diam3DZone9']" controlName="Diam3DZone9" placeholder="Zone 9 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['Diam3DZone10']" controlName="Diam3DZone10" placeholder="Zone 10 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['Diam3DZone11']" controlName="Diam3DZone11" placeholder="Zone 11 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <div fxFlex="1 0 200px"></div>
+
+                    <div fxFlex="1 0 200px"></div>
+
+                  </div>
+
+                </fieldset>
+
+                <h4 class="reg-title" *ngIf="visibles['preopDiameter']" id="preopDiameter">Largest (pre-operative)
+                  diameter of treated
+                  segment(s)</h4>
+
+                <fieldset *ngIf="visibles['preopDiameter']" class="fieldset-label">
+                  <legend>Largest Anatomy</legend>
+
+                  <div class="reg-container">
+
+                    <reg-input *ngIf="visibles['DiamLgstAnnulus']" controlName="DiamLgstAnnulus"
+                      placeholder="Annulus (mm)" [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['DiamLgstSinus']" controlName="DiamLgstSinus"
+                      placeholder="Sinus segment (mm)" [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px">
+                    </reg-input>
+
+                    <reg-input *ngIf="visibles['DiamLgstSinotubular']" controlName="DiamLgstSinotubular"
+                      placeholder="Sinotubular junction (mm)" [formGroup]="formGroupM2" type="number"
+                      fxFlex="1 0 200px">
+                    </reg-input>
+
+                    <reg-input *ngIf="visibles['DiamLgstMidAsc']" controlName="DiamLgstMidAsc"
+                      placeholder="Mid-ascending (mm)" [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px">
+                    </reg-input>
+
+                    <reg-input *ngIf="visibles['DiamLgstDistalAsc']" controlName="DiamLgstDistalAsc"
+                      placeholder="Distal Ascending (mm)" [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px">
+                    </reg-input>
+
+                    <reg-input *ngIf="visibles['DiamLgstZone1']" controlName="DiamLgstZone1" placeholder="Zone 1 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['DiamLgstZone2']" controlName="DiamLgstZone2" placeholder="Zone 2 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['DiamLgstZone3']" controlName="DiamLgstZone3" placeholder="Zone 3 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['DiamLgstZone4']" controlName="DiamLgstZone4" placeholder="Zone 4 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['DiamLgstZone5']" controlName="DiamLgstZone5" placeholder="Zone 5 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['DiamLgstZone6']" controlName="DiamLgstZone6" placeholder="Zone 6 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['DiamLgstZone7']" controlName="DiamLgstZone7" placeholder="Zone 7 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['DiamLgstZone8']" controlName="DiamLgstZone8" placeholder="Zone 8 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['DiamLgstZone9']" controlName="DiamLgstZone9" placeholder="Zone 9 (mm)"
+                      [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['DiamLgstZone10']" controlName="DiamLgstZone10"
+                      placeholder="Zone 10 (mm)" [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input *ngIf="visibles['DiamLgstZone11']" controlName="DiamLgstZone11"
+                      placeholder="Zone 11 (mm)" [formGroup]="formGroupM2" type="number" fxFlex="1 0 200px"></reg-input>
+
+                    <div fxFlex="1 0 200px"></div>
+
+                    <div fxFlex="1 0 200px"></div>
+
+                  </div>
+
+                </fieldset>
+
+                <h3 class="reg-title" *ngIf="visibles['intervention']" id="intervention">Intervention</h3>
+
+                <reg-select *ngIf="visibles['PlanStagHybrid']" controlName="PlanStagHybrid"
+                  placeholder="Planned Staged Hybrid" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"></reg-select>
+
+                <reg-select *ngIf="visibles['ArchProc']" controlName="ArchProc" placeholder="Open Arch Procedure"
+                  [formGroup]="formGroupM2" [choices]="['Yes', 'No']"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['ArchDisTech']" controlName="ArchDisTech"
+                    placeholder="Distal Technique" [formGroup]="formGroupM2" [choices]="[
+                      'Open',
+                      'Clamped'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['ArchDiscSite']" controlName="ArchDiscSite"
+                    placeholder="Distal Site" [formGroup]="formGroupM2" [choices]="[
+                      'Ascending Aorta',
+                      'Hemiarch',
+                      'Zone 1',
+                      'Zone 2',
+                      'Zone 3',
+                      'Zone 4'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['ArchDisExt']" controlName="ArchDisExt"
+                    placeholder="Distal Extention" [formGroup]="formGroupM2" [choices]="[
+                      'Elephant trunk',
+                      'Frozen Elephant trunk',
+                      'No'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <div class="reg-container">
+
+                    <reg-select class="reg-item-indent" *ngIf="visibles['ArchBranReimp']" controlName="ArchBranReimp"
+                      placeholder="Arch Branch Reimplantation" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                      fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <div *ngIf="visibles['ArchBranInnom']" class="reg-container">
+
+                      <reg-select class="reg-item-indent2" *ngIf="visibles['ArchBranInnom']" controlName="ArchBranInnom"
+                        placeholder="Innominate" [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent2" *ngIf="visibles['ArchBranRSub']" controlName="ArchBranRSub"
+                        placeholder="Right Subclavian" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                        fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent2" *ngIf="visibles['ArchBranRComm']" controlName="ArchBranRComm"
+                        placeholder="Right Common Carotid" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                        fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent2" *ngIf="visibles['ArchBranLComm']" controlName="ArchBranLComm"
+                        placeholder="Left Common Carotid" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                        fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent2" *ngIf="visibles['ArchBranLSub']" controlName="ArchBranLSub"
+                        placeholder="Left Subclavian" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                        fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent2" *ngIf="visibles['ArchBranLVert']" controlName="ArchBranLVert"
+                        placeholder="Left Vertebral" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                        fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent2" *ngIf="visibles['ArchBranOth']" controlName="ArchBranOth"
+                        placeholder="Other" [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <div fxFlex="1 0 200px"></div>
+
+                      <div fxFlex="1 0 200px"></div>
+
+                    </div>
+                  </div>
+
+                </div>
+
+                <reg-select *ngIf="visibles['DescAortaProc']" controlName="DescAortaProc"
+                  placeholder="Open Descending Thoracic Aorta or Thoracoabdominal Procedure" [formGroup]="formGroupM2"
+                  [choices]="['Yes', 'No']"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['DescAortaLoc']" controlName="DescAortaLoc"
+                    placeholder="Proximal Location" [formGroup]="formGroupM2" [choices]="[
+                    'Reverse Hemiarch',
+                    'Zone 0',
+                    'Zone 1',
+                    'Zone 2',
+                    'Zone 3',
+                    'Zone 4',
+                    'Zone 5',
+                    'Zone 6',
+                    'Zone 7',
+                    'Zone 8',
+                    'Zone 9'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AortaInterReimp']" controlName="AortaInterReimp"
+                    placeholder="Intercostal Reimplantation" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['AortaDisZone']" controlName="AortaDisZone"
+                    placeholder="Distal Location" [formGroup]="formGroupM2" [choices]="[
+                    'Zone 3',
+                    'Zone 4',
+                    'Zone 5',
+                    'Zone 6',
+                    'Zone 7',
+                    'Zone 8',
+                    'Zone 9',
+                    'Zone 10',
+                    'Zone 11'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <div class="reg-container">
+
+                    <reg-select class="reg-item-indent" *ngIf="visibles['AortaVisceral']" controlName="AortaVisceral"
+                      placeholder="Visceral vessel intervention" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                      fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <div *ngIf="visibles['AortaViscCel']" class="reg-container">
+
+                      <reg-select class="reg-item-indent2" *ngIf="visibles['AortaViscCel']" controlName="AortaViscCel"
+                        placeholder="Celiac" [formGroup]="formGroupM2" [choices]="[
+                          'Reimplantation',
+                          'Branch Graft',
+                          'None'
+                        ]" fxFlex="1 0 200px"></reg-select>
+
+                      <reg-select class="reg-item-indent2" *ngIf="visibles['AortaViscSup']" controlName="AortaViscSup"
+                        placeholder="Superior mesenteric" [formGroup]="formGroupM2" [choices]="[
+                          'Reimplantation',
+                          'Branch Graft',
+                          'None'
+                        ]" fxFlex="1 0 200px"></reg-select>
+
+                      <reg-select class="reg-item-indent2" *ngIf="visibles['AortaViscRenR']" controlName="AortaViscRenR"
+                        placeholder="Right Renal" [formGroup]="formGroupM2" [choices]="[
+                          'Reimplantation',
+                          'Branch Graft',
+                          'None'
+                        ]" fxFlex="1 0 200px"></reg-select>
+
+                      <reg-select class="reg-item-indent2" *ngIf="visibles['AortaViscRenL']" controlName="AortaViscRenL"
+                        placeholder="Left Renal" [formGroup]="formGroupM2" [choices]="[
+                          'Reimplantation',
+                          'Branch Graft',
+                          'None'
+                        ]" fxFlex="1 0 200px"></reg-select>
+
+                      <div fxFlex="1 0 200px"></div>
+
+                      <div fxFlex="1 0 200px"></div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <reg-select *ngIf="visibles['EndovasProc']" controlName="EndovasProc"
+                  placeholder="Endovascular Procedure" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['EndovasAccess']" controlName="EndovasAccess"
+                    placeholder="Access" [formGroup]="formGroupM2" [choices]="[
+                      'Femoral',
+                      'Iliac',
+                      'Abdominal Aorta',
+                      'Left Subclavian',
+                      'Right Subclavian',
+                      'Ascending Aorta',
+                      'LV Apex'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['EndovasPercAcc']" controlName="EndovasPercAcc"
+                    placeholder="Percutaneous Access" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['EndoProxZone']" controlName="EndoProxZone"
+                    placeholder="Proximal landing zone" [formGroup]="formGroupM2" [choices]="[
+                      'Below STJ',
+                      'STJ-midascending',
+                      'Midascending to distal ascending',
+                      'Zone 1',
+                      'Zone 2',
+                      'Zone 3',
+                      'Zone 4',
+                      'Zone 5',
+                      'Zone 6',
+                      'Zone 7',
+                      'Zone 8',
+                      'Zone 9',
+                      'Zone 10',
+                      'Zone 11'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['EndoDistalZone']" controlName="EndoDistalZone"
+                    placeholder="Distal landing zone" [formGroup]="formGroupM2" [choices]="[
+                      'Below STJ',
+                      'STJ-midascending',
+                      'Midascending to distal ascending',
+                      'Zone 1',
+                      'Zone 2',
+                      'Zone 3',
+                      'Zone 4',
+                      'Zone 5',
+                      'Zone 6',
+                      'Zone 7',
+                      'Zone 8',
+                      'Zone 9',
+                      'Zone 10',
+                      'Zone 11'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['EndovasTAVR']" controlName="EndovasTAVR"
+                    placeholder="TAVR (for combination procedures)" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['EndovasTEVAR']" controlName="EndovasTEVAR"
+                    placeholder="Ascending TEVAR" [formGroup]="formGroupM2" [choices]="[
+                      'Dedicated IDE',
+                      'Off Label Stent',
+                      'No'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <div fxFlex="1 0 250px"></div>
+
+                  <div fxFlex="1 0 250px"></div>
+
+                </div>
+
+                <h4 class="reg-subtitle" *ngIf="visibles['archVessel']" id="archVessel">Arch Vessel management</h4>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['Innominate']" controlName="Innominate"
+                  placeholder="Innominate" [formGroup]="formGroupM2" [choices]="[
+                    'Native Flow',
+                    'Endovascular Branch Graft',
+                    'Endovascular Parallel Graft',
+                    'Extra-anatomic Bypass',
+                    'Fenestrated'
+                  ]"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['InAortaInnom']" controlName="InAortaInnom"
+                    placeholder="Aorta-Innominate" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['InAortaCarotid']" controlName="InAortaCarotid"
+                    placeholder="Aorta-right carotid" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['InAortaSubclav']" controlName="InAortaSubclav"
+                    placeholder="Aorta-right subclavian" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['InCaroSubclav']" controlName="InCaroSubclav"
+                    placeholder="Right Carotid-Right subclavian" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['InOther']" controlName="InOther"
+                    placeholder="Other" [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['LeftCarotid']" controlName="LeftCarotid"
+                  placeholder="Left Carotid" [formGroup]="formGroupM2" [choices]="[
+                    'Native Flow',
+                    'Endovascular Branch Graft',
+                    'Endovascular Parallel Graft',
+                    'Extra-anatomic Bypass',
+                    'Fenestrated'
+                  ]"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['LTCaroAortaCaro']" controlName="LTCaroAortaCaro"
+                    placeholder="Aorta-left carotid" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['LTCaroInnomCaro']" controlName="LTCaroInnomCaro"
+                    placeholder="Innominate-left carotid" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['LTCaroCarotid']" controlName="LTCaroCarotid"
+                    placeholder="Right carotid-Left carotid" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['LTCaroOther']" controlName="LTCaroOther"
+                    placeholder="Other" [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['LeftSubclavian']" controlName="LeftSubclavian"
+                  placeholder="Left Subclavian" [formGroup]="formGroupM2" [choices]="[
+                    'Native Flow',
+                    'Endovascular Branch Graft',
+                    'Endovascular Parallel Graft',
+                    'Extra-anatomic Bypass',
+                    'Fenestrated'
+                  ]"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['LTSubAortaSub']" controlName="LTSubAortaSub"
+                    placeholder="Aorta-left subclavian" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['LTSubCarotidSub']" controlName="LTSubCarotidSub"
+                    placeholder="Left carotid-left subclavian" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['LTSubOther']" controlName="LTSubOther"
+                    placeholder="Other" [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['OthArchVes']" controlName="OthArchVes"
+                  placeholder="Other Arch Vessel(s) Extra-anatomic bypass" [formGroup]="formGroupM2"
+                  [choices]="['Yes', 'No']"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['OthInnomCaro']" controlName="OthInnomCaro"
+                    placeholder="Innominate–carotid" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['OthInnomSub']" controlName="OthInnomSub"
+                    placeholder="Innominate-subclavian" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['OthSubSub']" controlName="OthSubSub"
+                    placeholder="Subclavian-subclavian" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['OthOther']" controlName="OthOther"
+                    placeholder="Other" [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                </div>
+
+                <h4 class="reg-subtitle" *ngIf="visibles['visceralVessel']" id="visceralVessel">Visceral Vessel
+                  management</h4>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['Celiac']" controlName="Celiac" placeholder="Celiac"
+                  [formGroup]="formGroupM2" [choices]="[
+                    'Native Flow',
+                    'Endovascular Branch Graft',
+                    'Endovascular Parallel Graft',
+                    'Extra-anatomic Bypass',
+                    'Fenestrated'
+                  ]"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['CeliacAortaCeli']" controlName="CeliacAortaCeli"
+                    placeholder="Aorta-celiac" [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['CeliacIliacCeliac']"
+                    controlName="CeliacIliacCeliac" placeholder="Iliac-celiac" [formGroup]="formGroupM2"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['CeliacOther']" controlName="CeliacOther"
+                    placeholder="Other" [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['SupMesenteric']" controlName="SupMesenteric"
+                  placeholder="Superior mesenteric" [formGroup]="formGroupM2" [choices]="[
+                    'Native Flow',
+                    'Endovascular Branch Graft',
+                    'Endovascular Parallel Graft',
+                    'Extra-anatomic Bypass',
+                    'Fenestrated'
+                  ]"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['SupMesAortaSuMe']" controlName="SupMesAortaSuMe"
+                    placeholder="Aorta-superior mesenteric" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['SupMesIliacSupMe']"
+                    controlName="SupMesIliacSupMe" placeholder="Iliac-superior mesenteric" [formGroup]="formGroupM2"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['SupMesOther']" controlName="SupMesOther"
+                    placeholder="Other" [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['RightRenal']" controlName="RightRenal"
+                  placeholder="Right renal" [formGroup]="formGroupM2" [choices]="[
+                    'Native Flow',
+                    'Endovascular Branch Graft',
+                    'Endovascular Parallel Graft',
+                    'Extra-anatomic Bypass',
+                    'Fenestrated'
+                  ]"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['RtRenAortaRtRe']" controlName="RtRenAortaRtRe"
+                    placeholder="Aorta-right renal" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['RtRenIliacRtRen']" controlName="RtRenIliacRtRen"
+                    placeholder="Iliac-right renal" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['RtRenOther']" controlName="RtRenOther"
+                    placeholder="Other" [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['LeftRenal']" controlName="LeftRenal"
+                  placeholder="Left renal" [formGroup]="formGroupM2" [choices]="[
+                    'Native Flow',
+                    'Endovascular Branch Graft',
+                    'Endovascular Parallel Graft',
+                    'Extra-anatomic Bypass',
+                    'Fenestrated'
+                  ]"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['LtRenAortaLtRe']" controlName="LtRenAortaLtRe"
+                    placeholder="Aorta-left renal" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['LtRenIliacLtRen']" controlName="LtRenIliacLtRen"
+                    placeholder="Iliac–left renal" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['LtRenOther']" controlName="LtRenOther"
+                    placeholder="Other" [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['RightIliac']" controlName="RightIliac"
+                  placeholder="Right Iliac" [formGroup]="formGroupM2" [choices]="[
+                    'Native Flow',
+                    'Bifurcated Graft',
+                    'Extra-anatomic Bypass'
+                  ]"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['RtIliacFemFem']" controlName="RtIliacFemFem"
+                    placeholder="Femoral-Femoral" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['RtIliacOther']" controlName="RtIliacOther"
+                    placeholder="Other" [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['LeftIliac']" controlName="LeftIliac"
+                  placeholder="Left Iliac" [formGroup]="formGroupM2" [choices]="[
+                    'Native Flow',
+                    'Bifurcated Graft',
+                    'Extra-anatomic Bypass'
+                  ]"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['LtIliacFemFem']" controlName="LtIliacFemFem"
+                    placeholder="Femoral-Femoral" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['LtIliacOther']" controlName="LtIliacOther"
+                    placeholder="Other" [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                  <div fxFlex="1 0 270px"></div>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['IntIliacPres']" controlName="IntIliacPres"
+                  placeholder="Internal Iliac Preserved" [formGroup]="formGroupM2" [choices]="[
+                    'Right Iliac only',
+                    'Left Iliac only',
+                    'Both',
+                    'No'
+                  ]"></reg-select>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['OthVisVes']" controlName="OthVisVes"
+                  placeholder="Other Visceral Vessel(s) Extra-anatomic Bypass" [formGroup]="formGroupM2"
+                  [choices]="['Yes', 'No']"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['OthVisAortOth']" controlName="OthVisAortOth"
+                    placeholder="Aorta-other" [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['OthVisIliacOth']" controlName="OthVisIliacOth"
+                    placeholder="Iliac-other" [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['OthVisOther']" controlName="OthVisOther"
+                    placeholder="Other" [formGroup]="formGroupM2" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                </div>
+
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['DisProxTearCov']" controlName="DisProxTearCov"
+                  placeholder="Dissection proximal entry tear covered" [formGroup]="formGroupM2"
+                  [choices]="['Yes', 'No']" fxFlex="49"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['EndoEndProc']" controlName="EndoEndProc"
+                    placeholder="Endoleak at end of procedure" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['EndoEndProcTy']" controlName="EndoEndProcTy"
+                    placeholder="Type" [formGroup]="formGroupM2" [choices]="[
+                      'Ia',
+                      'Ib',
+                      'II',
+                      'III',
+                      'IV',
+                      'V'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['ConvToOpen']" controlName="ConvToOpen"
+                    placeholder="Conversion to open" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['ConvToOpenRes']" controlName="ConvToOpenRes"
+                    placeholder="Conversion reason" [formGroup]="formGroupM2" [choices]="[
+                      'Deployment failure',
+                      'Endoleak',
+                      'Rupture',
+                      'Occlusion/loss of branch'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <reg-select class="reg-item-indent" *ngIf="visibles['IntDisExten']" controlName="IntDisExten"
+                  placeholder="Intraop Dissection Extension" [formGroup]="formGroupM2" [choices]="[
+                      'None',
+                      'Antegrade',
+                      'Retrograde',
+                      'Both'
+                    ]"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['UnintRup']" controlName="UnintRup"
+                    placeholder="Unintentional rupture of dissection septum" [formGroup]="formGroupM2"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['UnintRupLoc']" controlName="UnintRupLoc"
+                    placeholder="Location" [formGroup]="formGroupM2" [choices]="[
+                    'Below STJ',
+                    'STJ-midascending',
+                    'Midascending to distal ascending',
+                    'Zone 1',
+                    'Zone 2',
+                    'Zone 3',
+                    'Zone 4',
+                    'Zone 5',
+                    'Zone 6',
+                    'Zone 7',
+                    'Zone 8',
+                    'Zone 9',
+                    'Zone 10',
+                    'Zone 11'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <reg-select *ngIf="visibles['SpinalDrain']" controlName="SpinalDrain"
+                  placeholder="Spinal Drain Placement" [formGroup]="formGroupM2" [choices]="[
+                    'Pre-aortic procedure',
+                    'Post-aortic procedure',
+                    'None'
+                  ]"></reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select *ngIf="visibles['MotorEvoke']" controlName="MotorEvoke"
+                    placeholder="IntraOp Motor Evoked Potential (MEP)" [formGroup]="formGroupM2"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['MotorEvokeAb']" controlName="MotorEvokeAb"
+                    placeholder="Documented MEP abnormality" [formGroup]="formGroupM2"
+                    [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select *ngIf="visibles['SomatEvoke']" controlName="SomatEvoke"
+                    placeholder="IntraOp Somatosensory Evoked Potential (SEP)" [formGroup]="formGroupM2"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['SomatEvokeAb']" controlName="SomatEvokeAb"
+                    placeholder="Documented SEP abnormality" [formGroup]="formGroupM2"
+                    [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select *ngIf="visibles['IntraOpEEG']" controlName="IntraOpEEG"
+                    placeholder="IntraOp Electroencephalogram (EEG)" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['IntraOpEEGAb']" controlName="IntraOpEEGAb"
+                    placeholder="Documented EEG abnormality" [formGroup]="formGroupM2"
+                    [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+                <reg-select *ngIf="visibles['IntraOpIVUS']" controlName="IntraOpIVUS"
+                  placeholder="IntraOp Intravascular Ultrasound (IVUS)" [formGroup]="formGroupM2"
+                  [choices]="['Yes', 'No']"></reg-select>
+
+                <reg-select *ngIf="visibles['TransDoppler']" controlName="TransDoppler"
+                  placeholder="IntraOp Transcutaneous Doppler" [formGroup]="formGroupM2" [choices]="['Yes', 'No']">
+                </reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select *ngIf="visibles['IntraOpAng']" controlName="IntraOpAng"
+                    placeholder="Intraoperative Angiogram" [formGroup]="formGroupM2" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <div *ngIf="visibles['IntraOpAngVol']" class="reg-container">
+
+                    <reg-input class="reg-item-indent" *ngIf="visibles['IntraOpAngVol']" controlName="IntraOpAngVol"
+                      placeholder="Volume of contrast (ml)" [formGroup]="formGroupM2" type="number" fxFlex="1 0 250px">
+                    </reg-input>
+
+                    <reg-input class="reg-item-indent" *ngIf="visibles['IntraOpAngFlTm']" controlName="IntraOpAngFlTm"
+                      placeholder="Fluoroscopy time (min)" [formGroup]="formGroupM2" type="number" fxFlex="1 0 250px">
+                    </reg-input>
+
+                  </div>
+
+                </div>
+
+                <h4 class="reg-title" *ngIf="visibles['endovasDevices']" id="endovasDevices">Devices</h4>
+
+                <reg-select *ngIf="visibles['ADevIns']" controlName="ADevIns" placeholder="Device(s) Inserted"
+                  [formGroup]="formGroupM2" [choices]="['Yes', 'No']"></reg-select>
+
+                <fieldset class="fieldset-label" *ngIf="visibles['endoDevice1']" id="endoDevice1">
+                  <legend>Device - 1</legend>
+
+                  <div class="reg-container-col">
+
+                    <reg-select *ngIf="visibles['ADevLoc01']" controlName="ADevLoc01" placeholder="Location"
+                      [formGroup]="formGroupM2" [choices]="[
+                      'Below sinotubular junction',
+                      'Sinotubular junction to mid ascending',
+                      'Mid ascending to distal ascending',
+                      'Zone 1 (between innominate and left carotid)',
+                      'Zone 2 (between left carotid and left subclavian)',
+                      'Zone 3 (first 2 cm. distal to left subclavian)',
+                      'Zone 4 (end of zone 3 to mid descending aorta ~ T6)',
+                      'Zone 5 (mid descending aorta to celiac)',
+                      'Zone 6 (celiac to superior mesenteric)',
+                      'Zone 7 (superior mesenteric to renals)',
+                      'Zone 8 (renal to infra-renal abdominal aorta)',
+                      'Zone 9 (infrarenal abdominal aorta)',
+                      'Zone 10 (common iliac)',
+                      'Zone 11 (external iliacs)'
+                    ]" [controlService]="controlService"></reg-select>
+
+                    <div class="reg-container">
+
+                      <reg-select *ngIf="visibles['ADevDelMeth01']" controlName="ADevDelMeth01"
+                        placeholder="Delivery Method" [formGroup]="formGroupM2" [choices]="[
+                        'Open',
+                        'Endovascular'
+                      ]" fxFlex="1 0 200px"></reg-select>
+
+                      <reg-select *ngIf="visibles['ADevOut01']" controlName="ADevOut01" placeholder="Outcome"
+                        [formGroup]="formGroupM2" [choices]="[
+                        'Maldeployed',
+                        'Deployed and removed',
+                        'Successfully deployed'
+                      ]" fxFlex="1 0 200px"></reg-select>
+
+                      <reg-input *ngIf="visibles['ADevModel01']" controlName="ADevModel01" placeholder="Model Number"
+                        [formGroup]="formGroupM2" type="text" fxFlex="1 0 200px"></reg-input>
+
+                      <reg-input *ngIf="visibles['ADevUDI01']" controlName="ADevUDI01"
+                        placeholder="UDI (not serial number)" [formGroup]="formGroupM2" type="text" fxFlex="1 0 200px">
+                      </reg-input>
+
+                    </div>
+
+                  </div>
+
+                </fieldset>
+
+                <ng-template ngFor let-i="index" let-device [ngForOf]="M2_device">
+                  <fieldset class="fieldset-label" *ngIf="visibles['endoDevice' + (i+2)]"
+                    [id]="visibles['endoDevice' + (i+2)]">
+                    <legend>{{ 'Device - ' + (i+2) }}</legend>
+
+                    <div class="reg-container-col">
+
+                      <reg-select *ngIf="visibles[device[0]]" [controlName]="device[0]" placeholder="Location"
+                        [formGroup]="formGroupM2" [choices]="[
+                          'No additional devices inserted',
+                          'Below sinotubular junction',
+                          'Sinotubular junction to mid ascending',
+                          'Mid ascending to distal ascending',
+                          'Zone 1 (between innominate and left carotid)',
+                          'Zone 2 (between left carotid and left subclavian)',
+                          'Zone 3 (first 2 cm. distal to left subclavian)',
+                          'Zone 4 (end of zone 3 to mid descending aorta ~ T6)',
+                          'Zone 5 (mid descending aorta to celiac)',
+                          'Zone 6 (celiac to superior mesenteric)',
+                          'Zone 7 (superior mesenteric to renals)',
+                          'Zone 8 (renal to infra-renal abdominal aorta)',
+                          'Zone 9 (infrarenal abdominal aorta)',
+                          'Zone 10 (common iliac)',
+                          'Zone 11 (external iliacs)'
+                        ]"></reg-select>
+
+                      <div class="reg-container">
+
+                        <reg-select *ngIf="visibles[device[1]]" [controlName]="device[1]" placeholder="Delivery Method"
+                          [formGroup]="formGroupM2" [choices]="[
+                            'Open',
+                            'Endovascular'
+                          ]" fxFlex="1 0 200px"></reg-select>
+
+                        <reg-select *ngIf="visibles[device[2]]" [controlName]="device[2]" placeholder="Outcome"
+                          [formGroup]="formGroupM2" [choices]="[
+                            'Maldeployed',
+                            'Deployed and removed',
+                            'Successfully deployed'
+                          ]" fxFlex="1 0 200px"></reg-select>
+
+                        <reg-input *ngIf="visibles[device[3]]" [controlName]="device[3]" placeholder="Model Number"
+                          [formGroup]="formGroupM2" type="text" fxFlex="1 0 200px"></reg-input>
+
+                        <reg-input *ngIf="visibles[device[4]]" [controlName]="device[4]"
+                          placeholder="UDI (not serial number)" [formGroup]="formGroupM2" type="text"
+                          fxFlex="1 0 200px">
+                        </reg-input>
+
+                      </div>
+
+                    </div>
+
+                  </fieldset>
+
+                </ng-template>
+
+              </div>
+            </form>
+            <ng-template #sectionM2_other_content>
+              <div class="section-body">
+                You need to select Aorta procedure Performed in section I.
               </div>
             </ng-template>
           </div>

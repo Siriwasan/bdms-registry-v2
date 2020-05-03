@@ -11,6 +11,7 @@ export class Acsd290Service implements IRegistryControlService {
   constructor() {}
 
   hasInfo(control: string): boolean {
+    console.log('hasInfo', control);
     return false;
   }
   openInfo(control: string): void {

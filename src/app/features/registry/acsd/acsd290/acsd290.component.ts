@@ -37,6 +37,7 @@ import {
   selector: 'app-acsd290',
   templateUrl: './acsd290.component.html',
   styleUrls: ['./acsd290.component.scss'],
+  providers: [Acsd290Service],
 })
 export class Acsd290Component extends RegistryFormComponent
   implements OnInit, AfterContentInit, AfterViewInit, OnDestroy {
@@ -145,7 +146,7 @@ export class Acsd290Component extends RegistryFormComponent
 
     this.createForm();
     this.registryFormService.subscribeFormConditions();
-    this.formGroupI.controls['AFibProc'].setValue('Yes');
+    this.formGroupI.controls['AortProc'].setValue('Yes');
   }
 
   ngAfterViewInit() {

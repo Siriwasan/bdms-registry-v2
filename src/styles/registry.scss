@@ -409,7 +409,14 @@ reg-input {
 
 .reg-subtitle {
   padding-left: 10px;
-  margin-bottom: 0px;
+  margin-bottom: 5px;
+  color: #757575;
+  // color: var(--secondary-text-color);
+}
+
+.reg-subtitle2 {
+  padding-left: 20px;
+  margin-bottom: 5px;
   color: #757575;
   // color: var(--secondary-text-color);
 }
@@ -436,3 +443,5 @@ reg-input {
     margin-left: 8px;
   }
 }
+
+// fxFlex="1 0 200px" fxFlex.gt-md="1 0 250px"
