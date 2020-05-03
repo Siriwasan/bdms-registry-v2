@@ -4015,7 +4015,7 @@
           </div>
         </section> -->
 
-        <section class="section-wrapper" scrollSpyElement id="sectionL2">
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionL2">
           <div class="section-title">
             {{ getTocTitle('L2') }}
           </div>
@@ -4175,6 +4175,187 @@
 
             </form>
 
+          </div>
+        </section> -->
+
+        <section class="section-wrapper" scrollSpyElement id="sectionM">
+          <div class="section-title">
+            {{ getTocTitle('M') }}
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupM" #formDirectiveM="ngForm">
+              <div *ngIf="visibles['sectionMBody']; else sectionM_other_content" id="sectionMBody"
+                class="reg-container-col">
+
+                <div fxLayoutAlign="space-between center">
+                  <h3 class="reg-title">Other Cardiac Procedures</h3>
+                  <div>
+                    <button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000"
+                      (click)="setToDefaultOtherCarProc(formGroupM, 'No')">
+                      <mat-icon>save_alt</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000"
+                      (click)="setToDefaultOtherCarProc(formGroupM, null)">
+                      <mat-icon>replay</mat-icon>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select *ngIf="visibles['OCarAAProc']" controlName="OCarAAProc"
+                    placeholder="Atrial Appendage procedure" [formGroup]="formGroupM" [choices]="[
+                      'RAA',
+                      'LAA',
+                      'Both',
+                      'No'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                  <div *ngIf="visibles['OCarAAMeth']" class="reg-container">
+
+                    <reg-select class="reg-item-indent" *ngIf="visibles['OCarAAMeth']" controlName="OCarAAMeth"
+                      placeholder="Indicate method for atrial appendage ligation/exclusion" [formGroup]="formGroupM"
+                      [choices]="[
+                      'Intra-atrial oversewing',
+                      'Epicardial Suture Ligation',
+                      'Amputation with oversewing',
+                      'Stapler (cutting)',
+                      'Stapler (noncutting)',
+                      'Epicardially applied occlusion device'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                    <reg-select class="reg-item-indent" *ngIf="visibles['OCarAAModel']" controlName="OCarAAModel"
+                      placeholder="Model" [formGroup]="formGroupM" [choices]="[
+                      'AtriClip',
+                      'Lariat',
+                      'Other'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                    <reg-input class="reg-item-indent" *ngIf="visibles['OCarAAUDI']" controlName="OCarAAUDI"
+                      placeholder="UDI" [formGroup]="formGroupM" type="text" fxFlex="1 0 200px"></reg-input>
+
+                  </div>
+
+                </div>
+
+                <div class="reg-container">
+                  <reg-select *ngIf="visibles['OCarSubaStenRes']" controlName="OCarSubaStenRes"
+                    placeholder="Subaortic Stenosis Resection" [formGroup]="formGroupM" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 200px"></reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibles['OCarSubaStenResTy']"
+                    controlName="OCarSubaStenResTy" placeholder="Type" [formGroup]="formGroupM" [choices]="[
+                      'Muscle',
+                      'Ring',
+                      'Membrane',
+                      'Web',
+                      'Not Reported'
+                    ]" fxFlex="1 0 200px"></reg-select>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select *ngIf="visibles['OCarASDPFO']" controlName="OCarASDPFO" placeholder="ASD repair- PFO type"
+                    [formGroup]="formGroupM" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select *ngIf="visibles['OCarASDSec']" controlName="OCarASDSec"
+                    placeholder="ASD Repair- secundum or sinus venosus" [formGroup]="formGroupM"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select *ngIf="visibles['OCarAFibIntraLes']" controlName="OCarAFibIntraLes"
+                    placeholder="AFib Intracardiac lesions" [formGroup]="formGroupM" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibles['OCarAFibEpLes']" controlName="OCarAFibEpLes"
+                    placeholder="AFib Epicardial lesions" [formGroup]="formGroupM" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibles['OCarACD']" controlName="OCarACD" placeholder="Arrhythmia Device"
+                    [formGroup]="formGroupM" [choices]="[
+                    'Pacemaker',
+                    'Pacemaker with CRT',
+                    'ICD',
+                    'ICD with CRT',
+                    'Implantable Recorder',
+                    'None'
+                  ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select *ngIf="visibles['OCarLeadInsert']" controlName="OCarLeadInsert"
+                    placeholder="Lead Insertion" [formGroup]="formGroupM" [choices]="['Yes', 'No']" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibles['OCarACDLE']" controlName="OCarACDLE" placeholder="Lead Extraction"
+                    [formGroup]="formGroupM" [choices]="[
+                      'Yes, planned',
+                      'Yes, unplanned due to surgical complication',
+                      'Yes, unplanned due to unsuspected disease or anatomy',
+                      'No'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select *ngIf="visibles['OCarCong']" controlName="OCarCong" placeholder="Congenital Defect Repair"
+                    [formGroup]="formGroupM" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select *ngIf="visibles['OCarLVA']" controlName="OCarLVA" placeholder="LV Aneurysm Repair"
+                    [formGroup]="formGroupM" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select *ngIf="visibles['OCarStemCell']" controlName="OCarStemCell"
+                    placeholder="MyocardialStemCell Therapy" [formGroup]="formGroupM" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibles['OCPulThromDis']" controlName="OCPulThromDis"
+                    placeholder="Pulmonary Thromboembolectomy" [formGroup]="formGroupM" [choices]="[
+                      'Yes, Acute',
+                      'Yes, Chronic',
+                      'No'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select *ngIf="visibles['OCarSVR']" controlName="OCarSVR"
+                    placeholder="Surgical Ventricular Restoration" [formGroup]="formGroupM" [choices]="['Yes', 'No']"
+                    fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select *ngIf="visibles['OCarLasr']" controlName="OCarLasr"
+                    placeholder="Transmyocardial revascularization (TMR)" [formGroup]="formGroupM"
+                    [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select *ngIf="visibles['OCTumor']" controlName="OCTumor" placeholder="Tumor"
+                    [formGroup]="formGroupM" [choices]="[
+                      'Myxoma',
+                      'Fibroelastoma',
+                      'Hypernephroma',
+                      'Sarcoma',
+                      'Other',
+                      'No'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select *ngIf="visibles['OCarCrTx']" controlName="OCarCrTx" placeholder="Transplant, Cardiac"
+                    [formGroup]="formGroupM" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select *ngIf="visibles['OCarTrma']" controlName="OCarTrma" placeholder="Trauma, Cardiac"
+                    [formGroup]="formGroupM" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select *ngIf="visibles['OCarVSD']" controlName="OCarVSD" placeholder="VSD Repair"
+                    [formGroup]="formGroupM" [choices]="[
+                      'Yes-congenital',
+                      'Yes-acquired',
+                      'No'
+                    ]" fxFlex="1 0 250px"></reg-select>
+
+                  <reg-select *ngIf="visibles['OCarOthr']" controlName="OCarOthr" placeholder="Other Cardiac Procedure"
+                    [formGroup]="formGroupM" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+
+                </div>
+
+              </div>
+            </form>
+            <ng-template #sectionM_other_content>
+              <div class="section-body">
+                You need to select Other Cardiac Procedure in section I.
+              </div>
+            </ng-template>
           </div>
         </section>
 
