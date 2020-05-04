@@ -7,8 +7,9 @@
             <li id="titleTOC" (click)="tocClicked('title')" [class.active]="isActive('title')" class="toc-title">
               <span>ACSD v2.90</span></li>
             <li *ngFor="let h of toc" class="toc-header">
-              <a [id]="h.section + 'TOC'" (click)="tocClicked(h.section)"
-                [class.active]="isActive(h.section)">{{ h.title }}</a>
+              <a class="toc-name" [id]="h.section + 'TOC'" (click)="tocClicked(h.section)"
+                [class.active]="isActive(h.section)">{{ h.title }}
+                <a class="toc-completion">({{ displaySummary(h.section.slice(7)) }})</a></a>
             </li>
           </ul>
         </div>
@@ -16,18 +17,18 @@
         <div>
           <div class="completion-content" *ngIf="completionContent">
             <div class="progress-wrapper">
-              <round-progress current="10" max="50" [color]="'#A133FF'" [background]="'#eaeaea'" [radius]="125"
-                [stroke]="15" [rounded]="false" [responsive]="true">
+              <round-progress [current]="progressValid" [max]="progressTotal" [color]="'#A133FF'"
+                [background]="'#eaeaea'" [radius]="125" [stroke]="15" [rounded]="false" [responsive]="true">
               </round-progress>
               <div class="summary">
-                <div class="current">{{ '10/100' }}</div>
-                <div class="completion">{{ '(10%)' }}</div>
+                <div class="current">{{ progressSummary }}</div>
+                <div class="completion">{{ progressPercent }}</div>
               </div>
             </div>
           </div>
 
           <div class="completion-mini-content" *ngIf="!completionContent">
-            <div class="mini-summary">{{ '10/100 (10%)' }}</div>
+            <div class="mini-summary">{{ progressSummary + ' ' + progressPercent }}</div>
           </div>
           <div style="height: 32px;"></div>
         </div>
@@ -79,9 +80,10 @@
       <div>
         <h1 class="registry-name" scrollSpyElement id="title">STS Adult Cardiac Surgery Database v2.90</h1>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionA">
+        <section class="section-wrapper" scrollSpyElement id="sectionA">
           <div class="section-title">
-            {{ getTocTitle('A') }}
+            <span>{{ getTocTitle('A') }}</span>
+            <span>{{ displaySummary('A') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupA" #formDirectiveA="ngForm">
@@ -106,7 +108,8 @@
 
         <section class="section-wrapper" scrollSpyElement id="sectionB">
           <div class="section-title">
-            {{ getTocTitle('B') }}
+            <span>{{ getTocTitle('B') }}</span>
+            <span>{{ displaySummary('B') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupB" #formDirectiveB="ngForm">
@@ -154,7 +157,8 @@
 
         <section class="section-wrapper" scrollSpyElement id="sectionC">
           <div class="section-title">
-            {{ getTocTitle('C') }}
+            <span>{{ getTocTitle('C') }}</span>
+            <span>{{ displaySummary('C') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupC" #formDirectiveC="ngForm">
@@ -223,22 +227,23 @@
 
         <section class="section-wrapper" scrollSpyElement id="sectionD">
           <div class="section-title">
-            {{ getTocTitle('D') }}
+            <span>{{ getTocTitle('D') }}</span>
+            <span>{{ displaySummary('D') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupD" #formDirectiveD="ngForm">
 
               <div fxLayoutAlign="space-between center">
-                <h3>Risk Factors</h3>
+                <h3 class="reg-title">Risk Factors</h3>
                 <div>
-                  //<button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000"
-                  //  (click)="setToDefaultRiskFactors(formGroupD, 'No')">
-                  //  <mat-icon>save_alt</mat-icon>
-                  //</button>
-                  //<button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000"
-                  //  (click)="setToDefaultRiskFactors(formGroupD, null)">
-                  //  <mat-icon>replay</mat-icon>
-                  //</button>
+                  <!-- <button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000"
+                    (click)="setToDefaultRiskFactors(formGroupD, 'No')">
+                    <mat-icon>save_alt</mat-icon>
+                  </button>
+                  <button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000"
+                    (click)="setToDefaultRiskFactors(formGroupD, null)">
+                    <mat-icon>replay</mat-icon>
+                  </button> -->
                 </div>
               </div>
 
@@ -253,7 +258,7 @@
 
                   <reg-input controlName="BMI" placeholder="Body Mass Index" [formGroup]="formGroupD" type="number"
                     readonly="true" fxFlex="1 0 200px">(auto calculated)</reg-input>
-                  CALCULATE
+                  <!-- //CALCULATE -->
                 </div>
 
                 <reg-select controlName="FHCAD" placeholder="Family History of Premature CAD" [formGroup]="formGroupD"
@@ -264,13 +269,13 @@
                     [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                   <div *ngIf="visibles['DiabCtrl']" class="reg-container">
-                    <reg-select *ngIf="visibles['DiabCtrl']" controlName="DiabCtrl" placeholder="# Diabetes-Control"
-                      [formGroup]="formGroupD"
+                    <reg-select class="reg-item-indent" *ngIf="visibles['DiabCtrl']" controlName="DiabCtrl"
+                      placeholder="Diabetes-Control" [formGroup]="formGroupD"
                       [choices]="['None', 'Diet only', 'Oral', 'Insulin', 'Other SubQ', 'Other', 'Unknown']"
                       fxFlex="1 0 250px"></reg-select>
 
-                    <reg-select controlName="Dyslip" placeholder="# Dyslipidemia" [formGroup]="formGroupD"
-                      [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
+                    <reg-select class="reg-item-indent" controlName="Dyslip" placeholder="Dyslipidemia"
+                      [formGroup]="formGroupD" [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
                   </div>
                 </div>
 
@@ -286,11 +291,12 @@
 
                   <div class="reg-container" *ngIf="visibles['InfEndTy']">
 
-                    <reg-select *ngIf="visibles['InfEndTy']" controlName="InfEndTy" placeholder="# Endocarditis Type"
-                      [formGroup]="formGroupD" [choices]="['Treated', 'Active']" fxFlex="1 0 250px"></reg-select>
+                    <reg-select class="reg-item-indent" *ngIf="visibles['InfEndTy']" controlName="InfEndTy"
+                      placeholder="Endocarditis Type" [formGroup]="formGroupD" [choices]="['Treated', 'Active']"
+                      fxFlex="1 0 250px"></reg-select>
 
-                    <reg-select *ngIf="visibles['InfEndCult']" controlName="InfEndCult"
-                      placeholder="# Endocarditis Culture" [formGroup]="formGroupD" [choices]="[
+                    <reg-select class="reg-item-indent" *ngIf="visibles['InfEndCult']" controlName="InfEndCult"
+                      placeholder="Endocarditis Culture" [formGroup]="formGroupD" [choices]="[
                         'Culture negative',
                         'Strep species',
                         'MRSA',
@@ -327,8 +333,8 @@
                     'Unknown'
                   ]" fxFlex="1 0 250px"></reg-select>
 
-                  <reg-select *ngIf="visibles['ChrLungDType']" controlName="ChrLungDType" placeholder="# Type"
-                    [formGroup]="formGroupD" [choices]="[
+                  <reg-select class="reg-item-indent" *ngIf="visibles['ChrLungDType']" controlName="ChrLungDType"
+                    placeholder="Type" [formGroup]="formGroupD" [choices]="[
                     'Obstructive',
                     'Reactive',
                     'Interstitial Fibrosis',
@@ -344,14 +350,17 @@
                     [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
 
                   <div *ngIf="visibles['FEV1']" class="reg-container">
-                    <reg-input *ngIf="visibles['FEV1']" controlName="FEV1" placeholder="# FEV1 % Predicted"
-                      [formGroup]="formGroupD" type="number" fxFlex="1 0 250px"></reg-input>
+                    <reg-input class="reg-item-indent" *ngIf="visibles['FEV1']" controlName="FEV1"
+                      placeholder="FEV1 % Predicted" [formGroup]="formGroupD" type="number" fxFlex="1 0 250px">
+                    </reg-input>
 
-                    <reg-select *ngIf="visibles['DLCO']" controlName="DLCO" placeholder="# DLCO Test Performed"
-                      [formGroup]="formGroupD" [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
+                    <reg-select class="reg-item-indent" *ngIf="visibles['DLCO']" controlName="DLCO"
+                      placeholder="DLCO Test Performed" [formGroup]="formGroupD" [choices]="['Yes', 'No']"
+                      fxFlex="1 0 250px"></reg-select>
 
-                    <reg-input *ngIf="visibles['DLCOPred']" controlName="DLCOPred" placeholder="## DLCO % Predicted"
-                      [formGroup]="formGroupD" type="number" fxFlex="1 0 250px"></reg-input>
+                    <reg-input class="reg-item-indent2" *ngIf="visibles['DLCOPred']" controlName="DLCOPred"
+                      placeholder="DLCO % Predicted" [formGroup]="formGroupD" type="number" fxFlex="1 0 250px">
+                    </reg-input>
                   </div>
                 </div>
 
@@ -360,11 +369,12 @@
                     [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
 
                   <div *ngIf="visibles['PCO2']" class="reg-container">
-                    <reg-input *ngIf="visibles['PCO2']" controlName="PCO2" placeholder="# Carbon Dioxide Level"
-                      [formGroup]="formGroupD" type="number" fxFlex="1 0 250px"></reg-input>
+                    <reg-input class="reg-item-indent" *ngIf="visibles['PCO2']" controlName="PCO2"
+                      placeholder="Carbon Dioxide Level" [formGroup]="formGroupD" type="number" fxFlex="1 0 250px">
+                    </reg-input>
 
-                    <reg-input *ngIf="visibles['PO2']" controlName="PO2" placeholder="# Oxygen Level"
-                      [formGroup]="formGroupD" type="number" fxFlex="1 0 250px"></reg-input>
+                    <reg-input class="reg-item-indent" *ngIf="visibles['PO2']" controlName="PO2"
+                      placeholder="Oxygen Level" [formGroup]="formGroupD" type="number" fxFlex="1 0 250px"></reg-input>
                   </div>
                 </div>
 
@@ -403,17 +413,17 @@
                     [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
                   <div *ngIf="visibles['LiverChildPugh']" class="reg-container">
-                    <reg-select *ngIf="visibles['LiverChildPugh']" controlName="LiverChildPugh"
-                      placeholder="# Child–Pugh Class" [formGroup]="formGroupD" [choices]="['A', 'B', 'C', 'Unknown']"
+                    <reg-select class="reg-item-indent" *ngIf="visibles['LiverChildPugh']" controlName="LiverChildPugh"
+                      placeholder="Child–Pugh Class" [formGroup]="formGroupD" [choices]="['A', 'B', 'C', 'Unknown']"
                       fxFlex="1 0 250px"></reg-select>
 
-                    <reg-select *ngIf="visibles['LiverTransList']" controlName="LiverTransList"
-                      placeholder="# Listed for liver transplant" [formGroup]="formGroupD" [choices]="['Yes', 'No']"
+                    <reg-select class="reg-item-indent" *ngIf="visibles['LiverTransList']" controlName="LiverTransList"
+                      placeholder="Listed for liver transplant" [formGroup]="formGroupD" [choices]="['Yes', 'No']"
                       fxFlex="1 0 250px"></reg-select>
 
-                    <reg-select *ngIf="visibles['LiverStatusPost']" controlName="LiverStatusPost"
-                      placeholder="# Status post liver transplant" [formGroup]="formGroupD" [choices]="['Yes', 'No']"
-                      fxFlex="1 0 250px"></reg-select>
+                    <reg-select class="reg-item-indent" *ngIf="visibles['LiverStatusPost']"
+                      controlName="LiverStatusPost" placeholder="Status post liver transplant" [formGroup]="formGroupD"
+                      [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
                   </div>
                 </div>
 
@@ -445,17 +455,19 @@
                   <reg-select controlName="CVD" placeholder="Cerebrovascular Disease" [formGroup]="formGroupD"
                     [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
-                  <reg-select *ngIf="visibles['CVA']" controlName="CVA" placeholder="# Prior CVA"
+                  <reg-select class="reg-item-indent" *ngIf="visibles['CVA']" controlName="CVA" placeholder="Prior CVA"
                     [formGroup]="formGroupD" [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
 
-                  <reg-select *ngIf="visibles['CVAWhen']" controlName="CVAWhen" placeholder="## Prior CVA-When"
-                    [formGroup]="formGroupD" [choices]="['<= 30 days', '> 30 days']" fxFlex="1 0 250px"></reg-select>
+                  <reg-select class="reg-item-indent2" *ngIf="visibles['CVAWhen']" controlName="CVAWhen"
+                    placeholder="Prior CVA-When" [formGroup]="formGroupD" [choices]="['<= 30 days', '> 30 days']"
+                    fxFlex="1 0 250px"></reg-select>
 
-                  <reg-select *ngIf="visibles['CVDTIA']" controlName="CVDTIA" placeholder="# CVD TIA"
-                    [formGroup]="formGroupD" [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 250px"></reg-select>
+                  <reg-select class="reg-item-indent" *ngIf="visibles['CVDTIA']" controlName="CVDTIA"
+                    placeholder="CVD TIA" [formGroup]="formGroupD" [choices]="['Yes', 'No', 'Unknown']"
+                    fxFlex="1 0 250px"></reg-select>
 
-                  <reg-select *ngIf="visibles['CVDCarSten']" controlName="CVDCarSten"
-                    placeholder="# CVD Carotid stenosis" [formGroup]="formGroupD" [choices]="[
+                  <reg-select class="reg-item-indent" *ngIf="visibles['CVDCarSten']" controlName="CVDCarSten"
+                    placeholder="CVD Carotid stenosis" [formGroup]="formGroupD" [choices]="[
                     'Right',
                     'Left',
                     'Both',
@@ -464,18 +476,16 @@
                   ]" fxFlex="1 0 250px"></reg-select>
 
                   <div *ngIf="visibles['CVDStenRt']" class="reg-container">
-                    <reg-select *ngIf="visibles['CVDStenRt']" controlName="CVDStenRt"
-                      placeholder="## Severity of stenosis on the right carotid artery" [formGroup]="formGroupD"
-                      [choices]="[
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['CVDStenRt']" controlName="CVDStenRt"
+                      placeholder="Severity of stenosis on the right carotid artery" [formGroup]="formGroupD" [choices]="[
                         '50-79%',
                         '80–99%',
                         '100%',
                         'Not documented'
                       ]" fxFlex="1 0 250px"></reg-select>
 
-                    <reg-select *ngIf="visibles['CVDStenLft']" controlName="CVDStenLft"
-                      placeholder="## Severity of stenosis on the left carotid artery" [formGroup]="formGroupD"
-                      [choices]="[
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['CVDStenLft']" controlName="CVDStenLft"
+                      placeholder="Severity of stenosis on the left carotid artery" [formGroup]="formGroupD" [choices]="[
                         '50-79%',
                         '80–99%',
                         '100%',
@@ -483,8 +493,8 @@
                       ]" fxFlex="1 0 250px"></reg-select>
                   </div>
 
-                  <reg-select *ngIf="visibles['CVDPCarSurg']" controlName="CVDPCarSurg"
-                    placeholder="# History of previous carotid artery surgery and/or stenting" [formGroup]="formGroupD"
+                  <reg-select class="reg-item-indent" *ngIf="visibles['CVDPCarSurg']" controlName="CVDPCarSurg"
+                    placeholder="History of previous carotid artery surgery and/or stenting" [formGroup]="formGroupD"
                     [choices]="['Yes', 'No']" fxFlex="1 0 250px"></reg-select>
                 </div>
 
@@ -532,14 +542,17 @@
                     fxFlex="1 0 200px"></reg-select>
 
                   <div *ngIf="visibles['FiveMWalk1']" class="reg-container">
-                    <reg-input *ngIf="visibles['FiveMWalk1']" controlName="FiveMWalk1" placeholder="# Time 1"
-                      [formGroup]="formGroupD" type="number" require="false" fxFlex="1 0 200px"></reg-input>
+                    <reg-input class="reg-item-indent" *ngIf="visibles['FiveMWalk1']" controlName="FiveMWalk1"
+                      placeholder="Time 1" [formGroup]="formGroupD" type="number" require="false" fxFlex="1 0 200px">
+                    </reg-input>
 
-                    <reg-input *ngIf="visibles['FiveMWalk2']" controlName="FiveMWalk2" placeholder="# Time 2"
-                      [formGroup]="formGroupD" type="number" require="false" fxFlex="1 0 200px"></reg-input>
+                    <reg-input class="reg-item-indent" *ngIf="visibles['FiveMWalk2']" controlName="FiveMWalk2"
+                      placeholder="Time 2" [formGroup]="formGroupD" type="number" require="false" fxFlex="1 0 200px">
+                    </reg-input>
 
-                    <reg-input *ngIf="visibles['FiveMWalk3']" controlName="FiveMWalk3" placeholder="# Time 3"
-                      [formGroup]="formGroupD" type="number" require="false" fxFlex="1 0 200px"></reg-input>
+                    <reg-input class="reg-item-indent" *ngIf="visibles['FiveMWalk3']" controlName="FiveMWalk3"
+                      placeholder="Time 3" [formGroup]="formGroupD" type="number" require="false" fxFlex="1 0 200px">
+                    </reg-input>
                   </div>
                 </div>
 
@@ -547,8 +560,9 @@
                   <reg-select controlName="SixMWalkDone" placeholder="Six Minute Walk test done"
                     [formGroup]="formGroupD" [choices]="['Yes', 'No']" require="false" fxFlex="1 0 200px"></reg-select>
 
-                  <reg-input *ngIf="visibles['SixMWalkDist']" controlName="SixMWalkDist" placeholder="# Total Distance"
-                    [formGroup]="formGroupD" type="number" require="false" fxFlex="1 0 200px"></reg-input>
+                  <reg-input class="reg-item-indent" *ngIf="visibles['SixMWalkDist']" controlName="SixMWalkDist"
+                    placeholder="Total Distance" [formGroup]="formGroupD" type="number" require="false"
+                    fxFlex="1 0 200px"></reg-input>
                 </div>
               </div>
 
@@ -558,7 +572,8 @@
 
         <section class="section-wrapper" scrollSpyElement id="sectionE">
           <div class="section-title">
-            {{ getTocTitle('E') }}
+            <span>{{ getTocTitle('E') }}</span>
+            <span>{{ displaySummary('E') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupE" #formDirectiveE="ngForm">
@@ -568,17 +583,17 @@
                   [choices]="['Yes', 'No', 'Unknown']"></reg-select>
 
                 <div class="reg-container-col-indent">
-                  <reg-select *ngIf="visibles['PrCAB']" controlName="PrCAB"
-                    placeholder="# Previous coronary artery bypass" [formGroup]="formGroupE" [choices]="['Yes', 'No']">
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PrCAB']" controlName="PrCAB"
+                    placeholder="Previous coronary artery bypass" [formGroup]="formGroupE" [choices]="['Yes', 'No']">
                   </reg-select>
 
-                  <reg-select *ngIf="visibles['PrValve']" controlName="PrValve" placeholder="# Previous valve procedure"
-                    [formGroup]="formGroupE" [choices]="['Yes', 'No']">
+                  <reg-select class="reg-item-indent" *ngIf="visibles['PrValve']" controlName="PrValve"
+                    placeholder="Previous valve procedure" [formGroup]="formGroupE" [choices]="['Yes', 'No']">
                   </reg-select>
 
                   <div *ngIf="visibles['PrValveProc1']" class="reg-container-col-indent">
-                    <reg-select *ngIf="visibles['PrValveProc1']" controlName="PrValveProc1"
-                      placeholder="## Prev Valve Procedure 1" [formGroup]="formGroupE" [choices]="[
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['PrValveProc1']" controlName="PrValveProc1"
+                      placeholder="Prev Valve Procedure 1" [formGroup]="formGroupE" [choices]="[
                       'Aortic valve balloon valvotomy/valvuloplasty',
                       'Aortic valve repair, surgical',
                       'Aortic valve replacement, surgical',
@@ -603,8 +618,8 @@
                       'Other valve procedure'
                     ]"></reg-select>
 
-                    <reg-select *ngIf="visibles['PrValveProc2']" controlName="PrValveProc2"
-                      placeholder="## Prev Valve Procedure 2" [formGroup]="formGroupE" [choices]="[
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['PrValveProc2']" controlName="PrValveProc2"
+                      placeholder="Prev Valve Procedure 2" [formGroup]="formGroupE" [choices]="[
                       'No additional valve procedure(s)',
                       'Aortic valve balloon valvotomy/valvuloplasty',
                       'Aortic valve repair, surgical',
@@ -630,8 +645,8 @@
                       'Other valve procedure'
                     ]"></reg-select>
 
-                    <reg-select *ngIf="visibles['PrValveProc3']" controlName="PrValveProc3"
-                      placeholder="## Prev Valve Procedure 3" [formGroup]="formGroupE" [choices]="[
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['PrValveProc3']" controlName="PrValveProc3"
+                      placeholder="Prev Valve Procedure 3" [formGroup]="formGroupE" [choices]="[
                       'No additional valve procedure(s)',
                       'Aortic valve balloon valvotomy/valvuloplasty',
                       'Aortic valve repair, surgical',
@@ -657,8 +672,8 @@
                       'Other valve procedure'
                     ]"></reg-select>
 
-                    <reg-select *ngIf="visibles['PrValveProc4']" controlName="PrValveProc4"
-                      placeholder="## Prev Valve Procedure 4" [formGroup]="formGroupE" [choices]="[
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['PrValveProc4']" controlName="PrValveProc4"
+                      placeholder="Prev Valve Procedure 4" [formGroup]="formGroupE" [choices]="[
                       'No additional valve procedure(s)',
                       'Aortic valve balloon valvotomy/valvuloplasty',
                       'Aortic valve repair, surgical',
@@ -684,8 +699,8 @@
                       'Other valve procedure'
                     ]"></reg-select>
 
-                    <reg-select *ngIf="visibles['PrValveProc5']" controlName="PrValveProc5"
-                      placeholder="## Prev Valve Procedure 5" [formGroup]="formGroupE" [choices]="[
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['PrValveProc5']" controlName="PrValveProc5"
+                      placeholder="Prev Valve Procedure 5" [formGroup]="formGroupE" [choices]="[
                       'No additional valve procedure(s)',
                       'Aortic valve balloon valvotomy/valvuloplasty',
                       'Aortic valve repair, surgical',
@@ -712,22 +727,22 @@
                     ]"></reg-select>
                   </div>
 
-                  <reg-select *ngIf="visibles['POCPCI']" controlName="POCPCI" placeholder="# Previous PCI"
-                    [formGroup]="formGroupE" [choices]="['Yes', 'No']">
+                  <reg-select class="reg-item-indent" *ngIf="visibles['POCPCI']" controlName="POCPCI"
+                    placeholder="Previous PCI" [formGroup]="formGroupE" [choices]="['Yes', 'No']">
                   </reg-select>
 
                   <div *ngIf="visibles['POCPCIWhen']" class="reg-container-indent">
                     <div *ngIf="visibles['POCPCIWhen']" class="reg-container">
 
-                      <reg-select *ngIf="visibles['POCPCIWhen']" controlName="POCPCIWhen"
-                        placeholder="## PCI Performed Within This Episode Of Care" [formGroup]="formGroupE" [choices]="[
+                      <reg-select class="reg-item-indent2" *ngIf="visibles['POCPCIWhen']" controlName="POCPCIWhen"
+                        placeholder="PCI Performed Within This Episode Of Care" [formGroup]="formGroupE" [choices]="[
                           'Yes, at this facility',
                           'Yes, at some other acute care facility',
                           'No'
                         ]" fxFlex="1 0 250px"></reg-select>
 
-                      <reg-select *ngIf="visibles['POCPCIndSurg']" controlName="POCPCIndSurg"
-                        placeholder="### Indication for Surgery" [formGroup]="formGroupE" [choices]="[
+                      <reg-select class="reg-item-indent3" *ngIf="visibles['POCPCIndSurg']" controlName="POCPCIndSurg"
+                        placeholder="Indication for Surgery" [formGroup]="formGroupE" [choices]="[
                           'PCI Complication',
                           'PCI Failure without Clinical Deterioration',
                           'PCI Failure with Clinical Deterioration',
@@ -739,11 +754,12 @@
 
                     <div *ngIf="visibles['POCPCISt']" class="reg-container">
 
-                      <reg-select *ngIf="visibles['POCPCISt']" controlName="POCPCISt" placeholder="## PCI Stent"
-                        [formGroup]="formGroupE" [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
+                      <reg-select class="reg-item-indent2" *ngIf="visibles['POCPCISt']" controlName="POCPCISt"
+                        placeholder="PCI Stent" [formGroup]="formGroupE" [choices]="['Yes', 'No']" fxFlex="1 0 200px">
+                      </reg-select>
 
-                      <reg-select *ngIf="visibles['POCPCIStTy']" controlName="POCPCIStTy" placeholder="### Stent Type"
-                        [formGroup]="formGroupE" [choices]="[
+                      <reg-select class="reg-item-indent3" *ngIf="visibles['POCPCIStTy']" controlName="POCPCIStTy"
+                        placeholder="Stent Type" [formGroup]="formGroupE" [choices]="[
                           'Bare metal',
                           'Drug-eluting',
                           'Bioresorbable',
@@ -752,18 +768,19 @@
                         ]" fxFlex="1 0 200px"></reg-select>
                     </div>
 
-                    <reg-select *ngIf="visibles['POCPCIIn']" controlName="POCPCIIn" placeholder="## PCI Interval"
-                      [formGroup]="formGroupE" [choices]="['<= 6 Hours', '> 6 Hours']" fxFlex="1 0 200px"></reg-select>
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['POCPCIIn']" controlName="POCPCIIn"
+                      placeholder="PCI Interval" [formGroup]="formGroupE" [choices]="['<= 6 Hours', '> 6 Hours']"
+                      fxFlex="1 0 200px"></reg-select>
                   </div>
 
-                  <reg-select *ngIf="visibles['POC']" controlName="POC"
-                    placeholder="# Other Previous Cardiac Interventions" [formGroup]="formGroupE"
+                  <reg-select class="reg-item-indent" *ngIf="visibles['POC']" controlName="POC"
+                    placeholder="Other Previous Cardiac Interventions" [formGroup]="formGroupE"
                     [choices]="['Yes', 'No']">
                   </reg-select>
 
                   <div *ngIf="visibles['POCInt1']" class="reg-container-col-indent">
-                    <reg-select *ngIf="visibles['POCInt1']" controlName="POCInt1"
-                      placeholder="## Previous Other Cardiac Intervention 1" [formGroup]="formGroupE" [choices]="[
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['POCInt1']" controlName="POCInt1"
+                      placeholder="Previous Other Cardiac Intervention 1" [formGroup]="formGroupE" [choices]="[
                         'Ablation, catheter, atrial fibrillation',
                         'Ablation, catheter, other or unknown',
                         'Ablation, catheter, ventricular',
@@ -801,8 +818,8 @@
                         'Other Cardiac Intervention (not listed)'
                       ]"></reg-select>
 
-                    <reg-select *ngIf="visibles['POCInt2']" controlName="POCInt2"
-                      placeholder="## Previous Other Cardiac Intervention 2" [formGroup]="formGroupE" [choices]="[
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['POCInt2']" controlName="POCInt2"
+                      placeholder="Previous Other Cardiac Intervention 2" [formGroup]="formGroupE" [choices]="[
                         'No additional interventions',
                         'Ablation, catheter, atrial fibrillation',
                         'Ablation, catheter, other or unknown',
@@ -841,8 +858,8 @@
                         'Other Cardiac Intervention (not listed)'
                       ]"></reg-select>
 
-                    <reg-select *ngIf="visibles['POCInt3']" controlName="POCInt3"
-                      placeholder="## Previous Other Cardiac Intervention 3" [formGroup]="formGroupE" [choices]="[
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['POCInt3']" controlName="POCInt3"
+                      placeholder="Previous Other Cardiac Intervention 3" [formGroup]="formGroupE" [choices]="[
                         'No additional interventions',
                         'Ablation, catheter, atrial fibrillation',
                         'Ablation, catheter, other or unknown',
@@ -881,8 +898,8 @@
                         'Other Cardiac Intervention (not listed)'
                       ]"></reg-select>
 
-                    <reg-select *ngIf="visibles['POCInt4']" controlName="POCInt4"
-                      placeholder="## Previous Other Cardiac Intervention 4" [formGroup]="formGroupE" [choices]="[
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['POCInt4']" controlName="POCInt4"
+                      placeholder="Previous Other Cardiac Intervention 4" [formGroup]="formGroupE" [choices]="[
                         'No additional interventions',
                         'Ablation, catheter, atrial fibrillation',
                         'Ablation, catheter, other or unknown',
@@ -921,8 +938,8 @@
                         'Other Cardiac Intervention (not listed)'
                       ]"></reg-select>
 
-                    <reg-select *ngIf="visibles['POCInt5']" controlName="POCInt5"
-                      placeholder="## Previous Other Cardiac Intervention 5" [formGroup]="formGroupE" [choices]="[
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['POCInt5']" controlName="POCInt5"
+                      placeholder="Previous Other Cardiac Intervention 5" [formGroup]="formGroupE" [choices]="[
                         'No additional interventions',
                         'Ablation, catheter, atrial fibrillation',
                         'Ablation, catheter, other or unknown',
@@ -961,8 +978,8 @@
                         'Other Cardiac Intervention (not listed)'
                       ]"></reg-select>
 
-                    <reg-select *ngIf="visibles['POCInt6']" controlName="POCInt6"
-                      placeholder="## Previous Other Cardiac Intervention 6" [formGroup]="formGroupE" [choices]="[
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['POCInt6']" controlName="POCInt6"
+                      placeholder="Previous Other Cardiac Intervention 6" [formGroup]="formGroupE" [choices]="[
                         'No additional interventions',
                         'Ablation, catheter, atrial fibrillation',
                         'Ablation, catheter, other or unknown',
@@ -1001,8 +1018,8 @@
                         'Other Cardiac Intervention (not listed)'
                       ]"></reg-select>
 
-                    <reg-select *ngIf="visibles['POCInt7']" controlName="POCInt7"
-                      placeholder="## Previous Other Cardiac Intervention 7" [formGroup]="formGroupE" [choices]="[
+                    <reg-select class="reg-item-indent2" *ngIf="visibles['POCInt7']" controlName="POCInt7"
+                      placeholder="Previous Other Cardiac Intervention 7" [formGroup]="formGroupE" [choices]="[
                         'No additional interventions',
                         'Ablation, catheter, atrial fibrillation',
                         'Ablation, catheter, other or unknown',
@@ -1050,7 +1067,8 @@
 
         <section class="section-wrapper" scrollSpyElement id="sectionF">
           <div class="section-title">
-            {{ getTocTitle('F') }}
+            <span>{{ getTocTitle('F') }}</span>
+            <span>{{ displaySummary('F') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupF" #formDirectiveF="ngForm">
@@ -1061,8 +1079,8 @@
                   <reg-select controlName="PrevMI" placeholder="Prior Myocardial Infarction" [formGroup]="formGroupF"
                     [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px"></reg-select>
 
-                  <reg-select *ngIf="visibles['MIWhen']" controlName="MIWhen" placeholder="MI When"
-                    [formGroup]="formGroupF" [choices]="[
+                  <reg-select class="reg-item-indent" *ngIf="visibles['MIWhen']" controlName="MIWhen"
+                    placeholder="MI When" [formGroup]="formGroupF" [choices]="[
                       '<= 6 Hrs',
                       '> 6 Hrs but < 24 Hrs',
                       '1 to 7 Days',
@@ -1074,11 +1092,10 @@
 
                 <div class="reg-container">
 
-                  <span class="reg-title">Cardiac Presentation/Symptoms:</span>
-
                   <div class="reg-container">
-                    <reg-select controlName="CardSympTimeOfAdm" placeholder="At time of this admission"
-                      [formGroup]="formGroupF" [choices]="[
+                    <reg-select controlName="CardSympTimeOfAdm"
+                      placeholder="Cardiac Presentation/Symptoms at time of this admission" [formGroup]="formGroupF"
+                      [choices]="[
                         'No Symptoms',
                         'Stable Angina',
                         'Unstable Angina',
@@ -1088,8 +1105,8 @@
                         'Other'
                       ]" fxFlex="1 0 200px"></reg-select>
 
-                    <reg-select controlName="CardSympTimeOfSurg" placeholder="At time of surgery"
-                      [formGroup]="formGroupF" [choices]="[
+                    <reg-select controlName="CardSympTimeOfSurg"
+                      placeholder="Cardiac Presentation/Symptoms at time of surgery" [formGroup]="formGroupF" [choices]="[
                         'No Symptoms',
                         'Stable Angina',
                         'Unstable Angina',
@@ -1106,19 +1123,20 @@
 
                 <div class="reg-container-indent">
 
-                  <reg-select *ngIf="visibles['HeartFailTmg']" controlName="HeartFailTmg" placeholder="# Timing"
-                    [formGroup]="formGroupF" [choices]="['Acute', 'Chronic', 'Both']" fxFlex="1 0 200px"></reg-select>
+                  <reg-select class="reg-item-indent" *ngIf="visibles['HeartFailTmg']" controlName="HeartFailTmg"
+                    placeholder="Timing" [formGroup]="formGroupF" [choices]="['Acute', 'Chronic', 'Both']"
+                    fxFlex="1 0 200px"></reg-select>
 
-                  <reg-select *ngIf="visibles['HeartFailType']" controlName="HeartFailType" placeholder="# Type"
-                    [formGroup]="formGroupF" [choices]="[
+                  <reg-select class="reg-item-indent" *ngIf="visibles['HeartFailType']" controlName="HeartFailType"
+                    placeholder="Type" [formGroup]="formGroupF" [choices]="[
                       'Systolic',
                       'Diastolic',
                       'Both',
                       'Unavailable'
                     ]" fxFlex="1 0 200px"></reg-select>
 
-                  <reg-select *ngIf="visibles['ClassNYH']" controlName="ClassNYH" placeholder="# Classification-NYHA"
-                    [formGroup]="formGroupF" [choices]="[
+                  <reg-select class="reg-item-indent" *ngIf="visibles['ClassNYH']" controlName="ClassNYH"
+                    placeholder="Classification-NYHA" [formGroup]="formGroupF" [choices]="[
                       'Class I',
                       'Class II',
                       'Class III',
@@ -1145,56 +1163,56 @@
 
                 <div class="reg-container-indent">
 
-                  <reg-select *ngIf="visibles['ArrhythPPaced']" controlName="ArrhythPPaced"
-                    placeholder="# Permanently Paced Rhythm" [formGroup]="formGroupF" [choices]="['Yes', 'No']"
+                  <reg-select class="reg-item-indent" *ngIf="visibles['ArrhythPPaced']" controlName="ArrhythPPaced"
+                    placeholder="Permanently Paced Rhythm" [formGroup]="formGroupF" [choices]="['Yes', 'No']"
                     fxFlex="1 0 200px">
                   </reg-select>
 
-                  <reg-select *ngIf="visibles['ArrhythVV']" controlName="ArrhythVV" placeholder="# VTach/VFib"
-                    [formGroup]="formGroupF" [choices]="[
+                  <reg-select class="reg-item-indent" *ngIf="visibles['ArrhythVV']" controlName="ArrhythVV"
+                    placeholder="VTach/VFib" [formGroup]="formGroupF" [choices]="[
                       'None',
                       'Remote (> 30 days preop)',
                       'Recent (<= 30 days preop)'
                     ]" fxFlex="1 0 200px"></reg-select>
 
-                  <reg-select *ngIf="visibles['ArrhythSSS']" controlName="ArrhythSSS"
-                    placeholder="# Sick Sinus Syndrome" [formGroup]="formGroupF" [choices]="[
+                  <reg-select class="reg-item-indent" *ngIf="visibles['ArrhythSSS']" controlName="ArrhythSSS"
+                    placeholder="Sick Sinus Syndrome" [formGroup]="formGroupF" [choices]="[
                       'None',
                       'Remote (> 30 days preop)',
                       'Recent (<= 30 days preop)'
                     ]" fxFlex="1 0 200px"></reg-select>
 
-                  <reg-select *ngIf="visibles['ArrhythAFlutter']" controlName="ArrhythAFlutter" placeholder="# AFlutter"
-                    [formGroup]="formGroupF" [choices]="[
+                  <reg-select class="reg-item-indent" *ngIf="visibles['ArrhythAFlutter']" controlName="ArrhythAFlutter"
+                    placeholder="AFlutter" [formGroup]="formGroupF" [choices]="[
                       'None',
                       'Remote (> 30 days preop)',
                       'Recent (<= 30 days preop)'
                     ]" fxFlex="1 0 200px"></reg-select>
 
-                  <reg-select *ngIf="visibles['ArrhythAtrFib']" controlName="ArrhythAtrFib"
-                    placeholder="# AFibrillation" [formGroup]="formGroupF" [choices]="[
+                  <reg-select class="reg-item-indent" *ngIf="visibles['ArrhythAtrFib']" controlName="ArrhythAtrFib"
+                    placeholder="AFibrillation" [formGroup]="formGroupF" [choices]="[
                       'None',
                       'Remote (> 30 days preop)',
                       'Recent (<= 30 days preop)'
                     ]" fxFlex="1 0 200px"></reg-select>
 
-                  <reg-select *ngIf="visibles['ArrhythAFib']" controlName="ArrhythAFib"
-                    placeholder="# Atrial Fibrillation Type" [formGroup]="formGroupF" [choices]="[
+                  <reg-select class="reg-item-indent" *ngIf="visibles['ArrhythAFib']" controlName="ArrhythAFib"
+                    placeholder="Atrial Fibrillation Type" [formGroup]="formGroupF" [choices]="[
                       'Paroxysmal',
                       'Persistent',
                       'Longstanding Persistent',
                       'Permanent'
                     ]" fxFlex="1 0 200px"></reg-select>
 
-                  <reg-select *ngIf="visibles['ArrhythSecond']" controlName="ArrhythSecond"
-                    placeholder="# Second Degree Heart Block" [formGroup]="formGroupF" [choices]="[
+                  <reg-select class="reg-item-indent" *ngIf="visibles['ArrhythSecond']" controlName="ArrhythSecond"
+                    placeholder="Second Degree Heart Block" [formGroup]="formGroupF" [choices]="[
                       'None',
                       'Remote (> 30 days preop)',
                       'Recent (<= 30 days preop)'
                     ]" fxFlex="1 0 200px"></reg-select>
 
-                  <reg-select *ngIf="visibles['ArrhythThird']" controlName="ArrhythThird"
-                    placeholder="# Third Degree Heart Block" [formGroup]="formGroupF" [choices]="[
+                  <reg-select class="reg-item-indent" *ngIf="visibles['ArrhythThird']" controlName="ArrhythThird"
+                    placeholder="Third Degree Heart Block" [formGroup]="formGroupF" [choices]="[
                       'None',
                       'Remote (> 30 days preop)',
                       'Recent (<= 30 days preop)'
@@ -1204,11 +1222,12 @@
               </div>
             </form>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionG">
+        <section class="section-wrapper" scrollSpyElement id="sectionG">
           <div class="section-title">
-            {{ getTocTitle('G') }}
+            <span>{{ getTocTitle('G') }}</span>
+            <span>{{ displaySummary('G') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupG" #formDirectiveG="ngForm">
@@ -1216,12 +1235,12 @@
               <div fxLayoutAlign="space-between center">
                 <h3 class="section-subtitle">Preoperative Medications</h3>
                 <div>
-                  //<button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000" (click)="setToDefaultPreopMed(formGroupG, 'No')">
-                  //  <mat-icon>save_alt</mat-icon>
-                  //</button>
-                  //<button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000" (click)="setToDefaultPreopMed(formGroupG, null)">
-                  //  <mat-icon>replay</mat-icon>
-                  //</button>
+                  <!-- <button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000" (click)="setToDefaultPreopMed(formGroupG, 'No')">
+                    <mat-icon>save_alt</mat-icon>
+                  </button>
+                  <button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000" (click)="setToDefaultPreopMed(formGroupG, null)">
+                    <mat-icon>replay</mat-icon>
+                  </button> -->
                 </div>
               </div>
 
@@ -1290,8 +1309,8 @@
                           'Unknown'
                         ]" fxFlex="1 0 200px">Within 5 days</reg-select>
 
-                      <reg-input *ngIf="visibles['MedADPIDis']" controlName="MedADPIDis"
-                        placeholder="# ADP Inhibitors Discontinuation" [formGroup]="formGroupG" type="number"
+                      <reg-input class="reg-item-indent" *ngIf="visibles['MedADPIDis']" controlName="MedADPIDis"
+                        placeholder="ADP Inhibitors Discontinuation" [formGroup]="formGroupG" type="number"
                         fxFlex="1 0 200px">...days prior to surgery</reg-input>
 
                     </div>
@@ -1306,12 +1325,12 @@
                         ]" fxFlex="1 0 200px">Within 5 days</reg-select>
 
                       <div *ngIf="visibles['MedASADis']" class="reg-container">
-                        <reg-input *ngIf="visibles['MedASADis']" controlName="MedASADis"
-                          placeholder="# Aspirin Discontinuation" [formGroup]="formGroupG" type="number"
+                        <reg-input class="reg-item-indent" *ngIf="visibles['MedASADis']" controlName="MedASADis"
+                          placeholder="Aspirin Discontinuation" [formGroup]="formGroupG" type="number"
                           fxFlex="1 0 200px"># days prior to surgery</reg-input>
 
-                        <reg-select *ngIf="visibles['MedASAOnce']" controlName="MedASAOnce"
-                          placeholder="# Aspirin one time dose" [formGroup]="formGroupG" [choices]="['Yes', 'No']"
+                        <reg-select class="reg-item-indent" *ngIf="visibles['MedASAOnce']" controlName="MedASAOnce"
+                          placeholder="Aspirin one time dose" [formGroup]="formGroupG" [choices]="['Yes', 'No']"
                           fxFlex="1 0 200px">
                         </reg-select>
                       </div>
@@ -1336,8 +1355,8 @@
                         [formGroup]="formGroupG" [choices]="['Yes', 'No']" fxFlex="1 0 200px">Within 48 hours
                       </reg-select>
 
-                      <reg-select *ngIf="visibles['MedACMN']" controlName="MedACMN" placeholder="# Medication"
-                        [formGroup]="formGroupG" [choices]="[
+                      <reg-select class="reg-item-indent" *ngIf="visibles['MedACMN']" controlName="MedACMN"
+                        placeholder="Medication" [formGroup]="formGroupG" [choices]="[
                         'Heparin (Unfractionated)',
                         'Heparin (Low Molecular)',
                         'Both',
@@ -1351,8 +1370,8 @@
                       <reg-select controlName="MedCoum5Days" placeholder="Warfarin (Coumadin)" [formGroup]="formGroupG"
                         [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px">Within 5 days</reg-select>
 
-                      <reg-input *ngIf="visibles['MedCoum5Dis']" controlName="MedCoum5Dis"
-                        placeholder="# Coumadin Discontinuation" [formGroup]="formGroupG" type="number"
+                      <reg-input class="reg-item-indent" *ngIf="visibles['MedCoum5Dis']" controlName="MedCoum5Dis"
+                        placeholder="Coumadin Discontinuation" [formGroup]="formGroupG" type="number"
                         fxFlex="1 0 200px">#
                         days prior to
                         surgery</reg-input>
@@ -1364,8 +1383,8 @@
                       <reg-select controlName="MedXa5Days" placeholder="Factor Xa inhibitors" [formGroup]="formGroupG"
                         [choices]="['Yes', 'No', 'Unknown']" fxFlex="1 0 200px">Within 5 days</reg-select>
 
-                      <reg-input *ngIf="visibles['MedXa5DDis']" controlName="MedXa5DDis"
-                        placeholder="# Factor Xa Discontinuation" [formGroup]="formGroupG" type="number"
+                      <reg-input class="reg-item-indent" *ngIf="visibles['MedXa5DDis']" controlName="MedXa5DDis"
+                        placeholder="Factor Xa Discontinuation" [formGroup]="formGroupG" type="number"
                         fxFlex="1 0 200px"># days prior
                         to surgery</reg-input>
 
@@ -1376,8 +1395,8 @@
                       <reg-select controlName="MedNOAC5Days" placeholder="Novel Oral Anticoagulant"
                         [formGroup]="formGroupG" [choices]="['Yes', 'No', 'Unknown']" fxFlex>Within 5 days</reg-select>
 
-                      <reg-input *ngIf="visibles['MedNOACDisc']" controlName="MedNOACDisc"
-                        placeholder="# NOAC Discontinuation" [formGroup]="formGroupG" type="number" fxFlex># days prior
+                      <reg-input class="reg-item-indent" *ngIf="visibles['MedNOACDisc']" controlName="MedNOACDisc"
+                        placeholder="NOAC Discontinuation" [formGroup]="formGroupG" type="number" fxFlex># days prior
                         to
                         surgery</reg-input>
 
@@ -1388,9 +1407,8 @@
                       <reg-select controlName="MedThromIn5Days" placeholder="Thrombin Inhibitors"
                         [formGroup]="formGroupG" [choices]="['Yes', 'No', 'Unknown']" fxFlex>Within 5 days</reg-select>
 
-                      <reg-input *ngIf="visibles['MedThromInDisc']" controlName="MedThromInDisc"
-                        placeholder="# Thrombin Inhibitor Discontinuation" [formGroup]="formGroupG" type="number"
-                        fxFlex>#
+                      <reg-input class="reg-item-indent" *ngIf="visibles['MedThromInDisc']" controlName="MedThromInDisc"
+                        placeholder="Thrombin Inhibitor Discontinuation" [formGroup]="formGroupG" type="number" fxFlex>#
                         days prior to surgery</reg-input>
 
                     </div>
@@ -1411,8 +1429,8 @@
                       <reg-select controlName="MedLipid" placeholder="Lipid lowering" [formGroup]="formGroupG"
                         [choices]="['Yes', 'No', 'Contraindicated', 'Unknown']" fxFlex>Within 24 hours</reg-select>
 
-                      <reg-select *ngIf="visibles['MedLipType']" controlName="MedLipType" placeholder="Medication Type"
-                        [formGroup]="formGroupG" [choices]="[
+                      <reg-select class="reg-item-indent" *ngIf="visibles['MedLipType']" controlName="MedLipType"
+                        placeholder="Medication Type" [formGroup]="formGroupG" [choices]="[
                         'Statin',
                         'Statin + Other',
                         'Non-statin/Other'
@@ -1440,11 +1458,12 @@
               </div>
             </form>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionH">
+        <section class="section-wrapper" scrollSpyElement id="sectionH">
           <div class="section-title">
-            {{ getTocTitle('H') }}
+            <span>{{ getTocTitle('H') }}</span>
+            <span>{{ displaySummary('H') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupH" #formDirectiveH="ngForm">
@@ -1455,8 +1474,8 @@
                   <reg-select controlName="CarCathPer" placeholder="Cardiac Catheterization Performed"
                     [formGroup]="formGroupH" [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
 
-                  <reg-datepicker *ngIf="visibles['CarCathDt']" controlName="CarCathDt"
-                    placeholder="# Cardiac Catheterization Date" [formGroup]="formGroupH" fxFlex="1 0 200px">dd/mm/yyyy
+                  <reg-datepicker class="reg-item-indent" *ngIf="visibles['CarCathDt']" controlName="CarCathDt"
+                    placeholder="Cardiac Catheterization Date" [formGroup]="formGroupH" fxFlex="1 0 200px">dd/mm/yyyy
                   </reg-datepicker>
 
                 </div>
@@ -1467,31 +1486,31 @@
 
                   <div *ngIf="visibles['Dominance']" class="reg-container">
 
-                    <reg-select *ngIf="visibles['Dominance']" controlName="Dominance" placeholder="# Dominance"
-                      [formGroup]="formGroupH" [choices]="[
-                    'Left',
-                    'Right',
-                    'Co-dominant',
-                    'Not Documented'
-                  ]" fxFlex="1 0 200px"></reg-select>
+                    <reg-select class="reg-item-indent" *ngIf="visibles['Dominance']" controlName="Dominance"
+                      placeholder="Dominance" [formGroup]="formGroupH" [choices]="[
+                        'Left',
+                        'Right',
+                        'Co-dominant',
+                        'Not Documented'
+                      ]" fxFlex="1 0 200px"></reg-select>
 
-                    <reg-select *ngIf="visibles['StenSource']" controlName="StenSource"
-                      placeholder="# Source(s) used to quantify stenosis" [formGroup]="formGroupH" [choices]="[
-                    'Angiogram',
-                    'CT',
-                    'IVUS',
-                    'Progress/OP Note',
-                    'Other',
-                    'Multiple'
-                  ]" fxFlex="1 0 250px"></reg-select>
+                    <reg-select class="reg-item-indent" *ngIf="visibles['StenSource']" controlName="StenSource"
+                      placeholder="Source(s) used to quantify stenosis" [formGroup]="formGroupH" [choices]="[
+                        'Angiogram',
+                        'CT',
+                        'IVUS',
+                        'Progress/OP Note',
+                        'Other',
+                        'Multiple'
+                      ]" fxFlex="1 0 250px"></reg-select>
 
-                    <reg-select *ngIf="visibles['NumDisV']" controlName="NumDisV"
-                      placeholder="# Number Diseased Vessels" [formGroup]="formGroupH" [choices]="[
-                    'None',
-                    'One',
-                    'Two',
-                    'Three'
-                  ]" fxFlex="1 0 250px"></reg-select>
+                    <reg-select class="reg-item-indent" *ngIf="visibles['NumDisV']" controlName="NumDisV"
+                      placeholder="Number Diseased Vessels" [formGroup]="formGroupH" [choices]="[
+                        'None',
+                        'One',
+                        'Two',
+                        'Three'
+                      ]" fxFlex="1 0 250px"></reg-select>
                   </div>
                 </div>
 
@@ -1500,9 +1519,9 @@
                 <div *ngIf="visibles['PctStenKnown']" class="reg-container">
                   <reg-select *ngIf="visibles['PctStenKnown']" controlName="PctStenKnown" placeholder="Native Artery"
                     [formGroup]="formGroupH" [choices]="[
-                  'Yes',
-                  'No'
-                ]" fxFlex="1 0 250px">% Stenosis Known</reg-select>
+                      'Yes',
+                      'No'
+                    ]" fxFlex="1 0 250px">% Stenosis Known</reg-select>
 
                   <reg-select *ngIf="visibles['GraftsPrsnt']" controlName="GraftsPrsnt" placeholder="Graft(s)"
                     [formGroup]="formGroupH" [choices]="[
@@ -1541,11 +1560,11 @@
 
                       <reg-select *ngIf="visibles[cathresult[2]]" [controlName]="cathresult[2]" placeholder="Graft(s)"
                         [formGroup]="formGroupH" [choices]="[
-                    'Patent',
-                    'Stenosis >=50%',
-                    '100% occlusion',
-                    'Not Documented'
-                  ]" require="false" fxFlex="1 0 200px">Graft(s) Present</reg-select>
+                          'Patent',
+                          'Stenosis >=50%',
+                          '100% occlusion',
+                          'Not Documented'
+                        ]" require="false" fxFlex="1 0 200px">Graft(s) Present</reg-select>
 
                       <reg-select *ngIf="visibles[cathresult[3]]" [controlName]="cathresult[3]" placeholder="Stent(s)"
                         [formGroup]="formGroupH" [choices]="[
@@ -1572,8 +1591,8 @@
                   <reg-select controlName="SyntaxScrKnown" placeholder="Syntax Score Known" [formGroup]="formGroupH"
                     [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
 
-                  <reg-input *ngIf="visibles['SyntaxScr']" controlName="SyntaxScr" placeholder="# Syntax Score"
-                    [formGroup]="formGroupH" type="number" fxFlex="1 0 200px"></reg-input>
+                  <reg-input class="reg-item-indent" *ngIf="visibles['SyntaxScr']" controlName="SyntaxScr"
+                    placeholder="Syntax Score" [formGroup]="formGroupH" type="number" fxFlex="1 0 200px"></reg-input>
 
                 </div>
 
@@ -1582,8 +1601,8 @@
                   <reg-select controlName="StressTst" placeholder="Stress Test" [formGroup]="formGroupH"
                     [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
 
-                  <reg-select *ngIf="visibles['StrsTstRes']" controlName="StrsTstRes" placeholder="# Result"
-                    [formGroup]="formGroupH" [choices]="[
+                  <reg-select class="reg-item-indent" *ngIf="visibles['StrsTstRes']" controlName="StrsTstRes"
+                    placeholder="Result" [formGroup]="formGroupH" [choices]="[
                     'Negative (Normal)',
                     'Positive (Abnormal)',
                     'Not Documented'
@@ -1596,8 +1615,9 @@
                   <reg-select controlName="HDEFD" placeholder="Ejection Fraction Done" [formGroup]="formGroupH"
                     [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
 
-                  <reg-input *ngIf="visibles['HDEF']" controlName="HDEF" placeholder="# Ejection Fraction (%)"
-                    [formGroup]="formGroupH" type="number" fxFlex="1 0 200px"></reg-input>
+                  <reg-input class="reg-item-indent" *ngIf="visibles['HDEF']" controlName="HDEF"
+                    placeholder="Ejection Fraction (%)" [formGroup]="formGroupH" type="number" fxFlex="1 0 200px">
+                  </reg-input>
 
                 </div>
 
@@ -1606,12 +1626,12 @@
                   <reg-select controlName="DimAvail" placeholder="Dimensions Available" [formGroup]="formGroupH"
                     [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
 
-                  <div *ngIf="visibles['LVSD']" class="reg-container">
-                    <reg-input *ngIf="visibles['LVSD']" controlName="LVSD" placeholder="#LV End-Systolic Dimension (mm)"
+                  <div class="reg-item-indent" *ngIf="visibles['LVSD']" class="reg-container">
+                    <reg-input *ngIf="visibles['LVSD']" controlName="LVSD" placeholder="LV End-Systolic Dimension (mm)"
                       [formGroup]="formGroupH" type="number" fxFlex="1 0 250px"></reg-input>
 
-                    <reg-input *ngIf="visibles['LVEDD']" controlName="LVEDD"
-                      placeholder="#LV End-Diastolic Dimension (mm)" [formGroup]="formGroupH" type="number"
+                    <reg-input class="reg-item-indent" *ngIf="visibles['LVEDD']" controlName="LVEDD"
+                      placeholder="LV End-Diastolic Dimension (mm)" [formGroup]="formGroupH" type="number"
                       fxFlex="1 0 250px"></reg-input>
                   </div>
 
@@ -1622,8 +1642,9 @@
                   <reg-select controlName="PASYSMeas" placeholder="PA Systolic Pressure Measured"
                     [formGroup]="formGroupH" [choices]="['Yes', 'No']" fxFlex="1 0 200px"></reg-select>
 
-                  <reg-input *ngIf="visibles['PASYS']" controlName="PASYS" placeholder="# PA Systolic Pressure (mmHg)"
-                    [formGroup]="formGroupH" type="number" fxFlex="1 0 250px"></reg-input>
+                  <reg-input class="reg-item-indent" *ngIf="visibles['PASYS']" controlName="PASYS"
+                    placeholder="PA Systolic Pressure (mmHg)" [formGroup]="formGroupH" type="number" fxFlex="1 0 250px">
+                  </reg-input>
 
                 </div>
 
@@ -1923,11 +1944,12 @@
               </div>
             </form>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionI">
+        <section class="section-wrapper" scrollSpyElement id="sectionI">
           <div class="section-title">
-            {{ getTocTitle('I') }}
+            <span>{{ getTocTitle('I') }}</span>
+            <span>{{ displaySummary('I') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupI" #formDirectiveI="ngForm">
@@ -2795,11 +2817,12 @@
               </div>
             </form>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionJ">
+        <section class="section-wrapper" scrollSpyElement id="sectionJ">
           <div class="section-title">
-            {{ getTocTitle('J') }}
+            <span>{{ getTocTitle('J') }}</span>
+            <span>{{ displaySummary('J') }}</span>
           </div>
           <form [formGroup]="formGroupJ" #formDirectiveJ="ngForm">
             <div *ngIf="visibles['sectionJBody']; else sectionJ_other_content" id="sectionJBody"
@@ -2931,7 +2954,7 @@
 
               </div>
 
-              //(Note: the total number of distals above should equal the number of columns in the CABG Grid)
+              <!-- (Note: the total number of distals above should equal the number of columns in the CABG Grid) -->
 
               <reg-select *ngIf="visibles['ProxTech']" controlName="ProxTech" placeholder="Proximal Technique"
                 [formGroup]="formGroupJ" [choices]="[
@@ -3028,11 +3051,11 @@
           </form>
 
         </section>
- -->
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionK">
+        <section class="section-wrapper" scrollSpyElement id="sectionK">
           <div class="section-title">
-            {{ getTocTitle('K') }}
+            <span>{{ getTocTitle('K') }}</span>
+            <span>{{ displaySummary('K') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupK" #formDirectiveK="ngForm">
@@ -3166,7 +3189,7 @@
                   </div>
                 </div>
 
-                //AORTIC VALVE
+                <!-- //AORTIC VALVE -->
 
                 <reg-select *ngIf="visibles['VSAV']" controlName="VSAV" placeholder="Aortic Valve Procedure Performed"
                   [formGroup]="formGroupK" [choices]="[
@@ -3396,7 +3419,7 @@
                   </div>
                 </div>
 
-                //MITRAL VALVE
+                <!-- //MITRAL VALVE -->
 
                 <reg-select *ngIf="visibles['VSMV']" controlName="VSMV" placeholder="Mitral Valve Procedure Performed"
                   [formGroup]="formGroupK" [choices]="[
@@ -3425,7 +3448,7 @@
                 <reg-select class="reg-item-indent2" *ngIf="visibles['VSMitRAnnulo']" controlName="VSMitRAnnulo"
                   placeholder="Annuloplasty" [formGroup]="formGroupK" [choices]="['Yes', 'No']"></reg-select>
 
-                //LEAFLET RESECTION
+                <!-- //LEAFLET RESECTION -->
 
                 <div class="reg-container">
 
@@ -3513,7 +3536,7 @@
 
                 </div>
 
-                //NEOCORDS (PTFE)
+                <!-- //NEOCORDS (PTFE) -->
 
                 <reg-select class="reg-item-indent2" *ngIf="visibles['VSMitRPTFE']" controlName="VSMitRPTFE"
                   placeholder="Neochords (PTFE)" [formGroup]="formGroupK" [choices]="['Yes', 'No']"></reg-select>
@@ -3586,7 +3609,7 @@
 
                 </div>
 
-                //CHORDAL/LEAFLET TRANSFER
+                <!-- //CHORDAL/LEAFLET TRANSFER -->
 
                 <reg-select class="reg-item-indent2" *ngIf="visibles['VSMitRChord']" controlName="VSMitRChord"
                   placeholder="Chordal/ Leaflet transfer" [formGroup]="formGroupK" [choices]="['Yes', 'No']">
@@ -3766,7 +3789,7 @@
 
                 </div>
 
-                //TRICUSPID VALVE
+                <!-- //TRICUSPID VALVE -->
 
                 <reg-select *ngIf="visibles['VSTV']" controlName="VSTV"
                   placeholder="Tricuspid Valve Procedure Performed" [formGroup]="formGroupK" [choices]="[
@@ -3837,7 +3860,7 @@
 
                 </div>
 
-                //PULMONIC VALVE
+                <!-- //PULMONIC VALVE -->
 
                 <reg-select *ngIf="visibles['VSPV']" controlName="VSPV" placeholder="Pulmonic Valve Procedure Performed"
                   [formGroup]="formGroupK" [choices]="[
@@ -3917,11 +3940,12 @@
               </ng-template>
             </form>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionL">
+        <section class="section-wrapper" scrollSpyElement id="sectionL">
           <div class="section-title">
-            {{ getTocTitle('L') }}
+            <span>{{ getTocTitle('L') }}</span>
+            <span>{{ displaySummary('L') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupL" #formDirectiveL="ngForm">
@@ -4014,11 +4038,12 @@
 
             </form>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionL2">
+        <section class="section-wrapper" scrollSpyElement id="sectionL2">
           <div class="section-title">
-            {{ getTocTitle('L2') }}
+            <span>{{ getTocTitle('L2') }}</span>
+            <span>{{ displaySummary('L2') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupL2" #formDirectiveL2="ngForm">
@@ -4177,11 +4202,12 @@
             </form>
 
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionM">
+        <section class="section-wrapper" scrollSpyElement id="sectionM">
           <div class="section-title">
-            {{ getTocTitle('M') }}
+            <span>{{ getTocTitle('M') }}</span>
+            <span>{{ displaySummary('M') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupM" #formDirectiveM="ngForm">
@@ -4191,14 +4217,14 @@
                 <div fxLayoutAlign="space-between center">
                   <h3 class="reg-title">Other Cardiac Procedures</h3>
                   <div>
-                    //<button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000"
+                    <!-- //<button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000"
                     //  (click)="setToDefaultOtherCarProc(formGroupM, 'No')">
                     //  <mat-icon>save_alt</mat-icon>
                     //</button>
                     //<button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000"
                     //  (click)="setToDefaultOtherCarProc(formGroupM, null)">
                     //  <mat-icon>replay</mat-icon>
-                    //</button>
+                    //</button> -->
                   </div>
                 </div>
 
@@ -4358,11 +4384,12 @@
               </div>
             </ng-template>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionM1">
+        <section class="section-wrapper" scrollSpyElement id="sectionM1">
           <div class="section-title">
-            {{ getTocTitle('M1') }}
+            <span>{{ getTocTitle('M1') }}</span>
+            <span>{{ displaySummary('M1') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupM1" #formDirectiveM1="ngForm">
@@ -4513,11 +4540,12 @@
               </div>
             </ng-template>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionM2">
+        <section class="section-wrapper" scrollSpyElement id="sectionM2">
           <div class="section-title">
-            {{ getTocTitle('M2') }}
+            <span>{{ getTocTitle('M2') }}</span>
+            <span>{{ displaySummary('M2') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupM2" #formDirectiveM2="ngForm">
@@ -4725,7 +4753,7 @@
                     'Coarctation'
                   ]"></reg-select>
 
-                //ANEURYSM
+                <!-- //ANEURYSM -->
 
                 <div *ngIf="visibles['AnEtilogy']" class="reg-container">
 
@@ -4779,7 +4807,7 @@
 
                 </div>
 
-                //DISSECTION
+                <!-- //DISSECTION -->
 
                 <div *ngIf="visibles['DisTiming']" class="reg-container">
 
@@ -4995,7 +5023,7 @@
 
                 </div>
 
-                //ROOT
+                <!-- //ROOT -->
 
                 <h4 class="reg-title" *ngIf="visibles['root']" id="root">Root</h4>
 
@@ -5033,7 +5061,7 @@
 
                 </div>
 
-                //ARCH
+                <!-- //ARCH -->
 
                 <h4 class="reg-title" *ngIf="visibles['arch']" id="arch">Arch</h4>
 
@@ -6076,11 +6104,12 @@
               </div>
             </ng-template>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionM3">
+        <section class="section-wrapper" scrollSpyElement id="sectionM3">
           <div class="section-title">
-            {{ getTocTitle('M3') }}
+            <span>{{ getTocTitle('M3') }}</span>
+            <span>{{ displaySummary('M3') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupM3" #formDirectiveM3="ngForm">
@@ -6127,11 +6156,12 @@
               </div>
             </ng-template>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionN">
+        <section class="section-wrapper" scrollSpyElement id="sectionN">
           <div class="section-title">
-            {{ getTocTitle('N') }}
+            <span>{{ getTocTitle('N') }}</span>
+            <span>{{ displaySummary('N') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupN" #formDirectiveN="ngForm">
@@ -6178,11 +6208,12 @@
               </div>
             </ng-template>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionO">
+        <section class="section-wrapper" scrollSpyElement id="sectionO">
           <div class="section-title">
-            {{ getTocTitle('O') }}
+            <span>{{ getTocTitle('O') }}</span>
+            <span>{{ displaySummary('O') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupO" #formDirectiveO="ngForm">
@@ -6258,7 +6289,7 @@
 
                 <reg-input controlName="VentHrsTot" placeholder="Total post-operative ventilation hours"
                   [formGroup]="formGroupO" type="number" readonly="true">(auto calculated)</reg-input>
-                //System Calculation
+                <!-- //System Calculation -->
 
                 <div class="reg-container">
 
@@ -6401,11 +6432,12 @@
 
             </form>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionP">
+        <section class="section-wrapper" scrollSpyElement id="sectionP">
           <div class="section-title">
-            {{ getTocTitle('P') }}
+            <span>{{ getTocTitle('P') }}</span>
+            <span>{{ displaySummary('P') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupP" #formDirectiveP="ngForm">
@@ -6418,14 +6450,14 @@
                     [formGroup]="formGroupP" [choices]="['Yes', 'No']" fxFlex></reg-select>
 
                   <div *ngIf="visibles['CSternalSupInf']">
-                    //<button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000" //
+                    <!-- //<button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000" //
                       (click)="setToDefaultPostopSSI(formGroupP, 'No')">
                       // <mat-icon>save_alt</mat-icon>
                       //</button>
                     //<button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000" //
                       (click)="setToDefaultPostopSSI(formGroupP, null)">
                       // <mat-icon>replay</mat-icon>
-                    </button>
+                    </button> -->
                   </div>
                 </div>
 
@@ -6521,14 +6553,14 @@
                     [formGroup]="formGroupP" [choices]="['Yes', 'No']" fxFlex></reg-select>
 
                   <div *ngIf="visibles['compliOperative']">
-                    //<button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000"
+                    <!-- //<button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000"
                     //  (click)="setToDefaultPostopEvent(formGroupP, 'No')">
                     //  <mat-icon>save_alt</mat-icon>
                     //</button>
                     //<button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000"
                     //  (click)="setToDefaultPostopEvent(formGroupP, null)">
                     //  <mat-icon>replay</mat-icon>
-                    //</button>
+                    //</button> -->
                   </div>
                 </div>
 
@@ -7000,11 +7032,12 @@
 
             </form>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionQ">
+        <section class="section-wrapper" scrollSpyElement id="sectionQ">
           <div class="section-title">
-            {{ getTocTitle('Q') }}
+            <span>{{ getTocTitle('Q') }}</span>
+            <span>{{ displaySummary('Q') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupQ" #formDirectiveQ="ngForm">
@@ -7085,14 +7118,14 @@
                 <div *ngIf="visibles['medPresDC']" fxLayoutAlign="space-between center">
                   <h4 class="reg-title" id="medPresDC">Medications Prescribed at Discharge</h4>
                   <div>
-                    //<button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000"
+                    <!-- //<button mat-icon-button color="primary" matTooltip="Set to Default" matTooltipShowDelay="1000"
                     //  (click)="setToDefaultDischargeMed(formGroupQ, 'No')">
                     //  <mat-icon>save_alt</mat-icon>
                     //</button>
                     //<button mat-icon-button color="primary" matTooltip="Set to Null" matTooltipShowDelay="1000"
                     //  (click)="setToDefaultDischargeMed(formGroupQ, null)">
                     //  <mat-icon>replay</mat-icon>
-                    //</button>
+                    //</button> -->
                   </div>
                 </div>
 
@@ -7232,11 +7265,12 @@
 
             </form>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionR">
+        <section class="section-wrapper" scrollSpyElement id="sectionR">
           <div class="section-title">
-            {{ getTocTitle('R') }}
+            <span>{{ getTocTitle('R') }}</span>
+            <span>{{ displaySummary('R') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupR" #formDirectiveR="ngForm">
@@ -7344,11 +7378,12 @@
               </div>
             </ng-template>
           </div>
-        </section> -->
+        </section>
 
         <section class="section-wrapper" scrollSpyElement id="sectionS">
           <div class="section-title">
-            {{ getTocTitle('S') }}
+            <span>{{ getTocTitle('S') }}</span>
+            <span>{{ displaySummary('S') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupS" #formDirectiveS="ngForm">

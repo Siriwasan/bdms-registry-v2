@@ -20,6 +20,7 @@ import {
   FormVisibility,
   SectionMember,
   RegSelectChoice,
+  FormCompletion,
 } from 'src/app/shared/modules/registry-form/registry-form.model';
 import { FormDetail } from '../../registry.model';
 
@@ -32,6 +33,8 @@ import {
   Acsd290Conditions,
   Acsd290Validations,
 } from '.';
+import { Acsd290Completion } from './acsd290.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-acsd290',
@@ -42,6 +45,9 @@ import {
 export class Acsd290Component extends RegistryFormComponent
   implements OnInit, AfterContentInit, AfterViewInit, OnDestroy {
   visibility: FormVisibility = {};
+  private subscriptions: Subscription[] = [];
+  private completion: Acsd290Completion;
+
   controlService = this.acsd290Service;
   getTocTitle = getTocTitle;
 
@@ -125,6 +131,33 @@ export class Acsd290Component extends RegistryFormComponent
   avHospitals: string[];
   avHospitalsNullOption = true;
 
+  //#region Progression
+  get progressValid() {
+    return this.completion ? this.completion.summary.valid : 0;
+  }
+
+  get progressTotal() {
+    return this.completion ? this.completion.summary.total : 1;
+  }
+
+  get progressSummary() {
+    return this.completion
+      ? this.completion.summary.valid + '/' + this.completion.summary.total
+      : '0/0';
+  }
+
+  get progressPercent() {
+    if (!this.completion) {
+      return `(0%)`;
+    }
+
+    const completion = Math.floor(
+      (this.completion.summary.valid / this.completion.summary.total) * 100
+    );
+    return `(${completion}%)`;
+  }
+  //#endregion
+
   constructor(
     protected store: Store<AppState>,
     protected scrollSpy: ScrollSpyService,
@@ -146,9 +179,16 @@ export class Acsd290Component extends RegistryFormComponent
 
     this.createForm();
     this.registryFormService.subscribeFormConditions();
-    this.formGroupQ.controls['DischMortStat'].setValue(
-      'Discharged alive, last known status is alive'
-    );
+    // this.formGroupQ.controls['DischMortStat'].setValue(
+    //   'Discharged alive, last known status is alive'
+    // );
+
+    this.subscribeCompletionCalculation();
+    this.subscribeSubSectionsChanged();
+
+    this.completion = this.initializeFormCompletion();
+    this.formGroupA.get('registryId').setValue('(new)');
+    this.firstRunCompletion();
   }
 
   ngAfterViewInit() {
@@ -157,6 +197,8 @@ export class Acsd290Component extends RegistryFormComponent
 
   ngOnDestroy() {
     super.ngOnDestroy();
+
+    this.subscriptions.forEach((subs) => subs.unsubscribe());
   }
 
   private createForm() {
@@ -217,5 +259,97 @@ export class Acsd290Component extends RegistryFormComponent
       this.visibles
     );
     this.registryFormService.setDataDict(require('raw-loader!./acsd290.dict.md').default);
+  }
+
+  displaySummary(section: string): string {
+    if (!this.completion) {
+      return;
+    }
+
+    const current = this.completion['section' + section];
+    return current.valid + '/' + current.total;
+  }
+
+  private initializeFormCompletion(): Acsd290Completion {
+    return {
+      summary: { valid: 0, total: 0 },
+      sectionA: { valid: 0, total: 0 },
+      sectionB: { valid: 0, total: 0 },
+      sectionC: { valid: 0, total: 0 },
+      sectionD: { valid: 0, total: 0 },
+      sectionE: { valid: 0, total: 0 },
+      sectionF: { valid: 0, total: 0 },
+      sectionG: { valid: 0, total: 0 },
+      sectionH: { valid: 0, total: 0 },
+      sectionI: { valid: 0, total: 0 },
+      sectionJ: { valid: 0, total: 0 },
+      sectionK: { valid: 0, total: 0 },
+      sectionL: { valid: 0, total: 0 },
+      sectionL2: { valid: 0, total: 0 },
+      sectionM: { valid: 0, total: 0 },
+      sectionM1: { valid: 0, total: 0 },
+      sectionM2: { valid: 0, total: 0 },
+      sectionM3: { valid: 0, total: 0 },
+      sectionN: { valid: 0, total: 0 },
+      sectionO: { valid: 0, total: 0 },
+      sectionP: { valid: 0, total: 0 },
+      sectionQ: { valid: 0, total: 0 },
+      sectionR: { valid: 0, total: 0 },
+      sectionS: { valid: 0, total: 0 },
+    };
+  }
+
+  private subscribeCompletionCalculation() {
+    this.sectionMembers.forEach((sm) => {
+      this.subscriptions.push(
+        sm[1].valueChanges.subscribe((value) => {
+          if (sm[1].disabled) {
+            return;
+          }
+
+          let newCompletion: FormCompletion;
+          newCompletion = this.registryFormService.getSectionCompletion(sm[0]);
+
+          const oldCompletion = this.completion['section' + sm[0]] as FormCompletion;
+          this.completion['section' + sm[0]] = newCompletion;
+
+          this.completion.summary.valid =
+            this.completion.summary.valid - oldCompletion.valid + newCompletion.valid;
+          this.completion.summary.total =
+            this.completion.summary.total - oldCompletion.total + newCompletion.total;
+        })
+      );
+    });
+  }
+
+  private firstRunCompletion() {
+    this.sectionMembers.forEach((sm) => {
+      sm[1].enable();
+    });
+  }
+
+  private subscribeSubSectionsChanged() {
+    const subSections = [
+      { parentFormGroup: this.formGroupI, control: 'OpCAB', childFormGroup: this.formGroupJ },
+      { parentFormGroup: this.formGroupI, control: 'OpValve', childFormGroup: this.formGroupK },
+      { parentFormGroup: this.formGroupI, control: 'OpOCard', childFormGroup: this.formGroupM },
+      { parentFormGroup: this.formGroupI, control: 'AFibProc', childFormGroup: this.formGroupM1 },
+      { parentFormGroup: this.formGroupI, control: 'AortProc', childFormGroup: this.formGroupM2 },
+      { parentFormGroup: this.formGroupM, control: 'OCarCong', childFormGroup: this.formGroupM3 },
+      { parentFormGroup: this.formGroupI, control: 'OpONCard', childFormGroup: this.formGroupN },
+      {
+        parentFormGroup: this.formGroupQ,
+        control: 'DischMortStat',
+        childFormGroup: this.formGroupR,
+      },
+    ];
+
+    subSections.forEach((el) => {
+      this.subscriptions.push(
+        el.parentFormGroup
+          .get(el.control)
+          .valueChanges.subscribe((value) => el.childFormGroup.enable())
+      );
+    });
   }
 }

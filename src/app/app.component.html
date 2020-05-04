@@ -1,7 +1,12 @@
 <div [ngClass]="{'dark-theme': (theme$ | async) === 'dark'}">
   <div class="mat-app-background">
 
-    <router-outlet></router-outlet>
+    <router-outlet>
+      <div class="loading-container">
+        <img src="/assets/images/bdms-logo.png" style="width: 48px;height: auto;" />
+        <p class="loading-text">Loading...</p>
+      </div>
+    </router-outlet>
 
   </div>
 </div>
