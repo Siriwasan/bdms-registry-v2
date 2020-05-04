@@ -31,14 +31,14 @@ export class TestForm2Component extends RegistryFormComponent
   }
 
   ngOnInit() {
-    super.ngOnInit();
+    // super.ngOnInit();
   }
 
   ngAfterViewInit() {
-    super.ngAfterViewInit();
+    // super.ngAfterViewInit();
   }
 
   ngOnDestroy() {
-    super.ngOnDestroy();
+    // super.ngOnDestroy();
   }
 }

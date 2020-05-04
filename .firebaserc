@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "bdms-registry-dev"
+  },
+  "targets": {
+    "bdms-registry-dev": {
+      "hosting": {
+        "bdms-registry": [
+          "bdms-registry-dev"
+        ]
+      }
+    }
   }
 }
