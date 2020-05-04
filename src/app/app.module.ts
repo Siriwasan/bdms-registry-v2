@@ -1,4 +1,7 @@
 import { NgModule } from '@angular/core';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { StoreModule, Store } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -10,7 +13,6 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { FeatureModule } from './features/feature.module';
 import { AppStoreModule, AppStoreSelectors } from './store/app';
-import { OverlayContainer } from '@angular/cdk/overlay';
 import { AppState } from './store/root-store.state';
 
 @NgModule({
@@ -22,6 +24,8 @@ import { AppState } from './store/root-store.state';
     AppRoutingModule,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     AppStoreModule,
   ],
   providers: [],

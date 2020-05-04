@@ -19,9 +19,13 @@ firebase deploy
 
 <https://github.com/angular/flex-layout#angular-flex-layout>
 
-## 4. Setup AngularFire
+## 4. Setup AngularFire and Firebase
 
 <https://github.com/angular/angularfire2>
+
+```node
+npm install firebase
+```
 
 ## 5. Setup NgRx Store
 

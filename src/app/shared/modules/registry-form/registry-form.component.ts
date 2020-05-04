@@ -132,7 +132,9 @@ export class RegistryFormComponent implements OnInit, AfterViewInit, AfterConten
   }
 
   tocClicked(toc: string) {
-    this.scrollSpy.scrollTo(toc);
+    setTimeout(() => {
+      this.scrollSpy.scrollTo(toc);
+    }, 0);
 
     this.store.dispatch(AppStoreActions.closeSidebar());
   }
