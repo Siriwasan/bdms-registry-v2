@@ -12,7 +12,6 @@ import { Store } from '@ngrx/store';
 import { ScrollSpyService } from '../../../shared/modules/scroll-spy/scroll-spy.service';
 import { RegistryFormComponent } from 'src/app/shared/modules/registry-form/registry-form.component';
 import { AppState } from 'src/app/store/root-store.state';
-import { AppStoreSelectors } from 'src/app/store/app';
 import { AngularFirestore, DocumentChangeAction } from '@angular/fire/firestore';
 
 @Component({

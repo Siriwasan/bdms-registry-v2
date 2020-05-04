@@ -3,6 +3,7 @@ import { State } from './app.state';
 
 const selectAppState = createFeatureSelector<State>('app');
 
+export const isLoading = createSelector(selectAppState, (state) => state.isLoading);
 export const theme = createSelector(selectAppState, (state) => state.theme);
 export const device = createSelector(selectAppState, (state) => state.device);
 

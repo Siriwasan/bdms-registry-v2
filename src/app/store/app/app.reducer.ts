@@ -1,6 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 
 import {
+  startLoading,
+  stopLoading,
   toggleTheme,
   setDarkTheme,
   setDevice,
@@ -18,6 +20,12 @@ import { initialState } from './app.state';
 
 export const appReducer = createReducer(
   initialState,
+  on(startLoading, (state) => {
+    return { ...state, isLoading: true };
+  }),
+  on(stopLoading, (state) => {
+    return { ...state, isLoading: false };
+  }),
   on(setDarkTheme, (state, { darkTheme }) => {
     return { ...state, theme: darkTheme ? 'dark' : 'light' };
   }),

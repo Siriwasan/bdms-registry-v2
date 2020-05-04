@@ -86,6 +86,10 @@ export class Gtsd241Component extends RegistryFormComponent
     this.registryFormService.subscribeFormConditions();
   }
 
+  ngAfterViewInit() {
+    super.ngAfterViewInit();
+  }
+
   ngOnDestroy() {
     super.ngOnDestroy();
   }

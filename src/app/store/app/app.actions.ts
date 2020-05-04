@@ -1,5 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 
+export const startLoading = createAction('[Application] START_LOADING');
+export const stopLoading = createAction('[Application] STOP_LOADING');
+
 export const setDarkTheme = createAction(
   '[Application] SET_DARK_THEME',
   props<{ darkTheme: boolean }>()

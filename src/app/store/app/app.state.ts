@@ -1,4 +1,5 @@
 export interface State {
+  isLoading: boolean;
   theme: string;
   device: string;
   navbarMode: string;
@@ -8,6 +9,7 @@ export interface State {
 }
 
 export const initialState: State = {
+  isLoading: false,
   theme: 'light',
   device: 'others',
   navbarMode: 'side',

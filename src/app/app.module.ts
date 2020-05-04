@@ -6,6 +6,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { StoreModule, Store } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
+
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +29,7 @@ import { AppState } from './store/root-store.state';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AppStoreModule,
+    NgxUiLoaderModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

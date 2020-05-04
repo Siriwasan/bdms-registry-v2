@@ -35,6 +35,7 @@ import {
 } from '.';
 import { Acsd290Completion } from './acsd290.model';
 import { Subscription } from 'rxjs';
+import { AppStoreActions } from 'src/app/store/app';
 
 @Component({
   selector: 'app-acsd290',
@@ -193,6 +194,8 @@ export class Acsd290Component extends RegistryFormComponent
 
   ngAfterViewInit() {
     super.ngAfterViewInit();
+
+    this.store.dispatch(AppStoreActions.stopLoading());
   }
 
   ngOnDestroy() {
