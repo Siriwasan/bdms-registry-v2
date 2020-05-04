@@ -6,15 +6,18 @@
 
         <div class="table-of-contents" [style.max-height.px]="tocMaxHeight">
           <ul *ngIf="sidebarOpened">
-            <li id="titleTOC" (click)="tocClicked('title')" [class.active]="isActive('title')" class="menu-title">
+            <li id="titleTOC" (click)="tocClicked('title')" [class.active]="isActive('title')" class="toc-title">
               <span>TEST FORM</span></li>
-            <li><a id="sectionATOC" (click)="tocClicked('sectionA')" [class.active]="isActive('sectionA')">A.
+            <li><a class="toc-name" id="sectionATOC" (click)="tocClicked('sectionA')"
+                [class.active]="isActive('sectionA')">A.
                 Administrative</a>
             </li>
-            <li><a id="sectionBTOC" (click)="tocClicked('sectionB')" [class.active]="isActive('sectionB')">B.
+            <li><a class="toc-name" id="sectionBTOC" (click)="tocClicked('sectionB')"
+                [class.active]="isActive('sectionB')">B.
                 Demographics</a>
             </li>
-            <li><a id="sectionCTOC" (click)="tocClicked('sectionC')" [class.active]="isActive('sectionC')">C.
+            <li><a class="toc-name" id="sectionCTOC" (click)="tocClicked('sectionC')"
+                [class.active]="isActive('sectionC')">C.
                 Preoperative</a>
             </li>
           </ul>
