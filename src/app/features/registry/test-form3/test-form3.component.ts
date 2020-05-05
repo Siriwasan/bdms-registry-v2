@@ -17,7 +17,6 @@ import { RegistryFormComponent } from 'src/app/shared/modules/registry-form/regi
 import { AppState } from 'src/app/store/root-store.state';
 
 import * as jsondiffpatch from 'jsondiffpatch';
-import * as deepDiff from 'deep-diff';
 
 import {
   FormVisibility,
@@ -29,6 +28,7 @@ import { TestForm3Conditions } from './test-form3.condition';
 import { TestForm3Validations } from './test-form3.validation';
 import { TestForm3Form } from './test-form3.form';
 import { TestForm3Service } from './test-form3.service';
+import * as deepDiff from 'deep-diff';
 
 @Component({
   selector: 'app-test-form3',
@@ -58,7 +58,7 @@ export class TestForm3Component extends RegistryFormComponent
   private sectionMembers: SectionMember[];
   //#endregion
 
-  oldData = null;
+  oldData: {} = null;
 
   constructor(
     protected store: Store<AppState>,
@@ -82,11 +82,30 @@ export class TestForm3Component extends RegistryFormComponent
       .subscribe((action) => {
         const newData = action.payload.data() as {};
 
-        if (this.oldData) {
-          const diff = deepDiff.diff(this.oldData, newData);
-          console.log(diff);
-        }
-        // console.log(action);
+        // if (this.oldData) {
+        const diffs = deepDiff.diff(this.oldData, newData);
+        console.log(diffs);
+
+        diffs.forEach((diff) => {
+          switch (diff.kind) {
+            case 'E':
+              const dif = diff as deepDiff.DiffEdit<{}, {}>;
+              if (dif.lhs === null) {
+                this.formGroupA.patchValue(dif.rhs[`sectionA`]);
+              } else {
+                if (dif.path[0] === 'sectionA') {
+                  const obj = {};
+                  obj[dif.path[1]] = dif.rhs;
+                  this.formGroupA.patchValue(obj);
+                }
+              }
+              break;
+
+            default:
+              break;
+          }
+        });
+
         this.oldData = newData;
       });
 
