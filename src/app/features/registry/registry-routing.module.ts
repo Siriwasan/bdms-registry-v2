@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => import('./test-form2/test-form2.module').then((m) => m.TestForm2Module),
   },
   {
+    path: 'test-form3',
+    loadChildren: () => import('./test-form3/test-form3.module').then((m) => m.TestForm3Module),
+  },
+  {
     path: 'gtsd',
     loadChildren: () => import('./gtsd/gtsd.module').then((m) => m.GtsdModule),
   },

@@ -2,60 +2,50 @@
   <mat-drawer-container class="sidebar-container">
     <mat-drawer [mode]="sidebarMode" position="end" [(opened)]="sidebarOpened" (closed)="closeSidebar()">
       <div class="sidebar-content">
-
         <div class="table-of-contents" [style.max-height.px]="tocMaxHeight">
           <ul *ngIf="sidebarOpened">
-            <li id="titleTOC" (click)="tocClicked('title')" [class.active]="isActive('title')" class="menu-title">
+            <li id="titleTOC" (click)="tocClicked('title')" [class.active]="isActive('title')" class="toc-title">
               <span>TEST FORM 3</span></li>
-            <li><a id="sectionATOC" (click)="tocClicked('sectionA')" [class.active]="isActive('sectionA')">A.
+            <li><a class="toc-name" id="sectionATOC" (click)="tocClicked('sectionA')"
+                [class.active]="isActive('sectionA')">A.
                 Administrative</a>
             </li>
-            <li><a id="sectionBTOC" (click)="tocClicked('sectionB')" [class.active]="isActive('sectionB')">B.
+            <li><a class="toc-name" id="sectionBTOC" (click)="tocClicked('sectionB')"
+                [class.active]="isActive('sectionB')">B.
                 Demographics</a>
             </li>
-            <li><a id="sectionCTOC" (click)="tocClicked('sectionC')" [class.active]="isActive('sectionC')">C.
-                Preoperative</a>
-            </li>
-            <li><a id="sectionDTOC" (click)="tocClicked('sectionD')" [class.active]="isActive('sectionD')">D.
-                Preoperative</a>
-            </li>
-            <li><a id="sectionETOC" (click)="tocClicked('sectionE')" [class.active]="isActive('sectionE')">E.
-                Preoperative</a>
-            </li>
-            <li><a id="sectionFTOC" (click)="tocClicked('sectionF')" [class.active]="isActive('sectionF')">F.
-                Preoperative</a>
-            </li>
-            <li><a id="sectionGTOC" (click)="tocClicked('sectionG')" [class.active]="isActive('sectionG')">G.
-                Preoperative</a>
-            </li>
-            <li><a id="sectionHTOC" (click)="tocClicked('sectionH')" [class.active]="isActive('sectionH')">H.
-                Preoperative</a>
-            </li>
-            <li><a id="sectionITOC" (click)="tocClicked('sectionI')" [class.active]="isActive('sectionI')">I.
-                Preoperative</a>
-            </li>
-            <li><a id="sectionJTOC" (click)="tocClicked('sectionJ')" [class.active]="isActive('sectionJ')">J.
-                Preoperative</a>
-            </li>
-            <li><a id="sectionKTOC" (click)="tocClicked('sectionK')" [class.active]="isActive('sectionK')">K.
+            <li><a class="toc-name" id="sectionCTOC" (click)="tocClicked('sectionC')"
+                [class.active]="isActive('sectionC')">C.
                 Preoperative</a>
             </li>
           </ul>
         </div>
 
-        <div class="completion-content" *ngIf="completionContent">
+        <div>
+          <div class="completion-content" *ngIf="completionContent">
+            <div class="progress-wrapper">
+              <round-progress current="10" max="50" [color]="'#A133FF'" [background]="'#eaeaea'" [radius]="125"
+                [stroke]="15" [rounded]="false" [responsive]="true">
+              </round-progress>
+              <div class="summary">
+                <div class="current">{{ '10/100' }}</div>
+                <div class="completion">{{ '(10%)' }}</div>
+              </div>
 
-        </div>
+            </div>
+          </div>
 
-        <div class="completion-mini-content" *ngIf="!completionContent">
-
+          <div class="completion-mini-content" *ngIf="!completionContent">
+            <div class="mini-summary">{{ '10/100 (10%)' }}</div>
+          </div>
+          <div style="height: 32px;"></div>
         </div>
       </div>
     </mat-drawer>
 
     <mat-drawer-content id="test">
       <div class="speed-dial-container">
-        <fab-speed-dial open="" direction="up" animationMode="fling">
+        <fab-speed-dial open="" [direction]="device === 'HandsetLandscape' ? 'left' : 'up'" animationMode="fling">
           <fab-speed-dial-trigger spin="true">
             <button mat-fab>
               <mat-icon class="fab-spin90">more_horiz</mat-icon>
@@ -63,22 +53,29 @@
           </fab-speed-dial-trigger>
 
           <fab-speed-dial-actions>
-            <button mat-mini-fab matTooltip="Save" matTooltipPosition="before" color="secondary" (click)="true">
+            <button mat-mini-fab matTooltip="Save"
+              [matTooltipPosition]="device === 'HandsetLandscape' ? 'above' : 'before'" color="secondary"
+              (click)="true">
               <mat-icon>save</mat-icon>
             </button>
-            <button mat-mini-fab matTooltip="Save and Exit" matTooltipPosition="before" color="secondary"
+            <button mat-mini-fab matTooltip="Save and Exit"
+              [matTooltipPosition]="device === 'HandsetLandscape' ? 'above' : 'before'" color="secondary"
               (click)="true">
               <mat-icon>exit_to_app</mat-icon>
             </button>
-            <button mat-mini-fab matTooltip="Check validation" matTooltipPosition="before" color="secondary"
+            <button mat-mini-fab matTooltip="Check validation"
+              [matTooltipPosition]="device === 'HandsetLandscape' ? 'above' : 'before'" color="secondary"
               (click)="true">
               <mat-icon>error_outline</mat-icon>
             </button>
-            <button mat-mini-fab matTooltip="Clear validation" matTooltipPosition="before" color="secondary"
+            <button mat-mini-fab matTooltip="Clear validation"
+              [matTooltipPosition]="device === 'HandsetLandscape' ? 'above' : 'before'" color="secondary"
               (click)="true">
               <mat-icon>highlight_off</mat-icon>
             </button>
-            <button mat-mini-fab matTooltip="Print as PDF" matTooltipPosition="before" color="secondary" (click)="true">
+            <button mat-mini-fab matTooltip="Print as PDF"
+              [matTooltipPosition]="device === 'HandsetLandscape' ? 'above' : 'before'" color="secondary"
+              (click)="true">
               <mat-icon>print</mat-icon>
             </button>
           </fab-speed-dial-actions>
@@ -95,12 +92,44 @@
             A. Administrative
           </div>
           <div class="section-body">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
+            <form [formGroup]="formGroupA" #formDirectiveA="ngForm">
+              <div fxLayout="row wrap">
+                <reg-input controlName="HN" placeholder="HN" [formGroup]="formGroupA" type="text" fxFlex="1 0 100px"
+                  [controlService]="controlService">
+                  Testing</reg-input>
+                <reg-input controlName="AN" placeholder="AN" [formGroup]="formGroupA" type="text" fxFlex="1 0 200px"
+                  [controlService]="controlService">
+                  Testing</reg-input>
+                <reg-input controlName="LastName" placeholder="LastName" [formGroup]="formGroupA" type="text"
+                  fxFlex="1 0 200px" [controlService]="controlService">
+                  Testing</reg-input>
+                <reg-input controlName="FirstName" placeholder="FirstName" [formGroup]="formGroupA" type="text"
+                  fxFlex="2 0 100px" [controlService]="controlService">
+                  Testing</reg-input>
+                <reg-select controlName="Sex" placeholder="Sex" [formGroup]="formGroupA" [choices]="animals"
+                  [group]="true" sortChoice="desc" sortGroup="asc" fxFlex="1 0 200px" [controlService]="controlService">
+                </reg-select>
+                <reg-datepicker *ngIf="visibility['DOB']" controlName="DOB" placeholder="Birth Date"
+                  [formGroup]="formGroupA" fxFlex="1 0 200px" [controlService]="controlService">
+                  dd/mm/yyyy
+                </reg-datepicker>
+                <reg-select-search *ngIf="visibility['Animal']" controlName="Animal" placeholder="Animal"
+                  [formGroup]="formGroupA" [choices]="animals" [group]="true" sortChoice="desc" sortGroup="asc"
+                  fxFlex="1 0 200px" [controlService]="controlService">
+                </reg-select-search>
+                <reg-datepicker *ngIf="visibility['Visit']" controlName="Visit" placeholder="Visit Date"
+                  [formGroup]="formGroupA" fxFlex="1 0 200px" type="datetime" [controlService]="controlService">
+                  dd/mm/yyyy
+                </reg-datepicker>
+                <reg-select-multiple controlName="Gender" placeholder="Gender" [formGroup]="formGroupA"
+                  [choices]="['Male', 'Female']" fxFlex="1 0 200px" [controlService]="controlService">
+                </reg-select-multiple>
+              </div>
+            </form>
           </div>
         </section>
+
+        FormGroupA: {{ formGroupA.value | json }}
 
         <section class="section-wrapper" scrollSpyElement id="sectionB">
           <div class="section-title">
@@ -132,101 +161,6 @@
           </div>
         </section>
 
-        <section class="section-wrapper" scrollSpyElement id="sectionD">
-          <div class="section-title">
-            D. Preoperative
-          </div>
-          <div class="section-body">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-          </div>
-        </section>
-
-        <section class="section-wrapper" scrollSpyElement id="sectionE">
-          <div class="section-title">
-            E. Preoperative
-          </div>
-          <div class="section-body">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-          </div>
-        </section>
-
-        <section class="section-wrapper" scrollSpyElement id="sectionF">
-          <div class="section-title">
-            F. Preoperative
-          </div>
-          <div class="section-body">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-          </div>
-        </section>
-
-        <section class="section-wrapper" scrollSpyElement id="sectionG">
-          <div class="section-title">
-            G. Preoperative
-          </div>
-          <div class="section-body">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-          </div>
-        </section>
-
-        <section class="section-wrapper" scrollSpyElement id="sectionH">
-          <div class="section-title">
-            H. Preoperative
-          </div>
-          <div class="section-body">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-          </div>
-        </section>
-
-        <section class="section-wrapper" scrollSpyElement id="sectionI">
-          <div class="section-title">
-            I. Preoperative
-          </div>
-          <div class="section-body">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-          </div>
-        </section>
-
-        <section class="section-wrapper" scrollSpyElement id="sectionJ">
-          <div class="section-title">
-            J. Preoperative
-          </div>
-          <div class="section-body">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-          </div>
-        </section>
-
-        <section class="section-wrapper" scrollSpyElement id="sectionK">
-          <div class="section-title">
-            K. Preoperative
-          </div>
-          <div class="section-body">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-          </div>
-        </section>
       </div>
       <br>
     </mat-drawer-content>
