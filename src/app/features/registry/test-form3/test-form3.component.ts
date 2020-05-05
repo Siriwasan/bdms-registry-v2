@@ -17,6 +17,8 @@ import { RegistryFormComponent } from 'src/app/shared/modules/registry-form/regi
 import { AppState } from 'src/app/store/root-store.state';
 
 import * as jsondiffpatch from 'jsondiffpatch';
+import * as deepDiff from 'deep-diff';
+
 import {
   FormVisibility,
   SectionMember,
@@ -75,13 +77,13 @@ export class TestForm3Component extends RegistryFormComponent
     super.ngOnInit();
 
     this.afs
-      .doc('ACSx290/0b8PMMvdvHZgMeoTn0R3')
+      .doc('Test/7jmOukWx9wjoQxXrOndJ')
       .snapshotChanges()
       .subscribe((action) => {
         const newData = action.payload.data() as {};
 
         if (this.oldData) {
-          const diff = jsondiffpatch.diff(this.oldData, newData);
+          const diff = deepDiff.diff(this.oldData, newData);
           console.log(diff);
         }
         // console.log(action);
