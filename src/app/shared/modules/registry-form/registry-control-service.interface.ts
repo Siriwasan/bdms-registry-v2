@@ -1,4 +1,4 @@
-import { ValidationMessage } from '../registry-form.model';
+import { ValidationMessage } from './registry-form.model';
 import { FormGroup } from '@angular/forms';
 
 export interface IRegistryControlService {

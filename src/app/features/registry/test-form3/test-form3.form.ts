@@ -9,16 +9,8 @@ export const TestForm3Form = {
     Sex: [null, Validators.required],
     DOB: [null, Validators.required],
   },
-  sectionB: {
-    HospName: [null, Validators.required],
-    AdmType: [null, Validators.required],
-    TransferHospType: [null, Validators.required],
-    BDMSNetwork: [null, Validators.required],
-    NonBDMS: [null, Validators.required],
-  },
-  sectionC: {
-    Hypertension: [null, Validators.required],
-    Dyslipidemia: [null, Validators.required],
-    HxMI: [null, Validators.required],
-  },
+  // sectionB: {
+  //   Payor: [null, Validators.required],
+  //   Province: [null, Validators.required],
+  // },
 };

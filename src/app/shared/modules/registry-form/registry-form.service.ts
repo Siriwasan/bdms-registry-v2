@@ -9,7 +9,7 @@ import {
 import { Subscription } from 'rxjs';
 import * as marked from 'marked';
 
-import { IRegistryControlService } from 'src/app/shared/modules/registry-form/controls/registry-control-service.interface';
+import { IRegistryControlService } from 'src/app/shared/modules/registry-form/registry-control-service.interface';
 import { DialogService } from '../../services/dialog.service';
 import {
   ValidationMessage,
@@ -20,6 +20,7 @@ import {
   FormCompletion,
   FormVisibility,
 } from './registry-form.model';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable()
 export class RegistryFormService implements IRegistryControlService, OnDestroy {
@@ -36,7 +37,7 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
 
   private visibility: FormVisibility = {};
 
-  constructor(private dialogService: DialogService) {}
+  constructor(private dialogService: DialogService, private afs: AngularFirestore) {}
 
   ngOnDestroy() {
     this.subscriptions.forEach((subs) => subs.unsubscribe());

@@ -16,7 +16,12 @@ import { ScrollSpyService } from '../../../shared/modules/scroll-spy/scroll-spy.
 import { RegistryFormComponent } from 'src/app/shared/modules/registry-form/registry-form.component';
 import { AppState } from 'src/app/store/root-store.state';
 
+import { Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
 import * as jsondiffpatch from 'jsondiffpatch';
+import * as deepDiff from 'deep-diff';
+import * as moment from 'moment';
 
 import {
   FormVisibility,
@@ -28,7 +33,6 @@ import { TestForm3Conditions } from './test-form3.condition';
 import { TestForm3Validations } from './test-form3.validation';
 import { TestForm3Form } from './test-form3.form';
 import { TestForm3Service } from './test-form3.service';
-import * as deepDiff from 'deep-diff';
 
 @Component({
   selector: 'app-test-form3',
@@ -39,7 +43,10 @@ import * as deepDiff from 'deep-diff';
 export class TestForm3Component extends RegistryFormComponent
   implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
   visibility: FormVisibility = {};
-  controlService = this.testForm3Service;
+  private subscriptions: Subscription[] = [];
+  controlService = this.registryFormService;
+  private dataChanged = false;
+  private initialize = true;
 
   animals: RegSelectChoice[] = [];
 
@@ -58,8 +65,6 @@ export class TestForm3Component extends RegistryFormComponent
   private sectionMembers: SectionMember[];
   //#endregion
 
-  oldData: {} = null;
-
   constructor(
     protected store: Store<AppState>,
     protected scrollSpy: ScrollSpyService,
@@ -76,38 +81,9 @@ export class TestForm3Component extends RegistryFormComponent
   ngOnInit() {
     super.ngOnInit();
 
-    this.afs
-      .doc('Test/7jmOukWx9wjoQxXrOndJ')
-      .snapshotChanges()
-      .subscribe((action) => {
-        const newData = action.payload.data() as {};
+    // this.afs.doc('Test/7jmOukWx9wjoQxXrOndJ').update({ 'sectionA.FirstName': 'Ae' });
 
-        // if (this.oldData) {
-        const diffs = deepDiff.diff(this.oldData, newData);
-        console.log(diffs);
-
-        diffs.forEach((diff) => {
-          switch (diff.kind) {
-            case 'E':
-              const dif = diff as deepDiff.DiffEdit<{}, {}>;
-              if (dif.lhs === null) {
-                this.formGroupA.patchValue(dif.rhs[`sectionA`]);
-              } else {
-                if (dif.path[0] === 'sectionA') {
-                  const obj = {};
-                  obj[dif.path[1]] = dif.rhs;
-                  this.formGroupA.patchValue(obj);
-                }
-              }
-              break;
-
-            default:
-              break;
-          }
-        });
-
-        this.oldData = newData;
-      });
+    this.subscribeDataNotification();
 
     this.animals = [
       { value: 'duck', label: 'Duck', altLabel: 'เป็ด', group: 'Wings', disable: false },
@@ -127,21 +103,25 @@ export class TestForm3Component extends RegistryFormComponent
 
   ngAfterViewInit() {
     super.ngAfterViewInit();
+
+    this.subscribeCompletionCalculation();
   }
 
   ngOnDestroy() {
     super.ngOnDestroy();
+
+    this.subscriptions.forEach((subs) => subs.unsubscribe());
   }
 
   private createForm() {
     this.formGroupA = this.formBuilder.group(TestForm3Form.sectionA);
-    this.formGroupB = this.formBuilder.group(TestForm3Form.sectionB);
-    this.formGroupC = this.formBuilder.group(TestForm3Form.sectionC);
+    // this.formGroupB = this.formBuilder.group(TestForm3Form.sectionB);
+    // this.formGroupC = this.formBuilder.group(TestForm3Form.sectionC);
 
     this.sectionMembers = [
       ['A', this.formGroupA, this.formDirectiveA, TestForm3Conditions.sectionA],
-      ['B', this.formGroupB, this.formDirectiveB, TestForm3Conditions.sectionB],
-      ['C', this.formGroupC, this.formDirectiveC, TestForm3Conditions.sectionC],
+      // ['B', this.formGroupB, this.formDirectiveB, TestForm3Conditions.sectionB],
+      // ['C', this.formGroupC, this.formDirectiveC, TestForm3Conditions.sectionC],
     ];
 
     this.registryFormService.initializeForm(
@@ -151,5 +131,92 @@ export class TestForm3Component extends RegistryFormComponent
       this.visibility
     );
     this.registryFormService.setDataDict(require('raw-loader!./test-form3.dict.md').default);
+  }
+
+  private subscribeDataNotification() {
+    console.log(document.getElementById('DOB'));
+    this.afs
+      .doc('/Test/7jmOukWx9wjoQxXrOndJ')
+      .snapshotChanges()
+      .subscribe((action) => {
+        const firebaseData = action.payload.data() as {};
+
+        const registryData = this.getRegistryData();
+        console.log('notify', registryData, firebaseData);
+
+        const diffs = deepDiff.diff(registryData, firebaseData);
+        console.log(diffs);
+
+        if (!diffs) {
+          console.log('Not different');
+          return;
+        }
+
+        diffs.forEach((diff) => {
+          switch (diff.kind) {
+            case 'E':
+              const dif = diff as deepDiff.DiffEdit<{}, {}>;
+              if (!dif.path) {
+                this.formGroupA.patchValue(dif.rhs[`sectionA`]);
+              } else {
+                if (dif.path[0] === 'sectionA') {
+                  const obj = {};
+                  obj[dif.path[1]] = dif.rhs;
+                  this.formGroupA.patchValue(obj);
+
+                  if (!this.initialize) {
+                    setTimeout(() => {
+                      document.getElementById(dif.path[1])?.classList.add('value-changed');
+                      setTimeout(() => {
+                        document.getElementById(dif.path[1])?.classList.remove('value-changed');
+                      }, 1300);
+                    }, 0);
+                  }
+                }
+              }
+              break;
+
+            default:
+              console.log('Diff other than Edit');
+              break;
+          }
+        });
+
+        this.initialize = false;
+        this.dataChanged = true;
+      });
+  }
+
+  private subscribeCompletionCalculation() {
+    this.sectionMembers.forEach((sm) => {
+      this.subscriptions.push(
+        sm[1].valueChanges.pipe(debounceTime(3000), distinctUntilChanged()).subscribe((value) => {
+          if (this.dataChanged) {
+            this.dataChanged = false;
+            return;
+          }
+
+          console.log('value change:', value);
+
+          const v = value;
+          v['DOB'] = this.serializeDate(v['DOB']);
+
+          this.afs.doc('Test/7jmOukWx9wjoQxXrOndJ').update({ sectionA: v });
+        })
+      );
+    });
+  }
+
+  private serializeDate(dateTime: any): any {
+    const dt = moment.isMoment(dateTime) ? dateTime : moment(dateTime);
+
+    return dt.startOf('day').toISOString(true);
+  }
+
+  private getRegistryData() {
+    const formGroupAvalue = this.formGroupA.getRawValue();
+    return {
+      sectionA: { ...formGroupAvalue, DOB: this.serializeDate(formGroupAvalue.DOB) },
+    };
   }
 }

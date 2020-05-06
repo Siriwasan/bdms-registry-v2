@@ -109,8 +109,8 @@
                 <reg-select controlName="Sex" placeholder="Sex" [formGroup]="formGroupA" [choices]="['Male', 'Female']"
                   fxFlex="1 0 200px" [controlService]="controlService">
                 </reg-select>
-                <reg-datepicker controlName="DOB" placeholder="Birth Date" [formGroup]="formGroupA" fxFlex="1 0 200px"
-                  [controlService]="controlService">
+                <reg-datepicker *ngIf="visibility['DOB']" controlName="DOB" placeholder="Birth Date"
+                  [formGroup]="formGroupA" fxFlex="1 0 200px" [controlService]="controlService">
                   dd/mm/yyyy
                 </reg-datepicker>
               </div>

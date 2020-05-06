@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { IRegistryControlService } from 'src/app/shared/modules/registry-form/controls/registry-control-service.interface';
+import { IRegistryControlService } from 'src/app/shared/modules/registry-form/registry-control-service.interface';
 import { ValidationMessage } from 'src/app/shared/modules/registry-form/registry-form.model';
 
 const mockInfo = [

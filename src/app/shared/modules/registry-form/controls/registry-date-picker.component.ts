@@ -184,7 +184,7 @@ export class RegistryDatePickerComponent extends RegistryControlComponent
 
   onClose() {
     if (this.type === 'date') {
-      const dt = this.self.value as Moment;
+      const dt = moment(this.self.value);
       this.self.setValue(dt?.startOf('day'));
     }
   }

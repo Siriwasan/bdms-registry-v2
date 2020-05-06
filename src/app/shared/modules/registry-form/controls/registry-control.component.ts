@@ -2,7 +2,7 @@ import { FormGroup, AbstractControl } from '@angular/forms';
 import { Input, OnInit, ElementRef } from '@angular/core';
 
 import { ValidationMessage } from '../registry-form.model';
-import { IRegistryControlService } from 'src/app/shared/modules/registry-form/controls/registry-control-service.interface';
+import { IRegistryControlService } from 'src/app/shared/modules/registry-form/registry-control-service.interface';
 
 export class RegistryControlComponent implements OnInit {
   @Input() controlName: string;
