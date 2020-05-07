@@ -12,6 +12,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login() {
-    this.router.navigateByUrl('/registry/test-form');
+    this.router.navigateByUrl('/registry/test-form3');
   }
 }
