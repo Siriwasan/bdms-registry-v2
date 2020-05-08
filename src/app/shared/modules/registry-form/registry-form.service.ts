@@ -43,10 +43,6 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
     this.subscriptions.forEach((subs) => subs.unsubscribe());
   }
 
-  test() {
-    console.log('test');
-  }
-
   //#region Registry
   public initializeForm(
     sectionMembers: SectionMember[],

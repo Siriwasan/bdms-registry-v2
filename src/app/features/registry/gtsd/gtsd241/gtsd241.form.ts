@@ -1,5 +1,4 @@
 import { Validators } from '@angular/forms';
-// import { CathPci50Validator } from './cath-pci50.validator';
 
 export const Gtsd241Form = {
   sectionA: {
@@ -8,22 +7,28 @@ export const Gtsd241Form = {
     AN: [null, [Validators.required, Validators.minLength(11), Validators.maxLength(12)]],
     LastName: [null, Validators.required],
     FirstName: [null, Validators.required],
+    MidName: [null],
+    SSN: [null, Validators.required],
+    DOB: [null, [Validators.required]],
+    Age: [null, [Validators.required, Validators.min(18), Validators.max(120)]],
     Sex: [null, Validators.required],
-    DOB: [null, Validators.required],
-    Visit: [null, Validators.required],
-    Animal: [null, Validators.required],
-    Gender: [null, Validators.required],
+    ZipCode: [null, Validators.required],
+    Race: [null, Validators.required],
+    PatNation: [null, Validators.required],
+    PermAddr: [null, Validators.required],
   },
-  sectionB: {
-    HospName: [null, Validators.required],
-    AdmType: [null, Validators.required],
-    TransferHospType: [null, Validators.required],
-    BDMSNetwork: [null, Validators.required],
-    NonBDMS: [null, Validators.required],
-  },
-  sectionC: {
-    Hypertension: [null, Validators.required],
-    Dyslipidemia: [null, Validators.required],
-    HxMI: [null, Validators.required],
-  },
+  sectionB: {},
+  sectionC: {},
+  sectionD: {},
+  sectionE: {},
+  sectionF: {},
+  sectionG: {},
+  sectionH: {},
+  sectionI: {},
+  sectionJ: {},
+  sectionK: {},
+  sectionL: {},
+  sectionM: {},
+  sectionN: {},
+  sectionO: {},
 };

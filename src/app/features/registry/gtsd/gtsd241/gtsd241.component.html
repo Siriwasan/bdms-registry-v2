@@ -2,23 +2,14 @@
   <mat-drawer-container class="sidebar-container">
     <mat-drawer [mode]="sidebarMode" position="end" [(opened)]="sidebarOpened" (closed)="closeSidebar()">
       <div class="sidebar-content">
-        <!-- <div fxFlex fxLayout="column" fxLayoutAlign="space-between center"> -->
-
         <div class="table-of-contents" [style.max-height.px]="tocMaxHeight">
           <ul *ngIf="sidebarOpened">
             <li id="titleTOC" (click)="tocClicked('title')" [class.active]="isActive('title')" class="toc-title">
-              <span>TEST FORM</span></li>
-            <li><a class="toc-name" id="sectionATOC" (click)="tocClicked('sectionA')"
-                [class.active]="isActive('sectionA')">A.
-                Administrative</a>
-            </li>
-            <li><a class="toc-name" id="sectionBTOC" (click)="tocClicked('sectionB')"
-                [class.active]="isActive('sectionB')">B.
-                Demographics</a>
-            </li>
-            <li><a class="toc-name" id="sectionCTOC" (click)="tocClicked('sectionC')"
-                [class.active]="isActive('sectionC')">C.
-                Preoperative</a>
+              <span>GTSD v2.90</span></li>
+            <li *ngFor="let h of toc" class="toc-header">
+              <a class="toc-name" [id]="h.section + 'TOC'" (click)="tocClicked(h.section)"
+                [class.active]="isActive(h.section)">{{ h.title }}
+                <a class="toc-completion">({{ displaySummary(h.section) }})</a></a>
             </li>
           </ul>
         </div>
@@ -26,19 +17,18 @@
         <div>
           <div class="completion-content" *ngIf="completionContent">
             <div class="progress-wrapper">
-              <round-progress current="10" max="50" [color]="'#A133FF'" [background]="'#eaeaea'" [radius]="125"
-                [stroke]="15" [rounded]="false" [responsive]="true">
+              <round-progress [current]="progressValid" [max]="progressTotal" [color]="'#A133FF'"
+                [background]="'#eaeaea'" [radius]="125" [stroke]="15" [rounded]="false" [responsive]="true">
               </round-progress>
               <div class="summary">
-                <div class="current">{{ '10/100' }}</div>
-                <div class="completion">{{ '(10%)' }}</div>
+                <div class="current">{{ progressSummary }}</div>
+                <div class="completion">{{ progressPercent }}</div>
               </div>
-
             </div>
           </div>
 
           <div class="completion-mini-content" *ngIf="!completionContent">
-            <div class="mini-summary">{{ '10/100 (10%)' }}</div>
+            <div class="mini-summary">{{ progressSummary + ' ' + progressPercent }}</div>
           </div>
           <div style="height: 32px;"></div>
         </div>
@@ -88,44 +78,69 @@
       </div>
 
       <div>
-        <h1 class="registry-name" scrollSpyElement id="title">TEST FORM</h1>
+        <h1 class="registry-name" scrollSpyElement id="title">General Thoracic Surgery Database v2.41</h1>
+
         <section class="section-wrapper" scrollSpyElement id="sectionA">
           <div class="section-title">
-            A. Administrative
+            <span>{{ getTocTitle('sectionA') }}</span>
+            <span>{{ displaySummary('sectionA') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupA" #formDirectiveA="ngForm">
-              <div fxLayout="row wrap">
-                <reg-input controlName="HN" placeholder="HN" [formGroup]="formGroupA" type="text" fxFlex="1 0 100px"
-                  [controlService]="controlService">
-                  Testing</reg-input>
-                <reg-input controlName="AN" placeholder="AN" [formGroup]="formGroupA" type="text" fxFlex="1 0 200px"
-                  [controlService]="controlService">
-                  Testing</reg-input>
-                <reg-input controlName="LastName" placeholder="LastName" [formGroup]="formGroupA" type="text"
-                  fxFlex="1 0 200px" [controlService]="controlService">
-                  Testing</reg-input>
-                <reg-input controlName="FirstName" placeholder="FirstName" [formGroup]="formGroupA" type="text"
-                  fxFlex="2 0 100px" [controlService]="controlService">
-                  Testing</reg-input>
-                <reg-select controlName="Sex" placeholder="Sex" [formGroup]="formGroupA" [choices]="animals"
-                  [group]="true" sortChoice="desc" sortGroup="asc" fxFlex="1 0 200px" [controlService]="controlService">
+              <div class="reg-container">
+                <reg-input controlName="registryId" placeholder="Registry ID" [formGroup]="formGroupA" type="text"
+                  readonly="true" fxFlex>(software generated)</reg-input>
+
+                <reg-input controlName="HN" placeholder="HN" [formGroup]="formGroupA" type="text" fxFlex>
+                </reg-input>
+
+                <reg-input controlName="AN" placeholder="AN" [formGroup]="formGroupA" type="text" fxFlex></reg-input>
+              </div>
+
+              <div class="reg-container">
+                <reg-input controlName="LastName" placeholder="Last Name" [formGroup]="formGroupA" type="text" fxFlex>
+                </reg-input>
+
+                <reg-input controlName="FirstName" placeholder="First Name" [formGroup]="formGroupA" type="text" fxFlex>
+                </reg-input>
+
+                <reg-input controlName="MidName" placeholder="Middle Name" [formGroup]="formGroupA" type="text"
+                  require="false" fxFlex>
+                </reg-input>
+              </div>
+
+              <div class="reg-container">
+                <reg-datepicker controlName="DOB" placeholder="Birth Date" [formGroup]="formGroupA" fxFlex>dd/mm/yyyy
+                </reg-datepicker>
+
+                <reg-input controlName="Age" placeholder="Patient Age" [formGroup]="formGroupA" type="text"
+                  readonly="true" fxFlex>(auto calculated)</reg-input>
+
+                <reg-select controlName="Sex" placeholder="Sex" [formGroup]="formGroupA" [choices]="['Male', 'Female']"
+                  fxFlex>
                 </reg-select>
-                <reg-datepicker *ngIf="visibility['DOB']" controlName="DOB" placeholder="Birth Date"
-                  [formGroup]="formGroupA" fxFlex="1 0 200px" [controlService]="controlService">
-                  dd/mm/yyyy
-                </reg-datepicker>
-                <reg-select-search *ngIf="visibility['Animal']" controlName="Animal" placeholder="Animal"
-                  [formGroup]="formGroupA" [choices]="animals" [group]="true" sortChoice="desc" sortGroup="asc"
-                  fxFlex="1 0 200px" [controlService]="controlService">
-                </reg-select-search>
-                <reg-datepicker *ngIf="visibility['Visit']" controlName="Visit" placeholder="Visit Date"
-                  [formGroup]="formGroupA" fxFlex="1 0 200px" type="datetime" [controlService]="controlService">
-                  dd/mm/yyyy
-                </reg-datepicker>
-                <reg-select-multiple controlName="Gender" placeholder="Gender" [formGroup]="formGroupA"
-                  [choices]="['Male', 'Female']" fxFlex="1 0 200px" [controlService]="controlService">
-                </reg-select-multiple>
+              </div>
+
+              <div class="reg-container">
+                <reg-input controlName="SSN" placeholder="SSN" [formGroup]="formGroupA" type="text" fxFlex>
+                </reg-input>
+
+                <reg-select controlName="Race" placeholder="Race" [formGroup]="formGroupA"
+                  [choices]="['White', 'Black/African American', 'European', 'Arab', 'Asian']" fxFlex></reg-select>
+              </div>
+
+              <div class="reg-container"></div>
+
+              <div class="reg-container">
+                <reg-select-search controlName="PatNation" placeholder="Nationality" [formGroup]="formGroupA"
+                  [choices]="nationality" fxFlex="40"></reg-select-search>
+
+                <reg-select controlName="PermAddr" placeholder="Is This Patient’s Permanent Address"
+                  [formGroup]="formGroupA" [choices]="['Yes', 'No', 'Unknown']" fxFlex></reg-select>
+
+                <reg-input controlName="ZipCode" placeholder="Zip Code" [formGroup]="formGroupA" type="text"
+                  fxFlex="20">
+                </reg-input>
               </div>
             </form>
           </div>
@@ -133,7 +148,7 @@
 
         FormGroupA: {{ formGroupA.value | json }}
 
-        <section class="section-wrapper" scrollSpyElement id="sectionB">
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionB">
           <div class="section-title">
             B. Demographics
           </div>
@@ -149,9 +164,9 @@
             </form>
             <lorem-ipsum></lorem-ipsum>
           </div>
-        </section>
+        </section> -->
 
-        <section class="section-wrapper" scrollSpyElement id="sectionC">
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionC">
           <div class="section-title">
             C. Preoperative
           </div>
@@ -161,7 +176,8 @@
             <lorem-ipsum></lorem-ipsum>
             <lorem-ipsum></lorem-ipsum>
           </div>
-        </section>
+        </section> -->
+
       </div>
       <br>
     </mat-drawer-content>

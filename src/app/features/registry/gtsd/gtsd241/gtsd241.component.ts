@@ -22,9 +22,17 @@ import {
   SectionMember,
   FormVisibility,
   RegSelectChoice,
+  FormCompletion,
 } from 'src/app/shared/modules/registry-form/registry-form.model';
 import { Gtsd241Validations } from './gtsd241.validation';
 import { Gtsd241Service } from './gtsd241.service';
+import { getTocTitle } from '../../acsd/acsd290/acsd290.toc';
+import * as registryData from '../../registry.data';
+import { Subscription } from 'rxjs';
+import { Gtsd241Completion } from './gtsd241.model';
+import { AppStoreActions } from 'src/app/store/app';
+import { Gtsd241Toc } from './gtsd241.toc';
+import { FormDetail } from '../../registry.model';
 
 @Component({
   selector: 'app-gtsd241',
@@ -34,24 +42,86 @@ import { Gtsd241Service } from './gtsd241.service';
 })
 export class Gtsd241Component extends RegistryFormComponent
   implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
+  //#region Form function
+
   visibility: FormVisibility = {};
+  private subscriptions: Subscription[] = [];
+  private completion: Gtsd241Completion;
+  toc = Gtsd241Toc;
+
   controlService = this.gtsd241Service;
 
-  animals: RegSelectChoice[] = [];
+  //#endregion
+
+  //#region Form data
+
+  getTocTitle = getTocTitle;
+  nationality = registryData.nationality;
+
+  //#endregion
 
   //#region FormGroup and FormDirective
+  formDetail: FormDetail;
   formGroupA: FormGroup;
   formGroupB: FormGroup;
   formGroupC: FormGroup;
+  formGroupD: FormGroup;
+  formGroupE: FormGroup;
+  formGroupF: FormGroup;
+  formGroupG: FormGroup;
+  formGroupH: FormGroup;
+  formGroupI: FormGroup;
+  formGroupJ: FormGroup;
+  formGroupK: FormGroup;
+  formGroupL: FormGroup;
+  formGroupM: FormGroup;
+  formGroupN: FormGroup;
+  formGroupO: FormGroup;
 
-  @ViewChild('formDirectiveA', { static: true })
-  formDirectiveA: FormGroupDirective;
-  @ViewChild('formDirectiveB', { static: true })
-  formDirectiveB: FormGroupDirective;
-  @ViewChild('formDirectiveC', { static: true })
-  formDirectiveC: FormGroupDirective;
+  @ViewChild('formDirectiveA', { static: true }) formDirectiveA: FormGroupDirective;
+  @ViewChild('formDirectiveB', { static: true }) formDirectiveB: FormGroupDirective;
+  @ViewChild('formDirectiveC', { static: true }) formDirectiveC: FormGroupDirective;
+  @ViewChild('formDirectiveD', { static: true }) formDirectiveD: FormGroupDirective;
+  @ViewChild('formDirectiveE', { static: true }) formDirectiveE: FormGroupDirective;
+  @ViewChild('formDirectiveF', { static: true }) formDirectiveF: FormGroupDirective;
+  @ViewChild('formDirectiveG', { static: true }) formDirectiveG: FormGroupDirective;
+  @ViewChild('formDirectiveH', { static: true }) formDirectiveH: FormGroupDirective;
+  @ViewChild('formDirectiveI', { static: true }) formDirectiveI: FormGroupDirective;
+  @ViewChild('formDirectiveJ', { static: true }) formDirectiveJ: FormGroupDirective;
+  @ViewChild('formDirectiveK', { static: true }) formDirectiveK: FormGroupDirective;
+  @ViewChild('formDirectiveL', { static: true }) formDirectiveL: FormGroupDirective;
+  @ViewChild('formDirectiveM', { static: true }) formDirectiveM: FormGroupDirective;
+  @ViewChild('formDirectiveN', { static: true }) formDirectiveN: FormGroupDirective;
+  @ViewChild('formDirectiveO', { static: true }) formDirectiveO: FormGroupDirective;
 
   private sectionMembers: SectionMember[];
+  //#endregion
+
+  //#region Progression
+  get progressValid() {
+    return this.completion ? this.completion.summary.valid : 0;
+  }
+
+  get progressTotal() {
+    return this.completion ? this.completion.summary.total : 1;
+  }
+
+  get progressSummary() {
+    return this.completion
+      ? this.completion.summary.valid + '/' + this.completion.summary.total
+      : '0/0';
+  }
+
+  get progressPercent() {
+    if (!this.completion) {
+      return `(0%)`;
+    }
+
+    const completion = Math.floor(
+      (this.completion.summary.valid / this.completion.summary.total) * 100
+    );
+    return `(${completion}%)`;
+  }
   //#endregion
 
   constructor(
@@ -68,15 +138,6 @@ export class Gtsd241Component extends RegistryFormComponent
 
   ngOnInit() {
     super.ngOnInit();
-    this.registryFormService.test();
-
-    this.animals = [
-      { value: 'duck', label: 'Duck', altLabel: 'เป็ด', group: 'Wings', disable: false },
-      { value: 'dog', label: 'Dog', altLabel: 'หมา', group: 'Four legs', disable: false },
-      { value: 'hen', label: 'Hen', altLabel: 'แม่ไก่', group: 'Wings', disable: false },
-      { value: 'goose', label: 'Goose', altLabel: 'ห่าน', group: 'Wings', disable: false },
-      { value: 'cat', label: 'Cat', altLabel: 'แมว', group: 'Four legs', disable: false },
-    ];
   }
 
   ngAfterContentInit() {
@@ -84,25 +145,59 @@ export class Gtsd241Component extends RegistryFormComponent
 
     this.createForm();
     this.registryFormService.subscribeFormConditions();
+
+    this.completion = this.initializeFormCompletion();
+    this.subscribeCompletionCalculation();
+    this.firstRunCompletion();
+
+    this.formGroupA.get('registryId').setValue('(new)');
   }
 
   ngAfterViewInit() {
     super.ngAfterViewInit();
+
+    // this.store.dispatch(AppStoreActions.stopLoading());
   }
 
   ngOnDestroy() {
     super.ngOnDestroy();
+
+    this.subscriptions.forEach((subs) => subs.unsubscribe());
   }
 
   private createForm() {
     this.formGroupA = this.formBuilder.group(Gtsd241Form.sectionA);
     this.formGroupB = this.formBuilder.group(Gtsd241Form.sectionB);
     this.formGroupC = this.formBuilder.group(Gtsd241Form.sectionC);
+    this.formGroupD = this.formBuilder.group(Gtsd241Form.sectionD);
+    this.formGroupE = this.formBuilder.group(Gtsd241Form.sectionE);
+    this.formGroupF = this.formBuilder.group(Gtsd241Form.sectionF);
+    this.formGroupG = this.formBuilder.group(Gtsd241Form.sectionG);
+    this.formGroupH = this.formBuilder.group(Gtsd241Form.sectionH);
+    this.formGroupI = this.formBuilder.group(Gtsd241Form.sectionI);
+    this.formGroupJ = this.formBuilder.group(Gtsd241Form.sectionJ);
+    this.formGroupK = this.formBuilder.group(Gtsd241Form.sectionK);
+    this.formGroupL = this.formBuilder.group(Gtsd241Form.sectionL);
+    this.formGroupM = this.formBuilder.group(Gtsd241Form.sectionM);
+    this.formGroupN = this.formBuilder.group(Gtsd241Form.sectionN);
+    this.formGroupO = this.formBuilder.group(Gtsd241Form.sectionO);
 
     this.sectionMembers = [
       ['sectionA', this.formGroupA, this.formDirectiveA, Gtsd241Conditions.sectionA],
       ['sectionB', this.formGroupB, this.formDirectiveB, Gtsd241Conditions.sectionB],
       ['sectionC', this.formGroupC, this.formDirectiveC, Gtsd241Conditions.sectionC],
+      ['sectionD', this.formGroupD, this.formDirectiveD, Gtsd241Conditions.sectionD],
+      ['sectionE', this.formGroupE, this.formDirectiveE, Gtsd241Conditions.sectionE],
+      ['sectionF', this.formGroupF, this.formDirectiveF, Gtsd241Conditions.sectionF],
+      ['sectionG', this.formGroupG, this.formDirectiveG, Gtsd241Conditions.sectionG],
+      ['sectionH', this.formGroupH, this.formDirectiveH, Gtsd241Conditions.sectionH],
+      ['sectionI', this.formGroupI, this.formDirectiveI, Gtsd241Conditions.sectionI],
+      ['sectionJ', this.formGroupJ, this.formDirectiveJ, Gtsd241Conditions.sectionJ],
+      ['sectionK', this.formGroupK, this.formDirectiveK, Gtsd241Conditions.sectionK],
+      ['sectionL', this.formGroupL, this.formDirectiveL, Gtsd241Conditions.sectionL],
+      ['sectionM', this.formGroupM, this.formDirectiveM, Gtsd241Conditions.sectionM],
+      ['sectionN', this.formGroupN, this.formDirectiveN, Gtsd241Conditions.sectionN],
+      ['sectionO', this.formGroupO, this.formDirectiveO, Gtsd241Conditions.sectionO],
     ];
 
     this.registryFormService.initializeForm(
@@ -112,5 +207,64 @@ export class Gtsd241Component extends RegistryFormComponent
       this.visibility
     );
     this.registryFormService.setDataDict(require('raw-loader!./gtsd241.dict.md').default);
+  }
+
+  displaySummary(section: string): string {
+    if (!this.completion) {
+      return;
+    }
+
+    const current = this.completion[section];
+    return current.valid + '/' + current.total;
+  }
+
+  private initializeFormCompletion(): Gtsd241Completion {
+    return {
+      summary: { valid: 0, total: 0 },
+      sectionA: { valid: 0, total: 0 },
+      sectionB: { valid: 0, total: 0 },
+      sectionC: { valid: 0, total: 0 },
+      sectionD: { valid: 0, total: 0 },
+      sectionE: { valid: 0, total: 0 },
+      sectionF: { valid: 0, total: 0 },
+      sectionG: { valid: 0, total: 0 },
+      sectionH: { valid: 0, total: 0 },
+      sectionI: { valid: 0, total: 0 },
+      sectionJ: { valid: 0, total: 0 },
+      sectionK: { valid: 0, total: 0 },
+      sectionL: { valid: 0, total: 0 },
+      sectionM: { valid: 0, total: 0 },
+      sectionN: { valid: 0, total: 0 },
+      sectionO: { valid: 0, total: 0 },
+    };
+  }
+
+  private subscribeCompletionCalculation() {
+    this.sectionMembers.forEach((sm) => {
+      this.subscriptions.push(
+        sm[1].valueChanges.subscribe((value) => {
+          if (sm[1].disabled) {
+            return;
+          }
+
+          let newCompletion: FormCompletion;
+          newCompletion = this.registryFormService.getSectionCompletion(sm[0]);
+
+          const oldCompletion = this.completion[sm[0]] as FormCompletion;
+          this.completion[sm[0]] = newCompletion;
+
+          this.completion.summary.valid =
+            this.completion.summary.valid - oldCompletion.valid + newCompletion.valid;
+          this.completion.summary.total =
+            this.completion.summary.total - oldCompletion.total + newCompletion.total;
+        })
+      );
+    });
+  }
+
+  private firstRunCompletion() {
+    this.sectionMembers.forEach((sm) => {
+      sm[1].enable();
+    });
   }
 }
