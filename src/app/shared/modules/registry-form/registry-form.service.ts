@@ -197,7 +197,8 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
       if (result === undefined) {
         return false;
       }
-      section = key === 'section' ? null : key.substr(7); // 'section'.lenght
+      // section = key === 'section' ? null : key.substr(7); // 'section'.lenght
+      section = key;
       return true;
     });
 

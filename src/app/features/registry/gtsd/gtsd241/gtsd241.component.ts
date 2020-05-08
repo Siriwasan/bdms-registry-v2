@@ -100,9 +100,9 @@ export class Gtsd241Component extends RegistryFormComponent
     this.formGroupC = this.formBuilder.group(Gtsd241Form.sectionC);
 
     this.sectionMembers = [
-      ['A', this.formGroupA, this.formDirectiveA, Gtsd241Conditions.sectionA],
-      ['B', this.formGroupB, this.formDirectiveB, Gtsd241Conditions.sectionB],
-      ['C', this.formGroupC, this.formDirectiveC, Gtsd241Conditions.sectionC],
+      ['sectionA', this.formGroupA, this.formDirectiveA, Gtsd241Conditions.sectionA],
+      ['sectionB', this.formGroupB, this.formDirectiveB, Gtsd241Conditions.sectionB],
+      ['sectionC', this.formGroupC, this.formDirectiveC, Gtsd241Conditions.sectionC],
     ];
 
     this.registryFormService.initializeForm(

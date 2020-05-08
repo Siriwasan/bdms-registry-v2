@@ -99,9 +99,9 @@ export class TestForm2Component extends RegistryFormComponent
     this.formGroupC = this.formBuilder.group(TestForm2Form.sectionC);
 
     this.sectionMembers = [
-      ['A', this.formGroupA, this.formDirectiveA, TestForm2Conditions.sectionA],
-      ['B', this.formGroupB, this.formDirectiveB, TestForm2Conditions.sectionB],
-      ['C', this.formGroupC, this.formDirectiveC, TestForm2Conditions.sectionC],
+      ['sectionA', this.formGroupA, this.formDirectiveA, TestForm2Conditions.sectionA],
+      ['sectionB', this.formGroupB, this.formDirectiveB, TestForm2Conditions.sectionB],
+      ['sectionC', this.formGroupC, this.formDirectiveC, TestForm2Conditions.sectionC],
     ];
 
     this.registryFormService.initializeForm(

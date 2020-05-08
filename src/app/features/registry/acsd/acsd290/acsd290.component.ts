@@ -230,29 +230,29 @@ export class Acsd290Component extends RegistryFormComponent
     this.formGroupS = this.formBuilder.group(Acsd290Form.sectionS);
 
     this.sectionMembers = [
-      ['A', this.formGroupA, this.formDirectiveA, Acsd290Conditions.sectionA],
-      ['B', this.formGroupB, this.formDirectiveB, Acsd290Conditions.sectionB],
-      ['C', this.formGroupC, this.formDirectiveC, Acsd290Conditions.sectionC],
-      ['D', this.formGroupD, this.formDirectiveD, Acsd290Conditions.sectionD],
-      ['E', this.formGroupE, this.formDirectiveE, Acsd290Conditions.sectionE],
-      ['F', this.formGroupF, this.formDirectiveF, Acsd290Conditions.sectionF],
-      ['G', this.formGroupG, this.formDirectiveG, Acsd290Conditions.sectionG],
-      ['H', this.formGroupH, this.formDirectiveH, Acsd290Conditions.sectionH],
-      ['I', this.formGroupI, this.formDirectiveI, Acsd290Conditions.sectionI],
-      ['J', this.formGroupJ, this.formDirectiveJ, Acsd290Conditions.sectionJ],
-      ['K', this.formGroupK, this.formDirectiveK, Acsd290Conditions.sectionK],
-      ['L', this.formGroupL, this.formDirectiveL, Acsd290Conditions.sectionL],
-      ['L2', this.formGroupL2, this.formDirectiveL2, Acsd290Conditions.sectionL2],
-      ['M', this.formGroupM, this.formDirectiveM, Acsd290Conditions.sectionM],
-      ['M1', this.formGroupM1, this.formDirectiveM1, Acsd290Conditions.sectionM1],
-      ['M2', this.formGroupM2, this.formDirectiveM2, Acsd290Conditions.sectionM2],
-      ['M3', this.formGroupM3, this.formDirectiveM3, Acsd290Conditions.sectionM3],
-      ['N', this.formGroupN, this.formDirectiveN, Acsd290Conditions.sectionN],
-      ['O', this.formGroupO, this.formDirectiveO, Acsd290Conditions.sectionO],
-      ['P', this.formGroupP, this.formDirectiveP, Acsd290Conditions.sectionP],
-      ['Q', this.formGroupQ, this.formDirectiveQ, Acsd290Conditions.sectionQ],
-      ['R', this.formGroupR, this.formDirectiveR, Acsd290Conditions.sectionR],
-      ['S', this.formGroupS, this.formDirectiveS, Acsd290Conditions.sectionS],
+      ['sectionA', this.formGroupA, this.formDirectiveA, Acsd290Conditions.sectionA],
+      ['sectionB', this.formGroupB, this.formDirectiveB, Acsd290Conditions.sectionB],
+      ['sectionC', this.formGroupC, this.formDirectiveC, Acsd290Conditions.sectionC],
+      ['sectionD', this.formGroupD, this.formDirectiveD, Acsd290Conditions.sectionD],
+      ['sectionE', this.formGroupE, this.formDirectiveE, Acsd290Conditions.sectionE],
+      ['sectionF', this.formGroupF, this.formDirectiveF, Acsd290Conditions.sectionF],
+      ['sectionG', this.formGroupG, this.formDirectiveG, Acsd290Conditions.sectionG],
+      ['sectionH', this.formGroupH, this.formDirectiveH, Acsd290Conditions.sectionH],
+      ['sectionI', this.formGroupI, this.formDirectiveI, Acsd290Conditions.sectionI],
+      ['sectionJ', this.formGroupJ, this.formDirectiveJ, Acsd290Conditions.sectionJ],
+      ['sectionK', this.formGroupK, this.formDirectiveK, Acsd290Conditions.sectionK],
+      ['sectionL', this.formGroupL, this.formDirectiveL, Acsd290Conditions.sectionL],
+      ['sectionL2', this.formGroupL2, this.formDirectiveL2, Acsd290Conditions.sectionL2],
+      ['sectionM', this.formGroupM, this.formDirectiveM, Acsd290Conditions.sectionM],
+      ['sectionM1', this.formGroupM1, this.formDirectiveM1, Acsd290Conditions.sectionM1],
+      ['sectionM2', this.formGroupM2, this.formDirectiveM2, Acsd290Conditions.sectionM2],
+      ['sectionM3', this.formGroupM3, this.formDirectiveM3, Acsd290Conditions.sectionM3],
+      ['sectionN', this.formGroupN, this.formDirectiveN, Acsd290Conditions.sectionN],
+      ['sectionO', this.formGroupO, this.formDirectiveO, Acsd290Conditions.sectionO],
+      ['sectionP', this.formGroupP, this.formDirectiveP, Acsd290Conditions.sectionP],
+      ['sectionQ', this.formGroupQ, this.formDirectiveQ, Acsd290Conditions.sectionQ],
+      ['sectionR', this.formGroupR, this.formDirectiveR, Acsd290Conditions.sectionR],
+      ['sectionS', this.formGroupS, this.formDirectiveS, Acsd290Conditions.sectionS],
     ];
 
     this.registryFormService.initializeForm(
@@ -269,7 +269,7 @@ export class Acsd290Component extends RegistryFormComponent
       return;
     }
 
-    const current = this.completion['section' + section];
+    const current = this.completion[section];
     return current.valid + '/' + current.total;
   }
 
@@ -313,8 +313,8 @@ export class Acsd290Component extends RegistryFormComponent
           let newCompletion: FormCompletion;
           newCompletion = this.registryFormService.getSectionCompletion(sm[0]);
 
-          const oldCompletion = this.completion['section' + sm[0]] as FormCompletion;
-          this.completion['section' + sm[0]] = newCompletion;
+          const oldCompletion = this.completion[sm[0]] as FormCompletion;
+          this.completion[sm[0]] = newCompletion;
 
           this.completion.summary.valid =
             this.completion.summary.valid - oldCompletion.valid + newCompletion.valid;

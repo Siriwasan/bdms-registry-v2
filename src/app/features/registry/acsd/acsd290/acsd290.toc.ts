@@ -27,5 +27,5 @@ export const Acsd290Toc: TableOfCentent[] = [
 ];
 
 export function getTocTitle(section: string) {
-  return Acsd290Toc.find((t) => t.section === 'section' + section).title;
+  return Acsd290Toc.find((t) => t.section === section).title;
 }

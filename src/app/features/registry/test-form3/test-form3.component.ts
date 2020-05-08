@@ -112,9 +112,9 @@ export class TestForm3Component extends RegistryFormComponent
     // this.formGroupC = this.formBuilder.group(TestForm3Form.sectionC);
 
     this.sectionMembers = [
-      ['A', this.formGroupA, this.formDirectiveA, TestForm3Conditions.sectionA],
-      ['B', this.formGroupB, this.formDirectiveB, TestForm3Conditions.sectionB],
-      // ['C', this.formGroupC, this.formDirectiveC, TestForm3Conditions.sectionC],
+      ['sectionA', this.formGroupA, this.formDirectiveA, TestForm3Conditions.sectionA],
+      ['sectionB', this.formGroupB, this.formDirectiveB, TestForm3Conditions.sectionB],
+      // ['sectionC', this.formGroupC, this.formDirectiveC, TestForm3Conditions.sectionC],
     ];
 
     this.registryFormService.initializeForm(
@@ -149,14 +149,14 @@ export class TestForm3Component extends RegistryFormComponent
                 const diffNew = diff as deepDiff.DiffNew<any>;
 
                 Object.keys(diffNew.rhs).forEach((section) => {
-                  const formGroup = this.registryFormService.getFormGroup(section.slice(7));
+                  const formGroup = this.registryFormService.getFormGroup(section);
                   formGroup.patchValue(diffNew.rhs[section]);
                 });
 
                 break;
               case 'E':
                 const diffEdit = diff as deepDiff.DiffEdit<any, any>;
-                const formGroup2 = this.registryFormService.getFormGroup(diffEdit.path[0].slice(7));
+                const formGroup2 = this.registryFormService.getFormGroup(diffEdit.path[0]);
                 const control = diffEdit.path[1];
 
                 const obj = {};
@@ -191,9 +191,9 @@ export class TestForm3Component extends RegistryFormComponent
         sm[1].valueChanges
           .pipe(debounceTime(VALUECHANGED_DELAY), distinctUntilChanged())
           .subscribe((value) => {
-            const section = 'section' + sm[0];
+            const section = sm[0];
 
-            const serializedValue = this.serializeSectionValue(sm[0], value);
+            const serializedValue = this.serializeSectionValue(section, value);
             // console.log(`form changed: ${section}`, this.lastUpdateData, serializedValue);
 
             const diffs = deepDiff.diff(this.lastUpdateData[section], serializedValue);
@@ -235,9 +235,9 @@ export class TestForm3Component extends RegistryFormComponent
 
   private serializeSectionValue(section: string, value: any) {
     switch (section) {
-      case 'A':
+      case 'sectionA':
         return { ...value, DOB: this.serializeDate(value[`DOB`]) };
-      case 'B':
+      case 'sectionB':
         return { ...value };
       default:
         return;
