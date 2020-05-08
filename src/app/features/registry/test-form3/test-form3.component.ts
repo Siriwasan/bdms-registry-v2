@@ -17,9 +17,8 @@ import { RegistryFormComponent } from 'src/app/shared/modules/registry-form/regi
 import { AppState } from 'src/app/store/root-store.state';
 
 import { Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, pairwise, startWith } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
-import * as jsondiffpatch from 'jsondiffpatch';
 import * as deepDiff from 'deep-diff';
 import * as moment from 'moment';
 
