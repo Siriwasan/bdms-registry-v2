@@ -125,16 +125,16 @@
             B. Demographics
           </div>
           <div class="section-body">
-            <form class="example-form">
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Favorite food" value="Sushi" />
-              </mat-form-field>
-
-              <mat-form-field class="example-full-width">
-                <textarea matInput placeholder="Leave a comment"></textarea>
-              </mat-form-field>
+            <form [formGroup]="formGroupB" #formDirectiveB="ngForm">
+              <div fxLayout="row wrap">
+                <reg-select controlName="Payor" placeholder="Payor" [formGroup]="formGroupB"
+                  [choices]="['Self', 'Insurrance']" fxFlex="1 0 200px" [controlService]="controlService">
+                </reg-select>
+                <reg-select controlName="Province" placeholder="Province" [formGroup]="formGroupB"
+                  [choices]="['Bangkok', 'Pattaya']" fxFlex="1 0 200px" [controlService]="controlService">
+                </reg-select>
+              </div>
             </form>
-            <lorem-ipsum></lorem-ipsum>
           </div>
         </section>
 

@@ -9,8 +9,8 @@ export const TestForm3Form = {
     Sex: [null, Validators.required],
     DOB: [null, Validators.required],
   },
-  // sectionB: {
-  //   Payor: [null, Validators.required],
-  //   Province: [null, Validators.required],
-  // },
+  sectionB: {
+    Payor: [null, Validators.required],
+    Province: [null, Validators.required],
+  },
 };
