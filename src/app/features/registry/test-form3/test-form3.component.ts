@@ -23,8 +23,8 @@ import * as jsondiffpatch from 'jsondiffpatch';
 import * as deepDiff from 'deep-diff';
 import * as moment from 'moment';
 
-const AFK_TIMEOUT = 330000;
-const VALUECHANGED_DELAY = 3000;
+const AFK_TIMEOUT = 300000;
+const VALUECHANGED_DELAY = 5000;
 
 import {
   FormVisibility,
@@ -49,7 +49,6 @@ export class TestForm3Component extends RegistryFormComponent
   visibility: FormVisibility = {};
   private subscriptions: Subscription[] = [];
   controlService = this.registryFormService;
-  private initialize = true;
   private afkTimeoutHandle: NodeJS.Timeout;
   private lastUpdateData: any;
 
@@ -129,19 +128,13 @@ export class TestForm3Component extends RegistryFormComponent
   }
 
   private subscribeDataNotification() {
-    console.log(document.getElementById('DOB'));
-
-    // this.afs.doc('/Test/7jmOukWx9wjoQxXrOndJ').update({ 'sectionA.FirstName': 'Auh' });
-    // this.afs.doc('/Test/7jmOukWx9wjoQxXrOndJ').update({ 'sectionA.Sex': 'Male' });
-
     this.subscriptions.push(
       this.afs
         .doc('/Test/7jmOukWx9wjoQxXrOndJ')
         .snapshotChanges()
         .subscribe((action) => {
           const firebaseData = action.payload.data() as {};
-
-          console.log('notify form Firebase:', this.lastUpdateData, firebaseData);
+          // console.log('notify form Firebase:', this.lastUpdateData, firebaseData);
 
           const diffs = deepDiff.diff(this.lastUpdateData, firebaseData);
           console.log(diffs);
@@ -171,14 +164,7 @@ export class TestForm3Component extends RegistryFormComponent
                 obj[control] = diffEdit.rhs;
                 formGroup2.patchValue(obj);
 
-                // if (!this.initialize) {
-                setTimeout(() => {
-                  document.getElementById(control)?.classList.add('value-changed');
-                  setTimeout(() => {
-                    document.getElementById(control)?.classList.remove('value-changed');
-                  }, 1300);
-                }, 0);
-                // }
+                this.blinkControl(control);
                 break;
               default:
                 console.log('Diff other than Edit, New');
@@ -186,13 +172,19 @@ export class TestForm3Component extends RegistryFormComponent
             }
           });
 
-          this.initialize = false;
           this.lastUpdateData = firebaseData;
         })
     );
   }
 
-  private getFormGroupByDiff(diff) {}
+  private blinkControl(control: string) {
+    setTimeout(() => {
+      document.getElementById(control)?.classList.add('value-changed');
+      setTimeout(() => {
+        document.getElementById(control)?.classList.remove('value-changed');
+      }, 1300);
+    }, 0);
+  }
 
   private subscribeUpdateFirebaseData() {
     this.sectionMembers.forEach((sm) => {
@@ -202,8 +194,8 @@ export class TestForm3Component extends RegistryFormComponent
           .subscribe((value) => {
             const section = 'section' + sm[0];
 
-            const serializedValue = this.getSectionValue(sm[0], value);
-            console.log(`form changed: ${section}`, this.lastUpdateData, serializedValue);
+            const serializedValue = this.serializeSectionValue(sm[0], value);
+            // console.log(`form changed: ${section}`, this.lastUpdateData, serializedValue);
 
             const diffs = deepDiff.diff(this.lastUpdateData[section], serializedValue);
             console.log(diffs);
@@ -213,30 +205,24 @@ export class TestForm3Component extends RegistryFormComponent
               return;
             }
 
+            const changedValue = {};
+
             diffs?.forEach((diff) => {
               switch (diff.kind) {
                 case 'E':
                   const diffEdit = diff as deepDiff.DiffEdit<any, any>;
-                  const path = {};
-                  path[section + '.' + diffEdit.path[0]] = diffEdit.rhs;
-                  console.log(path);
-                  this.afs.doc('Test/7jmOukWx9wjoQxXrOndJ').update(path);
+                  changedValue[section + '.' + diffEdit.path[0]] = diffEdit.rhs;
                   break;
-                // case 'N':
-                //   const diffNew = diff as deepDiff.DiffNew<any>;
-                //   const pathNew = {};
-                //   pathNew[`section${sm[0]}`] = diffNew.rhs;
-                //   console.log(pathNew);
-                //   this.afs.doc('Test/7jmOukWx9wjoQxXrOndJ').update(pathNew);
-                //   break;
                 default:
                   console.log('Diff other than Edit');
                   break;
               }
             });
 
-            this.lastUpdateData[section] = serializedValue;
+            console.log(changedValue);
+            this.afs.doc('Test/7jmOukWx9wjoQxXrOndJ').update(changedValue);
 
+            this.lastUpdateData[section] = serializedValue;
             this.resetAfkTimeout();
           })
       );
@@ -248,7 +234,7 @@ export class TestForm3Component extends RegistryFormComponent
     return dt.startOf('day').toISOString(true);
   }
 
-  private getSectionValue(section: string, value: any) {
+  private serializeSectionValue(section: string, value: any) {
     switch (section) {
       case 'A':
         return { ...value, DOB: this.serializeDate(value[`DOB`]) };
@@ -260,9 +246,9 @@ export class TestForm3Component extends RegistryFormComponent
   }
 
   private resetAfkTimeout() {
-    // clearTimeout(this.afkTimeoutHandle);
-    // this.afkTimeoutHandle = setTimeout(() => {
-    //   this.route.navigateByUrl('/login');
-    // }, AFK_TIMEOUT);
+    clearTimeout(this.afkTimeoutHandle);
+    this.afkTimeoutHandle = setTimeout(() => {
+      this.route.navigateByUrl('/login');
+    }, AFK_TIMEOUT);
   }
 }
