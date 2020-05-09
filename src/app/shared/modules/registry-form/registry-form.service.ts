@@ -66,7 +66,7 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
     });
 
     // ! initial remove validator in hiding child control
-    this.getFormGroups().forEach((formGroup) => formGroup.setValue(formGroup.value));
+    // this.getFormGroups().forEach((formGroup) => formGroup.setValue(formGroup.value));
   }
 
   public subscribeValueChanges(

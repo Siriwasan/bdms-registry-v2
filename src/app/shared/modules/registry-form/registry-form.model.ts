@@ -38,6 +38,10 @@ export interface FormCompletion {
   total: number;
 }
 
+export interface RegistryCompletion {
+  [section: string]: FormCompletion;
+}
+
 export interface FormVisibility {
   [id: string]: boolean | FormVisibility[];
 }

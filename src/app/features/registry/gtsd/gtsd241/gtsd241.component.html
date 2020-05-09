@@ -138,8 +138,8 @@
                 <reg-select controlName="PermAddr" placeholder="Is This Patient’s Permanent Address"
                   [formGroup]="formGroupA" [choices]="['Yes', 'No', 'Unknown']" fxFlex></reg-select>
 
-                <reg-input controlName="ZipCode" placeholder="Zip Code" [formGroup]="formGroupA" type="text"
-                  fxFlex="20">
+                <reg-input *ngIf="visibility['ZipCode']" controlName="ZipCode" placeholder="Zip Code"
+                  [formGroup]="formGroupA" type="text" fxFlex="20">
                 </reg-input>
               </div>
             </form>
@@ -147,6 +147,9 @@
         </section>
 
         FormGroupA: {{ formGroupA.value | json }}
+
+        <br>
+        <br>
 
         <!-- <section class="section-wrapper" scrollSpyElement id="sectionB">
           <div class="section-title">

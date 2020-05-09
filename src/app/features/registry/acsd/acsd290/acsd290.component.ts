@@ -125,7 +125,6 @@ export class Acsd290Component extends RegistryFormComponent
   ctt: RegSelectChoice[];
 
   toc = Acsd290Toc;
-  public visibles: { [id: string]: boolean } = {};
 
   //#endregion
 
@@ -259,7 +258,7 @@ export class Acsd290Component extends RegistryFormComponent
       this.sectionMembers,
       Acsd290Conditions,
       Acsd290Validations,
-      this.visibles
+      this.visibility
     );
     this.registryFormService.setDataDict(require('raw-loader!./acsd290.dict.md').default);
   }

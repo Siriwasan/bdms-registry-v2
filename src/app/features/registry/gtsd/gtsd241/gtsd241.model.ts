@@ -1,5 +1,8 @@
 import { FormDetail } from '../../registry.model';
-import { FormCompletion } from 'src/app/shared/modules/registry-form/registry-form.model';
+import {
+  FormCompletion,
+  RegistryCompletion,
+} from 'src/app/shared/modules/registry-form/registry-form.model';
 
 export interface Gtsd241Model {
   detail: FormDetail;
@@ -21,7 +24,7 @@ export interface Gtsd241Model {
   sectionO: object;
 }
 
-export interface Gtsd241Completion {
+export interface Gtsd241Completion extends RegistryCompletion {
   summary: FormCompletion;
   sectionA: FormCompletion;
   sectionB: FormCompletion;
