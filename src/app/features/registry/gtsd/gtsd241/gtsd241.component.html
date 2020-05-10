@@ -9,7 +9,7 @@
             <li *ngFor="let h of toc" class="toc-header">
               <a class="toc-name" [id]="h.section + 'TOC'" (click)="tocClicked(h.section)"
                 [class.active]="isActive(h.section)">{{ h.title }}
-                <a class="toc-completion">({{ displaySummary(h.section) }})</a></a>
+                <a class="toc-completion">({{ sectionCompletion(h.section) }})</a></a>
             </li>
           </ul>
         </div>
@@ -83,7 +83,7 @@
         <section class="section-wrapper" scrollSpyElement id="sectionA">
           <div class="section-title">
             <span>{{ getTocTitle('sectionA') }}</span>
-            <span>{{ displaySummary('sectionA') }}</span>
+            <span>{{ sectionCompletion('sectionA') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupA" #formDirectiveA="ngForm">
@@ -149,7 +149,7 @@
         <section class="section-wrapper" scrollSpyElement id="sectionB">
           <div class="section-title">
             <span>{{ getTocTitle('sectionB') }}</span>
-            <span>{{ displaySummary('sectionB') }}</span>
+            <span>{{ sectionCompletion('sectionB') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupB" #formDirectiveB="ngForm">

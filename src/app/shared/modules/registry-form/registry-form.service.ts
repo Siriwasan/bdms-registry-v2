@@ -6,7 +6,7 @@ import {
   AbstractControl,
   FormArray,
 } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subscription, BehaviorSubject, Observable } from 'rxjs';
 import * as marked from 'marked';
 
 import { IRegistryControlService } from 'src/app/shared/modules/registry-form/registry-control-service.interface';
@@ -37,7 +37,7 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
   private validations: FormValidations;
 
   private visibility: FormVisibility = {};
-  completion: RegistryCompletion = {};
+  private complete = new BehaviorSubject<RegistryCompletion>(null);
 
   constructor(private dialogService: DialogService, private afs: AngularFirestore) {}
 
@@ -212,6 +212,7 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
     return this.checkCompletion(formGroup, this.visibility);
   }
 
+  // Recursive
   public checkCompletion(formGroup: FormGroup, visible: FormVisibility): FormCompletion {
     let val = 0;
     let totl = 0;
@@ -280,20 +281,17 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
     );
   }
 
-  getSummary(section: string): string {
-    if (!this.completion) {
-      return;
-    }
-
-    const completion = this.completion[section];
-    return completion.valid + '/' + completion.total;
+  getRegistryCompletion(): Observable<RegistryCompletion> {
+    return this.complete.asObservable();
   }
 
   private initializeFormCompletion() {
-    this.completion[`summary`] = { valid: 0, total: 0 };
+    const allCompletion: RegistryCompletion = {};
+    allCompletion[`summary`] = { valid: 0, total: 0 };
     this.sectionMembers.forEach((sm) => {
-      this.completion[sm[0]] = { valid: 0, total: 0 };
+      allCompletion[sm[0]] = { valid: 0, total: 0 };
     });
+    this.complete.next(allCompletion);
   }
 
   private subscribeCompletionCalculation() {
@@ -307,13 +305,16 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
           let newCompletion: FormCompletion;
           newCompletion = this.getSectionCompletion(sm[0]);
 
-          const oldCompletion = this.completion[sm[0]] as FormCompletion;
-          this.completion[sm[0]] = newCompletion;
+          const allCompletion = this.complete.getValue();
+          const oldCompletion = allCompletion[sm[0]] as FormCompletion;
+          allCompletion[sm[0]] = newCompletion;
 
-          this.completion.summary.valid =
-            this.completion.summary.valid - oldCompletion.valid + newCompletion.valid;
-          this.completion.summary.total =
-            this.completion.summary.total - oldCompletion.total + newCompletion.total;
+          allCompletion.summary.valid =
+            allCompletion.summary.valid - oldCompletion.valid + newCompletion.valid;
+          allCompletion.summary.total =
+            allCompletion.summary.total - oldCompletion.total + newCompletion.total;
+
+          this.complete.next(allCompletion);
         })
       );
     });

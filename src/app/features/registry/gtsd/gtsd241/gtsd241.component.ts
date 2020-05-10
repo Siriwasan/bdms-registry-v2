@@ -23,12 +23,13 @@ import {
   FormVisibility,
   RegSelectChoice,
   FormCompletion,
+  RegistryCompletion,
 } from 'src/app/shared/modules/registry-form/registry-form.model';
 import { Gtsd241Validations } from './gtsd241.validation';
 import { Gtsd241Service } from './gtsd241.service';
 import { getTocTitle } from '../../acsd/acsd290/acsd290.toc';
 import * as registryData from '../../registry.data';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { Gtsd241Toc } from './gtsd241.toc';
 import { FormDetail } from '../../registry.model';
 
@@ -41,21 +42,23 @@ import { FormDetail } from '../../registry.model';
 export class Gtsd241Component extends RegistryFormComponent
   implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
   //#region Form function
-
-  visibility: FormVisibility = {};
   private subscriptions: Subscription[] = [];
-  toc = Gtsd241Toc;
-  completion = this.registryFormService.completion;
-
   controlService = this.gtsd241Service;
-
   //#endregion
 
   //#region Form data
-
+  toc = Gtsd241Toc;
   getTocTitle = getTocTitle;
   nationality = registryData.nationality;
+  //#endregion
 
+  //#region Html
+  visibility: FormVisibility = {};
+  progressValid: number;
+  progressTotal: number;
+  progressSummary: string;
+  progressPercent: string;
+  private completion: RegistryCompletion;
   //#endregion
 
   //#region FormGroup and FormDirective
@@ -95,33 +98,6 @@ export class Gtsd241Component extends RegistryFormComponent
   private sectionMembers: SectionMember[];
   //#endregion
 
-  //#region Progression
-  get progressValid() {
-    return this.completion ? this.completion.summary.valid : 0;
-  }
-
-  get progressTotal() {
-    return this.completion ? this.completion.summary.total : 1;
-  }
-
-  get progressSummary() {
-    return this.completion
-      ? this.completion.summary.valid + '/' + this.completion.summary.total
-      : '0/0';
-  }
-
-  get progressPercent() {
-    if (!this.completion) {
-      return `(0%)`;
-    }
-
-    const completion = Math.floor(
-      (this.completion.summary.valid / this.completion.summary.total) * 100
-    );
-    return `(${completion}%)`;
-  }
-  //#endregion
-
   constructor(
     protected store: Store<AppState>,
     protected scrollSpy: ScrollSpyService,
@@ -143,6 +119,7 @@ export class Gtsd241Component extends RegistryFormComponent
 
     this.createForm();
     this.registryFormService.subscribeFormConditions();
+    this.subscribeCompletion();
 
     this.formGroupA.get('registryId').setValue('(new)');
   }
@@ -203,7 +180,24 @@ export class Gtsd241Component extends RegistryFormComponent
     this.registryFormService.setDataDict(require('raw-loader!./gtsd241.dict.md').default);
   }
 
-  displaySummary(section: string) {
-    return this.registryFormService.getSummary(section);
+  sectionCompletion(section: string) {
+    return this.completion
+      ? this.completion[section].valid + '/' + this.completion[section].total
+      : null;
+  }
+
+  private subscribeCompletion() {
+    this.subscriptions.push(
+      this.registryFormService.getRegistryCompletion().subscribe((completion) => {
+        this.progressValid = completion ? completion.summary.valid : 0;
+        this.progressTotal = completion ? completion.summary.total : 1;
+        this.progressSummary = completion
+          ? completion.summary.valid + '/' + completion.summary.total
+          : '0/0';
+        const percent = Math.floor((completion.summary.valid / completion.summary.total) * 100);
+        this.progressPercent = `(${percent}%)`;
+        this.completion = completion;
+      })
+    );
   }
 }
