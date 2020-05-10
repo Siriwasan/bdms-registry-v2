@@ -146,28 +146,65 @@
           </div>
         </section>
 
-        FormGroupA: {{ formGroupA.value | json }}
-
-        <br>
-        <br>
-
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionB">
+        <section class="section-wrapper" scrollSpyElement id="sectionB">
           <div class="section-title">
-            B. Demographics
+            <span>{{ getTocTitle('sectionB') }}</span>
+            <span>{{ displaySummary('sectionB') }}</span>
           </div>
           <div class="section-body">
-            <form class="example-form">
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Favorite food" value="Sushi" />
-              </mat-form-field>
+            <form [formGroup]="formGroupB" #formDirectiveB="ngForm">
+              <div class="reg-container">
+                <!-- <reg-select-search controlName="HospName" placeholder="Hospital Name" [formGroup]="formGroupB"
+                  [choices]="avHospitals" group="true" [nullOption]="avHospitalsNullOption" fxFlex></reg-select-search> -->
 
-              <mat-form-field class="example-full-width">
-                <textarea matInput placeholder="Leave a comment"></textarea>
-              </mat-form-field>
+                <reg-select controlName="AdmType" placeholder="Admission Type" [formGroup]="formGroupB"
+                  [choices]="['Direct', 'Transfer']" fxFlex></reg-select>
+              </div>
+
+              <div class="reg-container">
+                <reg-datepicker controlName="ArrivalDateTime" placeholder="Arrival Date/Time" [formGroup]="formGroupB"
+                  type="datetime" fxFlex>dd/mm/yyyy hh:mm - 24 hr clock
+                </reg-datepicker>
+
+                <reg-select-search controlName="AdmProvider" placeholder="Admitting Provider" [formGroup]="formGroupB"
+                  [choices]="" group="true" fxFlex></reg-select-search>
+              </div>
+
+              <div class="reg-container">
+                <reg-select controlName="PayorPrim" placeholder="Primary Payor" [formGroup]="formGroupB" [choices]="[
+                    'Self',
+                    'Comptroller General\'s Department',
+                    'NHSO (National Health Security Office)',
+                    'SSO (Social Security Office)',
+                    'UCEP (Universal Coverage Emergency Patient)',
+                    'Embassy',
+                    'Corporate',
+                    'Private Health Insurance',
+                    'Charitable care/Foundation Funding',
+                    'Other'
+                  ]" fxFlex></reg-select>
+
+                <reg-select controlName="PayorSecond" placeholder="Secondary Payor" [formGroup]="formGroupB" [choices]="[
+                    'None',
+                    'Comptroller General\'s Department',
+                    'NHSO (National Health Security Office)',
+                    'SSO (Social Security Office)',
+                    'UCEP (Universal Coverage Emergency Patient)',
+                    'Embassy',
+                    'Corporate',
+                    'Private Health Insurance',
+                    'Charitable care/Foundation Funding',
+                    'Other'
+                  ]" fxFlex></reg-select>
+              </div>
+
+              <div class="reg-container">
+                <reg-select controlName="EnrolledStudy" placeholder="Research Enrolled" [formGroup]="formGroupB"
+                  [choices]="['Yes', 'No']" fxFlex></reg-select>
+              </div>
             </form>
-            <lorem-ipsum></lorem-ipsum>
           </div>
-        </section> -->
+        </section>
 
         <!-- <section class="section-wrapper" scrollSpyElement id="sectionC">
           <div class="section-title">

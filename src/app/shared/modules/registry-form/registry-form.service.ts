@@ -19,6 +19,7 @@ import {
   ControlCondition,
   FormCompletion,
   FormVisibility,
+  RegistryCompletion,
 } from './registry-form.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 
@@ -36,6 +37,7 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
   private validations: FormValidations;
 
   private visibility: FormVisibility = {};
+  completion: RegistryCompletion = {};
 
   constructor(private dialogService: DialogService, private afs: AngularFirestore) {}
 
@@ -67,6 +69,10 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
 
     // ! initial remove validator in hiding child control
     // this.getFormGroups().forEach((formGroup) => formGroup.setValue(formGroup.value));
+
+    this.initializeFormCompletion();
+    this.subscribeCompletionCalculation();
+    this.firstRunCompletion();
   }
 
   public subscribeValueChanges(
@@ -273,6 +279,52 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
       sectionMember[2].resetForm(sectionMember[1].value)
     );
   }
+
+  getSummary(section: string): string {
+    if (!this.completion) {
+      return;
+    }
+
+    const completion = this.completion[section];
+    return completion.valid + '/' + completion.total;
+  }
+
+  private initializeFormCompletion() {
+    this.completion[`summary`] = { valid: 0, total: 0 };
+    this.sectionMembers.forEach((sm) => {
+      this.completion[sm[0]] = { valid: 0, total: 0 };
+    });
+  }
+
+  private subscribeCompletionCalculation() {
+    this.sectionMembers.forEach((sm) => {
+      this.subscriptions.push(
+        sm[1].valueChanges.subscribe((value) => {
+          if (sm[1].disabled) {
+            return;
+          }
+
+          let newCompletion: FormCompletion;
+          newCompletion = this.getSectionCompletion(sm[0]);
+
+          const oldCompletion = this.completion[sm[0]] as FormCompletion;
+          this.completion[sm[0]] = newCompletion;
+
+          this.completion.summary.valid =
+            this.completion.summary.valid - oldCompletion.valid + newCompletion.valid;
+          this.completion.summary.total =
+            this.completion.summary.total - oldCompletion.total + newCompletion.total;
+        })
+      );
+    });
+  }
+
+  private firstRunCompletion() {
+    this.sectionMembers.forEach((sm) => {
+      sm[1].enable();
+    });
+  }
+
   //#endregion Registry
 
   //#region Data Dictionary

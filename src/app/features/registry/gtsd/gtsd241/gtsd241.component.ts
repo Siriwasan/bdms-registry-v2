@@ -29,8 +29,6 @@ import { Gtsd241Service } from './gtsd241.service';
 import { getTocTitle } from '../../acsd/acsd290/acsd290.toc';
 import * as registryData from '../../registry.data';
 import { Subscription } from 'rxjs';
-import { Gtsd241Completion } from './gtsd241.model';
-import { AppStoreActions } from 'src/app/store/app';
 import { Gtsd241Toc } from './gtsd241.toc';
 import { FormDetail } from '../../registry.model';
 
@@ -46,8 +44,8 @@ export class Gtsd241Component extends RegistryFormComponent
 
   visibility: FormVisibility = {};
   private subscriptions: Subscription[] = [];
-  private completion: Gtsd241Completion;
   toc = Gtsd241Toc;
+  completion = this.registryFormService.completion;
 
   controlService = this.gtsd241Service;
 
@@ -146,10 +144,6 @@ export class Gtsd241Component extends RegistryFormComponent
     this.createForm();
     this.registryFormService.subscribeFormConditions();
 
-    this.completion = this.initializeFormCompletion();
-    this.subscribeCompletionCalculation();
-    this.firstRunCompletion();
-
     this.formGroupA.get('registryId').setValue('(new)');
   }
 
@@ -209,62 +203,7 @@ export class Gtsd241Component extends RegistryFormComponent
     this.registryFormService.setDataDict(require('raw-loader!./gtsd241.dict.md').default);
   }
 
-  displaySummary(section: string): string {
-    if (!this.completion) {
-      return;
-    }
-
-    const current = this.completion[section];
-    return current.valid + '/' + current.total;
-  }
-
-  private initializeFormCompletion(): Gtsd241Completion {
-    return {
-      summary: { valid: 0, total: 0 },
-      sectionA: { valid: 0, total: 0 },
-      sectionB: { valid: 0, total: 0 },
-      sectionC: { valid: 0, total: 0 },
-      sectionD: { valid: 0, total: 0 },
-      sectionE: { valid: 0, total: 0 },
-      sectionF: { valid: 0, total: 0 },
-      sectionG: { valid: 0, total: 0 },
-      sectionH: { valid: 0, total: 0 },
-      sectionI: { valid: 0, total: 0 },
-      sectionJ: { valid: 0, total: 0 },
-      sectionK: { valid: 0, total: 0 },
-      sectionL: { valid: 0, total: 0 },
-      sectionM: { valid: 0, total: 0 },
-      sectionN: { valid: 0, total: 0 },
-      sectionO: { valid: 0, total: 0 },
-    };
-  }
-
-  private subscribeCompletionCalculation() {
-    this.sectionMembers.forEach((sm) => {
-      this.subscriptions.push(
-        sm[1].valueChanges.subscribe((value) => {
-          if (sm[1].disabled) {
-            return;
-          }
-
-          let newCompletion: FormCompletion;
-          newCompletion = this.registryFormService.getSectionCompletion(sm[0]);
-
-          const oldCompletion = this.completion[sm[0]] as FormCompletion;
-          this.completion[sm[0]] = newCompletion;
-
-          this.completion.summary.valid =
-            this.completion.summary.valid - oldCompletion.valid + newCompletion.valid;
-          this.completion.summary.total =
-            this.completion.summary.total - oldCompletion.total + newCompletion.total;
-        })
-      );
-    });
-  }
-
-  private firstRunCompletion() {
-    this.sectionMembers.forEach((sm) => {
-      sm[1].enable();
-    });
+  displaySummary(section: string) {
+    return this.registryFormService.getSummary(section);
   }
 }

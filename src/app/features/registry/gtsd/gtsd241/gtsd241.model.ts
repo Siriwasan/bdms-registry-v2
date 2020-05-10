@@ -6,7 +6,7 @@ import {
 
 export interface Gtsd241Model {
   detail: FormDetail;
-  completion: Gtsd241Completion;
+  completion: RegistryCompletion;
   sectionA: object;
   sectionB: object;
   sectionC: object;
@@ -22,23 +22,4 @@ export interface Gtsd241Model {
   sectionM: object;
   sectionN: object;
   sectionO: object;
-}
-
-export interface Gtsd241Completion extends RegistryCompletion {
-  summary: FormCompletion;
-  sectionA: FormCompletion;
-  sectionB: FormCompletion;
-  sectionC: FormCompletion;
-  sectionD: FormCompletion;
-  sectionE: FormCompletion;
-  sectionF: FormCompletion;
-  sectionG: FormCompletion;
-  sectionH: FormCompletion;
-  sectionI: FormCompletion;
-  sectionJ: FormCompletion;
-  sectionK: FormCompletion;
-  sectionL: FormCompletion;
-  sectionM: FormCompletion;
-  sectionN: FormCompletion;
-  sectionO: FormCompletion;
 }
