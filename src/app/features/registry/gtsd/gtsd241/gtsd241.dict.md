@@ -1,29 +1,18 @@
-# HN
+# CigSmoking
 
-## Race
+## Cigarette smoking
 
-### White
+Past smoker: stopped > 1 month prior to operation
 
-Having origins in any of the original peoples of Europe, the Middle East, or North Africa.
+# ECOGScore
 
-### Black/African American
+## ECOG Score
 
-Having origins in any of the black racial groups of Africa. Terms such as "Haitian" or "Negro" can be used in addition to "Black or African American."
-
-### American Indian or Alaskan Native
-
-Having origins in any of the original peoples of North and South America (including Central America), and who maintains tribal affiliation or community attachment.
-
-### Asian
-
-Having origins in any of the original peoples of the Far East, Southeast Asia, or the Indian subcontinent including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand, and Vietnam.
-
-_**Source:** U.S. Office of Management and Budget. Classification of Federal Data on Race and Ethnicity_
-
-# Visit
-
-## Hispanic or Latino Ethnicity
-
-A person of Mexican, Puerto Rican, Cuban, South or Central American, or other Spanish culture or origin, regardless of race. The term, "Spanish origin," can be used in addition to "Hispanic or Latino."
-
-_**Source:** U.S. Office of Management and Budget. Classification of Federal Data on Race and Ethnicity_
+| Score | Definition |
+|--|--|
+|0|Fully active, able to carry on all pre-disease performance without restriction|
+|1|Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work|
+|2|Ambulatory and capable of all self-care but unable to carry out any work activities. Up and about more than 50% of waking hours|
+|3|Capable of only limited self-care, confined to bed or chair more than 50% of waking hours|
+|4|Completely disabled. Cannot carry on any self-care. Totally confined to bed or chair|
+|5|Dead|

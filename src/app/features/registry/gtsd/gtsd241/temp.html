@@ -1,0 +1,22 @@
+<reg-input controlName="XXX" placeholder="XXX" [formGroup]="formGroupC" type="number" [controlService]="controlService"
+  fxFlex="1 0 200px"></reg-input>
+
+<reg-select controlName="XXX" placeholder="XXX" [formGroup]="formGroupC" [choices]="['Yes', 'No']"
+  [controlService]="controlService" fxFlex="1 0 200px">
+</reg-select>
+
+<reg-select controlName="XXX" placeholder="XXX" [formGroup]="formGroupC" [choices]="[
+  'Yes',
+  'No',
+  'Unknown'
+  ]" [controlService]="controlService" fxFlex="1 0 200px">
+</reg-select>
+
+<reg-select-search controlName="XXX" placeholder="XXX" [formGroup]="formGroupC" [choices]="['XXX']" group="true"
+  [nullOption]="XXX" [controlService]="controlService" fxFlex="1 0 200px">
+</reg-select-search>
+
+<reg-datepicker controlName="XXX" placeholder="XXX" [formGroup]="formGroupC" [controlService]="controlService"
+  fxFlex="1 0 200px">
+  dd/mm/yyyy
+</reg-datepicker>

@@ -80,98 +80,103 @@
       <div>
         <h1 class="registry-name" scrollSpyElement id="title">General Thoracic Surgery Database v2.41</h1>
 
-        <section class="section-wrapper" scrollSpyElement id="sectionA">
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionA">
           <div class="section-title">
-            <span>{{ getTocTitle('sectionA') }}</span>
+            <span>{{ tocTitle('sectionA') }}</span>
             <span>{{ sectionCompletion('sectionA') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupA" #formDirectiveA="ngForm">
-              <div class="reg-container">
-                <reg-input controlName="registryId" placeholder="Registry ID" [formGroup]="formGroupA" type="text"
-                  readonly="true" fxFlex>(software generated)</reg-input>
+              <div class="reg-container-col">
+                <div class="reg-container">
+                  <reg-input controlName="registryId" placeholder="Registry ID" [formGroup]="formGroupA" type="text"
+                    readonly="true" [controlService]="controlService" fxFlex="1 0 200px">(software generated)</reg-input>
 
-                <reg-input controlName="HN" placeholder="HN" [formGroup]="formGroupA" type="text" fxFlex>
-                </reg-input>
+                  <reg-input controlName="HN" placeholder="HN" [formGroup]="formGroupA" type="text" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-input>
 
-                <reg-input controlName="AN" placeholder="AN" [formGroup]="formGroupA" type="text" fxFlex></reg-input>
-              </div>
+                  <reg-input controlName="AN" placeholder="AN" [formGroup]="formGroupA" type="text" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-input>
+                </div>
 
-              <div class="reg-container">
-                <reg-input controlName="LastName" placeholder="Last Name" [formGroup]="formGroupA" type="text" fxFlex>
-                </reg-input>
+                <div class="reg-container">
+                  <reg-input controlName="LastName" placeholder="Last Name" [formGroup]="formGroupA" type="text"
+                    [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-input>
 
-                <reg-input controlName="FirstName" placeholder="First Name" [formGroup]="formGroupA" type="text" fxFlex>
-                </reg-input>
+                  <reg-input controlName="FirstName" placeholder="First Name" [formGroup]="formGroupA" type="text"
+                    [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-input>
 
-                <reg-input controlName="MidName" placeholder="Middle Name" [formGroup]="formGroupA" type="text"
-                  require="false" fxFlex>
-                </reg-input>
-              </div>
+                  <reg-input controlName="MidName" placeholder="Middle Name" [formGroup]="formGroupA" type="text"
+                    require="false" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-input>
+                </div>
 
-              <div class="reg-container">
-                <reg-datepicker controlName="DOB" placeholder="Birth Date" [formGroup]="formGroupA" fxFlex>dd/mm/yyyy
-                </reg-datepicker>
+                <div class="reg-container">
+                  <reg-datepicker controlName="DOB" placeholder="Birth Date" [formGroup]="formGroupA"
+                    [controlService]="controlService" fxFlex="1 0 200px">dd/mm/yyyy
+                  </reg-datepicker>
 
-                <reg-input controlName="Age" placeholder="Patient Age" [formGroup]="formGroupA" type="text"
-                  readonly="true" fxFlex>(auto calculated)</reg-input>
+                  <reg-input controlName="Age" placeholder="Patient Age" [formGroup]="formGroupA" type="text"
+                    readonly="true" [controlService]="controlService" fxFlex="1 0 200px">(auto calculated)</reg-input>
 
-                <reg-select controlName="Sex" placeholder="Sex" [formGroup]="formGroupA" [choices]="['Male', 'Female']"
-                  fxFlex>
-                </reg-select>
-              </div>
+                  <reg-select controlName="Sex" placeholder="Sex" [formGroup]="formGroupA"
+                    [choices]="['Male', 'Female']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+                </div>
 
-              <div class="reg-container">
-                <reg-input controlName="SSN" placeholder="SSN" [formGroup]="formGroupA" type="text" fxFlex>
-                </reg-input>
+                <div class="reg-container">
+                  <reg-input controlName="SSN" placeholder="SSN" [formGroup]="formGroupA" type="text"
+                    [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-input>
 
-                <reg-select controlName="Race" placeholder="Race" [formGroup]="formGroupA"
-                  [choices]="['White', 'Black/African American', 'European', 'Arab', 'Asian']" fxFlex></reg-select>
-              </div>
+                  <reg-select controlName="Race" placeholder="Race" [formGroup]="formGroupA"
+                    [choices]="['White', 'Black/African American', 'European', 'Arab', 'Asian']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+                </div>
 
-              <div class="reg-container"></div>
+                <div class="reg-container">
+                  <reg-select-search controlName="PatNation" placeholder="Nationality" [formGroup]="formGroupA"
+                    [choices]="nationality" [controlService]="controlService" fxFlex="1 0 200px"></reg-select-search>
 
-              <div class="reg-container">
-                <reg-select-search controlName="PatNation" placeholder="Nationality" [formGroup]="formGroupA"
-                  [choices]="nationality" fxFlex="40"></reg-select-search>
+                  <reg-select controlName="PermAddr" placeholder="Is This Patient’s Permanent Address"
+                    [formGroup]="formGroupA" [choices]="['Yes', 'No', 'Unknown']" [controlService]="controlService" fxFlex="1 0 200px"></reg-select>
 
-                <reg-select controlName="PermAddr" placeholder="Is This Patient’s Permanent Address"
-                  [formGroup]="formGroupA" [choices]="['Yes', 'No', 'Unknown']" fxFlex></reg-select>
-
-                <reg-input *ngIf="visibility['ZipCode']" controlName="ZipCode" placeholder="Zip Code"
-                  [formGroup]="formGroupA" type="text" fxFlex="20">
-                </reg-input>
+                  <reg-input *ngIf="visibility['ZipCode']" controlName="ZipCode" placeholder="Zip Code"
+                    [formGroup]="formGroupA" type="text" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-input>
+                </div>
               </div>
             </form>
           </div>
-        </section>
+        </section> -->
 
-        <section class="section-wrapper" scrollSpyElement id="sectionB">
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionB">
           <div class="section-title">
-            <span>{{ getTocTitle('sectionB') }}</span>
+            <span>{{ tocTitle('sectionB') }}</span>
             <span>{{ sectionCompletion('sectionB') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupB" #formDirectiveB="ngForm">
-              <div class="reg-container">
-                <!-- <reg-select-search controlName="HospName" placeholder="Hospital Name" [formGroup]="formGroupB"
-                  [choices]="avHospitals" group="true" [nullOption]="avHospitalsNullOption" fxFlex></reg-select-search> -->
+              <div class="reg-container-col">
 
-                <reg-select controlName="AdmType" placeholder="Admission Type" [formGroup]="formGroupB"
-                  [choices]="['Direct', 'Transfer']" fxFlex></reg-select>
-              </div>
+                <div class="reg-container">
+                  <reg-select-search controlName="HospName" placeholder="Hospital Name" [formGroup]="formGroupB"
+                    [choices]="['BPH', 'BHT']" group="true" [nullOption]="avHospitalsNullOption" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select-search>
 
-              <div class="reg-container">
-                <reg-datepicker controlName="ArrivalDateTime" placeholder="Arrival Date/Time" [formGroup]="formGroupB"
-                  type="datetime" fxFlex>dd/mm/yyyy hh:mm - 24 hr clock
-                </reg-datepicker>
+                  <reg-select controlName="AdmissionStat" placeholder="Admission Status" [formGroup]="formGroupB"
+                    [choices]="['Inpatient', 'Outpatient/Observation']" [controlService]="controlService" fxFlex="1 0 200px"></reg-select>
 
-                <reg-select-search controlName="AdmProvider" placeholder="Admitting Provider" [formGroup]="formGroupB"
-                  [choices]="" group="true" fxFlex></reg-select-search>
-              </div>
+                  <reg-datepicker *ngIf="visibility['AdmitDt']" controlName="AdmitDt" placeholder="Admission Date"
+                    [formGroup]="formGroupB" [controlService]="controlService" fxFlex="1 0 200px">
+                    dd/mm/yyyy
+                  </reg-datepicker>
+                </div>
 
-              <div class="reg-container">
-                <reg-select controlName="PayorPrim" placeholder="Primary Payor" [formGroup]="formGroupB" [choices]="[
+                <div class="reg-container">
+                  <reg-select controlName="PayorPrim" placeholder="Primary Payor" [formGroup]="formGroupB" [choices]="[
                     'Self',
                     'Comptroller General\'s Department',
                     'NHSO (National Health Security Office)',
@@ -182,9 +187,10 @@
                     'Private Health Insurance',
                     'Charitable care/Foundation Funding',
                     'Other'
-                  ]" fxFlex></reg-select>
+                  ]" [controlService]="controlService" fxFlex="1 0 200px"></reg-select>
 
-                <reg-select controlName="PayorSecond" placeholder="Secondary Payor" [formGroup]="formGroupB" [choices]="[
+                  <reg-select controlName="PayorSecond" placeholder="Secondary Payor" [formGroup]="formGroupB"
+                    [choices]="[
                     'None',
                     'Comptroller General\'s Department',
                     'NHSO (National Health Security Office)',
@@ -195,26 +201,439 @@
                     'Private Health Insurance',
                     'Charitable care/Foundation Funding',
                     'Other'
-                  ]" fxFlex></reg-select>
-              </div>
+                  ]" [controlService]="controlService" fxFlex="1 0 200px"></reg-select>
+                </div>
 
-              <div class="reg-container">
-                <reg-select controlName="EnrolledStudy" placeholder="Research Enrolled" [formGroup]="formGroupB"
-                  [choices]="['Yes', 'No']" fxFlex></reg-select>
+                <div class="reg-container">
+                  <reg-select controlName="EnrolledStudy" placeholder="Research Enrolled" [formGroup]="formGroupB"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px"></reg-select>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </section> -->
+
+        <section class="section-wrapper" scrollSpyElement id="sectionC">
+          <div class="section-title">
+            <span>{{ tocTitle('sectionC') }}</span>
+            <span>{{ sectionCompletion('sectionC') }}</span>
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupC" #formDirectiveB="ngForm">
+              <div class="reg-container-col">
+                <div class="reg-container">
+
+                  <reg-input controlName="HeightCm" placeholder="Height (cm)" [formGroup]="formGroupC" type="number"
+                    [controlService]="controlService" fxFlex="1 0 200px"></reg-input>
+
+                  <reg-input controlName="WeightKg" placeholder="Weight (kg)" [formGroup]="formGroupC" type="number"
+                    [controlService]="controlService" fxFlex="1 0 200px"></reg-input>
+
+                  <reg-input controlName="WtLoss3Kg" placeholder="Unintentional Wt loss over past 3 months"
+                    [formGroup]="formGroupC" type="number" [controlService]="controlService" fxFlex="1 0 200px">Enter
+                    “0” if none</reg-input>
+
+                </div>
+
+                <h3 class="reg-title">CardioPulmonary History</h3>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="Hypertn" placeholder="Hypertension" [formGroup]="formGroupC"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select controlName="CHF" placeholder="Congestive Heart Failure (CHF)" [formGroup]="formGroupC"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-input *ngIf="visibility['EF']" controlName="EF" placeholder="Ejection Fraction (%)"
+                    [formGroup]="formGroupC" type="number" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-input>
+
+                  <reg-select controlName="CAD" placeholder="Coronary Artery Disease (CAD)" [formGroup]="formGroupC"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select controlName="PreMI" placeholder="Myocardial Infarction" [formGroup]="formGroupC"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select controlName="AFIB" placeholder="Atrial fibrillation within the last year"
+                    [formGroup]="formGroupC" [choices]="['Yes', 'No']" [controlService]="controlService"
+                    fxFlex="1 0 200px">With or without treatment
+                  </reg-select>
+
+                  <reg-select controlName="VHD" placeholder="Valvular Heart Disease" [formGroup]="formGroupC"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibility['VHDLocAV']" controlName="VHDLocAV" placeholder="Aortic valve"
+                    [formGroup]="formGroupC" [choices]="['Yes', 'No']" [controlService]="controlService"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibility['VHDLocMV']" controlName="VHDLocMV" placeholder="Mitral valve"
+                    [formGroup]="formGroupC" [choices]="['Yes', 'No']" [controlService]="controlService"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibility['VHDLocPV']" controlName="VHDLocPV" placeholder="Pulmonic valve"
+                    [formGroup]="formGroupC" [choices]="['Yes', 'No']" [controlService]="controlService"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibility['VHDLocTV']" controlName="VHDLocTV" placeholder="Tricuspid valve"
+                    [formGroup]="formGroupC" [choices]="['Yes', 'No']" [controlService]="controlService"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select controlName="PulmHypertn" placeholder="Pulmonary Hypertension" [formGroup]="formGroupC"
+                    [choices]="['Yes', 'No', 'Unknown']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select controlName="InterstitialFib"
+                    placeholder="Interstitial Fibrosis/Interstitial Lung Disease" [formGroup]="formGroupC"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                </div>
+
+                <h3 class="reg-title">Vascular History</h3>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="MVD" placeholder="Major Vascular Disease" [formGroup]="formGroupC"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select controlName="DVTPE" placeholder="DVT/PE" [formGroup]="formGroupC"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                </div>
+
+                <h3 class="reg-title">Cerebral Vascular Disease History</h3>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="CerebroHx" placeholder="Cerebrovascular disease (CVD)"
+                    [formGroup]="formGroupC" [choices]="[
+                    'No CVD history',
+                    'Known disease, no events',
+                    'Transient Ischemic Attack (TIA)',
+                    'CerebrovascularAccident (CVA)'
+                    ]" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibility['PNI']" controlName="PNI" placeholder="Permanent Neurologic impairment"
+                    [formGroup]="formGroupC" [choices]="['Yes', 'No']" [controlService]="controlService"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                </div>
+
+                <h3 class="reg-title">Neuromuscular Disease</h3>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="NeuroSymptPres" placeholder="Neurologic symptoms present"
+                    [formGroup]="formGroupC" [choices]="['Yes', 'No']" [controlService]="controlService"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select controlName="MyasGravis" placeholder="Myasthenia Gravis" [formGroup]="formGroupC"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                </div>
+
+                <h3 class="reg-title">Endocrine/GI/Renal History</h3>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="Diabetes" placeholder="Diabetes" [formGroup]="formGroupC"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibility['DiabCtrl']" controlName="DiabCtrl" placeholder="Type of therapy"
+                    [formGroup]="formGroupC" [choices]="[
+                    'None',
+                    'Diet Only',
+                    'Oral',
+                    'Insulin',
+                    'Other Subcutaneous Medication',
+                    'Other',
+                    'Unknown'
+                    ]" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select controlName="LiverDys" placeholder="Liver Dysfunction" [formGroup]="formGroupC"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select controlName="Dialysis" placeholder="On Dialysis" [formGroup]="formGroupC"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                </div>
+
+                <h3 class="reg-title">Cancer History</h3>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="PreopChemoCur" placeholder="Preoperative Chemotherapy/Immunotherapy"
+                    [formGroup]="formGroupC" [choices]="['Yes', 'No']" [controlService]="controlService"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibility['PreopChemoCurWhen']" controlName="PreopChemoCurWhen" placeholder="When"
+                    [formGroup]="formGroupC" [choices]="[
+                    'Same disease, <= 6months',
+                    'Same disease, > 6months',
+                    'Unrelated disease, <= 6 months',
+                    'Unrelated disease, > 6 months'
+                    ]" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select controlName="PreopXRT" placeholder="Preop Thoracic Radiation Therapy"
+                    [formGroup]="formGroupC" [choices]="['Yes', 'No']" [controlService]="controlService"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibility['PreopXRTDisWhen']" controlName="PreopXRTDisWhen" placeholder="When"
+                    [formGroup]="formGroupC" [choices]="[
+                    'Same disease, <= 6months',
+                    'Same disease, > 6months',
+                    'Unrelated disease, <= 6 months',
+                    'Unrelated disease, > 6 months'
+                    ]" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-datepicker controlName="PreopXRTCompDt" placeholder="Completion Date" [formGroup]="formGroupC"
+                    [controlService]="controlService" fxFlex="1 0 200px">
+                    dd/mm/yyyy
+                  </reg-datepicker>
+
+                </div>
+
+                <h3 class="reg-title">Prior Surgical History</h3>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="PriorCTS" placeholder="Prior Cardiothoracic Surgery" [formGroup]="formGroupC"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibility['PriorStern']" controlName="PriorStern" placeholder="Sternotomy"
+                    [formGroup]="formGroupC" [choices]="['Yes', 'No']" [controlService]="controlService"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibility['PriorVATS']" controlName="PriorVATS" placeholder="VATS/Robotic"
+                    [formGroup]="formGroupC" [choices]="['Yes', 'No']" [controlService]="controlService"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibility['PriorVATSLoc']" controlName="PriorVATSLoc" placeholder="Location"
+                    [formGroup]="formGroupC" [choices]="[
+                    'Right',
+                    'Left',
+                    'Bilateral'
+                    ]" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibility['PriorPulmRes']" controlName="PriorPulmRes"
+                    placeholder="Pulmonary resection" [formGroup]="formGroupC" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibility['PriorPulmResLoc']" controlName="PriorPulmResLoc" placeholder="Location"
+                    [formGroup]="formGroupC" [choices]="[
+                    'Right',
+                    'Left',
+                    'Bilateral'
+                    ]" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibility['PriorThora']" controlName="PriorThora" placeholder="Thoracotomy"
+                    [formGroup]="formGroupC" [choices]="['Yes', 'No']" [controlService]="controlService"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibility['PriorThoraLoc']" controlName="PriorThoraLoc" placeholder="Location"
+                    [formGroup]="formGroupC" [choices]="[
+                    'Right',
+                    'Left',
+                    'Bilateral'
+                    ]" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                </div>
+
+                <h3 class="reg-title">PreOp Medication History</h3>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="PreOpImmunoThx" placeholder="Chronic Immunosuppressive Therapy"
+                    [formGroup]="formGroupC" [choices]="['Yes', 'No']" [controlService]="controlService"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select controlName="PreOpAnticoagThx" placeholder="Chronic anticoagulation"
+                    [formGroup]="formGroupC" [choices]="['Yes', 'No']" [controlService]="controlService"
+                    fxFlex="1 0 200px">Any anticoagulation medication other than ASA</reg-select>
+
+                  <reg-select controlName="PreOpHomeO2" placeholder="Home O2" [formGroup]="formGroupC"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                </div>
+
+                <h3 class="reg-title">Pre-Operative Testing</h3>
+
+                <div class="reg-container">
+                  <reg-select controlName="CreatMeasured" placeholder="Creatinine level measured"
+                    [formGroup]="formGroupC" [choices]="['Yes', 'No']" [controlService]="controlService"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-input *ngIf="visibility['CreatLst']" controlName="CreatLst" placeholder="Last creatinine level"
+                    [formGroup]="formGroupC" type="number" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-input>
+
+                  <reg-select controlName="HemoglobinMeasured" placeholder="Hemoglobin level measured"
+                    [formGroup]="formGroupC" [choices]="['Yes', 'No']" [controlService]="controlService"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-input *ngIf="visibility['HemoglobinLst']" controlName="HemoglobinLst"
+                    placeholder="Last hemoglobin level" [formGroup]="formGroupC" type="number"
+                    [controlService]="controlService" fxFlex="1 0 200px"></reg-input>
+
+                  <reg-select controlName="PFT" placeholder="Pulmonary Function Tests (PFT) performed"
+                    [formGroup]="formGroupC" [choices]="['Yes', 'No']" [controlService]="controlService"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibility['PFTNotPerReas']" controlName="PFTNotPerReas"
+                    placeholder="PFT Not Performed Reason" [formGroup]="formGroupC" [choices]="[
+                    'Not a Major Lung Resection',
+                    'Never smoked, no lung disease',
+                    'Tracheostomy or Ventilator',
+                    'Urgent or Emergent Status',
+                    'Patient Unable to perform'
+                    ]" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibility['FEV']" controlName="FEV" placeholder="FEV1 test performed"
+                    [formGroup]="formGroupC" [choices]="[
+                    'Yes',
+                    'No',
+                    'Not Applicable'
+                    ]" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-input *ngIf="visibility['FEVPred']" controlName="FEVPred" placeholder="FEV1 % predicted"
+                    [formGroup]="formGroupC" type="number" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-input>
+
+                  <reg-select *ngIf="visibility['DLCO']" controlName="DLCO" placeholder="DLCO test performed"
+                    [formGroup]="formGroupC" [choices]="[
+                    'Yes',
+                    'No',
+                    'Not Applicable'
+                    ]" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-input *ngIf="visibility['DLCOPred']" controlName="DLCOPred" placeholder="DLCO % predicted"
+                    [formGroup]="formGroupC" type="number" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-input>
+
+                </div>
+
+                <h3 class="reg-title">Psychosocial History</h3>
+
+                <div class="reg-container">
+                  <reg-select controlName="CigSmoking" placeholder="Cigarette smoking" [formGroup]="formGroupC"
+                    [choices]="[
+                    'Never smoked',
+                    'Past smoker',
+                    'Current smoker',
+                    'Unknown'
+                    ]" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select *ngIf="visibility['PackYearKnown']" controlName="PackYearKnown"
+                    placeholder="Pack Year Known or can be estimated" [formGroup]="formGroupC" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-input *ngIf="visibility['PackYear']" controlName="PackYear" placeholder="Pack-Years"
+                    [formGroup]="formGroupC" type="number" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-input>
+
+                  <reg-select controlName="NarcoticDepend" placeholder="Narcotic dependency" [formGroup]="formGroupC"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select controlName="AlcoholAbuse" placeholder="Alcohol Abuse" [formGroup]="formGroupC"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select controlName="DemNeroDys" placeholder="Dementia/neurocognitive dysfunction"
+                    [formGroup]="formGroupC" [choices]="['Yes', 'No']" [controlService]="controlService"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select controlName="PsychDisorder" placeholder="Major Psychiatric Disorder"
+                    [formGroup]="formGroupC" [choices]="['Yes', 'No']" [controlService]="controlService"
+                    fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select controlName="LiveStat" placeholder="Living Status" [formGroup]="formGroupC" [choices]="[
+                    'Lives alone',
+                    'Lives with family or friend',
+                    'Assisted Living',
+                    'Nursing Home'
+                    ]" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select controlName="FuncStat" placeholder="Functional Status" [formGroup]="formGroupC" [choices]="[
+                    'Yes',
+                    'No',
+                    'Unknown'
+                    ]" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select controlName="ECOGScore" placeholder="ECOG Score" [formGroup]="formGroupC" [choices]="[
+                    '0',
+                    '1',
+                    '2',
+                    '3',
+                    '4',
+                    '5'
+                    ]" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                </div>
+
               </div>
             </form>
           </div>
         </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionC">
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionXXX">
           <div class="section-title">
-            C. Preoperative
+            <span>{{ tocTitle('sectionXXX') }}</span>
+            <span>{{ sectionCompletion('sectionXXX') }}</span>
           </div>
           <div class="section-body">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
-            <lorem-ipsum></lorem-ipsum>
+            <form [formGroup]="formGroupXXX" #formDirectiveB="ngForm">
+              <div class="reg-container-col">
+              </div>
+            </form>
           </div>
         </section> -->
 

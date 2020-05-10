@@ -21,15 +21,13 @@ import { Gtsd241Conditions } from './gtsd241.condition';
 import {
   SectionMember,
   FormVisibility,
-  RegSelectChoice,
-  FormCompletion,
   RegistryCompletion,
 } from 'src/app/shared/modules/registry-form/registry-form.model';
 import { Gtsd241Validations } from './gtsd241.validation';
 import { Gtsd241Service } from './gtsd241.service';
 import { getTocTitle } from '../../acsd/acsd290/acsd290.toc';
 import * as registryData from '../../registry.data';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Gtsd241Toc } from './gtsd241.toc';
 import { FormDetail } from '../../registry.model';
 
@@ -43,13 +41,7 @@ export class Gtsd241Component extends RegistryFormComponent
   implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
   //#region Form function
   private subscriptions: Subscription[] = [];
-  controlService = this.gtsd241Service;
-  //#endregion
-
-  //#region Form data
-  toc = Gtsd241Toc;
-  getTocTitle = getTocTitle;
-  nationality = registryData.nationality;
+  controlService = this.registryFormService;
   //#endregion
 
   //#region Html
@@ -59,6 +51,13 @@ export class Gtsd241Component extends RegistryFormComponent
   progressSummary: string;
   progressPercent: string;
   private completion: RegistryCompletion;
+  //#endregion
+
+  //#region Form data
+  toc = Gtsd241Toc;
+  tocTitle = getTocTitle;
+  avHospitalsNullOption = false;
+  nationality = registryData.nationality;
   //#endregion
 
   //#region FormGroup and FormDirective
@@ -118,9 +117,6 @@ export class Gtsd241Component extends RegistryFormComponent
     super.ngAfterContentInit();
 
     this.createForm();
-    this.registryFormService.subscribeFormConditions();
-    this.subscribeCompletion();
-
     this.formGroupA.get('registryId').setValue('(new)');
   }
 
@@ -154,21 +150,21 @@ export class Gtsd241Component extends RegistryFormComponent
     this.formGroupO = this.formBuilder.group(Gtsd241Form.sectionO);
 
     this.sectionMembers = [
-      ['sectionA', this.formGroupA, this.formDirectiveA, Gtsd241Conditions.sectionA],
-      ['sectionB', this.formGroupB, this.formDirectiveB, Gtsd241Conditions.sectionB],
+      // ['sectionA', this.formGroupA, this.formDirectiveA, Gtsd241Conditions.sectionA],
+      // ['sectionB', this.formGroupB, this.formDirectiveB, Gtsd241Conditions.sectionB],
       ['sectionC', this.formGroupC, this.formDirectiveC, Gtsd241Conditions.sectionC],
-      ['sectionD', this.formGroupD, this.formDirectiveD, Gtsd241Conditions.sectionD],
-      ['sectionE', this.formGroupE, this.formDirectiveE, Gtsd241Conditions.sectionE],
-      ['sectionF', this.formGroupF, this.formDirectiveF, Gtsd241Conditions.sectionF],
-      ['sectionG', this.formGroupG, this.formDirectiveG, Gtsd241Conditions.sectionG],
-      ['sectionH', this.formGroupH, this.formDirectiveH, Gtsd241Conditions.sectionH],
-      ['sectionI', this.formGroupI, this.formDirectiveI, Gtsd241Conditions.sectionI],
-      ['sectionJ', this.formGroupJ, this.formDirectiveJ, Gtsd241Conditions.sectionJ],
-      ['sectionK', this.formGroupK, this.formDirectiveK, Gtsd241Conditions.sectionK],
-      ['sectionL', this.formGroupL, this.formDirectiveL, Gtsd241Conditions.sectionL],
-      ['sectionM', this.formGroupM, this.formDirectiveM, Gtsd241Conditions.sectionM],
-      ['sectionN', this.formGroupN, this.formDirectiveN, Gtsd241Conditions.sectionN],
-      ['sectionO', this.formGroupO, this.formDirectiveO, Gtsd241Conditions.sectionO],
+      // ['sectionD', this.formGroupD, this.formDirectiveD, Gtsd241Conditions.sectionD],
+      // ['sectionE', this.formGroupE, this.formDirectiveE, Gtsd241Conditions.sectionE],
+      // ['sectionF', this.formGroupF, this.formDirectiveF, Gtsd241Conditions.sectionF],
+      // ['sectionG', this.formGroupG, this.formDirectiveG, Gtsd241Conditions.sectionG],
+      // ['sectionH', this.formGroupH, this.formDirectiveH, Gtsd241Conditions.sectionH],
+      // ['sectionI', this.formGroupI, this.formDirectiveI, Gtsd241Conditions.sectionI],
+      // ['sectionJ', this.formGroupJ, this.formDirectiveJ, Gtsd241Conditions.sectionJ],
+      // ['sectionK', this.formGroupK, this.formDirectiveK, Gtsd241Conditions.sectionK],
+      // ['sectionL', this.formGroupL, this.formDirectiveL, Gtsd241Conditions.sectionL],
+      // ['sectionM', this.formGroupM, this.formDirectiveM, Gtsd241Conditions.sectionM],
+      // ['sectionN', this.formGroupN, this.formDirectiveN, Gtsd241Conditions.sectionN],
+      // ['sectionO', this.formGroupO, this.formDirectiveO, Gtsd241Conditions.sectionO],
     ];
 
     this.registryFormService.initializeForm(
@@ -178,6 +174,8 @@ export class Gtsd241Component extends RegistryFormComponent
       this.visibility
     );
     this.registryFormService.setDataDict(require('raw-loader!./gtsd241.dict.md').default);
+    this.registryFormService.subscribeFormConditions();
+    this.subscribeCompletion();
   }
 
   sectionCompletion(section: string) {
