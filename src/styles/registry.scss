@@ -27,9 +27,7 @@ reg-input {
     }
   }
 
-  ::ng-deep
-    .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float
-    label {
+  ::ng-deep .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float label {
     transform: translateY(-1.1em) scale(0.75) perspective(100px) translateZ(0.001px) !important;
     -ms-transform: translateY(-1.1em) scale(0.75) !important;
   }
@@ -385,15 +383,17 @@ reg-input {
 
 .reg-subtitle {
   padding-left: 10px;
+  padding-top: 10px;
   margin-bottom: 5px;
-  color: #757575;
+  // color: #757575;
   // color: var(--secondary-text-color);
 }
 
 .reg-subtitle2 {
   padding-left: 20px;
+  padding-top: 10px;
   margin-bottom: 5px;
-  color: #757575;
+  // color: #757575;
   // color: var(--secondary-text-color);
 }
 

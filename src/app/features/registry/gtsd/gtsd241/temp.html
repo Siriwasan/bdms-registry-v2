@@ -1,22 +1,23 @@
-<reg-input controlName="XXX" placeholder="XXX" [formGroup]="formGroupC" type="number" [controlService]="controlService"
+<reg-input controlName="XXX" placeholder="XXX" [formGroup]="formGroupG" type="number" [controlService]="controlService"
   fxFlex="1 0 200px"></reg-input>
 
-<reg-select controlName="XXX" placeholder="XXX" [formGroup]="formGroupC" [choices]="['Yes', 'No']"
+<reg-select controlName="XXX" placeholder="XXX" [formGroup]="formGroupG" [choices]="['Yes', 'No']"
   [controlService]="controlService" fxFlex="1 0 200px">
 </reg-select>
 
-<reg-select controlName="XXX" placeholder="XXX" [formGroup]="formGroupC" [choices]="[
+<reg-select controlName="XXX" placeholder="XXX" [formGroup]="formGroupG" [choices]="[
   'Yes',
   'No',
   'Unknown'
   ]" [controlService]="controlService" fxFlex="1 0 200px">
 </reg-select>
 
-<reg-select-search controlName="XXX" placeholder="XXX" [formGroup]="formGroupC" [choices]="['XXX']" group="true"
+<reg-select-search controlName="XXX" placeholder="XXX" [formGroup]="formGroupG" [choices]="['XXX']" group="true"
   [nullOption]="XXX" [controlService]="controlService" fxFlex="1 0 200px">
 </reg-select-search>
 
-<reg-datepicker controlName="XXX" placeholder="XXX" [formGroup]="formGroupC" [controlService]="controlService"
-  fxFlex="1 0 200px">
-  dd/mm/yyyy
-</reg-datepicker>
+<reg-datepicker controlName="XXX" placeholder="XXX" [formGroup]="formGroupG" [controlService]="controlService"
+  fxFlex="1 0 200px">dd/mm/yyyy</reg-datepicker>
+
+<reg-datepicker controlName="XXX" placeholder="XXX" [formGroup]="formGroupG" [controlService]="controlService"
+  type="datetime" fxFlex="1 0 200px">dd/mm/yyyy hh:mm - 24 hr clock</reg-datepicker>

@@ -1,13 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectorRef,
-  ElementRef,
-  OnDestroy,
-  AfterViewInit,
-  AfterContentInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ElementRef, OnDestroy, AfterViewInit, AfterContentInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FormGroup, FormGroupDirective, FormBuilder } from '@angular/forms';
 
@@ -22,14 +13,17 @@ import {
   SectionMember,
   FormVisibility,
   RegistryCompletion,
+  RegSelectChoiceGroup,
+  RegSelectChoice,
 } from 'src/app/shared/modules/registry-form/registry-form.model';
 import { Gtsd241Validations } from './gtsd241.validation';
 import { Gtsd241Service } from './gtsd241.service';
-import { getTocTitle } from '../../acsd/acsd290/acsd290.toc';
+import { getTocTitle } from '../../gtsd/gtsd241/gtsd241.toc';
 import * as registryData from '../../registry.data';
 import { Subscription } from 'rxjs';
 import { Gtsd241Toc } from './gtsd241.toc';
 import { FormDetail } from '../../registry.model';
+import * as gtsd241Data from './gtsd241.data';
 
 @Component({
   selector: 'app-gtsd241',
@@ -37,8 +31,7 @@ import { FormDetail } from '../../registry.model';
   styleUrls: ['./gtsd241.component.scss'],
   providers: [Gtsd241Service],
 })
-export class Gtsd241Component extends RegistryFormComponent
-  implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
+export class Gtsd241Component extends RegistryFormComponent implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
   //#region Form function
   private subscriptions: Subscription[] = [];
   controlService = this.registryFormService;
@@ -58,6 +51,8 @@ export class Gtsd241Component extends RegistryFormComponent
   tocTitle = getTocTitle;
   avHospitalsNullOption = false;
   nationality = registryData.nationality;
+  diagnosis: RegSelectChoice[] = [];
+  procedure: RegSelectChoice[] = [];
   //#endregion
 
   //#region FormGroup and FormDirective
@@ -111,6 +106,24 @@ export class Gtsd241Component extends RegistryFormComponent
 
   ngOnInit() {
     super.ngOnInit();
+
+    gtsd241Data.diagnosis.forEach((dx) => {
+      this.diagnosis.push({
+        value: dx.name,
+        label: dx.name,
+        group: dx.category,
+        disable: false,
+      });
+    });
+
+    gtsd241Data.procedure.forEach((rx) => {
+      this.procedure.push({
+        value: rx.name,
+        label: rx.name,
+        group: rx.category,
+        disable: false,
+      });
+    });
   }
 
   ngAfterContentInit() {
@@ -118,6 +131,8 @@ export class Gtsd241Component extends RegistryFormComponent
 
     this.createForm();
     this.formGroupA.get('registryId').setValue('(new)');
+
+    this.visibility['sectionHBody'] = true;
   }
 
   ngAfterViewInit() {
@@ -152,12 +167,12 @@ export class Gtsd241Component extends RegistryFormComponent
     this.sectionMembers = [
       // ['sectionA', this.formGroupA, this.formDirectiveA, Gtsd241Conditions.sectionA],
       // ['sectionB', this.formGroupB, this.formDirectiveB, Gtsd241Conditions.sectionB],
-      ['sectionC', this.formGroupC, this.formDirectiveC, Gtsd241Conditions.sectionC],
+      // ['sectionC', this.formGroupC, this.formDirectiveC, Gtsd241Conditions.sectionC],
       // ['sectionD', this.formGroupD, this.formDirectiveD, Gtsd241Conditions.sectionD],
       // ['sectionE', this.formGroupE, this.formDirectiveE, Gtsd241Conditions.sectionE],
       // ['sectionF', this.formGroupF, this.formDirectiveF, Gtsd241Conditions.sectionF],
       // ['sectionG', this.formGroupG, this.formDirectiveG, Gtsd241Conditions.sectionG],
-      // ['sectionH', this.formGroupH, this.formDirectiveH, Gtsd241Conditions.sectionH],
+      ['sectionH', this.formGroupH, this.formDirectiveH, Gtsd241Conditions.sectionH],
       // ['sectionI', this.formGroupI, this.formDirectiveI, Gtsd241Conditions.sectionI],
       // ['sectionJ', this.formGroupJ, this.formDirectiveJ, Gtsd241Conditions.sectionJ],
       // ['sectionK', this.formGroupK, this.formDirectiveK, Gtsd241Conditions.sectionK],
@@ -167,21 +182,14 @@ export class Gtsd241Component extends RegistryFormComponent
       // ['sectionO', this.formGroupO, this.formDirectiveO, Gtsd241Conditions.sectionO],
     ];
 
-    this.registryFormService.initializeForm(
-      this.sectionMembers,
-      Gtsd241Conditions,
-      Gtsd241Validations,
-      this.visibility
-    );
+    this.registryFormService.initializeForm(this.sectionMembers, Gtsd241Conditions, Gtsd241Validations, this.visibility);
     this.registryFormService.setDataDict(require('raw-loader!./gtsd241.dict.md').default);
     this.registryFormService.subscribeFormConditions();
     this.subscribeCompletion();
   }
 
   sectionCompletion(section: string) {
-    return this.completion
-      ? this.completion[section].valid + '/' + this.completion[section].total
-      : null;
+    return this.completion ? this.completion[section].valid + '/' + this.completion[section].total : null;
   }
 
   private subscribeCompletion() {
@@ -189,9 +197,7 @@ export class Gtsd241Component extends RegistryFormComponent
       this.registryFormService.getRegistryCompletion().subscribe((completion) => {
         this.progressValid = completion ? completion.summary.valid : 0;
         this.progressTotal = completion ? completion.summary.total : 1;
-        this.progressSummary = completion
-          ? completion.summary.valid + '/' + completion.summary.total
-          : '0/0';
+        this.progressSummary = completion ? completion.summary.valid + '/' + completion.summary.total : '0/0';
         const percent = Math.floor((completion.summary.valid / completion.summary.total) * 100);
         this.progressPercent = `(${percent}%)`;
         this.completion = completion;
