@@ -231,3 +231,27 @@ Pathological Staging: lung cancer suspected or documented **AND** lung resection
 |G1|Well differentiated|
 |G2|Moderately differentiated|
 |G3|Poorly differentiated, undifferentiated|
+
+# PathRptStage
+
+## Pathologic Staging
+
+|  | Definition |
+|--|--|
+|Stage I|Grossly and microscopically encapsulated. Also called a noninvasive thymoma. That is, it has not spread beyond the thymus|
+|Stage II|The thymoma invades beyond the capsule (outer boundary of the thymus) and into the nearby fatty tissue or to the pleura (outer covering of the lung)|
+|Stage IIa|Microscopic transcapsular invasion|
+|Stage IIb|Macroscopic capsular invasion|
+|Stage III|Macroscopic invasion of neighboring organs. The thymoma extends into the neighboring tissues or organs of the lower neck or upper chest area, including the pericardium (covering of the heart), the lungs, or the main blood vessels leading into or exiting from the heart|
+|Stage IVa|Pleural or pericardial dissemination. The thymoma has spread widely throughout the pleura and/or pericardium|
+|Stage IVb|Hematogenous or lymphatic dissemination. The thymoma has spread to distant organs|
+
+# ResectCompleteness
+
+## Completeness of Resection
+
+|  | Definition |
+|--|--|
+|R0|Complete resection with negative margins|
+|R1|Microscopically positive margin|
+|R2|Grossly positive margin, visible tumor left behind|

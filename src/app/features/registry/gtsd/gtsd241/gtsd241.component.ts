@@ -132,7 +132,7 @@ export class Gtsd241Component extends RegistryFormComponent implements OnInit, A
     this.createForm();
     this.formGroupA.get('registryId').setValue('(new)');
 
-    this.visibility['sectionHBody'] = true;
+    this.visibility['sectionIBody'] = true;
   }
 
   ngAfterViewInit() {
@@ -172,8 +172,8 @@ export class Gtsd241Component extends RegistryFormComponent implements OnInit, A
       // ['sectionE', this.formGroupE, this.formDirectiveE, Gtsd241Conditions.sectionE],
       // ['sectionF', this.formGroupF, this.formDirectiveF, Gtsd241Conditions.sectionF],
       // ['sectionG', this.formGroupG, this.formDirectiveG, Gtsd241Conditions.sectionG],
-      ['sectionH', this.formGroupH, this.formDirectiveH, Gtsd241Conditions.sectionH],
-      // ['sectionI', this.formGroupI, this.formDirectiveI, Gtsd241Conditions.sectionI],
+      // ['sectionH', this.formGroupH, this.formDirectiveH, Gtsd241Conditions.sectionH],
+      ['sectionI', this.formGroupI, this.formDirectiveI, Gtsd241Conditions.sectionI],
       // ['sectionJ', this.formGroupJ, this.formDirectiveJ, Gtsd241Conditions.sectionJ],
       // ['sectionK', this.formGroupK, this.formDirectiveK, Gtsd241Conditions.sectionK],
       // ['sectionL', this.formGroupL, this.formDirectiveL, Gtsd241Conditions.sectionL],

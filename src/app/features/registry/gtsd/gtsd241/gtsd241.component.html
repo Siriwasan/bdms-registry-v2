@@ -1485,22 +1485,218 @@
           </div>
         </section> -->
 
-        <section class="section-wrapper" scrollSpyElement id="sectionH">
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionH">
           <div class="section-title">
             <span>{{ tocTitle('sectionH') }}</span>
             <span>{{ sectionCompletion('sectionH') }}</span>
           </div>
           <div class="section-body">
             <form [formGroup]="formGroupH" #formDirectiveH="ngForm">
-              <div class="reg-container-col">
-              </div>
               <div *ngIf="visibility['sectionHBody']; else sectionH_other_content" id="sectionHBody">
                 <div class="reg-container-col">
+
+                  <div class="reg-container">
+
+                    <reg-select controlName="MyastheniaSympt" placeholder="Pre-op Symptomatic myasthenia"
+                      [formGroup]="formGroupH" [choices]="['Yes', 'No']" [controlService]="controlService"
+                      fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <div *ngIf="visibility['TxMestinon']" class="reg-container">
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['TxMestinon']" controlName="TxMestinon"
+                        placeholder="Mestinon" [formGroup]="formGroupH" [choices]="['Yes', 'No']"
+                        [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['TxSteroids']" controlName="TxSteroids"
+                        placeholder="Steroids" [formGroup]="formGroupH" [choices]="['Yes', 'No']"
+                        [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['TxImmunoSuppress']"
+                        controlName="TxImmunoSuppress" placeholder="Other Immunosuppressive Therapy"
+                        [formGroup]="formGroupH" [choices]="['Yes', 'No']" [controlService]="controlService"
+                        fxFlex="1 0 200px">
+                      </reg-select>
+
+                    </div>
+
+                  </div>
+
+                  <div class="reg-container">
+
+                    <reg-select controlName="IVIG" placeholder="Pre-op IVIG" [formGroup]="formGroupH"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="Plasmaphereis" placeholder="Pre-op Plasmaphereis" [formGroup]="formGroupH"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <div class="reg-container">
+
+                      <reg-select controlName="MassSizeKnown" placeholder="Size of mass known" [formGroup]="formGroupH"
+                        [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-input class="reg-item-indent" *ngIf="visibility['MassSize']" controlName="MassSize"
+                        placeholder="Largest diameter (mm)" [formGroup]="formGroupH" type="number"
+                        [controlService]="controlService" fxFlex="1 0 200px">derived from preop axial,
+                        coronal
+                        or sagittal image</reg-input>
+
+                    </div>
+
+                  </div>
+
+                  <div class="reg-container">
+
+                    <reg-select controlName="ThyInitSurgAp" placeholder="Initial Surgical Approach"
+                      [formGroup]="formGroupH" [choices]="[
+                      'Full Sternotomy',
+                      'Partial Sternotomy',
+                      'Clamshell or Hemiclamshell',
+                      'Transcervical',
+                      'Robotic',
+                      'VATS'
+                      ]" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select class="reg-item-indent" *ngIf="visibility['ThyRobVATSLoc']" controlName="ThyRobVATSLoc"
+                      placeholder="Location" [formGroup]="formGroupH" [choices]="[
+                      'Right',
+                      'Left',
+                      'Bilateral'
+                      ]" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <div *ngIf="visibility['ThyConvToOpen']" class="reg-container">
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['ThyConvToOpen']"
+                        controlName="ThyConvToOpen" placeholder="Conversion to open approach during procedure"
+                        [formGroup]="formGroupH" [choices]="[
+                        'Yes, planned',
+                        'Yes, unplanned',
+                        'No'
+                        ]" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['ThyConvAp']" controlName="ThyConvAp"
+                        placeholder="Conversion Approach" [formGroup]="formGroupH" [choices]="[
+                        'Sternotomy',
+                        'Clamshell',
+                        'Thoracotomy'
+                        ]" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                    </div>
+
+                  </div>
+
+                  <reg-select controlName="PhrenicNerveResect"
+                    placeholder="Intentional resection of functioning phrenic nerve" [formGroup]="formGroupH"
+                    [choices]="['Yes', 'No']" [controlService]="controlService">
+                  </reg-select>
+
+                  <div class="reg-container">
+
+                    <reg-select controlName="PathRptStage" placeholder="Pathologic Staging" [formGroup]="formGroupH"
+                      [choices]="[
+                      'Stage I',
+                      'Stage II',
+                      'Stage IIa',
+                      'Stage IIb',
+                      'Stage III',
+                      'Stage IVa',
+                      'Stage IVb'
+                      ]" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="ThymomaType" placeholder="WHO classification" [formGroup]="formGroupH"
+                      [choices]="[
+                      'Not Thymoma',
+                      'Type A',
+                      'Type AB',
+                      'Type B1',
+                      'Type B2',
+                      'Type B3',
+                      'Thymic Carcinoma or Type C'
+                      ]" [controlService]="controlService" fxFlex="1 0 200px">from pathologic report – Thymoma only
+                    </reg-select>
+
+                    <reg-select controlName="ResectCompleteness" placeholder="Completeness of resection"
+                      [formGroup]="formGroupH" [choices]="[
+                      'R0',
+                      'R1',
+                      'R2'
+                      ]" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                  </div>
+
+                  <div class="reg-container">
+
+                    <reg-select controlName="PtAlive30Day" placeholder="Patient alive at 30 days post op"
+                      [formGroup]="formGroupH" [choices]="['Yes', 'No']" [controlService]="controlService"
+                      fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-input class="reg-item-indent" *ngIf="visibility['MYAL']" controlName="MYAL"
+                      placeholder="Myasthenic crisis" [formGroup]="formGroupH" type="number"
+                      [controlService]="controlService" fxFlex="1 0 200px">requiring return to ICU or intervention
+                      (intubation, plasmapheresis)</reg-input>
+
+                    <reg-input class="reg-item-indent" *ngIf="visibility['PhrenicNervePalsy']"
+                      controlName="PhrenicNervePalsy" placeholder="Unintentional phrenic nerve palsy"
+                      [formGroup]="formGroupH" type="number" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-input>
+
+                  </div>
+
+                  <div class="reg-container">
+
+                    <reg-select controlName="PtAlive90Day" placeholder="Patient alive at 90 days post op"
+                      [formGroup]="formGroupH" [choices]="['Yes', 'No']" [controlService]="controlService"
+                      fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-input class="reg-item-indent" *ngIf="visibility['ThoracicRadiation']"
+                      controlName="ThoracicRadiation" placeholder="Adjuvant thoracic radiation" [formGroup]="formGroupH"
+                      type="number" [controlService]="controlService" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input class="reg-item-indent" *ngIf="visibility['PhrenNrvPalsyPersis']"
+                      controlName="PhrenNrvPalsyPersis" placeholder="Persistent unintentional phrenic nerve palsy"
+                      [formGroup]="formGroupH" type="number" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-input>
+
+                  </div>
+
                 </div>
               </div>
               <ng-template #sectionH_other_content>
                 <div class="section-body">
                   You need to select Thymus/Mediastinal Mass Resection in section E.
+                </div>
+              </ng-template>
+            </form>
+          </div>
+        </section> -->
+
+        <section class="section-wrapper" scrollSpyElement id="sectionI">
+          <div class="section-title">
+            <span>{{ tocTitle('sectionI') }}</span>
+            <span>{{ sectionCompletion('sectionI') }}</span>
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupI" #formDirectiveI="ngForm">
+              <div *ngIf="visibility['sectionIBody']; else sectionI_other_content" id="sectionIBody">
+                <div class="reg-container-col">
+                </div>
+              </div>
+              <ng-template #sectionI_other_content>
+                <div class="section-body">
+                  You need to select Tracheal Resection Procedure in section E.
                 </div>
               </ng-template>
             </form>
