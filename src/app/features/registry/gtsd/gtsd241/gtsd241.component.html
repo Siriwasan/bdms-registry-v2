@@ -1683,7 +1683,7 @@
           </div>
         </section> -->
 
-        <section class="section-wrapper" scrollSpyElement id="sectionI">
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionI">
           <div class="section-title">
             <span>{{ tocTitle('sectionI') }}</span>
             <span>{{ sectionCompletion('sectionI') }}</span>
@@ -1692,6 +1692,215 @@
             <form [formGroup]="formGroupI" #formDirectiveI="ngForm">
               <div *ngIf="visibility['sectionIBody']; else sectionI_other_content" id="sectionIBody">
                 <div class="reg-container-col">
+
+                  <h3 class="reg-subtitle">Pre-Operative</h3>
+
+                  <div class="reg-container">
+
+                    <reg-select controlName="AirwayCurr" placeholder="Current Airway" [formGroup]="formGroupI"
+                      [choices]="[
+                    'Native',
+                    'Oral ETT',
+                    'Tracheostomy',
+                    'T-Tube'
+                    ]" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="TracheostomyPrior" placeholder="Prior tracheostomy"
+                      [formGroup]="formGroupI" [choices]="['Yes', 'No']" [controlService]="controlService"
+                      fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="IntubatePrior" placeholder="Prior intubation" [formGroup]="formGroupI"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="TrachealResectPrior" placeholder="Prior Tracheal Resection"
+                      [formGroup]="formGroupI" [choices]="['Yes', 'No']" [controlService]="controlService"
+                      fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="BronchInt6Wks" placeholder="Recent Bronchoscopic Intervention"
+                      [formGroup]="formGroupI" [choices]="['Yes', 'No']" [controlService]="controlService"
+                      fxFlex="1 0 200px">within 6 weeks (includes:coreout,dilation,ablation,stent)</reg-select>
+
+                    <div class="reg-container">
+
+                      <reg-select controlName="RecurrNervesIntact" placeholder="Recurrent nerves intact"
+                        [formGroup]="formGroupI" [choices]="[
+                        'Yes',
+                        'No',
+                        'Unknown'
+                        ]" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['RecurrNervNotIntact']"
+                        controlName="RecurrNervNotIntact" placeholder="Which nerve" [formGroup]="formGroupI" [choices]="[
+                        'Right',
+                        'Left',
+                        'Both'
+                        ]" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                    </div>
+
+                  </div>
+
+                  <br>
+                  <mat-divider></mat-divider>
+
+                  <h4 class="reg-subtitle">Airway management during resection</h4>
+
+                  <div class="reg-container">
+
+                    <reg-select controlName="CrossTableVent" placeholder="Cross – table ventilation"
+                      [formGroup]="formGroupI" [choices]="['Yes', 'No']" [controlService]="controlService"
+                      fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="JetVent" placeholder="Jet ventilation" [formGroup]="formGroupI"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="VvECMO" placeholder="VV-ECMO" [formGroup]="formGroupI"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="VaECMO" placeholder="VA-ECMO" [formGroup]="formGroupI"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="CardoPulmBypass" placeholder="Cardiopulmonary bypass"
+                      [formGroup]="formGroupI" [choices]="['Yes', 'No']" [controlService]="controlService"
+                      fxFlex="1 0 200px">
+                    </reg-select>
+
+                  </div>
+
+                  <br>
+                  <mat-divider></mat-divider>
+
+                  <h4 class="reg-subtitle">Incision</h4>
+
+                  <div class="reg-container">
+
+                    <reg-select controlName="TrachIncisCerv" placeholder="Cervical" [formGroup]="formGroupI"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="TrachIncisRight" placeholder="Right thoracotomy" [formGroup]="formGroupI"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="TrachIncisClam" placeholder="Clamshell" [formGroup]="formGroupI"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="TrachIncisPartStern" placeholder="Partial sternotomy"
+                      [formGroup]="formGroupI" [choices]="['Yes', 'No']" [controlService]="controlService"
+                      fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="TrachIncisFullStern" placeholder="Full sternotomy" [formGroup]="formGroupI"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                  </div>
+
+                  <div class="reg-container">
+
+                    <reg-input controlName="TrachealResectLen" placeholder="Length of tracheal resection (mm)"
+                      [formGroup]="formGroupI" type="number" [controlService]="controlService" fxFlex="1 0 250px">
+                      Surgical
+                      or pathological measurement acceptable</reg-input>
+
+                    <reg-select controlName="CricoidResect" placeholder="Cricoid resection required"
+                      [formGroup]="formGroupI" [choices]="['Yes', 'No']" [controlService]="controlService"
+                      fxFlex="1 0 250px">
+                    </reg-select>
+
+                    <reg-select controlName="CarinalResect" placeholder="Carinal resection required"
+                      [formGroup]="formGroupI" [choices]="['Yes', 'No']" [controlService]="controlService"
+                      fxFlex="1 0 250px">
+                    </reg-select>
+
+                    <div class="reg-container">
+
+                      <reg-select controlName="ReleaseManeuver" placeholder="Release Maneuvers" [formGroup]="formGroupI"
+                        [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 250px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['ReleaseManeuverType']"
+                        controlName="ReleaseManeuverType" placeholder="Release Maneuver Type" [formGroup]="formGroupI"
+                        [choices]="[
+                        'Suprahyoid',
+                        'Suprathyroid',
+                        'Hilar'
+                        ]" [controlService]="controlService" fxFlex="1 0 250px">
+                      </reg-select>
+
+                    </div>
+
+                  </div>
+
+                  <br>
+                  <mat-divider></mat-divider>
+
+                  <h4 class="reg-subtitle">Additional Post-Operative Events</h4>
+
+                  <div class="reg-container">
+
+                    <reg-select controlName="AnastomoticDehiscen" placeholder="Anastomotic dehiscence"
+                      [formGroup]="formGroupI" [choices]="['Yes', 'No']" [controlService]="controlService"
+                      fxFlex="1 0 200px">requiring drainage, revision, stent, tracheostomy, T-tube</reg-select>
+
+                    <reg-select controlName="AnastomoticStricture" placeholder="Anastomotic stricture"
+                      [formGroup]="formGroupI" [choices]="['Yes', 'No']" [controlService]="controlService"
+                      fxFlex="1 0 200px">requiring intervention</reg-select>
+
+                    <reg-select controlName="AirwayObstruct" placeholder="Airway obstruction" [formGroup]="formGroupI"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">requiring
+                      intervention (e.g., unscheduled bronchoscopy)</reg-select>
+
+                    <reg-select controlName="NervePalsyRecurr" placeholder="Recurrent nerve palsy"
+                      [formGroup]="formGroupI" [choices]="[
+                    'Right',
+                    'Left',
+                    'Both',
+                    'Neither'
+                    ]" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                  </div>
+
+                  <reg-select controlName="TrachealAppliance"
+                    placeholder="Did the patient leave the hospital with tracheal appliance" [formGroup]="formGroupI"
+                    [choices]="[
+                    'Yes',
+                    'No',
+                    'Patient Died In Hospital'
+                    ]" [controlService]="controlService">tracheostomy, T-tube or stent</reg-select>
+
+                  <div class="reg-container">
+
+                    <reg-select controlName="StentTubeFree30days"
+                      placeholder="At 30 Days Post-op Patient is Stent/tube free" [formGroup]="formGroupI" [choices]="[
+                      'Yes',
+                      'No',
+                      'Patient Died Within 30 Days of Procedure'
+                      ]" [controlService]="controlService" fxFlex="1 0 250px">
+                    </reg-select>
+
+                    <reg-select controlName="StentTubeFree90days"
+                      placeholder="At 90 Days Post-op Patient is Stent/tube free" [formGroup]="formGroupI" [choices]="[
+                      'Yes',
+                      'No',
+                      'Patient Died Within 90 Days of Procedure'
+                      ]" [controlService]="controlService" fxFlex="1 0 250px">
+                    </reg-select>
+
+                  </div>
+
                 </div>
               </div>
               <ng-template #sectionI_other_content>
@@ -1699,6 +1908,364 @@
                   You need to select Tracheal Resection Procedure in section E.
                 </div>
               </ng-template>
+            </form>
+          </div>
+        </section> -->
+
+        <!-- <section class="section-wrapper" scrollSpyElement id="sectionJ">
+          <div class="section-title">
+            <span>{{ tocTitle('sectionJ') }}</span>
+            <span>{{ sectionCompletion('sectionJ') }}</span>
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupJ" #formDirectiveJ="ngForm">
+              <div *ngIf="visibility['sectionJBody']; else sectionJ_other_content" id="sectionJBody">
+                <div class="reg-container-col">
+
+                  <h4 class="reg-subtitle">Symptoms</h4>
+
+                  <div class="reg-container">
+
+                    <reg-select controlName="Heartburn" placeholder="Heartburn" [formGroup]="formGroupJ"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="Cough" placeholder="Cough" [formGroup]="formGroupJ"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="Regurgitate" placeholder="Regurgitation" [formGroup]="formGroupJ"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="Hoarse" placeholder="Hoarseness" [formGroup]="formGroupJ"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="Dysphagia" placeholder="Dysphagia" [formGroup]="formGroupJ"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="SoreThroat" placeholder="Sore throat" [formGroup]="formGroupJ"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="Ephigastric" placeholder="Epigastric/chest pain" [formGroup]="formGroupJ"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="Asthma" placeholder="Asthma" [formGroup]="formGroupJ"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="EarlySatiety" placeholder="Early satiety" [formGroup]="formGroupJ"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="RefluxLaryngitis" placeholder="Reflux laryngitis" [formGroup]="formGroupJ"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="Anemia" placeholder="Anemia" [formGroup]="formGroupJ"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                  </div>
+
+                  <br>
+                  <mat-divider></mat-divider>
+                  <br>
+
+                  <div class="reg-container">
+
+                    <div class="reg-container">
+
+                      <reg-select controlName="PPIUse" placeholder="PPI use" [formGroup]="formGroupJ"
+                        [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['PPIRelief']" controlName="PPIRelief"
+                        placeholder="PPI relief" [formGroup]="formGroupJ" [choices]="[
+                        'Complete',
+                        'Partial',
+                        'No'
+                        ]" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                    </div>
+
+                    <div class="reg-container">
+
+                      <reg-select controlName="Esophagitis" placeholder="Esophagitis" [formGroup]="formGroupJ"
+                        [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['LAGrade']" controlName="LAGrade"
+                        placeholder="LA Grade" [formGroup]="formGroupJ" [choices]="[
+                        'A',
+                        'B',
+                        'C',
+                        'D'
+                        ]" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                    </div>
+
+                    <reg-select controlName="MetaplasiaBarrett" placeholder="Barrett’s metaplasia"
+                      [formGroup]="formGroupJ" [choices]="[
+                      'Yes, with low grade dysplasia',
+                      'Yes, with high grade dysplasia',
+                      'No'
+                      ]" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                  </div>
+
+                  <div class="reg-container">
+
+                    <div class="reg-container">
+
+                      <reg-select controlName="pHTest" placeholder="pH Testing" [formGroup]="formGroupJ"
+                        [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-input class="reg-item-indent" *ngIf="visibility['DeMeesterScore']"
+                        controlName="DeMeesterScore" placeholder="DeMeester score" [formGroup]="formGroupJ"
+                        type="number" [controlService]="controlService" fxFlex="1 0 200px"></reg-input>
+
+                    </div>
+
+                    <div class="reg-container">
+
+                      <reg-select controlName="Manometry" placeholder="Manometry perfomred" [formGroup]="formGroupJ"
+                        [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['Motility']" controlName="Motility"
+                        placeholder="Motility" [formGroup]="formGroupJ" [choices]="[
+                        'normal',
+                        'decreased',
+                        'aperistalsis'
+                        ]" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                    </div>
+
+                  </div>
+
+
+                  <div class="reg-container">
+
+                    <reg-input controlName="RestPressure" placeholder="LES resting pressure" [formGroup]="formGroupJ"
+                      type="number" [controlService]="controlService" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-input controlName="SwallowFail" placeholder="% of failed swallows" [formGroup]="formGroupJ"
+                      type="number" [controlService]="controlService" fxFlex="1 0 200px"></reg-input>
+
+                  </div>
+
+                  <div class="reg-container">
+
+                    <div class="reg-container">
+
+                      <reg-select controlName="ImagePerform" placeholder="Imaging performed" [formGroup]="formGroupJ"
+                        [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['ImageType']" controlName="ImageType"
+                        placeholder="Type of imaging" [formGroup]="formGroupJ" [choices]="[
+                        'bariums swallow/upper GI',
+                        'CT Scan',
+                        'CXR'
+                        ]" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                    </div>
+
+                    <reg-input controlName="HerniaSize" placeholder="Hiatal hernia size (cm)" [formGroup]="formGroupJ"
+                      type="number" [controlService]="controlService" fxFlex="1 0 200px"></reg-input>
+
+                    <reg-select controlName="HerniaType" placeholder="Hiatal hernia type" [formGroup]="formGroupJ"
+                      [choices]="[
+                      'I',
+                      'II',
+                      'III',
+                      'IV'
+                      ]" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                  </div>
+
+                  <br>
+                  <mat-divider></mat-divider>
+                  <br>
+
+                  <div class="reg-container">
+
+                    <reg-select controlName="HerniaRepStat" placeholder="Hernia repair status" [formGroup]="formGroupJ"
+                      [choices]="[
+                      'Primary repair',
+                      'Re-operation'
+                      ]" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select class="reg-item-indent" *ngIf="visibility['HerniaReopApp']" controlName="HerniaReopApp"
+                      placeholder="Surgical approach used in the initial procedure" [formGroup]="formGroupJ" [choices]="[
+                      'Laparoscopic',
+                      'Laparotomy',
+                      'Thoracotomy',
+                      'Not documented'
+                      ]" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                  </div>
+
+                  <h4 class="reg-subtitle">Procedure Approach</h4>
+
+                  <div class="reg-container">
+
+                    <reg-select controlName="GERDAppLaparoscop" placeholder="Laparoscopic" [formGroup]="formGroupJ"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="GERDAppRobotic" placeholder="Robotic" [formGroup]="formGroupJ"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="GERDAppLaparotomy" placeholder="Laparotomy" [formGroup]="formGroupJ"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="GERDAppThor" placeholder="Thoracotomy" [formGroup]="formGroupJ"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                  </div>
+
+                  <div class="reg-container">
+
+                    <div class="reg-container">
+
+                      <reg-select controlName="ProcFundoplicate" placeholder="Fundoplication" [formGroup]="formGroupJ"
+                        [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['FundoplicateType']"
+                        controlName="FundoplicateType" placeholder="Type" [formGroup]="formGroupJ" [choices]="[
+                        'Partial',
+                        'Complete'
+                        ]" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                    </div>
+
+                    <reg-select controlName="ProcGastroplasty" placeholder="Gastroplasty" [formGroup]="formGroupJ"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="ProcMesh" placeholder="Mesh" [formGroup]="formGroupJ"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select controlName="ProcRelaxIncision" placeholder="Relaxing incision" [formGroup]="formGroupJ"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                  </div>
+
+                  <br>
+                  <mat-divider></mat-divider>
+                  <br>
+
+                  <div class="reg-container">
+
+                    <reg-select controlName="GERDPtAliveMth" placeholder="Is patient alive at 1 month Post-op"
+                      [formGroup]="formGroupJ" [choices]="['Yes', 'No']" [controlService]="controlService"
+                      fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <div *ngIf="visibility['RadiographRecurr1Mon']" class="reg-container">
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['RadiographRecurr1Mon']"
+                        controlName="RadiographRecurr1Mon" placeholder="Radiographic recurrence"
+                        [formGroup]="formGroupJ" [choices]="['Yes', 'No']" [controlService]="controlService"
+                        fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['SymptomRecurr1Mon']"
+                        controlName="SymptomRecurr1Mon" placeholder="Symptomatic recurrence" [formGroup]="formGroupJ"
+                        [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['EndoInt1Mon']" controlName="EndoInt1Mon"
+                        placeholder="Endoscopic Intervention" [formGroup]="formGroupJ" [choices]="['Yes', 'No']"
+                        [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['RedoOperate1Mon']"
+                        controlName="RedoOperate1Mon" placeholder="Redo Operation" [formGroup]="formGroupJ"
+                        [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                    </div>
+
+                  </div>
+
+                  <div class="reg-container">
+
+                    <reg-select controlName="GERDPtAliveYr" placeholder="Is patient alive at 1 year Post-op"
+                      [formGroup]="formGroupJ" [choices]="['Yes', 'No']" [controlService]="controlService"
+                      fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <div *ngIf="visibility['RadiographRecurr1Year']" class="reg-container">
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['RadiographRecurr1Year']"
+                        controlName="RadiographRecurr1Year" placeholder="Radiographic recurrence"
+                        [formGroup]="formGroupJ" [choices]="['Yes', 'No']" [controlService]="controlService"
+                        fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['SymptomRecurr1Year']"
+                        controlName="SymptomRecurr1Year" placeholder="Symptomatic recurrence" [formGroup]="formGroupJ"
+                        [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['EndoInt1Year']" controlName="EndoInt1Year"
+                        placeholder="Endoscopic Intervention" [formGroup]="formGroupJ" [choices]="['Yes', 'No']"
+                        [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['RedoOperate1Year']"
+                        controlName="RedoOperate1Year" placeholder="Redo Operation" [formGroup]="formGroupJ"
+                        [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+              <ng-template #sectionJ_other_content>
+                <div class="section-body">
+                  You need to select Hiatal Hernia/GERD Procedure in section E.
+                </div>
+              </ng-template>
+            </form>
+          </div>
+        </section> -->
+
+        <section class="section-wrapper" scrollSpyElement id="sectionK">
+          <div class="section-title">
+            <span>{{ tocTitle('sectionK') }}</span>
+            <span>{{ sectionCompletion('sectionK') }}</span>
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupK" #formDirectiveK="ngForm">
+              <div class="reg-container-col">
+              </div>
             </form>
           </div>
         </section>
