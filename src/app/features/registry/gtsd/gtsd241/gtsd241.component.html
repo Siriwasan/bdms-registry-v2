@@ -80,7 +80,7 @@
       <div>
         <h1 class="registry-name" scrollSpyElement id="title">General Thoracic Surgery Database v2.41</h1>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionA">
+        <section class="section-wrapper" scrollSpyElement id="sectionA">
           <div class="section-title">
             <span>{{ tocTitle('sectionA') }}</span>
             <span>{{ sectionCompletion('sectionA') }}</span>
@@ -90,12 +90,15 @@
               <div class="reg-container-col">
                 <div class="reg-container">
                   <reg-input controlName="registryId" placeholder="Registry ID" [formGroup]="formGroupA" type="text"
-                    readonly="true" [controlService]="controlService" fxFlex="1 0 200px">(software generated)</reg-input>
-
-                  <reg-input controlName="HN" placeholder="HN" [formGroup]="formGroupA" type="text" [controlService]="controlService" fxFlex="1 0 200px">
+                    readonly="true" [controlService]="controlService" fxFlex="1 0 200px">(software generated)
                   </reg-input>
 
-                  <reg-input controlName="AN" placeholder="AN" [formGroup]="formGroupA" type="text" [controlService]="controlService" fxFlex="1 0 200px">
+                  <reg-input controlName="HN" placeholder="HN" [formGroup]="formGroupA" type="text"
+                    [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-input>
+
+                  <reg-input controlName="AN" placeholder="AN" [formGroup]="formGroupA" type="text"
+                    [controlService]="controlService" fxFlex="1 0 200px">
                   </reg-input>
                 </div>
 
@@ -132,7 +135,8 @@
                   </reg-input>
 
                   <reg-select controlName="Race" placeholder="Race" [formGroup]="formGroupA"
-                    [choices]="['White', 'Black/African American', 'European', 'Arab', 'Asian']" [controlService]="controlService" fxFlex="1 0 200px">
+                    [choices]="['White', 'Black/African American', 'European', 'Arab', 'Asian']"
+                    [controlService]="controlService" fxFlex="1 0 200px">
                   </reg-select>
                 </div>
 
@@ -141,7 +145,8 @@
                     [choices]="nationality" [controlService]="controlService" fxFlex="1 0 200px"></reg-select-search>
 
                   <reg-select controlName="PermAddr" placeholder="Is This Patient’s Permanent Address"
-                    [formGroup]="formGroupA" [choices]="['Yes', 'No', 'Unknown']" [controlService]="controlService" fxFlex="1 0 200px"></reg-select>
+                    [formGroup]="formGroupA" [choices]="['Yes', 'No', 'Unknown']" [controlService]="controlService"
+                    fxFlex="1 0 200px"></reg-select>
 
                   <reg-input *ngIf="visibility['ZipCode']" controlName="ZipCode" placeholder="Zip Code"
                     [formGroup]="formGroupA" type="text" [controlService]="controlService" fxFlex="1 0 200px">
@@ -150,9 +155,9 @@
               </div>
             </form>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionB">
+        <section class="section-wrapper" scrollSpyElement id="sectionB">
           <div class="section-title">
             <span>{{ tocTitle('sectionB') }}</span>
             <span>{{ sectionCompletion('sectionB') }}</span>
@@ -163,11 +168,13 @@
 
                 <div class="reg-container">
                   <reg-select-search controlName="HospName" placeholder="Hospital Name" [formGroup]="formGroupB"
-                    [choices]="['BPH', 'BHT']" group="true" [nullOption]="avHospitalsNullOption" [controlService]="controlService" fxFlex="1 0 200px">
+                    [choices]="['BPH', 'BHT']" group="true" [nullOption]="avHospitalsNullOption"
+                    [controlService]="controlService" fxFlex="1 0 200px">
                   </reg-select-search>
 
                   <reg-select controlName="AdmissionStat" placeholder="Admission Status" [formGroup]="formGroupB"
-                    [choices]="['Inpatient', 'Outpatient/Observation']" [controlService]="controlService" fxFlex="1 0 200px"></reg-select>
+                    [choices]="['Inpatient', 'Outpatient/Observation']" [controlService]="controlService"
+                    fxFlex="1 0 200px"></reg-select>
 
                   <reg-datepicker *ngIf="visibility['AdmitDt']" controlName="AdmitDt" placeholder="Admission Date"
                     [formGroup]="formGroupB" [controlService]="controlService" fxFlex="1 0 200px">
@@ -212,9 +219,9 @@
               </div>
             </form>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionC">
+        <section class="section-wrapper" scrollSpyElement id="sectionC">
           <div class="section-title">
             <span>{{ tocTitle('sectionC') }}</span>
             <span>{{ sectionCompletion('sectionC') }}</span>
@@ -726,9 +733,9 @@
               </div>
             </form>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionD">
+        <section class="section-wrapper" scrollSpyElement id="sectionD">
           <div class="section-title">
             <span>{{ tocTitle('sectionD') }}</span>
             <span>{{ sectionCompletion('sectionD') }}</span>
@@ -737,15 +744,16 @@
             <form [formGroup]="formGroupD" #formDirectiveD="ngForm">
               <div class="reg-container-col">
                 <reg-select-search controlName="CategoryPrim" placeholder="Category Of Disease - Primary"
-                  [formGroup]="formGroupD" [choices]="diagnosis" group="true" sortGroup="asc" [controlService]="controlService">
+                  [formGroup]="formGroupD" [choices]="diagnosis" group="true" sortGroup="asc"
+                  [controlService]="controlService">
                 </reg-select-search>
 
                 <reg-input controlName="CategoryPrimOth" placeholder="Category Of Disease - Primary - Other Specify"
                   [formGroup]="formGroupD" type="text" [controlService]="controlService" require="false"></reg-input>
 
                 <reg-select-search controlName="CategorySecond" placeholder="Category Of Disease - Secondary"
-                  [formGroup]="formGroupD" [choices]="diagnosis" group="true" sortGroup="asc" [controlService]="controlService"
-                  require="false">
+                  [formGroup]="formGroupD" [choices]="diagnosis" group="true" sortGroup="asc"
+                  [controlService]="controlService" require="false">
                 </reg-select-search>
 
                 <reg-input controlName="CategorySecondOth" placeholder="Category Of Disease - Secondary - Other Specify"
@@ -753,9 +761,9 @@
               </div>
             </form>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionE">
+        <section class="section-wrapper" scrollSpyElement id="sectionE">
           <div class="section-title">
             <span>{{ tocTitle('sectionE') }}</span>
             <span>{{ sectionCompletion('sectionE') }}</span>
@@ -845,15 +853,15 @@
 
                     <div *ngIf="visibility['UnanticConvTy']" class="reg-container">
 
-                      <reg-select class="reg-item-indent" *ngIf="visibility['UnanticConvTy']" controlName="UnanticConvTy"
-                        placeholder="Conversion Type" [formGroup]="formGroupE" [choices]="[
+                      <reg-select class="reg-item-indent" *ngIf="visibility['UnanticConvTy']"
+                        controlName="UnanticConvTy" placeholder="Conversion Type" [formGroup]="formGroupE" [choices]="[
                         'Elective',
                         'Emergent'
                         ]" [controlService]="controlService" fxFlex="1 0 200px">
                       </reg-select>
 
-                      <reg-select class="reg-item-indent" *ngIf="visibility['UnanticConvRsn']" controlName="UnanticConvRsn"
-                        placeholder="Conversion Reason" [formGroup]="formGroupE" [choices]="[
+                      <reg-select class="reg-item-indent" *ngIf="visibility['UnanticConvRsn']"
+                        controlName="UnanticConvRsn" placeholder="Conversion Reason" [formGroup]="formGroupE" [choices]="[
                         'Vascular',
                         'Anatomy',
                         'Lymph Nodes',
@@ -925,9 +933,9 @@
               </div>
             </form>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionF">
+        <section class="section-wrapper" scrollSpyElement id="sectionF">
           <div class="section-title">
             <span>{{ tocTitle('sectionF') }}</span>
             <span>{{ sectionCompletion('sectionF') }}</span>
@@ -1100,8 +1108,8 @@
                   <div class="reg-container">
 
                     <reg-select class="reg-item-indent" *ngIf="visibility['ClinStageLungTumor']"
-                      controlName="ClinStageLungTumor" placeholder="Lung CA Tumor - Clinical"
-                      [formGroup]="formGroupF" [choices]="[
+                      controlName="ClinStageLungTumor" placeholder="Lung CA Tumor - Clinical" [formGroup]="formGroupF"
+                      [choices]="[
                       'Tis',
                       'T1',
                       'T2',
@@ -1145,8 +1153,8 @@
                   <div class="reg-container">
 
                     <reg-select class="reg-item-indent" *ngIf="visibility['PathStageLungT']"
-                      controlName="PathStageLungT" placeholder="Lung CA Tumor - Pathological"
-                      [formGroup]="formGroupF" [choices]="[
+                      controlName="PathStageLungT" placeholder="Lung CA Tumor - Pathological" [formGroup]="formGroupF"
+                      [choices]="[
                       'TX',
                       'TO',
                       'Tis',
@@ -1212,7 +1220,8 @@
                     </reg-select>
 
                     <reg-select class="reg-item-indent" *ngIf="visibility['LungCAHistGrade']"
-                      controlName="LungCAHistGrade" placeholder="Lung CA Histologic Grade" [formGroup]="formGroupF" [choices]="[
+                      controlName="LungCAHistGrade" placeholder="Lung CA Histologic Grade" [formGroup]="formGroupF"
+                      [choices]="[
                       'Low grade (well differentiated)',
                       'Intermediate grade',
                       'High grade (poorly differentiated)',
@@ -1261,9 +1270,9 @@
               </ng-template>
             </form>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionG">
+        <section class="section-wrapper" scrollSpyElement id="sectionG">
           <div class="section-title">
             <span>{{ tocTitle('sectionG') }}</span>
             <span>{{ sectionCompletion('sectionG') }}</span>
@@ -1483,9 +1492,9 @@
               </ng-template>
             </form>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionH">
+        <section class="section-wrapper" scrollSpyElement id="sectionH">
           <div class="section-title">
             <span>{{ tocTitle('sectionH') }}</span>
             <span>{{ sectionCompletion('sectionH') }}</span>
@@ -1681,9 +1690,9 @@
               </ng-template>
             </form>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionI">
+        <section class="section-wrapper" scrollSpyElement id="sectionI">
           <div class="section-title">
             <span>{{ tocTitle('sectionI') }}</span>
             <span>{{ sectionCompletion('sectionI') }}</span>
@@ -1910,9 +1919,9 @@
               </ng-template>
             </form>
           </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionJ">
+        <section class="section-wrapper" scrollSpyElement id="sectionJ">
           <div class="section-title">
             <span>{{ tocTitle('sectionJ') }}</span>
             <span>{{ sectionCompletion('sectionJ') }}</span>
@@ -2255,7 +2264,7 @@
               </ng-template>
             </form>
           </div>
-        </section> -->
+        </section>
 
         <section class="section-wrapper" scrollSpyElement id="sectionK">
           <div class="section-title">
@@ -2265,32 +2274,645 @@
           <div class="section-body">
             <form [formGroup]="formGroupK" #formDirectiveK="ngForm">
               <div class="reg-container-col">
+
+                <reg-select controlName="PatDisp" placeholder="Patient Disposition" [formGroup]="formGroupK" [choices]="[
+                  'ICU',
+                  'Intermediate Care Unit',
+                  'Regular Floor Bed',
+                  'Not Applicable (Expired in OR)',
+                  'Outpatient or Observation Status'
+                  ]" [controlService]="controlService">
+                </reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="ICUVisitInit" placeholder="ICU Admit this admission" [formGroup]="formGroupK"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <div *ngIf="visibility['ICUVisitInitDays']" class="reg-container">
+
+                    <reg-input class="reg-item-indent" *ngIf="visibility['ICUVisitInitDays']"
+                      controlName="ICUVisitInitDays" placeholder="Initial ICU Days" [formGroup]="formGroupK"
+                      type="number" [controlService]="controlService" fxFlex="1 0 200px"></reg-input>
+
+                    <div *ngIf="visibility['ICUVisitAdd']" class="reg-container">
+
+                      <reg-select class="reg-item-indent" *ngIf="visibility['ICUVisitAdd']" controlName="ICUVisitAdd"
+                        placeholder="ICU Readmit" [formGroup]="formGroupK" [choices]="['Yes', 'No']"
+                        [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-input class="reg-item-indent2" *ngIf="visibility['ICUVisitAddDays']"
+                        controlName="ICUVisitAddDays" placeholder="Additional ICU Days" [formGroup]="formGroupK"
+                        type="number" [controlService]="controlService" fxFlex="1 0 200px"></reg-input>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
               </div>
             </form>
           </div>
         </section>
 
-        <!-- <section class="section-wrapper" scrollSpyElement id="sectionXXX">
+        <section class="section-wrapper" scrollSpyElement id="sectionL">
           <div class="section-title">
-            <span>{{ tocTitle('sectionXXX') }}</span>
-            <span>{{ sectionCompletion('sectionXXX') }}</span>
+            <span>{{ tocTitle('sectionL') }}</span>
+            <span>{{ sectionCompletion('sectionL') }}</span>
           </div>
           <div class="section-body">
-            <form [formGroup]="formGroupXXX" #formDirectiveXXX="ngForm">
+            <form [formGroup]="formGroupL" #formDirectiveL="ngForm">
               <div class="reg-container-col">
-              </div>
-              <div *ngIf="visibility['sectionFBody']; else sectionF_other_content" id="sectionFBody">
-                <div class="reg-container-col">
+
+                <h4 class="reg-subtitle">Indicate all adverse events that occurred within 1 month of surgery if
+                  discharged from the hospital or those that occur during the same admission, regardless of the length
+                  of stay</h4>
+
+                <reg-select controlName="POEvents" placeholder="Postoperative Events" [formGroup]="formGroupL"
+                  [choices]="['Yes', 'No']" [controlService]="controlService">
+                </reg-select>
+
+                <reg-select class="reg-item-indent" *ngIf="visibility['PostOpInvProc']" controlName="PostOpInvProc"
+                  placeholder="Unanticipated post-operative invasive procedure" [formGroup]="formGroupL"
+                  [choices]="['Yes', 'No']" [controlService]="controlService">
+                </reg-select>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibility['ReturnORRsn']" controlName="ReturnORRsn"
+                    placeholder="Primary Reason for Procedure" [formGroup]="formGroupL" [choices]="[
+                    'Bleeding',
+                    'Bronchopleural Fistula',
+                    'Empyema',
+                    'Middle lobectomy for torsion',
+                    'Conduit necrosis/failure following esophageal surgery',
+                    'Other'
+                    ]" [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <div class="reg-container">
+
+                    <reg-select class="reg-item-indent2" *ngIf="visibility['PosOpProcAL']" controlName="PosOpProcAL"
+                      placeholder="Anastomotic leak following esophageal surgery" [formGroup]="formGroupL"
+                      [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 250px">
+                    </reg-select>
+
+                    <div *ngIf="visibility['PosOpProcALRepair']" class="reg-container">
+
+                      <reg-select class="reg-item-indent3" *ngIf="visibility['PosOpProcALRepair']"
+                        controlName="PosOpProcALRepair" placeholder="Surgical drainage and repair"
+                        [formGroup]="formGroupL" [choices]="['Yes', 'No']" [controlService]="controlService"
+                        fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent3" *ngIf="visibility['PosOpProcALStent']"
+                        controlName="PosOpProcALStent" placeholder="Stent placement" [formGroup]="formGroupL"
+                        [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 200px">
+                      </reg-select>
+
+                      <reg-select class="reg-item-indent3" *ngIf="visibility['PosOpProcALTube']"
+                        controlName="PosOpProcALTube" placeholder="Additional chest tube placement"
+                        [formGroup]="formGroupL" [choices]="['Yes', 'No']" [controlService]="controlService"
+                        fxFlex="1 0 200px">
+                      </reg-select>
+
+                    </div>
+
+                  </div>
+
+                  <div class="reg-container">
+
+                    <reg-select class="reg-item-indent2" *ngIf="visibility['ChyloPres']" controlName="ChyloPres"
+                      placeholder="Chylothorax Present" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                      [controlService]="controlService" fxFlex="1 0 250px">
+                    </reg-select>
+
+                    <reg-select class="reg-item-indent3" *ngIf="visibility['PosOpProcChylotho']"
+                      controlName="PosOpProcChylotho" placeholder="Chylothorax req. surgical ligation of thoracic duct"
+                      [formGroup]="formGroupL" [choices]="['Yes', 'No']" [controlService]="controlService"
+                      fxFlex="1 0 250px">
+                    </reg-select>
+
+                    <reg-select class="reg-item-indent4" *ngIf="visibility['PosOpProcEmboli']"
+                      controlName="PosOpProcEmboli" placeholder="Thoracic duct embolization attempted"
+                      [formGroup]="formGroupL" [choices]="['Yes', 'No']" [controlService]="controlService"
+                      fxFlex="1 0 250px">
+                    </reg-select>
+
+                    <reg-select class="reg-item-indent5" *ngIf="visibility['PosOpProcDuctSucc']"
+                      controlName="PosOpProcDuctSucc" placeholder="Was Thoracic duct embolization successful"
+                      [formGroup]="formGroupL" [choices]="['Yes', 'No']" [controlService]="controlService"
+                      fxFlex="1 0 250px">
+                    </reg-select>
+
+                  </div>
+
                 </div>
-              </div>
-              <ng-template #sectionF_other_content>
-                <div class="section-body">
-                  You need to select Lung Cancer Procedure in section E.
+
+                <div *ngIf="visibility['AirLeak5']">
+                  <br>
+                  <mat-divider></mat-divider>
+
+                  <h3 class="reg-subtitle">Pulmonary</h3>
                 </div>
-              </ng-template>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['AirLeak5']" controlName="AirLeak5"
+                    placeholder="Air leak > 5 days duration" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['Atelectasis']" controlName="Atelectasis"
+                    placeholder="Atelectasis req. bronchoscopy" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['CPlEff']" controlName="CPlEff"
+                    placeholder="Pleural Effusion req. drainage" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['Pneumonia']" controlName="Pneumonia"
+                    placeholder="Pneumonia" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['ARDS']" controlName="ARDS"
+                    placeholder="Acute Respiratory Distress Syndrome (ARDS)" [formGroup]="formGroupL"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['RespFail']" controlName="RespFail"
+                    placeholder="Respiratory Failure" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['Bronchopleural']" controlName="Bronchopleural"
+                    placeholder="Bronchopleural Fistula" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['PE']" controlName="PE"
+                    placeholder="Pulmonary Embolus" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['Pneumo']" controlName="Pneumo"
+                    placeholder="Pneumothorax req. CT reinsertion" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['Vent']" controlName="Vent"
+                    placeholder="Initial Vent Support > 48 Hr" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['Trach']" controlName="Trach"
+                    placeholder="Tracheostomy" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['OtherPul']" controlName="OtherPul"
+                    placeholder="Other Pulmonary Event" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                </div>
+
+                <div *ngIf="visibility['AtrialArryth']">
+                  <br>
+                  <mat-divider></mat-divider>
+
+                  <h3 class="reg-subtitle">Cardiovascular</h3>
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['AtrialArryth']" controlName="AtrialArryth"
+                    placeholder="Atrial arrhythmia req. treatment" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['VentArryth']" controlName="VentArryth"
+                    placeholder="Ventricular arrhythmia req. treatment" [formGroup]="formGroupL"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['MI']" controlName="MI"
+                    placeholder="Myocardial infarct" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['DVT']" controlName="DVT"
+                    placeholder="Deep venous thrombosis (DVT) req. treatment" [formGroup]="formGroupL"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['OtherCV']" controlName="OtherCV"
+                    placeholder="Other CV event" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                </div>
+
+                <div *ngIf="visibility['Ileus']">
+                  <br>
+                  <mat-divider></mat-divider>
+
+                  <h3 class="reg-subtitle">Gastrointestinal</h3>
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['Ileus']" controlName="Ileus"
+                    placeholder="Ileus" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['AnastoMed']" controlName="AnastoMed"
+                    placeholder="Anastomotic leak requiring medical treatment only" [formGroup]="formGroupL"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['DilationEsoph']" controlName="DilationEsoph"
+                    placeholder="Dilation esophagus" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['CondNecSurg']" controlName="CondNecSurg"
+                    placeholder="Conduit Necrosis Requiring Surgery" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['DelayCondEmp']" controlName="DelayCondEmp"
+                    placeholder="Delayed conduit emptying requiring intervention" [formGroup]="formGroupL"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 250px">e.g. pyloric
+                    dilatation, botox or maintenance of NG drainage > 7days</reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['CDiff']" controlName="CDiff"
+                    placeholder="Clostridium Difficile infection" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['OtherGI']" controlName="OtherGI"
+                    placeholder="Other GI event" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                </div>
+
+                <div *ngIf="visibility['PostopPRBC']">
+                  <br>
+                  <mat-divider></mat-divider>
+
+                  <h3 class="reg-subtitle">Hematology</h3>
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['PostopPRBC']" controlName="PostopPRBC"
+                    placeholder="Packed red blood cells used" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">not include blood given in OR</reg-select>
+
+                  <reg-input class="reg-item-indent" *ngIf="visibility['PostopPRBCUnits']" controlName="PostopPRBCUnits"
+                    placeholder="# Units" [formGroup]="formGroupL" type="number" [controlService]="controlService"
+                    fxFlex="1 0 250px">
+                  </reg-input>
+
+                </div>
+
+                <div *ngIf="visibility['UTI']">
+                  <br>
+                  <mat-divider></mat-divider>
+
+                  <h3 class="reg-subtitle">Urology</h3>
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['UTI']" controlName="UTI"
+                    placeholder="Urinary tract infection" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['UrinRetent']" controlName="UrinRetent"
+                    placeholder="Urinary retention req. Catheterization" [formGroup]="formGroupL"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['DischFoley']" controlName="DischFoley"
+                    placeholder="Discharged with Foley catheter" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+                </div>
+
+                <div *ngIf="visibility['Empyema']">
+                  <br>
+                  <mat-divider></mat-divider>
+
+                  <h3 class="reg-subtitle">Infection</h3>
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['Empyema']" controlName="Empyema"
+                    placeholder="Empyema req. treatment" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['SurgSiteInfect']" controlName="SurgSiteInfect"
+                    placeholder="Surgical Site Infection" [formGroup]="formGroupL" [choices]="[
+                  'None',
+                  'Superficial',
+                  'Deep',
+                  'Organ space'
+                  ]" [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['Sepsis']" controlName="Sepsis"
+                    placeholder="Sepsis" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['OtherInfect']" controlName="OtherInfect"
+                    placeholder="Another infection req. IV antibiotics" [formGroup]="formGroupL"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                </div>
+
+                <div *ngIf="visibility['CentNeuroEvt']">
+                  <br>
+                  <mat-divider></mat-divider>
+
+                  <h3 class="reg-subtitle">Neurology</h3>
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['CentNeuroEvt']" controlName="CentNeuroEvt"
+                    placeholder="New central neurological event" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['LaryngealNerve']" controlName="LaryngealNerve"
+                    placeholder="Recurrent laryngeal nerve paresis -unexpected" [formGroup]="formGroupL"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['Delirium']" controlName="Delirium"
+                    placeholder="Delirium" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['OtherNeuro']" controlName="OtherNeuro"
+                    placeholder="Other neurological event" [formGroup]="formGroupL" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                </div>
+
+                <div *ngIf="visibility['RenFailRIFLE']">
+                  <br>
+                  <mat-divider></mat-divider>
+
+                  <h3 class="reg-subtitle">Miscellaneous</h3>
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['RenFailRIFLE']" controlName="RenFailRIFLE"
+                    placeholder="New renal failure per RIFLE criteria" [formGroup]="formGroupL"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['ChyloMed']" controlName="ChyloMed"
+                    placeholder="Chylothorax req. medical intervention" [formGroup]="formGroupL"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['OtherSurg']" controlName="OtherSurg"
+                    placeholder="Other events req. OR with gen. anesthesia" [formGroup]="formGroupL"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['UnexpectAdmitICU']"
+                    controlName="UnexpectAdmitICU" placeholder="Unexpected Admission to ICU" [formGroup]="formGroupL"
+                    [choices]="['Yes', 'No']" [controlService]="controlService" fxFlex="1 0 250px">
+                  </reg-select>
+
+                </div>
+
+              </div>
             </form>
           </div>
-        </section> -->
+        </section>
+
+        <section class="section-wrapper" scrollSpyElement id="sectionM">
+          <div class="section-title">
+            <span>{{ tocTitle('sectionM') }}</span>
+            <span>{{ sectionCompletion('sectionM') }}</span>
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupM" #formDirectiveM="ngForm">
+              <div class="reg-container-col">
+
+                <reg-select controlName="StillInHosp" placeholder="Patient is still in the hospital"
+                  [formGroup]="formGroupM" [choices]="['Yes', 'No']" [controlService]="controlService">
+                </reg-select>
+
+                <div class="reg-container">
+
+                  <reg-datepicker class="reg-item-indent" *ngIf="visibility['DischDt']" controlName="DischDt"
+                    placeholder="Date of Discharge" [formGroup]="formGroupM" [controlService]="controlService"
+                    fxFlex="1 0 200px">dd/mm/yyyy</reg-datepicker>
+
+                  <div *ngIf="visibility['MtDCStat']" class="reg-container">
+
+                    <reg-select class="reg-item-indent" *ngIf="visibility['MtDCStat']" controlName="MtDCStat"
+                      placeholder="Discharge Status" [formGroup]="formGroupM" [choices]="[
+                      'Alive',
+                      'Dead']" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                    <reg-select class="reg-item-indent2" *ngIf="visibility['DisLoctn']" controlName="DisLoctn"
+                      placeholder="Discharge location" [formGroup]="formGroupM" [choices]="[
+                      'Home',
+                      'Extended Care/Transitional Care Unit /Rehab',
+                      'Other Hospital',
+                      'Nursing Home',
+                      'Hospice',
+                      'Other'
+                      ]" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                  </div>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['CTubeDis']" controlName="CTubeDis"
+                    placeholder="Discharged with chest tube" [formGroup]="formGroupM" [choices]="['Yes', 'No']"
+                    [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <div class="reg-container">
+
+                    <reg-select class="reg-item-indent" *ngIf="visibility['DischHomeO2']" controlName="DischHomeO2"
+                      placeholder="Discharged with home O2 " [formGroup]="formGroupM" [choices]="['Yes', 'No']"
+                      [controlService]="controlService" fxFlex="1 0 200px">new, not using O2 pre-op</reg-select>
+
+                    <reg-select class="reg-item-indent2" *ngIf="visibility['OnOxygen30DayPOp']"
+                      controlName="OnOxygen30DayPOp" placeholder="On O2 at 30 days postoperative"
+                      [formGroup]="formGroupM" [choices]="[
+                      'Yes',
+                      'No',
+                      'Unknown',
+                      'Patient Died Within 30 Days Post Op'
+                      ]" [controlService]="controlService" fxFlex="1 0 200px">
+                    </reg-select>
+
+                  </div>
+
+                </div>
+
+                <div class="reg-container">
+
+                  <reg-select class="reg-item-indent" *ngIf="visibility['Readm30Dis']" controlName="Readm30Dis"
+                    placeholder="Readmit to any hospital within 30 days of discharge" [formGroup]="formGroupM"
+                    [choices]="[
+                    'Yes',
+                    'No',
+                    'Unknown'
+                    ]" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-select class="reg-item-indent2" *ngIf="visibility['Readm30DisRel']" controlName="Readm30DisRel"
+                    placeholder="Readmission related to operative procedure" [formGroup]="formGroupM" [choices]="[
+                    'Yes',
+                    'No',
+                    'Unknown'
+                    ]" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+                </div>
+
+                <reg-select controlName="Mt30Stat" placeholder="Status at 30 days after surgery"
+                  [formGroup]="formGroupM" [choices]="[
+                  'Alive',
+                  'Dead',
+                  'Unknown'
+                  ]" [controlService]="controlService">
+                </reg-select>
+
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="section-wrapper" scrollSpyElement id="sectionN">
+          <div class="section-title">
+            <span>{{ tocTitle('sectionN') }}</span>
+            <span>{{ sectionCompletion('sectionN') }}</span>
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupN" #formDirectiveN="ngForm">
+              <div class="reg-container-col">
+
+                <reg-datepicker controlName="LFUDate" placeholder="Date of Last Follow-Up" [formGroup]="formGroupN"
+                  [controlService]="controlService">dd/mm/yyyy</reg-datepicker>
+
+                <div class="reg-container">
+
+                  <reg-select controlName="LFUMortStat" placeholder="Mortality Status at Last Follow-Up"
+                    [formGroup]="formGroupN" [choices]="[
+                    'Alive',
+                    'Dead'
+                    ]" [controlService]="controlService" fxFlex="1 0 200px">
+                  </reg-select>
+
+                  <reg-datepicker class="reg-item-indent" *ngIf="visibility['MortDate']" controlName="MortDate"
+                    placeholder="Mortality Date" [formGroup]="formGroupN" [controlService]="controlService"
+                    fxFlex="1 0 200px">dd/mm/yyyy</reg-datepicker>
+
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="section-wrapper" scrollSpyElement id="sectionO">
+          <div class="section-title">
+            <span>{{ tocTitle('sectionO') }}</span>
+            <span>{{ sectionCompletion('sectionO') }}</span>
+          </div>
+          <div class="section-body">
+            <form [formGroup]="formGroupO" #formDirectiveO="ngForm">
+              <div class="reg-container-col">
+
+                <reg-select controlName="IVAntibioOrdered"
+                  placeholder="IV antibiotics ordered to be given within 1 hour before incision"
+                  [formGroup]="formGroupO" [choices]="[
+                  'Yes',
+                  'No',
+                  'Not indicated for procedure'
+                  ]" [controlService]="controlService">
+                </reg-select>
+
+                <reg-select controlName="IVAntibioGiven"
+                  placeholder="IV antibiotics given within 1 hour before incision" [formGroup]="formGroupO" [choices]="[
+                  'Yes',
+                  'No',
+                  'Not indicated for procedure'
+                  ]" [controlService]="controlService">
+                </reg-select>
+
+                <reg-select controlName="CephalAntiOrdered" placeholder="Cephalosporin Antibiotic Ordered"
+                  [formGroup]="formGroupO" [choices]="[
+                  'Yes',
+                  'No',
+                  'Not indicated for procedure',
+                  'Documented allergy or indication for therapeutic substitution'
+                  ]" [controlService]="controlService">
+                </reg-select>
+
+                <reg-select controlName="AntibioticDiscOrdered"
+                  placeholder="Prophylactic Antibiotic Discontinuation Ordered within 24 hour" [formGroup]="formGroupO"
+                  [choices]="[
+                  'Yes',
+                  'No',
+                  'Not indicated for procedure',
+                  'No, due to documented infection'
+                  ]" [controlService]="controlService">
+                </reg-select>
+
+                <reg-select controlName="SmokCoun" placeholder="Smoking Cessation Counseling" [formGroup]="formGroupO"
+                  [choices]="[
+                  'Yes',
+                  'No',
+                  'Patient refused',
+                  'Nonsmoker'
+                  ]" [controlService]="controlService">
+                </reg-select>
+
+                <reg-select controlName="DVTProphylaxis" placeholder="DVT Prophylaxis Measures" [formGroup]="formGroupO"
+                  [choices]="[
+                  'Yes',
+                  'No',
+                  'Not applicable'
+                  ]" [controlService]="controlService">
+                </reg-select>
+
+
+              </div>
+            </form>
+          </div>
+        </section>
 
       </div>
       <br>

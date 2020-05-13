@@ -132,7 +132,7 @@ export class Gtsd241Component extends RegistryFormComponent implements OnInit, A
     this.createForm();
     this.formGroupA.get('registryId').setValue('(new)');
 
-    this.visibility['sectionJBody'] = true;
+    // this.visibility['sectionJBody'] = true;
   }
 
   ngAfterViewInit() {
@@ -165,26 +165,28 @@ export class Gtsd241Component extends RegistryFormComponent implements OnInit, A
     this.formGroupO = this.formBuilder.group(Gtsd241Form.sectionO);
 
     this.sectionMembers = [
-      // ['sectionA', this.formGroupA, this.formDirectiveA, Gtsd241Conditions.sectionA],
-      // ['sectionB', this.formGroupB, this.formDirectiveB, Gtsd241Conditions.sectionB],
-      // ['sectionC', this.formGroupC, this.formDirectiveC, Gtsd241Conditions.sectionC],
-      // ['sectionD', this.formGroupD, this.formDirectiveD, Gtsd241Conditions.sectionD],
-      // ['sectionE', this.formGroupE, this.formDirectiveE, Gtsd241Conditions.sectionE],
-      // ['sectionF', this.formGroupF, this.formDirectiveF, Gtsd241Conditions.sectionF],
-      // ['sectionG', this.formGroupG, this.formDirectiveG, Gtsd241Conditions.sectionG],
-      // ['sectionH', this.formGroupH, this.formDirectiveH, Gtsd241Conditions.sectionH],
-      // ['sectionI', this.formGroupI, this.formDirectiveI, Gtsd241Conditions.sectionI],
-      // ['sectionJ', this.formGroupJ, this.formDirectiveJ, Gtsd241Conditions.sectionJ],
+      ['sectionA', this.formGroupA, this.formDirectiveA, Gtsd241Conditions.sectionA],
+      ['sectionB', this.formGroupB, this.formDirectiveB, Gtsd241Conditions.sectionB],
+      ['sectionC', this.formGroupC, this.formDirectiveC, Gtsd241Conditions.sectionC],
+      ['sectionD', this.formGroupD, this.formDirectiveD, Gtsd241Conditions.sectionD],
+      ['sectionE', this.formGroupE, this.formDirectiveE, Gtsd241Conditions.sectionE],
+      ['sectionF', this.formGroupF, this.formDirectiveF, Gtsd241Conditions.sectionF],
+      ['sectionG', this.formGroupG, this.formDirectiveG, Gtsd241Conditions.sectionG],
+      ['sectionH', this.formGroupH, this.formDirectiveH, Gtsd241Conditions.sectionH],
+      ['sectionI', this.formGroupI, this.formDirectiveI, Gtsd241Conditions.sectionI],
+      ['sectionJ', this.formGroupJ, this.formDirectiveJ, Gtsd241Conditions.sectionJ],
       ['sectionK', this.formGroupK, this.formDirectiveK, Gtsd241Conditions.sectionK],
-      // ['sectionL', this.formGroupL, this.formDirectiveL, Gtsd241Conditions.sectionL],
-      // ['sectionM', this.formGroupM, this.formDirectiveM, Gtsd241Conditions.sectionM],
-      // ['sectionN', this.formGroupN, this.formDirectiveN, Gtsd241Conditions.sectionN],
-      // ['sectionO', this.formGroupO, this.formDirectiveO, Gtsd241Conditions.sectionO],
+      ['sectionL', this.formGroupL, this.formDirectiveL, Gtsd241Conditions.sectionL],
+      ['sectionM', this.formGroupM, this.formDirectiveM, Gtsd241Conditions.sectionM],
+      ['sectionN', this.formGroupN, this.formDirectiveN, Gtsd241Conditions.sectionN],
+      ['sectionO', this.formGroupO, this.formDirectiveO, Gtsd241Conditions.sectionO],
     ];
 
     this.registryFormService.initializeForm(this.sectionMembers, Gtsd241Conditions, Gtsd241Validations, this.visibility);
     this.registryFormService.setDataDict(require('raw-loader!./gtsd241.dict.md').default);
     this.registryFormService.subscribeFormConditions();
+
+    this.subscribeSubSectionsChanged();
     this.subscribeCompletion();
   }
 
@@ -203,5 +205,19 @@ export class Gtsd241Component extends RegistryFormComponent implements OnInit, A
         this.completion = completion;
       })
     );
+  }
+
+  private subscribeSubSectionsChanged() {
+    const subSections = [
+      { parentFormGroup: this.formGroupE, control: 'LungCancer', childFormGroup: this.formGroupF },
+      { parentFormGroup: this.formGroupE, control: 'EsophCancer', childFormGroup: this.formGroupG },
+      { parentFormGroup: this.formGroupE, control: 'ThymusMediastinalData', childFormGroup: this.formGroupH },
+      { parentFormGroup: this.formGroupE, control: 'TrachealData', childFormGroup: this.formGroupI },
+      { parentFormGroup: this.formGroupE, control: 'HiatalHerniaData', childFormGroup: this.formGroupJ },
+    ];
+
+    subSections.forEach((el) => {
+      this.subscriptions.push(el.parentFormGroup.get(el.control).valueChanges.subscribe((value) => el.childFormGroup.enable()));
+    });
   }
 }
