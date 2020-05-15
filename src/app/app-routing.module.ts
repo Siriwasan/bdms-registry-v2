@@ -23,8 +23,7 @@ const routes: Routes = [
       },
       {
         path: 'registry',
-        loadChildren: () =>
-          import('./features/registry/registry.module').then((m) => m.RegistryModule),
+        loadChildren: () => import('./features/registry/registry.module').then((m) => m.RegistryModule),
         // canActivate: [AuthRoleGuard],
         // data: { roles: Auth.menus.registry }
       },
@@ -32,7 +31,7 @@ const routes: Routes = [
       // { path: 'about', component: AboutComponent },
       // { path: 'auth', component: AuthComponent },
       // { path: 'page-not-autherized', component: PageNotAutherizedComponent },
-      { path: '', redirectTo: '/registry/gtsd/gtsd241', pathMatch: 'full' },
+      { path: '', redirectTo: '/registry/gtsd', pathMatch: 'full' },
     ],
   },
 ];

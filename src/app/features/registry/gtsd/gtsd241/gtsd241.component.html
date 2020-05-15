@@ -5,7 +5,7 @@
         <div class="table-of-contents" [style.max-height.px]="tocMaxHeight">
           <ul *ngIf="sidebarOpened">
             <li id="titleTOC" (click)="tocClicked('title')" [class.active]="isActive('title')" class="toc-title">
-              <span>GTSD v2.90</span></li>
+              <span>GTSD v2.41</span></li>
             <li *ngFor="let h of toc" class="toc-header">
               <a class="toc-name" [id]="h.section + 'TOC'" (click)="tocClicked(h.section)"
                 [class.active]="isActive(h.section)">{{ h.title }}
