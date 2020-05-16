@@ -55,7 +55,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     // CdkTreeModule,
     // DragDropModule,
     // MatAutocompleteModule,
-    // MatBadgeModule,
+    MatBadgeModule,
     // MatBottomSheetModule,
     MatButtonModule,
     // MatButtonToggleModule,

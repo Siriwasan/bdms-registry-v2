@@ -1,82 +1,97 @@
-<mat-form-field>
+<!-- <mat-form-field>
   <mat-label>Filter</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+</mat-form-field> -->
+
+<mat-form-field style="margin-bottom: 20px;">
+  <mat-chip-list #chipList aria-label="Filters">
+    <mat-chip *ngFor="let filter of filters" selectable="true" removable="true" (removed)="remove(filter)">
+      {{filter}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    <input placeholder="Filters" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      matChipInputAddOnBlur="true" (matChipInputTokenEnd)="add($event)">
+    <button mat-button *ngIf="filters.length > 0" matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-chip-list>
+  <mat-hint><i>HN, AN, Name, Tag</i></mat-hint>
 </mat-form-field>
 
 <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <ng-container matColumnDef="hospital">
-    <mat-header-cell *matHeaderCellDef> Hospital </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.hospitalId }}</mat-cell>
+    <mat-header-cell *matHeaderCellDef fxHide.xs> Hospital </mat-header-cell>
+    <mat-cell *matCellDef="let element" fxHide.xs>{{ element.hospitalId }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="hn">
-    <mat-header-cell *matHeaderCellDef> HN </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.hn }}</mat-cell>
+    <mat-header-cell *matHeaderCellDef fxHide.xs> HN </mat-header-cell>
+    <mat-cell *matCellDef="let element" fxHide.xs>{{ element.hn }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.firstName + ' ' + element.lastName }}</mat-cell>
+    <mat-header-cell *matHeaderCellDef fxHide.xs> Name </mat-header-cell>
+    <mat-cell *matCellDef=" let element" fxHide.xs>{{ element.firstName + ' ' + element.lastName }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="age">
-    <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.age }}</mat-cell>
+    <mat-header-cell *matHeaderCellDef fxHide.xs> Age </mat-header-cell>
+    <mat-cell *matCellDef="let element" fxHide.xs>{{ element.age }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="procedure">
-    <mat-header-cell *matHeaderCellDef> Procedure </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.procedureDateTime | isoDate }}</mat-cell>
+    <mat-header-cell *matHeaderCellDef fxHide.xs> Procedure </mat-header-cell>
+    <mat-cell *matCellDef="let element" fxHide.xs>{{ element.procedureDateTime | isoDate }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="tags">
-    <mat-header-cell *matHeaderCellDef> Tags </mat-header-cell>
-    <mat-cell *matCellDef="let element">
-      <mat-chip-list>
-        <mat-chip color="#ffff00">Papadum</mat-chip>
-        <mat-chip>Naan</mat-chip>
-        <mat-chip>Dal</mat-chip>
+    <mat-header-cell *matHeaderCellDef fxHide.xs> Tags </mat-header-cell>
+    <mat-cell *matCellDef="let element" fxHide.xs>
+      <mat-chip-list class="tags">
+        <mat-chip *ngFor="let tag of element.tags; let i = index"
+          [color]="i % 3 === 0 ? 'warn' : i % 3 === 1 ? 'accent' : 'primary'" selected (click)="tagClicked(tag)">
+          {{ tag }}
+        </mat-chip>
       </mat-chip-list>
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="completion">
-    <mat-header-cell *matHeaderCellDef> Completion </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.completion }}%</mat-cell>
+    <mat-header-cell *matHeaderCellDef fxHide.xs>Completion</mat-header-cell>
+    <mat-cell *matCellDef="let element" fxHide.xs>{{ element.completion }}%</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="handset">
+    <mat-header-cell *matHeaderCellDef fxHide.gt-xs>Patient</mat-header-cell>
+    <mat-cell *matCellDef="let element" fxHide.gt-xs>
+      <div class="handset-patient">
+        <div>
+          <span fxFlex="20%">[{{ element.hospitalId }}]</span>
+          <span fxFlex="60%">{{ element.firstName }} {{ element.lastName }}</span>
+          <span fxFlex="20%" style="text-align: end;">Age: {{ element.age }}</span>
+        </div>
+        <div>
+          <span fxFlex="50%">HN: {{ element.hn }}</span>
+          <span fxFlex="50%" style="text-align: end;">AN: {{ element.an }}</span>
+        </div>
+        <div>
+          <span fxFlex="60%">Procedure: {{ element.procedureDateTime | isoDate }}</span>
+          <span fxFlex="40%" style="text-align: end;">Completion: {{ element.completion }}%</span>
+        </div>
+        <mat-chip-list class="tags">
+          <mat-chip *ngFor="let tag of element.tags; let i = index"
+            [color]="i % 3 === 0 ? 'warn' : i % 3 === 1 ? 'accent' : 'primary'" selected (click)="tagClicked(tag)">
+            {{ tag }}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
 
-<!-- <mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
-</mat-form-field>
-
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-<ng-container matColumnDef="position">
-  <th mat-header-cell *matHeaderCellDef> No. </th>
-  <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-</ng-container>
-
-<ng-container matColumnDef="name">
-  <th mat-header-cell *matHeaderCellDef> Name </th>
-  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-</ng-container>
-
-<ng-container matColumnDef="weight">
-  <th mat-header-cell *matHeaderCellDef> Weight </th>
-  <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-</ng-container>
-
-<ng-container matColumnDef="symbol">
-  <th mat-header-cell *matHeaderCellDef> Symbol </th>
-  <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-</ng-container>
-
-<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table> -->
+<br>
+<br>

@@ -30,11 +30,18 @@ table {
 }
 .mat-cell:nth-child(2) {
   flex: 10%;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.mat-header-cell:nth-child(3),
+.mat-header-cell:nth-child(3) {
+  flex: 20%;
+  flex-direction: column;
+  justify-content: center;
+}
 .mat-cell:nth-child(3) {
   flex: 20%;
+  // padding-left: 15px;
 }
 
 .mat-header-cell:nth-child(4) {
@@ -48,17 +55,78 @@ table {
   justify-content: center;
 }
 
-.mat-header-cell:nth-child(5),
+.mat-header-cell:nth-child(5) {
+  flex: 10%;
+  flex-direction: column;
+  justify-content: center;
+}
 .mat-cell:nth-child(5) {
   flex: 10%;
+  text-align: center;
+  justify-content: center;
 }
 
-.mat-header-cell:nth-child(6),
+.mat-header-cell:nth-child(6) {
+  flex: 40%;
+  flex-direction: column;
+  justify-content: center;
+}
 .mat-cell:nth-child(6) {
   flex: 40%;
 }
 
-.mat-header-cell:last-child,
-.mat-cell:last-child {
+.mat-header-cell:nth-child(7) {
   flex: 10%;
+  flex-direction: column;
+  justify-content: center;
+}
+.mat-cell:nth-child(7) {
+  flex: 10%;
+  text-align: center;
+  justify-content: center;
+}
+
+.mat-header-cell:last-child {
+  flex-direction: column;
+  justify-content: center;
+}
+.mat-cell:last-child {
+  justify-content: center;
+  padding: 0px;
+  width: 100%;
+}
+
+.tags {
+  .mat-chip.mat-primary {
+    background-color: #d0dbff !important;
+    color: black !important;
+    font-weight: normal;
+  }
+
+  .mat-chip.mat-accent {
+    background-color: #f1d27b !important;
+    color: black !important;
+    font-weight: normal;
+  }
+
+  .mat-chip.mat-warn {
+    background-color: #f86666 !important;
+    color: white !important;
+    font-weight: normal;
+  }
+}
+
+.handset-patient {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  width: 100%;
+
+  div {
+    margin: 2px;
+  }
+
+  .mat-chip-list {
+    margin-top: 5px;
+  }
 }
