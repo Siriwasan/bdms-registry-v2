@@ -7,6 +7,7 @@ import { MatChipInputEvent, MatChipSelectionChange } from '@angular/material/chi
 import { AppState } from 'src/app/store/root-store.state';
 import { AppStoreActions, AppStoreSelectors } from 'src/app/store/app';
 import { RegistryModel } from '../registry.model';
+import { BehaviorSubject } from 'rxjs';
 
 const data: RegistryModel[] = [
   {
@@ -95,7 +96,9 @@ export interface Fruit {
 export class GtsdComponent implements OnInit {
   displayedColumns: string[] = ['hospital', 'hn', 'name', 'age', 'procedure', 'tags', 'completion', 'handset'];
   dataSource = new MatTableDataSource(data);
+
   device$ = this.store.select(AppStoreSelectors.device);
+  itemsCollection$: BehaviorSubject<RegistryModel[]>;
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   filters: string[] = ['CAG', 'PCI'];
