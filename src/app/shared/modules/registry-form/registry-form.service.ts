@@ -1,11 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import {
-  FormGroup,
-  FormGroupDirective,
-  ValidationErrors,
-  AbstractControl,
-  FormArray,
-} from '@angular/forms';
+import { FormGroup, FormGroupDirective, ValidationErrors, AbstractControl, FormArray } from '@angular/forms';
 import { Subscription, BehaviorSubject, Observable } from 'rxjs';
 import * as marked from 'marked';
 
@@ -75,11 +69,7 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
     this.firstRunCompletion();
   }
 
-  public subscribeValueChanges(
-    formGroup: FormGroup,
-    conditions: ControlCondition[],
-    visibility: FormVisibility
-  ) {
+  public subscribeValueChanges(formGroup: FormGroup, conditions: ControlCondition[], visibility: FormVisibility) {
     conditions.forEach((condition) => {
       let parentControl: AbstractControl;
       const pCon = condition.parentControl.split(':'); // section : control
@@ -276,9 +266,7 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
   }
 
   public clearErrors() {
-    this.getSectionMembers().forEach((sectionMember) =>
-      sectionMember[2].resetForm(sectionMember[1].value)
-    );
+    this.getSectionMembers().forEach((sectionMember) => sectionMember[2].resetForm(sectionMember[1].value));
   }
 
   getRegistryCompletion(): Observable<RegistryCompletion> {
@@ -309,10 +297,8 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
           const oldCompletion = allCompletion[sm[0]] as FormCompletion;
           allCompletion[sm[0]] = newCompletion;
 
-          allCompletion.summary.valid =
-            allCompletion.summary.valid - oldCompletion.valid + newCompletion.valid;
-          allCompletion.summary.total =
-            allCompletion.summary.total - oldCompletion.total + newCompletion.total;
+          allCompletion.summary.valid = allCompletion.summary.valid - oldCompletion.valid + newCompletion.valid;
+          allCompletion.summary.total = allCompletion.summary.total - oldCompletion.total + newCompletion.total;
 
           this.complete.next(allCompletion);
         })
@@ -394,10 +380,7 @@ export class RegistryFormService implements IRegistryControlService, OnDestroy {
         break;
       }
 
-      if (
-        this.tokens[index].type === 'heading' &&
-        (this.tokens[index] as marked.Tokens.Heading).depth === 1
-      ) {
+      if (this.tokens[index].type === 'heading' && (this.tokens[index] as marked.Tokens.Heading).depth === 1) {
         break;
       }
     }
