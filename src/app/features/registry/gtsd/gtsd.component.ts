@@ -347,7 +347,7 @@ export class GtsdComponent implements OnInit, OnDestroy {
     }
 
     const regFilter: RegistryFilter = {
-      label: `${result[0]} - ${result[1]} y`,
+      label: `${result[0]} - ${result[1]} %`,
       value: result[0],
       value2: result[1],
       type: 'CompletionRange',
