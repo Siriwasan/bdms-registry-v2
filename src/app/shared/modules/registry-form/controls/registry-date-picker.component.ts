@@ -11,13 +11,7 @@ import {
   AfterViewInit,
 } from '@angular/core';
 
-import {
-  MAT_DATE_FORMATS,
-  DateAdapter,
-  MomentDateAdapter,
-  MAT_DATE_LOCALE,
-  MatDatepicker,
-} from 'src/app/shared/modules/mat-datepicker';
+import { MAT_DATE_FORMATS, DateAdapter, MomentDateAdapter, MAT_DATE_LOCALE, MatDatepicker } from 'src/app/shared/modules/mat-datepicker';
 import * as moment from 'moment';
 
 import { RegistryControlComponent } from './registry-control.component';
@@ -111,8 +105,7 @@ export class CustomDateAdapter extends MomentDateAdapter {
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
   ],
 })
-export class RegistryDatePickerComponent extends RegistryControlComponent
-  implements OnInit, OnChanges, AfterViewInit {
+export class RegistryDatePickerComponent extends RegistryControlComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() type = 'date';
   @ViewChild('dateInput', { static: true }) dateInput: ElementRef;
 
@@ -179,7 +172,7 @@ export class RegistryDatePickerComponent extends RegistryControlComponent
 
   ngAfterViewInit() {
     // bug of @coachcare/datepicker and Angular 9
-    this.dateInput.nativeElement.disabled = false;
+    // this.dateInput.nativeElement.disabled = false;
   }
 
   onClose() {

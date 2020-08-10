@@ -18,7 +18,7 @@ import {
   Input,
   OnDestroy,
   Optional,
-  Output
+  Output,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -28,7 +28,7 @@ import {
   ValidationErrors,
   Validator,
   ValidatorFn,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { MAT_INPUT_VALUE_ACCESSOR } from '@angular/material/input';
 import { MatFormField } from '@angular/material/form-field';
@@ -41,13 +41,13 @@ import { createMissingDateImplError } from './datepicker-errors';
 export const MAT_DATEPICKER_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => MatDatepickerInput),
-  multi: true
+  multi: true,
 };
 
 export const MAT_DATEPICKER_VALIDATORS: any = {
   provide: NG_VALIDATORS,
   useExisting: forwardRef(() => MatDatepickerInput),
-  multi: true
+  multi: true,
 };
 
 /**
@@ -75,20 +75,20 @@ export class MatDatepickerInputEvent<D> {
   providers: [
     MAT_DATEPICKER_VALUE_ACCESSOR,
     MAT_DATEPICKER_VALIDATORS,
-    { provide: MAT_INPUT_VALUE_ACCESSOR, useExisting: MatDatepickerInput }
+    { provide: MAT_INPUT_VALUE_ACCESSOR, useExisting: MatDatepickerInput },
   ],
   host: {
     '[attr.aria-haspopup]': 'true',
     '[attr.aria-owns]': '(_datepicker?.opened && _datepicker.id) || null',
     '[attr.min]': 'min ? _dateAdapter.toIso8601(min) : null',
     '[attr.max]': 'max ? _dateAdapter.toIso8601(max) : null',
-    '[attr.disabled]': 'disabled',
+    // '[attr.disabled]': 'true',  // bug for Angular 9+
     '(input)': '_onInput($event.target.value)',
     '(change)': '_onChange()',
     '(blur)': '_onBlur()',
-    '(keydown)': '_onKeydown($event)'
+    '(keydown)': '_onKeydown($event)',
   },
-  exportAs: 'matDatepickerInput'
+  exportAs: 'matDatepickerInput',
 })
 export class MatDatepickerInput<D> implements AfterContentInit, ControlValueAccessor, OnDestroy, Validator {
   /** The datepicker that this input is associated with. */
@@ -243,7 +243,7 @@ export class MatDatepickerInput<D> implements AfterContentInit, ControlValueAcce
     this._parseValidator,
     this._minValidator,
     this._maxValidator,
-    this._filterValidator
+    this._filterValidator,
   ]);
 
   /** Whether the last value set on the input was valid. */
@@ -270,6 +270,8 @@ export class MatDatepickerInput<D> implements AfterContentInit, ControlValueAcce
     this._localeSubscription = this._dateAdapter.localeChanges.subscribe(() => {
       this.value = this.value;
     });
+
+    // this.disabled = false;
   }
 
   ngOnDestroy() {
@@ -372,9 +374,7 @@ export class MatDatepickerInput<D> implements AfterContentInit, ControlValueAcce
   /** Formats a value and sets it on the input element. */
   private _formatValue(value: D | null) {
     const type = this._datepicker.type;
-    this._elementRef.nativeElement.value = value
-      ? this._dateAdapter.format(value, this._dateFormats.display[type])
-      : '';
+    this._elementRef.nativeElement.value = value ? this._dateAdapter.format(value, this._dateFormats.display[type]) : '';
   }
 
   /**

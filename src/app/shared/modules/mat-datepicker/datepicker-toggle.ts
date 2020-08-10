@@ -19,7 +19,7 @@ import {
   OnChanges,
   OnDestroy,
   SimpleChanges,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { merge, of as obsOf, Subscription } from 'rxjs';
 import { MatDatepicker } from './datepicker';
@@ -27,7 +27,7 @@ import { MatDatepickerIntl } from './datepicker-intl';
 
 /** Can be used to override the icon of a `matDatepickerToggle`. */
 @Directive({
-  selector: '[matDatepickerToggleIcon]'
+  selector: '[matDatepickerToggleIcon]',
 })
 export class MatDatepickerToggleIcon {}
 
@@ -41,12 +41,12 @@ export class MatDatepickerToggleIcon {}
     '[attr.tabindex]': 'null',
     '[class.mat-datepicker-toggle-active]': 'datepicker && datepicker.opened',
     '[class.mat-accent]': 'datepicker && datepicker.color === "accent"',
-    '[class.mat-warn]': 'datepicker && datepicker.color === "warn"'
+    '[class.mat-warn]': 'datepicker && datepicker.color === "warn"',
   },
   exportAs: 'matDatepickerToggle',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  preserveWhitespaces: false
+  preserveWhitespaces: false,
 })
 export class MatDatepickerToggle<D> implements AfterContentInit, OnChanges, OnDestroy {
   private _stateChanges = Subscription.EMPTY;
@@ -106,12 +106,9 @@ export class MatDatepickerToggle<D> implements AfterContentInit, OnChanges, OnDe
   private _watchStateChanges() {
     const datepickerDisabled = this.datepicker ? this.datepicker._disabledChange : obsOf();
 
-    const inputDisabled =
-      this.datepicker && this.datepicker._datepickerInput ? this.datepicker._datepickerInput._disabledChange : obsOf();
+    const inputDisabled = this.datepicker && this.datepicker._datepickerInput ? this.datepicker._datepickerInput._disabledChange : obsOf();
 
-    const datepickerToggled = this.datepicker
-      ? merge(this.datepicker.openedStream, this.datepicker.closedStream)
-      : obsOf();
+    const datepickerToggled = this.datepicker ? merge(this.datepicker.openedStream, this.datepicker.closedStream) : obsOf();
 
     this._stateChanges.unsubscribe();
     this._stateChanges = merge(this._intl.changes, datepickerDisabled, inputDisabled, datepickerToggled).subscribe(() =>

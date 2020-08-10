@@ -65,12 +65,12 @@
             </button>
             <button mat-mini-fab matTooltip="Check validation"
               [matTooltipPosition]="device === 'HandsetLandscape' ? 'above' : 'before'" color="secondary"
-              (click)="true">
+              (click)="disabledFormA()">
               <mat-icon>error_outline</mat-icon>
             </button>
             <button mat-mini-fab matTooltip="Clear validation"
               [matTooltipPosition]="device === 'HandsetLandscape' ? 'above' : 'before'" color="secondary"
-              (click)="true">
+              (click)="enabledFormA()">
               <mat-icon>highlight_off</mat-icon>
             </button>
             <button mat-mini-fab matTooltip="Print as PDF"

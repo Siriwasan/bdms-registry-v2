@@ -1,13 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectorRef,
-  ElementRef,
-  OnDestroy,
-  AfterViewInit,
-  AfterContentInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ElementRef, OnDestroy, AfterViewInit, AfterContentInit, ViewChild } from '@angular/core';
 import { FormGroup, FormGroupDirective, FormBuilder } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
@@ -25,11 +16,7 @@ import * as moment from 'moment';
 const AFK_TIMEOUT = 300000;
 const VALUECHANGED_DELAY = 5000;
 
-import {
-  FormVisibility,
-  SectionMember,
-  RegSelectChoice,
-} from 'src/app/shared/modules/registry-form/registry-form.model';
+import { FormVisibility, SectionMember, RegSelectChoice } from 'src/app/shared/modules/registry-form/registry-form.model';
 import { RegistryFormService } from 'src/app/shared/modules/registry-form/registry-form.service';
 import { TestForm3Conditions } from './test-form3.condition';
 import { TestForm3Validations } from './test-form3.validation';
@@ -43,8 +30,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./test-form3.component.scss'],
   providers: [TestForm3Service],
 })
-export class TestForm3Component extends RegistryFormComponent
-  implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
+export class TestForm3Component extends RegistryFormComponent implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
   visibility: FormVisibility = {};
   private subscriptions: Subscription[] = [];
   controlService = this.registryFormService;
@@ -117,12 +103,7 @@ export class TestForm3Component extends RegistryFormComponent
       // ['sectionC', this.formGroupC, this.formDirectiveC, TestForm3Conditions.sectionC],
     ];
 
-    this.registryFormService.initializeForm(
-      this.sectionMembers,
-      TestForm3Conditions,
-      TestForm3Validations,
-      this.visibility
-    );
+    this.registryFormService.initializeForm(this.sectionMembers, TestForm3Conditions, TestForm3Validations, this.visibility);
     this.registryFormService.setDataDict(require('raw-loader!./test-form3.dict.md').default);
   }
 
@@ -188,42 +169,40 @@ export class TestForm3Component extends RegistryFormComponent
   private subscribeUpdateFirebaseData() {
     this.sectionMembers.forEach((sm) => {
       this.subscriptions.push(
-        sm[1].valueChanges
-          .pipe(debounceTime(VALUECHANGED_DELAY), distinctUntilChanged())
-          .subscribe((value) => {
-            const section = sm[0];
+        sm[1].valueChanges.pipe(debounceTime(VALUECHANGED_DELAY), distinctUntilChanged()).subscribe((value) => {
+          const section = sm[0];
 
-            const serializedValue = this.serializeSectionValue(section, value);
-            // console.log(`form changed: ${section}`, this.lastUpdateData, serializedValue);
+          const serializedValue = this.serializeSectionValue(section, value);
+          // console.log(`form changed: ${section}`, this.lastUpdateData, serializedValue);
 
-            const diffs = deepDiff.diff(this.lastUpdateData[section], serializedValue);
-            console.log(diffs);
+          const diffs = deepDiff.diff(this.lastUpdateData[section], serializedValue);
+          console.log(diffs);
 
-            if (!diffs) {
-              console.log(`form changed: ${section} Not different`);
-              return;
+          if (!diffs) {
+            console.log(`form changed: ${section} Not different`);
+            return;
+          }
+
+          const changedValue = {};
+
+          diffs?.forEach((diff) => {
+            switch (diff.kind) {
+              case 'E':
+                const diffEdit = diff as deepDiff.DiffEdit<any, any>;
+                changedValue[section + '.' + diffEdit.path[0]] = diffEdit.rhs;
+                break;
+              default:
+                console.log('Diff other than Edit');
+                break;
             }
+          });
 
-            const changedValue = {};
+          console.log(changedValue);
+          this.afs.doc('Test/7jmOukWx9wjoQxXrOndJ').update(changedValue);
 
-            diffs?.forEach((diff) => {
-              switch (diff.kind) {
-                case 'E':
-                  const diffEdit = diff as deepDiff.DiffEdit<any, any>;
-                  changedValue[section + '.' + diffEdit.path[0]] = diffEdit.rhs;
-                  break;
-                default:
-                  console.log('Diff other than Edit');
-                  break;
-              }
-            });
-
-            console.log(changedValue);
-            this.afs.doc('Test/7jmOukWx9wjoQxXrOndJ').update(changedValue);
-
-            this.lastUpdateData[section] = serializedValue;
-            this.resetAfkTimeout();
-          })
+          this.lastUpdateData[section] = serializedValue;
+          this.resetAfkTimeout();
+        })
       );
     });
   }
@@ -249,5 +228,13 @@ export class TestForm3Component extends RegistryFormComponent
     this.afkTimeoutHandle = setTimeout(() => {
       this.route.navigateByUrl('/login');
     }, AFK_TIMEOUT);
+  }
+
+  private disabledFormA() {
+    this.formGroupA.disable();
+  }
+
+  private enabledFormA() {
+    this.formGroupA.enable();
   }
 }
