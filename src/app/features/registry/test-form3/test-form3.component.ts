@@ -230,11 +230,11 @@ export class TestForm3Component extends RegistryFormComponent implements OnInit,
     }, AFK_TIMEOUT);
   }
 
-  private disabledFormA() {
+  public disabledFormA() {
     this.formGroupA.disable();
   }
 
-  private enabledFormA() {
+  public enabledFormA() {
     this.formGroupA.enable();
   }
 }
